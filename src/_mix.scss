@@ -1,0 +1,210 @@
+//?	Mix (WPF2)
+//!	Mixins globais para uso no seu projeto:
+
+//* Instâncias: extensões da folha de estilos:
+@use "vars"		 			as var;
+@use "sass:color"			as color;
+@use "sass:math"			as math;
+
+/**
+	*#	Add Vendors
+	*	Adiciona prefixos nas propriedades CSS compatíveis com múltiplos browsers:
+	*
+	*	$property 			-> Propriedade CSS a receber os prefixos.
+	*	$value 				-> O valor da propriedade.
+*/
+@mixin addVendors(
+	$property, 
+	$value
+){
+	-webkit-#{$property}: 	#{$value};
+   	-moz-#{$property}: 		#{$value};
+   	-ms-#{$property}: 		#{$value};
+   	-o-#{$property}: 		#{$value};
+   	#{$property}: 			#{$value};
+}
+
+/**
+	*#	Center Absolute
+	*	Centraliza um elemento absolute na horizontal, vertical ou em ambos os sentidos.
+	*
+	*	$direction 			-> Sentido da centralização. Utilize 'H' para horizontal, 'V' para vertical ou 'C' para ambos.
+*/
+@mixin centerAbsolute(
+	$direction: 'H'
+){
+	position: absolute;
+
+	// Define qual é o sentido da centralização:
+	@if($direction == 'H')
+	{
+		left:	 			50%;
+		transform: 			translateX(-50%);
+	}
+
+	// Define qual é o sentido da centralização:
+	@else if($direction == 'V')
+	{
+		top:	 			50%;
+		transform: 			translateY(-50%);
+	}
+
+	// Define qual é o sentido da centralização:
+	@else if($direction == 'C')
+	{
+		top:	 			50%;
+		left:	 			50%;
+		transform: 			translateY(-50%)
+				 			translateX(-50%);
+	}
+
+	@else
+	{
+		@warn "O prefixo utilizado não é válido. Utilize 'H' para horizontal, 'V' para vertical ou 'C' para ambos.";
+	}
+}
+
+/**
+	*#	Render Arrow
+	*	Renderiza a forma de uma seta na posição desejada.
+	*
+	*	$direction 			-> Direção à qual a seta está apontando. Utilize 'top', 'right', 'bottom ou 'left'.
+	*	$size 				-> Tamanho da seta, em pixels.
+	*	$color 				-> Cor da seta.
+*/
+@mixin renderArrow(
+	$direction: bottom,
+	$size: 5px,
+	$color: #FFF
+){
+	width: 					0;
+   	height: 				0;
+
+   	@if ($direction == left)
+	{
+		border-top: 		$size solid transparent;
+		border-bottom: 		$size solid transparent; 
+		border-right: 		$size solid $color;
+   	}
+
+	@else if ($direction == right)
+	{
+		border-top: 		$size solid transparent;
+		border-bottom: 		$size solid transparent; 
+		border-left: 		$size solid $color;
+	}
+
+	@else if ($direction == bottom)
+	{
+		border-left: 		$size solid transparent;
+		border-right: 		$size solid transparent;
+		border-top: 		$size solid $color;
+	}
+
+	@else if ($direction == top)
+	{
+		border-left: 		$size solid transparent;
+		border-right: 		$size solid transparent;
+		border-bottom: 		$size solid $color;
+	}
+
+	@else
+	{
+		@warn "O prefixo utilizado não é válido. Utilize 'top', 'right', 'bottom ou 'left'.";
+	}
+}
+
+/**
+	*#	Responsive
+	*	Prepara o CSS para receber estilos responsivos.
+	*
+	*	$type	 			-> Se o responsivo está calculando o tamanho máximo ou mínimo da tela. Utilize 'max' ou 'min'.
+	*	$pixels				-> Tamanho da tela.
+*/
+@mixin responsive(
+	$pixels: 1023px,
+	$type: max
+){
+	@media screen and (#{$type}-width: $pixels){
+        @content;
+    }
+}
+
+/**
+	*#	Set Absolute
+	*	Configura o posicionamento absolute de um elemento.
+	*
+	*	$top 				-> Posicionamento superior. Utilize 'auto' para ignorar.
+	*	$top 				-> Posicionamento da direita. Utilize 'auto' para ignorar.
+	*	$top 				-> Posicionamento inferior. Utilize 'auto' para ignorar.
+	*	$top 				-> Posicionamento da esquerda. Utilize 'auto' para ignorar.
+*/
+@mixin setAbsolute(
+	$top: auto,
+	$right: auto,
+	$bottom: auto,
+	$left: auto
+){
+	position: 				absolute;
+	top: 					#{$top};
+	right: 					#{$right};
+	bottom: 				#{$bottom};
+	left: 					#{$left};
+}
+
+/**
+	*#	Short Text
+	*	Concatena reticências à qualquer texto que ultrapasse a largura máxima de seu elemento mãe.
+*/
+@mixin shortText()
+{
+   	text-overflow: 			ellipsis;
+   	white-space: 			nowrap;
+	overflow: 				hidden;
+}
+
+/**
+	*#	Manage Z-Index
+	*	Organiza elementos filhos com posicionamentos absolutos no eixo Z baseados em uma ordem crescente ou decrescente.
+*/
+@mixin manageZIndex(
+	$order: "ASC",
+	$count: 5
+){
+	$target: 0;
+
+	@if($order == "DESC" )
+	{
+		$index: $count;
+
+		@while($index > 0)
+		{
+			&:nth-child(#{$target}){
+				z-index: #{$index}; 
+			}
+
+			$target: $target + 1;
+			$index: $index - 1;
+		}
+	}
+
+	@else if ($order == "ASC")
+	{
+		$index: 0;
+
+		@while($index <= $count)
+		{
+			&:nth-child(#{$target}){
+				z-index: #{$index};
+			}
+
+			$target: $target + 1;
+			$index: $index + 1;
+		}
+	}
+
+	@else
+	{
+		@warn "Os parâmetros declarados estão incorretos.";
+	}
+}

@@ -1,0 +1,10 @@
+//?	CSS (WPF2)
+//!	Estruturação de arquivos CSS universais:
+
+//* Estilos de fontes:
+@import './fonts.scss?render=#{random(300)}';
+
+//* Estilos de estruturas:
+@import './buttons.scss?render=#{random(300)}';
+@import './reset.scss?render=#{random(300)}';
+@import './core.scss?render=#{random(300)}'; 
