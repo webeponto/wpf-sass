@@ -1,4 +1,143 @@
 //?	Animações (WPF2)
 //!	Animações globais para uso no seu projeto:
 
-//*	Jogue todas as suas animações neste espaço.
+//* Definindo o hash universal para as animações:
+$hash: 0;
+
+@function getHash()
+{
+	$hash: $hash + 1;
+	@return $hash;
+}
+
+/**
+	*#	Spin
+	*	Executa uma animação de rotação linear
+	*
+	*	$duration 			-> Tempo de duração da animação;
+	*	$loop 				-> Atributo que determina se a animação vai se repetir;
+*/
+@mixin spin(
+	$duration: 1s, 
+	$loop: true
+){
+	$localHash: getHash();
+
+	@if $loop {
+		animation: spin#{$localHash} $duration linear infinite;
+	} 
+	
+	@else {
+		animation: spin#{$localHash} $duration linear;
+	}
+
+	@keyframes spin#{$localHash} {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}
+}
+
+/**
+	*#	Ping
+	*	Executa uma animação de destaque rápido.
+	*
+	*	$scale	 			-> Tamanho da escala de destaque;
+	*	$duration 			-> Tempo de duração da animação;
+	*	$loop 				-> Atributo que determina se a animação vai se repetir;
+*/
+@mixin ping(
+	$scale: 2, 
+	$duration: 1s, 
+	$loop: true
+){
+	$localHash: getHash();
+
+	@if $loop {
+		animation: ping#{$localHash} $duration cubic-bezier(0, 0, 0.2, 1) infinite;
+	} 
+	
+	@else {
+		animation: ping#{$localHash} $duration cubic-bezier(0, 0, 0.2, 1);
+	}
+
+	@keyframes ping#{$localHash} {
+		75%, 100% {
+			transform: scale($scale);
+			opacity: 0;
+		}
+	}
+}
+
+/**
+	*#	Pulse
+	*	Executa uma animação de pulso.
+	*
+	*	$opacity 			-> Nível mínimo de opacidade;
+	*	$duration 			-> Tempo de duração da animação;
+	*	$loop 				-> Atributo que determina se a animação vai se repetir;
+*/
+@mixin pulse(
+	$opacity: .5, 
+	$duration: 2s, 
+	$loop: true
+){
+	$localHash: getHash();
+
+	@if $loop {
+		animation: pulse#{$localHash} $duration cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	} 
+	
+	@else {
+		animation: pulse#{$localHash} $duration cubic-bezier(0.4, 0, 0.6, 1);
+	}
+
+	@keyframes pulse#{$localHash} {
+		0%, 100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: $opacity;
+		}
+	}
+}
+
+/**
+	*#	Bounce
+	*	Executa uma animação de pulo.
+	*
+	*	$height 			-> Altura do salto (%/px/rem/em);
+	*	$duration 			-> Tempo de duração da animação;
+	*	$loop 				-> Atributo que determina se a animação vai se repetir;
+*/
+@mixin bounce(
+	$height: -25%, 
+	$duration: 1s, 
+	$loop: true
+){
+	$localHash: getHash();
+
+	@if $loop {
+		animation: bounce#{$localHash} $duration infinite;
+	} 
+	
+	@else {
+		animation: bounce#{$localHash} $duration;
+	}
+
+	@keyframes bounce#{$localHash} {
+		0%, 100% {
+			transform: translateY($height);
+			animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+		}
+		50% {
+			transform: translateY(0);
+			animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+		}
+	}
+}
+

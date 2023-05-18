@@ -1,16 +1,10 @@
 //?	Core (WPF2)
 //!	Estruturação de páginas e disposição de elementos:
 
-/* 
-	http://www.webeponto.com.br
-   	v1.0 | 20230412
-*/
-
 //* Instâncias: extensões da folha de estilos.
 @use "vars"		 		as var;
 @use "mix" 				as mix;
 @use "fun"				as fun;
-@use "anim"				as anim;
 @use "sass:color"		as color;
 @use "sass:math"		as math;
 
@@ -19,6 +13,22 @@
 	&::selection{
 		background: var.$c-t1-800;
 		color: var.$c-s-1;
+	}
+
+	::-webkit-scrollbar-track {
+		background: #f1f1f1; 
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #888;
+
+		&:hover{
+			background: #555; 
+		} 
+	}
+	
+	&::-webkit-scrollbar {
+		width: 5px;
 	}
 }
 
@@ -57,8 +67,7 @@ main{
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	width: 95%;
-	margin: auto;
+	margin: 0 auto;
 
 	@include mix.responsive(){
 		width: 100%;
@@ -766,6 +775,10 @@ main{
 
 }
 
+.contents{
+	display: contents;
+}
+
 //* Vídeos e Imagens:
 .iframe{
 	&-16x9{
@@ -791,13 +804,13 @@ img{
 /* Classes que ocultam conteudo pelo tipo de tela: */
 @media (min-width: 1024px){
 	.mobile{
-		display: none;
+		display: none!important;
 	}
 }
 
 @media (min-width: 0px) and (max-width: 1023px)
 {
 	.desktop{
-		display: none;
+		display: none!important;
 	}
 }
