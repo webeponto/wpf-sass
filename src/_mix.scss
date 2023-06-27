@@ -208,3 +208,31 @@
 		@warn "Os parâmetros declarados estão incorretos.";
 	}
 }
+
+/**
+	*#	Container
+	*	Prepara o CSS para receber estilos responsivos locais.
+	*
+	*	$name	 			-> O nome do container (obrigatório). Os nomes nunca devem se repetir.
+	*	$type	 			-> Se o responsivo está calculando o tamanho máximo ou mínimo da tela. Utilize 'max' ou 'min'.
+	*	$axis	 			-> Se o responsivo está calculando o eixo X ou Y do container. Utilize 'width' ou 'height'.
+	*	$pixels				-> Tamanho do container.
+*/
+@mixin container(
+	$name,
+	$type: min,
+	$axis: width,
+	$pixels: 500px
+){
+	@if($name)
+	{
+		@container #{$name} (#{$type}-#{$axis}: #{$pixels}){
+			@content;
+		}
+	}
+
+	@else 
+	{
+		@warn "O método 'container' necessita ter um nome e método especificado. Por favor especifique um nome e um método para o seu @container."
+	}
+}

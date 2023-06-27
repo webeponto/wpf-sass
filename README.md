@@ -7,7 +7,6 @@
 
 - [Introduction](#introduction)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 - [License](#license)
@@ -25,10 +24,6 @@ Para instalar o WPF 2.0, requisite permissão do administrador deste repositóri
 É necessário que você possua a versão do SASS/SCSS mais recente instalada e funcionando em seu computador. 
 
 Caso não queira instalar os módulos originais do SASS/SCSS em seu computador, você pode utilizar o plugin *Live SASS Compiler*, disponível para download para os usuários do Visual Studio Code. Neste caso, basta colar todos os arquivos da pasta *src* dentro de uma pasta *sass*.
-
-## Usage
-
-(Escrever como definir o uso do WPF 2.0 em projetos laravel aqui).
 
 ## Documentation
 

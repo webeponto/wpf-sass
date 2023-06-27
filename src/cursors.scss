@@ -1,0 +1,40 @@
+//?	Cursores (WPF2)
+//!	Configurador de cursores:
+
+//* Instâncias: extensões da folha de estilos:
+@use "vars"		 		as var;
+
+//* Mapeamento de Cursores:
+$default-cursor: var.$mc-auto;
+
+$cursor-map: (
+	// Adicione mais tags e seus respectivos padrões de cursores aqui:
+
+	//? Pointer:
+	'a': var.$mc-pointer,
+	'button': var.$mc-pointer,
+	'input[type="button"]': var.$mc-pointer,
+	'input[type="submit"]': var.$mc-pointer,
+
+	//? Text:
+	'input': var.$mc-text,
+	'textarea': var.$mc-text,
+);
+
+@mixin reset-cursor() {
+	@each $tag,
+	$cursor in $cursor-map {
+		& #{$tag} {
+			cursor: $cursor;
+		}
+	}
+
+	&:not(a, button, input) {
+		cursor: $default-cursor;
+	}
+}
+
+// Utilize o mixin reset-cursor em seu seletor principal
+body {
+	@include reset-cursor();
+}

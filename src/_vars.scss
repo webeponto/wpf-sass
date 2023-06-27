@@ -51,6 +51,24 @@ $c-success: #40B55C;
 $c-alert: #F4E946;
 $c-error: #E04141;
 
+//* Efeitos:
+// Ex: fx-shadow, fx-brightness, fx-blur...
+
+/// Insira novas opções de efeitos neste template por aqui.
+
+//* Cursores Customizados:
+// Ex: mc-auto, mc-pointer, mc-grab, mc-grabbed/mc-grabbing...
+
+$mc-auto: auto;
+$mc-pointer: pointer;
+$mc-help: context-menu;
+$mc-grab: grab;
+$mc-grabbed: grabbing;
+$mc-text: text;
+$mc-zoom-in: zoom-in;
+$mc-zoom-out: zoom-out;
+$mc-resize-all: nwse-resize;
+
 //*	Fontes:
 // Ex: fnt-1, fnt-2, fnt-icon...
 

@@ -47,11 +47,13 @@ $hash: 0;
 	*	Executa uma animação de destaque rápido.
 	*
 	*	$scale	 			-> Tamanho da escala de destaque;
+	*	$opacity 			-> A opacidade mínima do objeto animado;
 	*	$duration 			-> Tempo de duração da animação;
 	*	$loop 				-> Atributo que determina se a animação vai se repetir;
 */
 @mixin ping(
 	$scale: 2, 
+	$opacity: 0, 
 	$duration: 1s, 
 	$loop: true
 ){
@@ -68,7 +70,7 @@ $hash: 0;
 	@keyframes ping#{$localHash} {
 		75%, 100% {
 			transform: scale($scale);
-			opacity: 0;
+			opacity: $opacity;
 		}
 	}
 }
@@ -100,8 +102,50 @@ $hash: 0;
 		0%, 100% {
 			opacity: 1;
 		}
+
 		50% {
 			opacity: $opacity;
+		}
+	}
+}
+
+/**
+	*#	Ping & Pulse
+	*	Executa uma animação de pulso com destaque rápido.
+	*
+	*	$scale	 			-> Tamanho da escala de destaque;
+	*	$opacity 			-> Nível mínimo de opacidade;
+	*	$duration 			-> Tempo de duração da animação;
+	*	$loop 				-> Atributo que determina se a animação vai se repetir;
+*/
+@mixin ping-pulse(
+	$scale: 2, 
+	$opacity: .5, 
+	$duration: 2s, 
+	$loop: true
+){
+	$localHash: getHash();
+
+	@if $loop {
+		animation: ping-pulse#{$localHash} $duration cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	} 
+	
+	@else {
+		animation: ping-pulse#{$localHash} $duration cubic-bezier(0.4, 0, 0.6, 1);
+	}
+
+	@keyframes ping-pulse#{$localHash} {
+		0%, 50% {
+			opacity: 1;
+		}
+	
+		50% {
+			opacity: $opacity;
+		}
+
+		75%, 100% {
+			transform: scale($scale);
+			opacity: 0;
 		}
 	}
 }
