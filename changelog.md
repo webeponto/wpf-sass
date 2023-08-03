@@ -1,11 +1,6 @@
 # WPF 2.0
 ## Desenvolvido por Web e Ponto
 
-/*
-	Versão 1.0
-	12042023
-*/
-
 **Changelog**
 
 *V2.1 - 12042023*
