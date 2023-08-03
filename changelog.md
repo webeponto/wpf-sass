@@ -3,9 +3,6 @@
 
 **Changelog**
 
-*V2.1 - 12042023*
-- Versão utilizável final com todos os recursos iniciais planejados.
-
 *V2.0 - 27062023*
 - Adicionado o parâmetro 'opacity' em algumas animações no arquivo 'anim.scss';
 - Adicionado uma nova animação 'ping-pulse' no arquivo 'anim.scss';
@@ -14,5 +11,8 @@
 - Inserido as classes de apoio 'block' e 'conteiner'
 - Alterado algumas nomenclaturas e parâmetros base no arquivo 'core.scss';
 - Alterado algumas nomenclaturas e parâmetros base no arquivo 'vars.scss';"
+
+*V1.0 - 12042023*
+- Versão utilizável final com todos os recursos iniciais planejados.
 
 
