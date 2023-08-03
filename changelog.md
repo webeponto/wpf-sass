@@ -8,7 +8,7 @@
 
 **Changelog**
 
-*V1.0 - 12042023*
+*V2.1 - 12042023*
 - Versão utilizável final com todos os recursos iniciais planejados.
 
 *V2.0 - 27062023*
