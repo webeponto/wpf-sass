@@ -29,11 +29,13 @@
 	*	Centraliza um elemento absolute na horizontal, vertical ou em ambos os sentidos.
 	*
 	*	$direction 			-> Sentido da centralização. Utilize 'H' para horizontal, 'V' para vertical ou 'C' para ambos.
+	*	$type	 			-> Tipo de centralização. Utilize 'absolute', 'relative' ou 'fixed'.
 */
 @mixin centerAbsolute(
-	$direction: 'H'
+	$direction: 'H',
+	$type: absolute
 ){
-	position: absolute;
+	position: $type;
 
 	// Define qual é o sentido da centralização:
 	@if($direction == 'H')
@@ -138,14 +140,16 @@
 	*	$top 				-> Posicionamento da direita. Utilize 'auto' para ignorar.
 	*	$top 				-> Posicionamento inferior. Utilize 'auto' para ignorar.
 	*	$top 				-> Posicionamento da esquerda. Utilize 'auto' para ignorar.
+	*	$type 				-> Tipo de posicionamento. Utilize 'absolute', 'relative' ou 'fixed'.
 */
 @mixin setAbsolute(
 	$top: auto,
 	$right: auto,
 	$bottom: auto,
-	$left: auto
+	$left: auto,
+	$type: absolute
 ){
-	position: 				absolute;
+	position: 				$type;
 	top: 					#{$top};
 	right: 					#{$right};
 	bottom: 				#{$bottom};
