@@ -5,6 +5,13 @@
 
 **Changelog**
 
+## 1.4.0
+- `core` Corrigido inúmeras classes auxiliares específicas para o uso mobile que não estavam funcionando corretamente;
+- `core` Corrigido a classe auxiliar *grow* para o uso da propriedade CSS flex-grow;
+- `core` Corrigido a declaração de espaçamentos laterais durante o uso das classes auxiliares *w* (usando % como parâmetro de largura);
+- `core` Adicionado novas classes auxiliares *mc* para rapidamente especificar a exibição de um ponteiro específico do mouse em um elemento;
+- `core` Adicionado novas classes auxiliares *float* para facilmente trabalhar com websites/elementos que ainda não podem usufruir de um suporte 100% dedicado à estrutura flex/grid;
+
 ## 1.3.0
 - `core` Inserido a classe auxiliar opcional *inactive* para a tag *body* que impede qualquer tipo de rolagem de página;
 - `core` Adicionado uma diretiva *mob:* que pode ser anexada à quase todas as classes presentes no core para configurar que uma classe só funcione em ambientes mobile;
