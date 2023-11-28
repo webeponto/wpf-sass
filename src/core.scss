@@ -176,8 +176,6 @@ main{
 	}
 }
 
-
-
 //* Positioning:
 .glued, .overflow-hidden{
 	overflow: hidden!important;
@@ -242,7 +240,7 @@ main{
 		}
 	}
 
-	@for $p from 1 through 100{
+	@for $p from 1 through 300{
 		&-#{$p}px{
 			padding: #{$p * 1px};
 		}
@@ -254,7 +252,7 @@ main{
 		}
 	}
 
-	&-a{
+	&-a, &-auto{
 		padding: auto;
 	}
 
@@ -271,7 +269,7 @@ main{
 			}
 		}
 		
-		@for $py from 1 through 100{
+		@for $py from 1 through 300{
 			&-#{$py}px{
 				padding-top: #{$py * 1px};
 				padding-bottom: #{$py * 1px};
@@ -285,7 +283,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			padding-top: auto;
 			padding-bottom: auto;
 		}	
@@ -305,7 +303,7 @@ main{
 			}
 		}
 
-		@for $px from 1 through 100{
+		@for $px from 1 through 300{
 			&-#{$px}px{
 				padding-left: #{$px * 1px};
 				padding-right: #{$px * 1px};
@@ -319,7 +317,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			padding-left: auto;
 			padding-right: auto;
 		}	
@@ -338,7 +336,7 @@ main{
 			}
 		}
 		
-		@for $mt from 1 through 100{
+		@for $mt from 1 through 300{
 			&-#{$mt}px{
 				padding-top: #{$mt * 1px};
 			}
@@ -350,7 +348,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			padding-top: auto;
 		}	
 		
@@ -367,7 +365,7 @@ main{
 			}
 		}
 		
-		@for $pr from 1 through 100{
+		@for $pr from 1 through 300{
 			&-#{$pr}px{
 				padding-right: #{$pr * 1px};
 			}
@@ -379,7 +377,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			padding-right: auto;
 		}	
 		
@@ -396,7 +394,7 @@ main{
 			}
 		}
 
-		@for $pb from 1 through 100{
+		@for $pb from 1 through 300{
 			&-#{$pb}px{
 				padding-bottom: #{$pb * 1px};
 			}
@@ -408,7 +406,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			padding-bottom: auto;
 		}	
 		
@@ -425,7 +423,7 @@ main{
 			}
 		}
 
-		@for $pl from 1 through 100{
+		@for $pl from 1 through 300{
 			&-#{$pl}px{
 				padding-left: #{$pl * 1px};
 			}
@@ -437,7 +435,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			padding-left: auto;
 		}	
 		
@@ -469,7 +467,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			padding: auto;
 		}
 
@@ -500,7 +498,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				padding-top: auto;
 				padding-bottom: auto;
 			}	
@@ -534,7 +532,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				padding-left: auto;
 				padding-right: auto;
 			}	
@@ -565,7 +563,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				padding-top: auto;
 			}	
 			
@@ -594,7 +592,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				padding-right: auto;
 			}	
 			
@@ -623,7 +621,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				padding-bottom: auto;
 			}	
 			
@@ -652,7 +650,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				padding-left: auto;
 			}	
 			
@@ -672,7 +670,7 @@ main{
 		}
 	}
 
-	@for $m from 1 through 100{
+	@for $m from 1 through 300{
 		&-#{$m}px{
 			margin: #{$m * 1px};
 		}
@@ -684,7 +682,7 @@ main{
 		}
 	}
 
-	&-a{
+	&-a, &-auto{
 		margin: auto;
 	}
 	
@@ -701,7 +699,7 @@ main{
 			}
 		}
 		
-		@for $my from 1 through 100{
+		@for $my from 1 through 300{
 			&-#{$my}px{
 				margin-top: #{$my * 1px};
 				margin-bottom: #{$my * 1px};
@@ -715,7 +713,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			margin-top: auto;
 			margin-bottom: auto;
 		}	
@@ -735,7 +733,7 @@ main{
 			}
 		}
 
-		@for $mx from 1 through 100{
+		@for $mx from 1 through 300{
 			&-#{$mx}px{
 				margin-left: #{$mx * 1px};
 				margin-right: #{$mx * 1px};
@@ -749,7 +747,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			margin-left: auto;
 			margin-right: auto;
 		}	
@@ -768,7 +766,7 @@ main{
 			}
 		}
 
-		@for $mt from 1 through 100{
+		@for $mt from 1 through 300{
 			&-#{$mt}px{
 				margin-top: #{$mt * 1px};
 			}
@@ -780,7 +778,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			margin-top: auto;
 		}	
 		
@@ -797,7 +795,7 @@ main{
 			}
 		}
 		
-		@for $mr from 1 through 100{
+		@for $mr from 1 through 300{
 			&-#{$mr}px{
 				margin-right: #{$mr * 1px};
 			}
@@ -809,7 +807,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			margin-right: auto;
 		}	
 		
@@ -826,7 +824,7 @@ main{
 			}
 		}
 		
-		@for $mb from 1 through 100{
+		@for $mb from 1 through 300{
 			&-#{$mb}px{
 				margin-bottom: #{$mb * 1px};
 			}
@@ -838,7 +836,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			margin-bottom: auto;
 		}	
 		
@@ -855,7 +853,7 @@ main{
 			}
 		}
 		
-		@for $ml from 1 through 100{
+		@for $ml from 1 through 300{
 			&-#{$ml}px{
 				margin-left: #{$ml * 1px};
 			}
@@ -867,7 +865,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			margin-left: auto;
 		}	
 		
@@ -899,7 +897,7 @@ main{
 			}
 		}
 
-		&-a{
+		&-a, &-auto{
 			margin: auto;
 		}
 		
@@ -930,7 +928,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				margin-top: auto;
 				margin-bottom: auto;
 			}	
@@ -964,7 +962,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				margin-left: auto;
 				margin-right: auto;
 			}	
@@ -995,7 +993,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				margin-top: auto;
 			}	
 			
@@ -1024,7 +1022,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				margin-right: auto;
 			}	
 			
@@ -1053,7 +1051,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				margin-bottom: auto;
 			}	
 			
@@ -1082,7 +1080,7 @@ main{
 				}
 			}
 
-			&-a{
+			&-a, &-auto{
 				margin-left: auto;
 			}	
 			
@@ -1172,7 +1170,50 @@ main{
 	//* Orientação linha/coluna:
 	&.row{
 		flex-direction: row;
-		&-r {flex-direction: row-reverse}
+		
+		&-r {
+			flex-direction: row-reverse;
+
+			//*	Alinhamento vertical (elemento mãe reverso):
+			&.v{
+				&-top		{align-items: flex-start}
+				&-center	{align-items: center}
+				&-bottom	{align-items: flex-end}
+				&-stretch	{align-items: stretch}
+			}
+
+			@include mix.responsive()
+			{
+				.mob\:v{
+					&-top		{align-items: flex-start}
+					&-center	{align-items: center}
+					&-bottom	{align-items: flex-end}
+					&-stretch	{align-items: stretch}
+				}
+			}
+
+			//*	Alinhamento horizontal (elemento mãe reverso):
+			&.h{
+				&-left		{justify-content: flex-start}
+				&-center	{justify-content: center}
+				&-right		{justify-content: flex-end}
+				&-between	{justify-content: space-between}
+				&-around	{justify-content: space-around}
+				&-evenly	{justify-content: space-evenly}
+			}
+
+			@include mix.responsive()
+			{
+				.mob\:h{
+					&-left		{justify-content: flex-start}
+					&-center	{justify-content: center}
+					&-right		{justify-content: flex-end}
+					&-between	{justify-content: space-between}
+					&-around	{justify-content: space-around}
+					&-evenly	{justify-content: space-evenly}
+				}
+			}
+		}
 
 		//*	Alinhamento vertical (elemento mãe):
 		&.v{
@@ -1212,8 +1253,6 @@ main{
 				&-around	{justify-content: space-around}
 				&-evenly	{justify-content: space-evenly}
 			}
-
-			
 		}
 	}
 
@@ -1221,7 +1260,26 @@ main{
 	{
 		&.mob\:row{
 			flex-direction: row;
-			&-r {flex-direction: row-reverse}
+			
+			&-r {
+				flex-direction: row-reverse;
+
+				.mob\:v{
+					&-top		{align-items: flex-start}
+					&-center	{align-items: center}
+					&-bottom	{align-items: flex-end}
+					&-stretch	{align-items: stretch}
+				}
+
+				.mob\:h{
+					&-left		{justify-content: flex-start}
+					&-center	{justify-content: center}
+					&-right		{justify-content: flex-end}
+					&-between	{justify-content: space-between}
+					&-around	{justify-content: space-around}
+					&-evenly	{justify-content: space-evenly}
+				}
+			}
 
 			.mob\:v{
 				&-top		{align-items: flex-start}
@@ -1243,7 +1301,50 @@ main{
 	
 	&.col{
 		flex-direction: column;
-		&-r {flex-direction: column-reverse}
+		
+		&-r {
+			flex-direction: column-reverse;
+
+			//*	Alinhamento vertical (elemento mãe reverso):
+			&.v{
+				&-top		{justify-content: flex-start}
+				&-center	{justify-content: center}
+				&-bottom	{justify-content: flex-end}
+				&-between	{justify-content: space-between}
+				&-around	{justify-content: space-around}
+				&-evenly	{justify-content: space-evenly}
+			}
+
+			@include mix.responsive()
+			{
+				.mob\:v{
+					&-top		{justify-content: flex-start}
+					&-center	{justify-content: center}
+					&-bottom	{justify-content: flex-end}
+					&-between	{justify-content: space-between}
+					&-around	{justify-content: space-around}
+					&-evenly	{justify-content: space-evenly}
+				}
+			}
+
+			//*	Alinhamento horizontal (elemento mãe reverso):
+			&.h{
+				&-left		{align-items: flex-start}
+				&-center	{align-items: center}
+				&-right		{align-items: flex-end}
+				&-stretch	{align-items: stretch}
+			}
+
+			@include mix.responsive()
+			{
+				.mob\:h{
+					&-left		{align-items: flex-start}
+					&-center	{align-items: center}
+					&-right		{align-items: flex-end}
+					&-stretch	{align-items: stretch}
+				}
+			}
+		}
 
 		//*	Alinhamento vertical (elemento mãe):
 		&.v{
@@ -1290,7 +1391,26 @@ main{
 	{
 		&.mob\:col{
 			flex-direction: column;
-			&-r {flex-direction: column-reverse}
+			
+			&-r {
+				flex-direction: column-reverse;
+
+				.mob\:v{
+					&-top		{justify-content: flex-start}
+					&-center	{justify-content: center}
+					&-bottom	{justify-content: flex-end}
+					&-between	{justify-content: space-between}
+					&-around	{justify-content: space-around}
+					&-evenly	{justify-content: space-evenly}
+				}
+
+				.mob\:h{
+					&-left		{align-items: flex-start}
+					&-center	{align-items: center}
+					&-right		{align-items: flex-end}
+					&-stretch	{align-items: stretch}
+				}
+			}
 
 			.mob\:v{
 				&-top		{justify-content: flex-start}
@@ -2105,6 +2225,22 @@ main{
 
 img{
 	max-width:100%;
+
+	&.fit{
+		object-fit: fill;
+
+		&-cover{
+			object-fit: cover;
+		}
+		
+		&-contain{
+			object-fit: contain;
+		}
+		
+		&-scale-down{
+			object-fit: scale-down;
+		}
+	}
 }
 
 //* Transições:

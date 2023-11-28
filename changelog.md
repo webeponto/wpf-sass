@@ -5,6 +5,10 @@
 
 **Changelog**
 
+## 1.4.1
+- `core` Adicionado a variante *auto* para todas as classes auxiliares relacionadas com a propriedade *padding*, *margin*, *width* e *height*;
+- `core` Corrigido um erro que impedia que qualquer classe auxiliar relacionado à posicionamento vertical/horizontal, tanto para desktop ou responsivo, funcionasse caso a classe "flex" estivesse acompanhada pela instrução *col-r* ou *row-r*;
+
 ## 1.4.0
 - `core` Corrigido inúmeras classes auxiliares específicas para o uso mobile que não estavam funcionando corretamente;
 - `core` Corrigido a classe auxiliar *grow* para o uso da propriedade CSS flex-grow;
