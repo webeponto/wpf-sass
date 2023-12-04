@@ -1171,87 +1171,87 @@ main{
 	&.row{
 		flex-direction: row;
 		
-		&-r {
+		&-r{
 			flex-direction: row-reverse;
 
 			//*	Alinhamento vertical (elemento mãe reverso):
 			&.v{
-				&-top		{align-items: flex-start}
-				&-center	{align-items: center}
-				&-bottom	{align-items: flex-end}
-				&-stretch	{align-items: stretch}
+				&-top		{align-items: flex-start;}
+				&-center	{align-items: center;}
+				&-bottom	{align-items: flex-end;}
+				&-stretch	{align-items: stretch;}
 			}
 
 			@include mix.responsive()
 			{
-				.mob\:v{
-					&-top		{align-items: flex-start}
-					&-center	{align-items: center}
-					&-bottom	{align-items: flex-end}
-					&-stretch	{align-items: stretch}
+				&.mob\:v{
+					&-top		{align-items: flex-start;}
+					&-center	{align-items: center;}
+					&-bottom	{align-items: flex-end;}
+					&-stretch	{align-items: stretch;}
 				}
 			}
 
 			//*	Alinhamento horizontal (elemento mãe reverso):
 			&.h{
-				&-left		{justify-content: flex-start}
-				&-center	{justify-content: center}
-				&-right		{justify-content: flex-end}
-				&-between	{justify-content: space-between}
-				&-around	{justify-content: space-around}
-				&-evenly	{justify-content: space-evenly}
+				&-left		{justify-content: flex-start;}
+				&-center	{justify-content: center;}
+				&-right		{justify-content: flex-end;}
+				&-between	{justify-content: space-between;}
+				&-around	{justify-content: space-around;}
+				&-evenly	{justify-content: space-evenly;}
 			}
 
 			@include mix.responsive()
 			{
-				.mob\:h{
-					&-left		{justify-content: flex-start}
-					&-center	{justify-content: center}
-					&-right		{justify-content: flex-end}
-					&-between	{justify-content: space-between}
-					&-around	{justify-content: space-around}
-					&-evenly	{justify-content: space-evenly}
+				&.mob\:h{
+					&-left		{justify-content: flex-start;}
+					&-center	{justify-content: center;}
+					&-right		{justify-content: flex-end;}
+					&-between	{justify-content: space-between;}
+					&-around	{justify-content: space-around;}
+					&-evenly	{justify-content: space-evenly;}
 				}
 			}
 		}
 
 		//*	Alinhamento vertical (elemento mãe):
 		&.v{
-			&-top		{align-items: flex-start}
-			&-center	{align-items: center}
-			&-bottom	{align-items: flex-end}
-			&-stretch	{align-items: stretch}
+			&-top		{align-items: flex-start;}
+			&-center	{align-items: center;}
+			&-bottom	{align-items: flex-end;}
+			&-stretch	{align-items: stretch;}
 		}
 
 		@include mix.responsive()
 		{
-			.mob\:v{
-				&-top		{align-items: flex-start}
-				&-center	{align-items: center}
-				&-bottom	{align-items: flex-end}
-				&-stretch	{align-items: stretch}
+			&.mob\:v{
+				&-top		{align-items: flex-start;}
+				&-center	{align-items: center;}
+				&-bottom	{align-items: flex-end;}
+				&-stretch	{align-items: stretch;}
 			}
 		}
 
 		//*	Alinhamento horizontal (elemento mãe):
 		&.h{
-			&-left		{justify-content: flex-start}
-			&-center	{justify-content: center}
-			&-right		{justify-content: flex-end}
-			&-between	{justify-content: space-between}
-			&-around	{justify-content: space-around}
-			&-evenly	{justify-content: space-evenly}
+			&-left		{justify-content: flex-start;}
+			&-center	{justify-content: center;}
+			&-right		{justify-content: flex-end;}
+			&-between	{justify-content: space-between;}
+			&-around	{justify-content: space-around;}
+			&-evenly	{justify-content: space-evenly;}
 		}
 
 		@include mix.responsive()
 		{
-			.mob\:h{
-				&-left		{justify-content: flex-start}
-				&-center	{justify-content: center}
-				&-right		{justify-content: flex-end}
-				&-between	{justify-content: space-between}
-				&-around	{justify-content: space-around}
-				&-evenly	{justify-content: space-evenly}
+			&.mob\:h{
+				&-left		{justify-content: flex-start;}
+				&-center	{justify-content: center;}
+				&-right		{justify-content: flex-end;}
+				&-between	{justify-content: space-between;}
+				&-around	{justify-content: space-around;}
+				&-evenly	{justify-content: space-evenly;}
 			}
 		}
 	}
@@ -1264,37 +1264,37 @@ main{
 			&-r {
 				flex-direction: row-reverse;
 
-				.mob\:v{
-					&-top		{align-items: flex-start}
-					&-center	{align-items: center}
-					&-bottom	{align-items: flex-end}
-					&-stretch	{align-items: stretch}
+				&.mob\:v{
+					&-top		{align-items: flex-start;}
+					&-center	{align-items: center;}
+					&-bottom	{align-items: flex-end;}
+					&-stretch	{align-items: stretch;}
 				}
 
-				.mob\:h{
-					&-left		{justify-content: flex-start}
-					&-center	{justify-content: center}
-					&-right		{justify-content: flex-end}
-					&-between	{justify-content: space-between}
-					&-around	{justify-content: space-around}
-					&-evenly	{justify-content: space-evenly}
+				&.mob\:h{
+					&-left		{justify-content: flex-start;}
+					&-center	{justify-content: center;}
+					&-right		{justify-content: flex-end;}
+					&-between	{justify-content: space-between;}
+					&-around	{justify-content: space-around;}
+					&-evenly	{justify-content: space-evenly;}
 				}
 			}
 
-			.mob\:v{
-				&-top		{align-items: flex-start}
-				&-center	{align-items: center}
-				&-bottom	{align-items: flex-end}
-				&-stretch	{align-items: stretch}
+			&.mob\:v{
+				&-top		{align-items: flex-start;}
+				&-center	{align-items: center;}
+				&-bottom	{align-items: flex-end;}
+				&-stretch	{align-items: stretch;}
 			}
 
-			.mob\:h{
-				&-left		{justify-content: flex-start}
-				&-center	{justify-content: center}
-				&-right		{justify-content: flex-end}
-				&-between	{justify-content: space-between}
-				&-around	{justify-content: space-around}
-				&-evenly	{justify-content: space-evenly}
+			&.mob\:h{
+				&-left		{justify-content: flex-start;}
+				&-center	{justify-content: center;}
+				&-right		{justify-content: flex-end;}
+				&-between	{justify-content: space-between;}
+				&-around	{justify-content: space-around;}
+				&-evenly	{justify-content: space-evenly;}
 			}
 		}
 	}
@@ -1307,82 +1307,82 @@ main{
 
 			//*	Alinhamento vertical (elemento mãe reverso):
 			&.v{
-				&-top		{justify-content: flex-start}
-				&-center	{justify-content: center}
-				&-bottom	{justify-content: flex-end}
-				&-between	{justify-content: space-between}
-				&-around	{justify-content: space-around}
-				&-evenly	{justify-content: space-evenly}
+				&-top		{justify-content: flex-start;}
+				&-center	{justify-content: center;}
+				&-bottom	{justify-content: flex-end;}
+				&-between	{justify-content: space-between;}
+				&-around	{justify-content: space-around;}
+				&-evenly	{justify-content: space-evenly;}
 			}
 
 			@include mix.responsive()
 			{
-				.mob\:v{
-					&-top		{justify-content: flex-start}
-					&-center	{justify-content: center}
-					&-bottom	{justify-content: flex-end}
-					&-between	{justify-content: space-between}
-					&-around	{justify-content: space-around}
-					&-evenly	{justify-content: space-evenly}
+				&.mob\:v{
+					&-top		{justify-content: flex-start;}
+					&-center	{justify-content: center;}
+					&-bottom	{justify-content: flex-end;}
+					&-between	{justify-content: space-between;}
+					&-around	{justify-content: space-around;}
+					&-evenly	{justify-content: space-evenly;}
 				}
 			}
 
 			//*	Alinhamento horizontal (elemento mãe reverso):
 			&.h{
-				&-left		{align-items: flex-start}
-				&-center	{align-items: center}
-				&-right		{align-items: flex-end}
-				&-stretch	{align-items: stretch}
+				&-left		{align-items: flex-start;}
+				&-center	{align-items: center;}
+				&-right		{align-items: flex-end;}
+				&-stretch	{align-items: stretch;}
 			}
 
 			@include mix.responsive()
 			{
-				.mob\:h{
-					&-left		{align-items: flex-start}
-					&-center	{align-items: center}
-					&-right		{align-items: flex-end}
-					&-stretch	{align-items: stretch}
+				&.mob\:h{
+					&-left		{align-items: flex-start;}
+					&-center	{align-items: center;}
+					&-right		{align-items: flex-end;}
+					&-stretch	{align-items: stretch;}
 				}
 			}
 		}
 
 		//*	Alinhamento vertical (elemento mãe):
 		&.v{
-			&-top		{justify-content: flex-start}
-			&-center	{justify-content: center}
-			&-bottom	{justify-content: flex-end}
-			&-between	{justify-content: space-between}
-			&-around	{justify-content: space-around}
-			&-evenly	{justify-content: space-evenly}
+			&-top		{justify-content: flex-start;}
+			&-center	{justify-content: center;}
+			&-bottom	{justify-content: flex-end;}
+			&-between	{justify-content: space-between;}
+			&-around	{justify-content: space-around;}
+			&-evenly	{justify-content: space-evenly;}
 		}
 
 		@include mix.responsive()
 		{
-			.mob\:v{
-				&-top		{justify-content: flex-start}
-				&-center	{justify-content: center}
-				&-bottom	{justify-content: flex-end}
-				&-between	{justify-content: space-between}
-				&-around	{justify-content: space-around}
-				&-evenly	{justify-content: space-evenly}
+			&.mob\:v{
+				&-top		{justify-content: flex-start;}
+				&-center	{justify-content: center;}
+				&-bottom	{justify-content: flex-end;}
+				&-between	{justify-content: space-between;}
+				&-around	{justify-content: space-around;}
+				&-evenly	{justify-content: space-evenly;}
 			}
 		}
 
 		//*	Alinhamento horizontal (elemento mãe):
 		&.h{
-			&-left		{align-items: flex-start}
-			&-center	{align-items: center}
-			&-right		{align-items: flex-end}
-			&-stretch	{align-items: stretch}
+			&-left		{align-items: flex-start;}
+			&-center	{align-items: center;}
+			&-right		{align-items: flex-end;}
+			&-stretch	{align-items: stretch;}
 		}
 
 		@include mix.responsive()
 		{
-			.mob\:h{
-				&-left		{align-items: flex-start}
-				&-center	{align-items: center}
-				&-right		{align-items: flex-end}
-				&-stretch	{align-items: stretch}
+			&.mob\:h{
+				&-left		{align-items: flex-start;}
+				&-center	{align-items: center;}
+				&-right		{align-items: flex-end;}
+				&-stretch	{align-items: stretch;}
 			}
 		}
 	}
@@ -1395,73 +1395,73 @@ main{
 			&-r {
 				flex-direction: column-reverse;
 
-				.mob\:v{
-					&-top		{justify-content: flex-start}
-					&-center	{justify-content: center}
-					&-bottom	{justify-content: flex-end}
-					&-between	{justify-content: space-between}
-					&-around	{justify-content: space-around}
-					&-evenly	{justify-content: space-evenly}
+				&.mob\:v{
+					&-top		{justify-content: flex-start;}
+					&-center	{justify-content: center;}
+					&-bottom	{justify-content: flex-end;}
+					&-between	{justify-content: space-between;}
+					&-around	{justify-content: space-around;}
+					&-evenly	{justify-content: space-evenly;}
 				}
 
-				.mob\:h{
-					&-left		{align-items: flex-start}
-					&-center	{align-items: center}
-					&-right		{align-items: flex-end}
-					&-stretch	{align-items: stretch}
+				&.mob\:h{
+					&-left		{align-items: flex-start;}
+					&-center	{align-items: center;}
+					&-right		{align-items: flex-end;}
+					&-stretch	{align-items: stretch;}
 				}
 			}
 
-			.mob\:v{
-				&-top		{justify-content: flex-start}
-				&-center	{justify-content: center}
-				&-bottom	{justify-content: flex-end}
-				&-between	{justify-content: space-between}
-				&-around	{justify-content: space-around}
-				&-evenly	{justify-content: space-evenly}
+			&.mob\:v{
+				&-top		{justify-content: flex-start;}
+				&-center	{justify-content: center;}
+				&-bottom	{justify-content: flex-end;}
+				&-between	{justify-content: space-between;}
+				&-around	{justify-content: space-around;}
+				&-evenly	{justify-content: space-evenly;}
 			}
 
-			.mob\:h{
-				&-left		{align-items: flex-start}
-				&-center	{align-items: center}
-				&-right		{align-items: flex-end}
-				&-stretch	{align-items: stretch}
+			&.mob\:h{
+				&-left		{align-items: flex-start;}
+				&-center	{align-items: center;}
+				&-right		{align-items: flex-end;}
+				&-stretch	{align-items: stretch;}
 			}
 		}
 	}
 	
 	//*	Alinhamento vertical/horizontal (elemento filho):
 	& .vs{
-		&-top		{justify-self: flex-start}
-		&-center	{justify-self: center}
-		&-bottom	{justify-self: flex-end}
-		&-stretch	{justify-self: stretch}
+		&-top		{justify-self: flex-start;}
+		&-center	{justify-self: center;}
+		&-bottom	{justify-self: flex-end;}
+		&-stretch	{justify-self: stretch;}
 	}
 
 	@include mix.responsive()
 	{
-		.mob\:vs{
-			&-top		{justify-self: flex-start}
-			&-center	{justify-self: center}
-			&-bottom	{justify-self: flex-end}
-			&-stretch	{justify-self: stretch}
+		& .mob\:vs{
+			&-top		{justify-self: flex-start;}
+			&-center	{justify-self: center;}
+			&-bottom	{justify-self: flex-end;}
+			&-stretch	{justify-self: stretch;}
 		}
 	}
 
 	& .hs{
-		&-left		{align-self: flex-start}
-		&-center	{align-self: center}
-		&-right		{align-self: flex-end}
-		&-stretch	{align-self: stretch}
+		&-left		{align-self: flex-start;}
+		&-center	{align-self: center;}
+		&-right		{align-self: flex-end;}
+		&-stretch	{align-self: stretch;}
 	}
 
 	@include mix.responsive()
 	{
 		& .mob\:hs{
-			&-left		{align-self: flex-start}
-			&-center	{align-self: center}
-			&-right		{align-self: flex-end}
-			&-stretch	{align-self: stretch}
+			&-left		{align-self: flex-start;}
+			&-center	{align-self: center;}
+			&-right		{align-self: flex-end;}
+			&-stretch	{align-self: stretch;}
 		}	
 	}
 
@@ -1473,8 +1473,8 @@ main{
 	@include mix.responsive()
 	{
 		&.mob\:wrap		{flex-wrap: wrap;}
-		&.mob\:no-wrap	{flex-wrap: wrap;}
-		&.mob\:wrap-r	{flex-wrap: wrap;}
+		&.mob\:no-wrap	{flex-wrap: nowrap;}
+		&.mob\:wrap-r	{flex-wrap: wrap-reverse;}
 	}
 
 	//* Ordenação de elementos Flex:
@@ -2528,6 +2528,13 @@ img{
 
 .clear{
 	clear: both;
+}
+
+//* Responsivo:
+.container{
+	&-normal	{container-type: normal;}
+	&-inline	{container-type: inline-size;}
+	&-size		{container-type: size;}
 }
 
 /* Classes que ocultam conteudo pelo tipo de tela: */

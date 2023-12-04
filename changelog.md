@@ -5,6 +5,10 @@
 
 **Changelog**
 
+## 1.4.2
+- `core` Corrigido mais classes auxiliares de posicionamento que não estavam funcionando específicamente dentro do escopo de uso mobile;
+- `core` Adicionado as classes auxiliares *container* para facilitar o uso e demarcação de contêineres na página ao utilizar o mixin `mix.container`;
+
 ## 1.4.1
 - `core` Adicionado a variante *auto* para todas as classes auxiliares relacionadas com a propriedade *padding*, *margin*, *width* e *height*;
 - `core` Corrigido um erro que impedia que qualquer classe auxiliar relacionado à posicionamento vertical/horizontal, tanto para desktop ou responsivo, funcionasse caso a classe "flex" estivesse acompanhada pela instrução *col-r* ou *row-r*;
