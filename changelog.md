@@ -5,6 +5,15 @@
 
 **Changelog**
 
+## 1.5.0
+- `core` Alterado alguns valores predefinidos de configuração de estilos para certos elementos em um site, como barra de rolamento, seleção de texto etc;
+- `core` Definido que a cor padrão de background de um site sempre será sua primeira cor predefinida de superfície. Isso pode ser alterado manualmente caso haja necessidade;
+- `core` Por padrão, a configuração *cursor: var.$mc-auto* virá comentada para evitar problemas de desempenho em sites que não utilizam cursores personalizados;
+- `core` O atributo *gap*, *gap-r* e *gap-c* agora podem receber um valor zero como *gap-0* ou *mob:gap-c-0*. Isso funciona para todas as variações de porcentagem, pixels ou rem;
+- `core` Reestruturado a funcionalidade das classes auxiliares do atributo *transform: rotate()*. Agora valores de -360º até 360º podem ser incluídos;
+- `core` Incluído mais uma nomenclatura simplificada para referenciar as posições de um *float*. Agora, ao invés de escrever *float-left*, você pode optar por escrever *float-l*. *float-r* equivale à *float-right* e *float-0* equivale a *float-none*. As terminologias antigas ainda funcionam normalmente também;
+- `vars / core` Incluído uma variável *pg-hdm-zoom* equivalente à "zoom para monitores de alta definição." Isso é uma solução opcional que pode ser atribuída à sites que precisam utilizar a solução de zoom para automaticamente aplicar um responsivo voltado à monitores de alta definição. Para ativar esse efeito, basta incluir a classe *hdm-zoom* na tag *html*;
+
 ## 1.4.2
 - `core` Corrigido mais classes auxiliares de posicionamento que não estavam funcionando específicamente dentro do escopo de uso mobile;
 - `core` Adicionado as classes auxiliares *container* para facilitar o uso e demarcação de contêineres na página ao utilizar o mixin `mix.container`;

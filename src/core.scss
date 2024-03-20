@@ -1,4 +1,4 @@
-//?	Core (WPF2 Versão 1.4.2)
+//?	Core (WPF2 Versão 1.5.0)
 //!	Estruturação de páginas e disposição de elementos:
 
 //* Instâncias: extensões da folha de estilos.
@@ -9,6 +9,12 @@
 @use "sass:math"		as math;
 
 //* Main (Altere como precisar):
+@include mix.responsive(1500px, min){
+	html.hdm-zoom{
+		zoom: var.$pg-hdm-zoom;
+	}
+}
+
 *{
 	&::selection{
 		background: var.$c-t1-800;
@@ -16,14 +22,14 @@
 	}
 
 	::-webkit-scrollbar-track {
-		background: var.$c-bg-4; 
+		background: var.$c-bg-2; 
 	}
 
 	::-webkit-scrollbar-thumb {
-		background: var.$c-s-3;
+		background: var.$c-t1-800;
 
 		&:hover{
-			background: var.$c-s-4; 
+			background: var.$c-t1-900; 
 		} 
 	}
 	
@@ -34,10 +40,10 @@
 }
 
 body{
-	background-color: var.$c-bg-2;
+	background-color: var.$c-surf-1;
 	font-family: var.$fnt-1;
 	font-weight: var.$wgt-regular;
-	cursor: var.$mc-auto;
+	// cursor: var.$mc-auto;
 
 	position: relative;
 	overflow-x: hidden;
@@ -1118,19 +1124,19 @@ main{
 .flex, .grid{
 	//* Espaçamentos entre elementos (elemento mãe):
 	&.gap, & .gap{
-		@for $g from 1 through 5{
+		@for $g from 0 through 5{
 			&-#{$g}{
 				gap: #{$g * 1%};
 			}
 		}
 		
-		@for $g from 1 through 100{
+		@for $g from 0 through 100{
 			&-#{$g}px{
 				gap: #{$g * 1px};
 			}
 		}
 		
-		@for $g from 1 through 15{
+		@for $g from 0 through 15{
 			&-#{$g}r{
 				gap: #{$g * 1rem};
 			}
@@ -1140,19 +1146,19 @@ main{
 	@include mix.responsive()
 	{
 		&.mob\:gap, & .mob\:gap{
-			@for $g from 1 through 5{
+			@for $g from 0 through 5{
 				&-#{$g}{
 					gap: #{$g * 1%};
 				}
 			}
 			
-			@for $g from 1 through 100{
+			@for $g from 0 through 100{
 				&-#{$g}px{
 					gap: #{$g * 1px};
 				}
 			}
 			
-			@for $g from 1 through 15{
+			@for $g from 0 through 15{
 				&-#{$g}r{
 					gap: #{$g * 1rem};
 				}
@@ -1659,19 +1665,19 @@ main{
 	//* Espaçamento entre elementos (elemento mãe):
 	&.gap{
 		&-r{
-			@for $g from 1 through 5{
+			@for $g from 0 through 5{
 				&-#{$g}{
 					grid-row-gap: #{$g * 1%};
 				}
 			}
 			
-			@for $g from 1 through 100{
+			@for $g from 0 through 100{
 				&-#{$g}px{
 					grid-row-gap: #{$g * 1px};
 				}
 			}
 			
-			@for $g from 1 through 15{
+			@for $g from 0 through 15{
 				&-#{$g}r{
 					grid-row-gap: #{$g * 1rem};
 				}
@@ -1679,19 +1685,19 @@ main{
 		}
 		
 		&-c{
-			@for $g from 1 through 5{
+			@for $g from 0 through 5{
 				&-#{$g}{
 					grid-column-gap: #{$g * 1%};
 				}
 			}
 			
-			@for $g from 1 through 100{
+			@for $g from 0 through 100{
 				&-#{$g}px{
 					grid-column-gap: #{$g * 1px};
 				}
 			}
 			
-			@for $g from 1 through 15{
+			@for $g from 0 through 15{
 				&-#{$g}r{
 					grid-column-gap: #{$g * 1rem};
 				}
@@ -1703,19 +1709,19 @@ main{
 	{
 		&.mob\:gap{
 			&-r{
-				@for $g from 1 through 5{
+				@for $g from 0 through 5{
 					&-#{$g}{
 						grid-row-gap: #{$g * 1%};
 					}
 				}
 				
-				@for $g from 1 through 100{
+				@for $g from 0 through 100{
 					&-#{$g}px{
 						grid-row-gap: #{$g * 1px};
 					}
 				}
 				
-				@for $g from 1 through 15{
+				@for $g from 0 through 15{
 					&-#{$g}r{
 						grid-row-gap: #{$g * 1rem};
 					}
@@ -1723,19 +1729,19 @@ main{
 			}
 			
 			&-c{
-				@for $g from 1 through 5{
+				@for $g from 0 through 5{
 					&-#{$g}{
 						grid-column-gap: #{$g * 1%};
 					}
 				}
 				
-				@for $g from 1 through 100{
+				@for $g from 0 through 100{
 					&-#{$g}px{
 						grid-column-gap: #{$g * 1px};
 					}
 				}
 				
-				@for $g from 1 through 15{
+				@for $g from 0 through 15{
 					&-#{$g}r{
 						grid-column-gap: #{$g * 1rem};
 					}
@@ -2356,14 +2362,12 @@ img{
 
 //* Rotações:
 .rotate{
-	@for $s from 0 through 20{
-		$v: $s * 5;
-		
-		&-#{$v}{
-			transform: rotate(#{$v});
+	@for $r from 0 through 360{
+		&-#{$r}{
+			transform: rotate(#{$r});
 		
 			&-neg{
-				transform: rotate(-#{$v});
+				transform: rotate(-#{$r});
 			}
 		}
 
@@ -2496,15 +2500,15 @@ img{
 
 //* Float:
 .float{
-	&-left{
+	&-left, &-l{
 		float: left;
 	}
 	
-	&-right{
+	&-right, &-r{
 		float: right;
 	}
 
-	&-none{
+	&-none, &-0{
 		float: none;
 	}
 }

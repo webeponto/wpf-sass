@@ -1,0 +1,121 @@
+@charset "UTF-8";
+/**
+	*#	Add Vendors
+	*	Adiciona prefixos nas propriedades CSS compatíveis com múltiplos browsers:
+	*
+	*	$property 			-> Propriedade CSS a receber os prefixos.
+	*	$value 				-> O valor da propriedade.
+*/
+/**
+	*#	Center Absolute
+	*	Centraliza um elemento absolute na horizontal, vertical ou em ambos os sentidos.
+	*
+	*	$direction 			-> Sentido da centralização. Utilize 'H' para horizontal, 'V' para vertical ou 'C' para ambos.
+	*	$type	 			-> Tipo de centralização. Utilize 'absolute', 'relative' ou 'fixed'.
+*/
+/**
+	*#	Render Arrow
+	*	Renderiza a forma de uma seta na posição desejada.
+	*
+	*	$direction 			-> Direção à qual a seta está apontando. Utilize 'top', 'right', 'bottom ou 'left'.
+	*	$size 				-> Tamanho da seta, em pixels.
+	*	$color 				-> Cor da seta.
+*/
+/**
+	*#	Responsive
+	*	Prepara o CSS para receber estilos responsivos.
+	*
+	*	$type	 			-> Se o responsivo está calculando o tamanho máximo ou mínimo da tela. Utilize 'max' ou 'min'.
+	*	$pixels				-> Tamanho da tela.
+*/
+/**
+	*#	Set Absolute
+	*	Configura o posicionamento absolute de um elemento.
+	*
+	*	$top 				-> Posicionamento superior. Utilize 'auto' para ignorar.
+	*	$top 				-> Posicionamento da direita. Utilize 'auto' para ignorar.
+	*	$top 				-> Posicionamento inferior. Utilize 'auto' para ignorar.
+	*	$top 				-> Posicionamento da esquerda. Utilize 'auto' para ignorar.
+	*	$type 				-> Tipo de posicionamento. Utilize 'absolute', 'relative' ou 'fixed'.
+*/
+/**
+	*#	Short Text
+	*	Concatena reticências à qualquer texto que ultrapasse a largura máxima de seu elemento mãe.
+*/
+/**
+	*#	Manage Z-Index
+	*	Organiza elementos filhos com posicionamentos absolutos no eixo Z baseados em uma ordem crescente ou decrescente.
+*/
+/**
+	*#	Container
+	*	Prepara o CSS para receber estilos responsivos locais.
+	*
+	*	$name	 			-> O nome do container (obrigatório). Os nomes nunca devem se repetir.
+	*	$type	 			-> Se o responsivo está calculando o tamanho máximo ou mínimo da tela. Utilize 'max' ou 'min'.
+	*	$axis	 			-> Se o responsivo está calculando o eixo X ou Y do container. Utilize 'width' ou 'height'.
+	*	$pixels				-> Tamanho do container.
+*/
+/**
+	*#	Px to Rem
+	*	Converte pixels para o padrão REM:
+	*
+	*	$value 				-> O valor em pixels.
+*/
+/**
+	*#	Color
+	*	Recupera uma cor de um array baseado na posição e no nome do array fornecido:
+	*
+	*	$array 				-> O vetor específico.
+	*	$value 				-> O nome da posição que está guardado o valor.
+*/
+/**
+	*#	Color
+	*	Recupera uma cor de um array baseado na posição e no nome do array fornecido:
+	*
+	*	$array 				-> O vetor específico.
+	*	$value 				-> O nome da posição que está guardado o valor.
+*/
+/**
+	*#	Spin
+	*	Executa uma animação de rotação linear
+	*
+	*	$duration 			-> Tempo de duração da animação;
+	*	$loop 				-> Atributo que determina se a animação vai se repetir;
+*/
+/**
+	*#	Ping
+	*	Executa uma animação de destaque rápido.
+	*
+	*	$scale	 			-> Tamanho da escala de destaque;
+	*	$opacity 			-> A opacidade mínima do objeto animado;
+	*	$duration 			-> Tempo de duração da animação;
+	*	$loop 				-> Atributo que determina se a animação vai se repetir;
+*/
+/**
+	*#	Pulse
+	*	Executa uma animação de pulso.
+	*
+	*	$opacity 			-> Nível mínimo de opacidade;
+	*	$duration 			-> Tempo de duração da animação;
+	*	$loop 				-> Atributo que determina se a animação vai se repetir;
+*/
+/**
+	*#	Ping & Pulse
+	*	Executa uma animação de pulso com destaque rápido.
+	*
+	*	$scale	 			-> Tamanho da escala de destaque;
+	*	$opacity 			-> Nível mínimo de opacidade;
+	*	$duration 			-> Tempo de duração da animação;
+	*	$loop 				-> Atributo que determina se a animação vai se repetir;
+*/
+/**
+	*#	Bounce
+	*	Executa uma animação de pulo.
+	*
+	*	$height 			-> Altura do salto (%/px/rem/em);
+	*	$duration 			-> Tempo de duração da animação;
+	*	$loop 				-> Atributo que determina se a animação vai se repetir;
+*/
+.btn {
+  font-family: "Oswald", sans-serif;
+}/*# sourceMappingURL=buttons.css.map */
