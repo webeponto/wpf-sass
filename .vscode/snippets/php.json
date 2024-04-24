@@ -1,0 +1,55 @@
+{
+    "Imprimir Imagem": {
+        "prefix": "figure.image",
+        "description": "Imprime uma estrutura pronta para anexar uma imagem.",
+
+        "body": [
+            "<figure><img src=\"<?= URL_ASSETS . \"\"; ?>\"/></figure>"
+        ]
+    },
+    
+	"Imprimir Ícone ": {
+        "prefix": "figure.icon",
+        "description": "Imprime uma estrutura pronta para anexar um ícone SVG.",
+
+        "body": [
+            "<figure><img class=\"svg\" src=\"<?= URL_ASSETS . \"\"; ?>\"/></figure>"
+        ]
+    },
+	
+	"WPF Mods: Adicionar botão FX-1 Tipo A ": {
+        "prefix": "wpf.mods.icon.1A",
+        "description": "Insere uma estrutura de botão com efeito 'Border Highlight' tipo A.",
+
+        "body": [
+            "<a style=\"--size: 30px; --c-theme: white; --c-content: black;\" class=\"wpf-icon fx-1 type-a flex row v-center h-center\"><figure class=\"flex row v-center h-center\"><img class=\"svg\" src=\"<?= URL_ASSETS . \"\"; ?>\"/></figure></a>"
+        ]
+    },
+	
+	"WPF Mods: Adicionar botão FX-1 Tipo B ": {
+        "prefix": "wpf.mods.icon.1B",
+        "description": "Insere uma estrutura de botão com efeito 'Border Highlight' tipo B.",
+
+        "body": [
+            "<a style=\"--size: 30px; --c-theme: white; --c-content: black;\" class=\"wpf-icon fx-1 type-b flex row v-center h-center\"><figure class=\"flex row v-center h-center\"><img class=\"svg\" src=\"<?= URL_ASSETS . \"\"; ?>\"/></figure></a>"
+        ]
+    },
+
+	"WPF Mods: Adicionar botão FX-2 Tipo A ": {
+        "prefix": "wpf.mods.icon.2A",
+        "description": "Insere uma estrutura de botão com efeito 'Filled Collapse' tipo A.",
+
+        "body": [
+            "<a style=\"--size: 30px; --c-theme: white; --c-content: black;\" class=\"wpf-icon fx-2 type-a flex row v-center h-center\"><figure class=\"flex row v-center h-center\"><img class=\"svg\" src=\"<?= URL_ASSETS . \"\"; ?>\"/></figure></a>"
+        ]
+    },
+	
+	"WPF Mods: Adicionar botão FX-2 Tipo B ": {
+        "prefix": "wpf.mods.icon.2B",
+        "description": "Insere uma estrutura de botão com efeito 'Filled Collapse' tipo B.",
+
+        "body": [
+            "<a style=\"--size: 30px; --c-theme: white; --c-content: black;\" class=\"wpf-icon fx-2 type-b flex row v-center h-center\"><figure class=\"flex row v-center h-center\"><img class=\"svg\" src=\"<?= URL_ASSETS . \"\"; ?>\"/></figure></a>"
+        ]
+    }
+}

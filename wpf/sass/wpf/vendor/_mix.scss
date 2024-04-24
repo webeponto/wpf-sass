@@ -2,7 +2,6 @@
 //!	Mixins globais para uso no seu projeto:
 
 //* Instâncias: extensões da folha de estilos:
-@use "vars"		 			as var;
 @use "sass:color"			as color;
 @use "sass:math"			as math;
 
@@ -25,13 +24,13 @@
 }
 
 /**
-	*#	Center Absolute
+	**	Center Position: [https://webeponto.notion.site/centerPosition-59c4c231d4b24155a2b314b9428ed13a]
 	*	Centraliza um elemento absolute na horizontal, vertical ou em ambos os sentidos.
 	*
 	*	$direction 			-> Sentido da centralização. Utilize 'H' para horizontal, 'V' para vertical ou 'C' para ambos.
 	*	$type	 			-> Tipo de centralização. Utilize 'absolute', 'relative' ou 'fixed'.
 */
-@mixin centerAbsolute(
+@mixin centerPosition(
 	$direction: 'H',
 	$type: absolute
 ){
@@ -133,7 +132,7 @@
 }
 
 /**
-	*#	Set Absolute
+	**	Set Position: [https://webeponto.notion.site/setPosition-9477420819f44b6facc74e5e796d93f0]
 	*	Configura o posicionamento absolute de um elemento.
 	*
 	*	$top 				-> Posicionamento superior. Utilize 'auto' para ignorar.
@@ -142,7 +141,7 @@
 	*	$top 				-> Posicionamento da esquerda. Utilize 'auto' para ignorar.
 	*	$type 				-> Tipo de posicionamento. Utilize 'absolute', 'relative' ou 'fixed'.
 */
-@mixin setAbsolute(
+@mixin setPosition(
 	$top: auto,
 	$right: auto,
 	$bottom: auto,

@@ -1,0 +1,370 @@
+//?	Vars (WPF2)
+//!	Lógica para gerenciamento de classes WPF baseada em variáveis:
+
+//* Instâncias: extensões da folha de estilos. 
+@use "../../vars" 	as var;
+@use "mix" 			as mix;
+@use "sass:color";
+@use "sass:math";
+@use "sass:string";
+
+//? CONFIGURAÇÃO DE CORES: [https://webeponto.notion.site/Vari-veis-do-WPF-909d92a226844eac9177d776bf51fc61]
+//? --------------------------------------------------------------------------------------------------------//
+
+//* Cores de Plano de Fundo:
+@each $color, $value in var.$c-backgrounds {
+    .bg\(#{$color}\) {
+        background-color: $value!important;
+    }
+
+	.bc\(#{$color}\) {
+		border-color: $value!important;
+	}
+
+	.c\(#{$color}\) {
+		color: $value!important;
+	}
+
+	@include mix.responsive()
+	{
+		.mob\:bg\(#{$color}\) {
+			background-color: $value!important;
+		}
+
+		.mob\:bc\(#{$color}\) {
+            border-color: $value!important;
+        }
+
+		.mob\:c\(#{$color}\) {
+            color: $value!important;
+        }
+	}
+
+	:root{
+		--#{$color}: $value;
+	}
+}
+
+//* Cores de Superfície:
+@each $color, $value in var.$c-surfaces {
+    .bg\(#{$color}\) {
+        background-color: $value!important;
+    }
+
+	.bc\(#{$color}\) {
+		border-color: $value!important;
+	}
+
+	.c\(#{$color}\) {
+		color: $value!important;
+	}
+
+	@include mix.responsive()
+	{
+		.mob\:bg\(#{$color}\) {
+			background-color: $value!important;
+		}
+
+		.mob\:bc\(#{$color}\) {
+            border-color: $value!important;
+        }
+
+		.mob\:c\(#{$color}\) {
+            color: $value!important;
+        }
+	}
+
+	:root{
+		--#{$color}: $value;
+	}
+}
+
+//* Cores de Gradiente:
+@each $color, $value in var.$c-gradients {
+    .bg\(#{$color}\) {
+        background: $value!important;
+    }
+
+	.bc\(#{$color}\) {
+		border-image: $value!important;
+	}
+
+	.c\(#{$color}\) {
+		background: $value!important;
+
+		color: none!important;
+
+		-webkit-background-clip: text;
+  		-webkit-text-fill-color: transparent;
+	}
+
+	@include mix.responsive()
+	{
+		.mob\:bg\(#{$color}\) {
+			background: $value!important;
+		}
+
+		.mob\:bc\(#{$color}\) {
+            border-image: $value!important;
+        }
+
+		.mob\:c\(#{$color}\) {
+            background: $value!important;
+
+			color: none!important;
+
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+        }
+	}
+
+	:root{
+        --#{$color}: $value;
+    }
+}
+
+//* Cores Temas:
+@each $color, $value in var.$c-themes {
+    .bg\(#{$color}\) {
+        background-color: $value!important;
+    }
+
+	.bc\(#{$color}\) {
+		border-color: $value!important;
+	}
+
+	.c\(#{$color}\) {
+		color: $value!important;
+	}
+
+	@include mix.responsive()
+	{
+		.mob\:bg\(#{$color}\) {
+			background-color: $value!important;
+		}
+
+		.mob\:bc\(#{$color}\) {
+            border-color: $value!important;
+        }
+
+		.mob\:c\(#{$color}\) {
+            color: $value!important;
+        }
+	}
+
+	:root{
+        --#{$color}: $value;
+    }
+}
+
+//* Cores de Texto:
+@each $color, $value in var.$c-strings {
+    .bg\(#{$color}\) {
+        background-color: $value!important;
+    }
+
+	.bc\(#{$color}\) {
+		border-color: $value!important;
+	}
+
+	.c\(#{$color}\) {
+		color: $value!important;
+	}
+
+	@include mix.responsive()
+	{
+		.mob\:bg\(#{$color}\) {
+			background-color: $value!important;
+		}
+
+		.mob\:bc\(#{$color}\) {
+            border-color: $value!important;
+        }
+
+		.mob\:c\(#{$color}\) {
+            color: $value!important;
+        }
+	}
+
+	:root{
+        --#{$color}: $value;
+    }
+}
+
+//* Cores de Borda:
+@each $color, $value in var.$c-borders {
+    .bg\(#{$color}\) {
+        background-color: $value!important;
+    }
+
+	.bc\(#{$color}\) {
+		border-color: $value!important;
+	}
+
+	.c\(#{$color}\) {
+		color: $value!important;
+	}
+
+	@include mix.responsive()
+	{
+		.mob\:bg\(#{$color}\) {
+			background-color: $value!important;
+		}
+
+		.mob\:bc\(#{$color}\) {
+            border-color: $value!important;
+        }
+
+		.mob\:c\(#{$color}\) {
+            color: $value!important;
+        }
+	}
+
+	:root{
+        --#{$color}: $value;
+    }
+}
+
+//* Cores Indicadoras:
+@each $color, $value in var.$c-indicators {
+    .bg\(#{$color}\) {
+        background-color: $value!important;
+    }
+
+	.bc\(#{$color}\) {
+		border-color: $value!important;
+	}
+
+	.c\(#{$color}\) {
+		color: $value!important;
+	}
+
+	@include mix.responsive()
+	{
+		.mob\:bg\(#{$color}\) {
+			background-color: $value!important;
+		}
+
+		.mob\:bc\(#{$color}\) {
+            border-color: $value!important;
+        }
+
+		.mob\:c\(#{$color}\) {
+            color: $value!important;
+        }
+	}
+
+	:root{
+        --#{$color}: $value;
+    }
+}
+
+//? CONFIGURAÇÃO DE ELEVAÇÕES: [https://webeponto.notion.site/Vari-veis-do-WPF-909d92a226844eac9177d776bf51fc61]
+//? --------------------------------------------------------------------------------------------------------//
+
+//* Elevações de Superfícies:
+@each $color, $value in var.$c-surface-elevations {
+    .bg\(#{$color}\) {
+        background-color: $value!important;
+    }
+
+	.bc\(#{$color}\) {
+		border-color: $value!important;
+	}
+
+	.c\(#{$color}\) {
+		color: $value!important;
+	}
+
+	@include mix.responsive()
+	{
+		.mob\:bg\(#{$color}\) {
+			background-color: $value!important;
+		}
+
+		.mob\:bc\(#{$color}\) {
+            border-color: $value!important;
+        }
+
+		.mob\:c\(#{$color}\) {
+            color: $value!important;
+        }
+	}
+
+	:root{
+        --#{$color}: $value;
+    }
+}
+
+//* Elevações Primárias:
+@each $color, $value in var.$c-primary-elevations {
+    .bg\(#{$color}\) {
+        background-color: $value!important;
+    }
+
+	.bc\(#{$color}\) {
+		border-color: $value!important;
+	}
+
+	.c\(#{$color}\) {
+		color: $value!important;
+	}
+
+	@include mix.responsive()
+	{
+		.mob\:bg\(#{$color}\) {
+			background-color: $value!important;
+		}
+
+		.mob\:bc\(#{$color}\) {
+            border-color: $value!important;
+        }
+
+		.mob\:c\(#{$color}\) {
+            color: $value!important;
+        }
+	}
+
+	:root{
+        --#{$color}: $value;
+    }
+}
+
+//? CONFIGURAÇÃO DE FONTES: [https://webeponto.notion.site/Vari-veis-do-WPF-909d92a226844eac9177d776bf51fc61]
+//? --------------------------------------------------------------------------------------------------------//
+
+//* Família de Fontes:
+@each $font, $value in var.$fonts {
+    .fnt\(#{$font}\) {
+        font-family: unquote($value)!important;
+    }
+
+	@include mix.responsive()
+	{
+		.mob\:fnt\(#{$font}\) {
+			font-family: unquote($value)!important;
+		}
+	}
+
+	:root{
+        --#{$font}: unquote($value);
+    }
+}
+
+//* Peso de Fontes:
+@each $weight, $value in var.$font-weights {
+    .fnt\(#{$weight}\) {
+        font-weight: $value!important;
+    }
+
+	@include mix.responsive()
+	{
+		.mob\:fnt\(#{$weight}\) {
+			font-weight: $value!important;
+		}
+	}
+
+	:root{
+        --#{$weight}: $value;
+    }
+}

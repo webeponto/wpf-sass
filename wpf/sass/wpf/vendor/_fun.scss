@@ -1,0 +1,19 @@
+//?	Funções (WPF2)
+//!	Funções globais para uso no seu projeto:
+
+//* Instâncias: extensões da folha de estilos:
+@use "wpf"		 			as sys;
+@use "sass:color"			as color;
+@use "sass:math"			as math;
+
+/**
+	*#	Px to Rem
+	*	Converte pixels para o padrão REM:
+	*
+	*	$value 				-> O valor em pixels.
+*/
+@function toRem($value)
+{
+	$value: math.div($value, sys.$s-rem) * 1rem;
+	@return $value;
+}

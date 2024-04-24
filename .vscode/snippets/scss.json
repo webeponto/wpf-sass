@@ -1,0 +1,298 @@
+{
+    "Padding": {
+		"prefix": "p",
+		"description": "Insere a prop. 'padding'.",
+
+		"body": [
+			"padding: "
+		]
+    },
+    
+	"Padding Y": {
+		"prefix": "py",
+		"description": "Insere a prop. 'padding-top' e 'padding-bottom'.",
+
+		"body": [
+			"padding-top: ",
+			"padding-bottom: "
+		]
+    },
+	
+	"Padding X": {
+		"prefix": "px",
+		"description": "Insere a prop. 'padding-right' e 'padding-left'.",
+
+		"body": [
+			"padding-right: ",
+			"padding-left: "
+		]
+    },
+	
+	"Padding - Topo": {
+		"prefix": "pt",
+		"description": "Insere a prop. 'padding-right'.",
+
+		"body": [
+			"padding-top: "
+		]
+    },
+
+	"Padding - Direita": {
+		"prefix": "pr",
+		"description": "Insere a prop. 'padding-right'.",
+
+		"body": [
+			"padding-right: "
+		]
+    },
+	
+	"Padding - Baixo": {
+		"prefix": "pb",
+		"description": "Insere a prop. 'padding-bottom'.",
+
+		"body": [
+			"padding-bottom: "
+		]
+    },
+	
+	"Padding - Esquerda": {
+		"prefix": "pl",
+		"description": "Insere a prop. 'padding-left'.",
+
+		"body": [
+			"padding-left: "
+		]
+    },
+
+	"Padding Auto": {
+		"prefix": "p-a",
+		"description": "Insere a propriedade 'padding' com valor 'auto'.",
+
+		"body": [
+			"padding: auto;"
+		]
+	},
+
+	"Padding Zero": {
+		"prefix": "p-0",
+		"description": "Insere a propriedade 'padding' com valor zero.",
+
+		"body": [
+			"padding: 0;"
+		]
+	},
+
+	"Padding Vertical Auto": {
+		"prefix": "py-a",
+		"description": "Insere a propriedade 'padding-top' e 'padding-bottom' com valor 'auto'.",
+
+		"body": [
+			"padding-top: auto;",
+			"padding-bottom: auto;"
+		]
+	},
+
+	"Padding Horizontal Auto": {
+		"prefix": "px-a",
+		"description": "Insere a propriedade 'padding-right' e 'padding-left' com valor 'auto'.",
+
+		"body": [
+			"padding-right: auto;",
+			"padding-left: auto;"
+		]
+	},
+
+	"Padding Vertical Zero": {
+		"prefix": "py-0",
+		"description": "Insere a propriedade 'padding-top' e 'padding-bottom' com valor zero.",
+
+		"body": [
+			"padding-top: 0;",
+			"padding-bottom: 0;"
+		]
+	},
+
+	"Padding Horizontal Zero": {
+		"prefix": "px-0",
+		"description": "Insere a propriedade 'padding-right' e 'padding-left' com valor zero.",
+
+		"body": [
+			"padding-right: 0;",
+			"padding-left: 0;"
+		]
+	},
+
+
+
+
+
+
+	"Margin": {
+		"prefix": "m",
+		"description": "Insere a propriedade 'margin'.",
+
+		"body": [
+			"margin: "
+		]
+	},
+
+	"Margin Y": {
+		"prefix": "my",
+		"description": "Insere a propriedade 'margin-top' e 'margin-bottom'.",
+
+		"body": [
+			"margin-top: ",
+			"margin-bottom: "
+		]
+	},
+
+	"Margin X": {
+		"prefix": "mx",
+		"description": "Insere a propriedade 'margin-right' e 'margin-left'.",
+
+		"body": [
+			"margin-right: ",
+			"margin-left: "
+		]
+	},
+
+	"Margin - Topo": {
+		"prefix": "mt",
+		"description": "Insere a propriedade 'margin-top'.",
+
+		"body": [
+			"margin-top: "
+		]
+	},
+
+	"Margin - Direita": {
+		"prefix": "mr",
+		"description": "Insere a propriedade 'margin-right'.",
+
+		"body": [
+			"margin-right: "
+		]
+	},
+
+	"Margin - Baixo": {
+		"prefix": "mb",
+		"description": "Insere a propriedade 'margin-bottom'.",
+
+		"body": [
+			"margin-bottom: "
+		]
+	},
+
+	"Margin - Esquerda": {
+		"prefix": "ml",
+		"description": "Insere a propriedade 'margin-left'.",
+
+		"body": [
+			"margin-left: "
+		]
+	},
+
+	"Margin Auto": {
+		"prefix": "m-a",
+		"description": "Insere a propriedade 'margin' com valor 'auto'.",
+
+		"body": [
+			"margin: auto;"
+		]
+	},
+
+	"Margin Zero": {
+		"prefix": "m-0",
+		"description": "Insere a propriedade 'margin' com valor zero.",
+
+		"body": [
+			"margin: 0;"
+		]
+	},
+
+	"Margin Vertical Auto": {
+		"prefix": "my-a",
+		"description": "Insere a propriedade 'margin-top' e 'margin-bottom' com valor 'auto'.",
+
+		"body": [
+			"margin-top: auto;",
+			"margin-bottom: auto;"
+		]
+	},
+
+	"Margin Horizontal Auto": {
+		"prefix": "mx-a",
+		"description": "Insere a propriedade 'margin-right' e 'margin-left' com valor 'auto'.",
+
+		"body": [
+			"margin-right: auto;",
+			"margin-left: auto;"
+		]
+	},
+
+	"Margin Vertical Zero": {
+		"prefix": "my-0",
+		"description": "Insere a propriedade 'margin-top' e 'margin-bottom' com valor zero.",
+
+		"body": [
+			"margin-top: 0;",
+			"margin-bottom: 0;"
+		]
+	},
+
+	"Margin Horizontal Zero": {
+		"prefix": "mx-0",
+		"description": "Insere a propriedade 'margin-right' e 'margin-left' com valor zero.",
+
+		"body": [
+			"margin-right: 0;",
+			"margin-left: 0;"
+		]
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+    "Criar Trecho Responsivo": {
+		"prefix": "mix.mob",
+		"description": "Incluí a estrutura base do mix.responsive ao código.",
+
+		"body": [
+			"@include mix.responsive()",
+			"{",
+				"\t$0",
+			"}"
+		]
+    },
+
+	"(WPF2) Criar Estrutura Organizacional 'MOB:'": {
+		"prefix": "wpf.mob",
+		"description": "Incluí a estrutura base de uma classe responsiva 'MOB:' ao código. Não utilize esse snippet fora do escopo de desenvolvimento do WPF2.",
+
+		"body": [
+			".mob\\:"
+		]
+    },
+	
+	"Configuração Fill/Stroke SVG": {
+		"prefix": "svg.config",
+		"description": "Incluí a estrutura de configuração para as propriedades fill/stroke.",
+
+		"body": [
+			"&:not(.stroke-type) *{",
+				"\tfill:",
+			"}",
+			"&:is(.stroke-type) *{",
+				"\tstroke:",
+			"}"
+		]
+    }
+}

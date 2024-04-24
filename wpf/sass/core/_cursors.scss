@@ -2,23 +2,23 @@
 //!	Configurador de cursores:
 
 //* Instâncias: extensões da folha de estilos:
-@use "vars"		 		as var;
+@use "../vars"		 		as var;
 
 //* Mapeamento de Cursores:
-$default-cursor: var.$mc-auto;
+$default-cursor: map-get(var.$mouse-cursors, "mc-auto");
 
 $cursor-map: (
 	// Adicione mais tags e seus respectivos padrões de cursores aqui:
 
 	//? Pointer:
-	'a': var.$mc-pointer,
-	'button': var.$mc-pointer,
-	'input[type="button"]': var.$mc-pointer,
-	'input[type="submit"]': var.$mc-pointer,
+	'a': map-get(var.$mouse-cursors, "mc-pointer"),
+	'button': map-get(var.$mouse-cursors, "mc-pointer"),
+	'input[type="button"]': map-get(var.$mouse-cursors, "mc-pointer"),
+	'input[type="submit"]': map-get(var.$mouse-cursors, "mc-pointer"),
 
 	//? Text:
-	'input': var.$mc-text,
-	'textarea': var.$mc-text,
+	'input': map-get(var.$mouse-cursors, "mc-text"),
+	'textarea': map-get(var.$mouse-cursors, "mc-text"),
 );
 
 @mixin reset-cursor() {

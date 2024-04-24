@@ -1,0 +1,157 @@
+//?	Vars (Local)
+//!	Variáveis locais para uso no seu projeto:
+
+//? CONFIGURAÇÃO DE VARIÁVEIS: [https://webeponto.notion.site/Vari-veis-do-WPF-909d92a226844eac9177d776bf51fc61]
+//? --------------------------------------------------------------------------------------------------------//
+
+//* Cores (Fundo):
+// Ex: c-bg-1, c-bg-2...
+
+$c-backgrounds: (
+	"c-bg-1": #141616,
+	"c-bg-2": #FFFFFF,
+);
+
+//* Cores (Surface):
+// Ex: c-surf-1, c-surf-2...
+
+$c-surfaces: (
+  	"c-surf-1": #121212,
+);
+
+//* Cores (Gradiente)
+// Ex: c-grad-1, c-grad-2...
+
+$c-gradients: (
+  	"c-grad-1": linear-gradient(to right, #121212 0%, #FFFFFF 100%),
+  	"c-grad-2": linear-gradient(to right, #FFFFFF 0%, #121212 100%),
+);
+
+//* Cores (Tema):
+// Ex: c-t1-900, c-t1-800, c-t1-700...
+// Indique a cor principal da paleta com um comentário seguido de (?)
+
+$c-themes: (
+	"c-t1-050": #effcfc,
+    "c-t1-100": #d8f5f4,
+    "c-t1-200": #b5ebec,
+    "c-t1-300": #82dbde,
+    "c-t1-400": #42c1c7, //? Main
+    "c-t1-500": #2ca6ae,
+    "c-t1-600": #278793,
+    "c-t1-700": #266d78,
+    "c-t1-800": #275a63,
+	"c-t1-900": #244c55,
+);
+
+//* Cores (Texto):
+// Ex: c-s-1, c-s-2...
+
+$c-strings: (
+  	"c-s-1": #FFFFFF,
+  	"c-s-2": #999999,
+  	"c-s-3": #666666,
+  	"c-s-4": #333333,
+  	"c-s-5": #000000,
+);
+
+//* Cores (Bordas):
+// Ex: c-border-1, c-border-2...
+
+$c-borders: (
+	"c-border-1": #444444,
+	"c-border-2": #666666,
+    "c-border-3": #999999,
+    "c-border-4": #CCCCCC,
+    "c-border-5": #DDDDDD,
+    "c-border-6": #EEEEEE,
+);
+
+//* Cores (Identificadores):
+// Ex: c-success, c-alert, c-error, c-disabled...
+
+$c-indicators: (
+	"c-success": #40B55C,
+    "c-alert": #F4E946,
+    "c-error": #E04141,
+    "c-disabled": #999999,
+);
+
+//* Efeitos:
+// Ex: fx-shadow, fx-brightness, fx-blur...
+
+$c-effects: (
+    "fx-shadow": 0 0 10px rgba(0, 0, 0, 0.2),
+    "fx-brightness": brightness(1.2),
+    "fx-blur": blur(10px),
+);
+
+//* Cursores Customizados:
+// Ex: mc-auto, mc-pointer, mc-grab, mc-grabbed/mc-grabbing...
+
+$mouse-cursors: (
+	"mc-auto": 	auto,
+    "mc-pointer": pointer,
+    "mc-text": text,
+    "mc-help": context-menu,
+    "mc-grab": grab,
+    "mc-grabbed": grabbing,
+	"mc-zoom-in": zoom-in,
+    "mc-zoom-out": zoom-out,
+    "mc-resize-all": nwse-resize,
+);
+
+//*	Fontes:
+// Ex: fnt-1, fnt-2, fnt-icon...
+//? Inclua aspas simples ao redor de toda a configuração. 
+
+$fonts: (
+	"fnt-1": '"Gordita", sans-serif;',
+    "fnt-2": '"LEMON MILK", sans-serif',
+);
+
+//* Transições:
+// Ex: t-fast, t-normal, t-slow, t-easy-in...
+
+$transitions: (
+	"t-fast": 0.3s,
+    "t-normal": 0.5s,
+    "t-slow": 0.7s,
+);
+
+//////////////////////////////////////////////////////////////////////////////////
+
+//* Ênfase/Elevation (No Surface)
+//! Não alterar!
+
+$c-surface-elevations: (
+	"c-os-d": rgba(255, 255, 255, 0.35),
+	"c-os-me": rgba(255, 255, 255, 0.75),
+    "c-os-he": rgba(255, 255, 255, 1),
+);
+
+//* Ênfase/Elevation (Na Primária)
+//! Não alterar!
+
+$c-primary-elevations: (
+	"c-os-d": rgba(0, 0, 0, 0.35),
+	"c-os-me": rgba(0, 0, 0, 0.75),
+    "c-os-he": rgba(0, 0, 0, 1),
+);
+
+//* Estilos de fonte:
+//! Não alterar!
+
+$font-weights: (
+	"wgt-thin": 100,
+	"wgt-extralight": 200,
+    "wgt-light": 300,
+    "wgt-regular": 400,
+    "wgt-medium": 500,
+    "wgt-semibold": 600,
+	"wgt-bold": 700,
+    "wgt-extrabold": 800,
+    "wgt-black": 900,
+);
+
+

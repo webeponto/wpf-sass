@@ -29,6 +29,8 @@ Caso não queira instalar os módulos originais do SASS/SCSS em seu computador, 
 
 Para uma documentação mais detalhada de como utilizar o WPF 2.0, incluindo a lista completa de classes e estilos disponíveis, cheque a nossa documentação oficial.
 
+[Acesse a documentação oficial do WPF2](https://webeponto.notion.site/Documenta-o-87294a32368b42e2961ebd83eb2f7e23).
+
 ## Contributing
 
 O WPF 2.0 é um projeto pessoal de uso interno da empresa e não aceita atualmente contribuições de fora do time de desenvolvedores envolvidos na constante utilização da ferramenta.
@@ -37,4 +39,4 @@ Se você trabalha com o WPF 2.0 e deseja enviar um feedback para incluir recurso
 
 ## License
 
-Como declarado anteriormente, o WPF 2.0 trata-se de uma iniciativa privada e sua licensa não cobre usos para projetos realizados fora do ambiente de trabalho onde ele é desenvolvido.
+Como declarado anteriormente, o WPF 2.0 trata-se de uma iniciativa privada e sua licença não cobre usos para projetos realizados fora do ambiente de trabalho onde ele é desenvolvido.
