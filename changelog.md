@@ -7,27 +7,37 @@
 
 **Changelog**
 
+## 2.0.1 - Alpha
+- `wpf/vendor/vars` / `vars/default`: Corrigido um problema onde as funções de classe não iriam conseguir gerar corretamente as classes dinâmicas baseadas nas variáveis. Agora, é obrigatório envolver todo o conteúdo das variáveis em aspas simples;
+- `wpf/vendor/vars`: Agora é possível incluir variáveis de background que sejam imagens;
+- `wpf/vendor/vars`: Agora também é possível utilizar a função de classe *fx()* para atribuir efeitos visuais como *box-shadow*, *text-shadow* e qualquer tipo de comportamento compatível das propriedades *filter* e *backdrop-filter*;
+- `wpf/vendor/wpf`: Removido as classes auxiliares relacionadas a cursores de mouse da estrutura base do framework. Ela foi passada para o arquivo `wpf/vendor/vars` e está diretamente ligada a quais cursores estão presentes e declarados na `vars/default`, afim de criar uma estrutura muito mais homogênea e otimizada para o framework;
+- `wpf/vendor/vars`: Corrigido um erro onde as variáveis CSS não eram renderizadas corretamente;
+- `purgecss.config`: Incluído no repositório um template atualizado de como o purge necessita se comportar para que o WPF2 possa ser utilizado no projeto;
+- Atualizado a documentação do projeto com novos dados a cerca das funcionalidades implementadas;
+
+
 ## 2.0.0 - Alpha
 - Atualizado o arquivo `README.md` com novas informações a respeito da nova versão do WPF2;
 - Completamente reformulado e reestruturado toda a funcionalidade da ferramenta, finalmente uma versão oficial da documentação do WPF é lançada junto com o framework e está disponível diretamente através do link: https://webeponto.notion.site/Documenta-o-87294a32368b42e2961ebd83eb2f7e23. Foi criado um link de referência à documentação em praticamente todos os arquivos presentes nesse framework;
 - A estrutura de pastas foi totalmente repensada pensando em um modelo de desenvolvimento voltado para MVC, buscando uma vertente mais moderna e rápida que agilizasse e começasse a agregar, com o passar do tempo, a própria ferramenta, que se alimentará de conteúdo e repertório desenvolvido ao longo dos anos, se tornando cada vez mais robusta e independente com a própria ajuda do desenvolvedor;
-- `vendor/wpf`: A página `core` agora foi segmentada entre duas vertentes. O seu conteúdo dinâmico, que poderia ser alterado pelo usuário desenvolvedor, permaneceu intacto em uma página presente em `base/base.scss` enquanto a verdadeira funcionalidade da ferramenta, como todas as funcionalidades do WPF, foram para uma nova página chamada `vendor/wpf.scss`;
+- `wpf/vendor/wpf`: A página `core` agora foi segmentada entre duas vertentes. O seu conteúdo dinâmico, que poderia ser alterado pelo usuário desenvolvedor, permaneceu intacto em uma página presente em `base/base.scss` enquanto a verdadeira funcionalidade da ferramenta, como todas as funcionalidades do WPF, foram para uma nova página chamada `vendor/wpf.scss`;
 - `vars/default`: Todas as "variáveis" que na verdade se comportavam como constantes e que não podiam ser alteradas pelo usuário desenvolvedor foram para uma nova págiga chamada `wpf`, que controla, de forma independente, o funcionamento integral da biblioteca;
-- `vendor/mix`: Os mixins *setAbsolute()* e *centerAbsolute()* tiveram seus nomes alterados para *setPosition()* e *centerPosition()*;
+- `wpf/vendor/mix`: Os mixins *setAbsolute()* e *centerAbsolute()* tiveram seus nomes alterados para *setPosition()* e *centerPosition()*;
 - `.vscode/snippets/php` / `.vscode/snippets/scss`: Incluído dois arquivos JSON chamados `php.json` e `scss.json` que fazem parte de uma iniciativa de novas funcionalidades que farão parte da biblioteca WPF afim de criar comandos rápidos que geram estruturações completas que facilitam o desenvolvimento dentro do front-end e back-end com PHP ou Laravel que esteja utilizando o SCSS da WPF;
-- `vendor/wpf`: Dentro das classes de auxílio para posicionamento, duas novas opções foram adicionadas: *.static* e *.sticky*;
-- `vendor/wpf`: Dentro das classes de auxílio para transbordamento, que antes somente suportava a classe *.overflow-hidden/.glued*, agora todas as opções estão disponíveis e podem inclusive serem especificadas para serem renderizadas horizontalmente, verticalmente ou em ambas as direções. A variação *.glued* para especificar o atributo "overflow: hidden" foi descontinuada;
-- `vendor/wpf`: Dentro das classes de auxílio para orientação de texto, a opção *.t-justify-all, .t-start e .t-end* foram adicionadas;
-- `vendor/wpf`: Dentro das classes de auxílio para padding e margin, a opção de especificar o valor em EM foi adicionada. Para fazer isso, basta especificar a classe e utilizar o sufixo "em" no final. Ex: "p-5em" para um padding de 5em;
-- `vendor/wpf`: Agora, sempre que for específicar uma classe auxiliar que determina um display, é obrigatório o uso do prefixo "dp-" antes. Ex: class="dp-flex row v-center h-center"
+- `wpf/vendor/wpf`: Dentro das classes de auxílio para posicionamento, duas novas opções foram adicionadas: *.static* e *.sticky*;
+- `wpf/vendor/wpf`: Dentro das classes de auxílio para transbordamento, que antes somente suportava a classe *.overflow-hidden/.glued*, agora todas as opções estão disponíveis e podem inclusive serem especificadas para serem renderizadas horizontalmente, verticalmente ou em ambas as direções. A variação *.glued* para especificar o atributo "overflow: hidden" foi descontinuada;
+- `wpf/vendor/wpf`: Dentro das classes de auxílio para orientação de texto, a opção *.t-justify-all, .t-start e .t-end* foram adicionadas;
+- `wpf/vendor/wpf`: Dentro das classes de auxílio para padding e margin, a opção de especificar o valor em EM foi adicionada. Para fazer isso, basta especificar a classe e utilizar o sufixo "em" no final. Ex: "p-5em" para um padding de 5em;
+- `wpf/vendor/wpf`: Agora, sempre que for específicar uma classe auxiliar que determina um display, é obrigatório o uso do prefixo "dp-" antes. Ex: class="dp-flex row v-center h-center"
 - `vendor/wpf`: Dentro das classes de auxilio para especificar displays, agora é possível especificar que, em contextos mobile, um elemento que anteriormente tinha um display específico pode passar a ter outro totalmente diferente. Ex: class="dp-flex mob:dp-grid";
-- `vendor/wpf`: Na classe de auxílio para especificar 'iframes', foi removido as opções de escrita '16x9' e '4x3'. Para denominar essas classes, somente será aceito a escrita '16/9' e '4/3';
-- `vendor/fun`: As funções *color()* e *ctext()* foram removidas pois já não são mais necessárias considerando a proposta de uso do WPF2 atualmente;
-- `vendor/fun`: Atualizado a função *toRem()* para realizar os cálculos de conversão utilizando a função integrada matemática do próprio SASS, seguindo a convenção sugerida pela ferramenta, para evitar problemas com funcionalidades depreciadas caso novas versões do SASS sejam integradas ao WPF2;
-- `mods`: Adicionado uma pasta com componentes isolados e independentes para funcionarem como recursos extras para o auxílio no desenvolvimento web durante o recorte de designs;
-- `vendor/wpf`: Adicionado novas classes utilitárias para configurar o atributo line-height. A classe é *.lh* e pode ser usada junto com porcentagem ou medida EM;
-- `vendor/vars`: Adicionado uma nova funcionalidade que gera classes utilitárias automaticamente baseada em qualquer variável declarada dentro de grupos de funcionalidades na `vars/default`. Essas classes utilitárias são invocadas através de *funções de classes* como *fnt()*, *bg()*, *c()* e *bc()*;
-- `vendor/wpf`: Inserido uma nova funcionalidade chamada *popover* que facilitará muito a criação de menus de contexto entre outros tipos de dropdown que necessitam de um comportamento exclusivo semelhante;
+- `wpf/vendor/wpf`: Na classe de auxílio para especificar 'iframes', foi removido as opções de escrita '16x9' e '4x3'. Para denominar essas classes, somente será aceito a escrita '16/9' e '4/3';
+- `wpf/vendor/fun`: As funções *color()* e *ctext()* foram removidas pois já não são mais necessárias considerando a proposta de uso do WPF2 atualmente;
+- `wpf/vendor/fun`: Atualizado a função *toRem()* para realizar os cálculos de conversão utilizando a função integrada matemática do próprio SASS, seguindo a convenção sugerida pela ferramenta, para evitar problemas com funcionalidades depreciadas caso novas versões do SASS sejam integradas ao WPF2;
+- `wpf/mods`: Adicionado uma pasta com componentes isolados e independentes para funcionarem como recursos extras para o auxílio no desenvolvimento web durante o recorte de designs;
+- `wpf/vendor/wpf`: Adicionado novas classes utilitárias para configurar o atributo line-height. A classe é *.lh* e pode ser usada junto com porcentagem ou medida EM;
+- `wpf/vendor/vars`: Adicionado uma nova funcionalidade que gera classes utilitárias automaticamente baseada em qualquer variável declarada dentro de grupos de funcionalidades na `vars/default`. Essas classes utilitárias são invocadas através de *funções de classes* como *fnt()*, *bg()*, *c()* e *bc()*;
+- `wpf/vendor/wpf`: Inserido uma nova funcionalidade chamada *popover* que facilitará muito a criação de menus de contexto entre outros tipos de dropdown que necessitam de um comportamento exclusivo semelhante;
 - Foi corrigido inúmeros erros de funcionalidade que eram presentes e persistiam durante todas as versões v1.0 do WPF2;
 - Solucionado inúmeros problemas de cache que eram persistentes quando se usava o WPF em conjunto com o plugin *Live SASS Compiler*;
 

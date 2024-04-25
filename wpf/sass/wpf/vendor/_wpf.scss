@@ -44,45 +44,6 @@
 		}
 	}
 
-	//* Cursores: [https://webeponto.notion.site/Cursores-12f605114bde45e1a55af00954299f65]
-	.mc {
-		&-auto {
-			cursor: auto;
-		}
-
-		&-pointer {
-			cursor: pointer;
-		}
-
-		&-help {
-			cursor: context-menu;
-		}
-
-		&-grab {
-			cursor: grab;
-		}
-
-		&-grabbed {
-			cursor: grabbing;
-		}
-
-		&-text {
-			cursor: text;
-		}
-
-		&-zoom-in {
-			cursor: zoom-in;
-		}
-
-		&-zoom-out {
-			cursor: zoom-out;
-		}
-
-		&-resize {
-			cursor: nwse-resize;
-		}
-	}
-
 	//* Posicionamento: [https://webeponto.notion.site/Posicionamento-d96cf6193d484249979bd186b767b7c6]
 	$positions: static, sticky, relative, absolute, fixed;
 

@@ -14,83 +14,115 @@
 //* Cores de Plano de Fundo:
 @each $color, $value in var.$c-backgrounds {
     .bg\(#{$color}\) {
-        background-color: $value!important;
+		@if(str-index($value, "url"))
+		{
+        	background-image: unquote($value)!important;
+		}
+
+		@else
+		{
+			background-color: unquote($value)!important;
+		}
     }
 
 	.bc\(#{$color}\) {
-		border-color: $value!important;
+		@if(str-index($value, "url"))
+		{
+        	border-image: unquote($value)!important;
+		}
+
+		@else
+		{
+			border-color: unquote($value)!important;
+		}
 	}
 
 	.c\(#{$color}\) {
-		color: $value!important;
+		color: unquote($value)!important;
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: $value!important;
+			@if(str-index($value, "url"))
+			{
+				background-image: unquote($value)!important;
+			}
+
+			@else
+			{
+				background-color: unquote($value)!important;
+			}
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: $value!important;
+            @if(str-index($value, "url"))
+			{
+				border-image: unquote($value)!important;
+			}
+
+			@else
+			{
+				border-color: unquote($value)!important;
+			}
         }
 
 		.mob\:c\(#{$color}\) {
-            color: $value!important;
+            color: unquote($value)!important;
         }
 	}
 
 	:root{
-		--#{$color}: $value;
+		--#{$color}: #{unquote($value)};
 	}
 }
 
 //* Cores de Superfície:
 @each $color, $value in var.$c-surfaces {
     .bg\(#{$color}\) {
-        background-color: $value!important;
+        background-color: unquote($value)!important;
     }
 
 	.bc\(#{$color}\) {
-		border-color: $value!important;
+		border-color: unquote($value)!important;
 	}
 
 	.c\(#{$color}\) {
-		color: $value!important;
+		color: unquote($value)!important;
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: $value!important;
+			background-color: unquote($value)!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: $value!important;
+            border-color: unquote($value)!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            color: $value!important;
+            color: unquote($value)!important;
         }
 	}
 
 	:root{
-		--#{$color}: $value;
+		--#{$color}: #{unquote($value)};
 	}
 }
 
 //* Cores de Gradiente:
 @each $color, $value in var.$c-gradients {
     .bg\(#{$color}\) {
-        background: $value!important;
+        background: unquote($value)!important;
     }
 
 	.bc\(#{$color}\) {
-		border-image: $value!important;
+		border-image: unquote($value)!important;
 	}
 
 	.c\(#{$color}\) {
-		background: $value!important;
+		background: unquote($value)!important;
 
 		color: none!important;
 
@@ -101,15 +133,15 @@
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background: $value!important;
+			background: unquote($value)!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-image: $value!important;
+            border-image: unquote($value)!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            background: $value!important;
+            background: unquote($value)!important;
 
 			color: none!important;
 
@@ -119,143 +151,143 @@
 	}
 
 	:root{
-        --#{$color}: $value;
+        --#{$color}: #{unquote($value)};
     }
 }
 
 //* Cores Temas:
 @each $color, $value in var.$c-themes {
     .bg\(#{$color}\) {
-        background-color: $value!important;
+        background-color: unquote($value)!important;
     }
 
 	.bc\(#{$color}\) {
-		border-color: $value!important;
+		border-color: unquote($value)!important;
 	}
 
 	.c\(#{$color}\) {
-		color: $value!important;
+		color: unquote($value)!important;
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: $value!important;
+			background-color: unquote($value)!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: $value!important;
+            border-color: unquote($value)!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            color: $value!important;
+            color: unquote($value)!important;
         }
 	}
 
 	:root{
-        --#{$color}: $value;
+        --#{$color}: #{unquote($value)};
     }
 }
 
 //* Cores de Texto:
 @each $color, $value in var.$c-strings {
     .bg\(#{$color}\) {
-        background-color: $value!important;
+        background-color: unquote($value)!important;
     }
 
 	.bc\(#{$color}\) {
-		border-color: $value!important;
+		border-color: unquote($value)!important;
 	}
 
 	.c\(#{$color}\) {
-		color: $value!important;
+		color: unquote($value)!important;
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: $value!important;
+			background-color: unquote($value)!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: $value!important;
+            border-color: unquote($value)!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            color: $value!important;
+            color: unquote($value)!important;
         }
 	}
 
 	:root{
-        --#{$color}: $value;
+        --#{$color}: #{unquote($value)};
     }
 }
 
 //* Cores de Borda:
 @each $color, $value in var.$c-borders {
     .bg\(#{$color}\) {
-        background-color: $value!important;
+        background-color: unquote($value)!important;
     }
 
 	.bc\(#{$color}\) {
-		border-color: $value!important;
+		border-color: unquote($value)!important;
 	}
 
 	.c\(#{$color}\) {
-		color: $value!important;
+		color: unquote($value)!important;
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: $value!important;
+			background-color: unquote($value)!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: $value!important;
+            border-color: unquote($value)!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            color: $value!important;
+            color: unquote($value)!important;
         }
 	}
 
 	:root{
-        --#{$color}: $value;
+        --#{$color}: #{unquote($value)};
     }
 }
 
 //* Cores Indicadoras:
 @each $color, $value in var.$c-indicators {
     .bg\(#{$color}\) {
-        background-color: $value!important;
+        background-color: unquote($value)!important;
     }
 
 	.bc\(#{$color}\) {
-		border-color: $value!important;
+		border-color: unquote($value)!important;
 	}
 
 	.c\(#{$color}\) {
-		color: $value!important;
+		color: unquote($value)!important;
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: $value!important;
+			background-color: unquote($value)!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: $value!important;
+            border-color: unquote($value)!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            color: $value!important;
+            color: unquote($value)!important;
         }
 	}
 
 	:root{
-        --#{$color}: $value;
+        --#{$color}: #{unquote($value)};
     }
 }
 
@@ -347,7 +379,7 @@
 	}
 
 	:root{
-        --#{$font}: unquote($value);
+        --#{$font}: #{unquote($value)};
     }
 }
 
@@ -366,5 +398,41 @@
 
 	:root{
         --#{$weight}: $value;
+    }
+}
+
+//? CONFIGURAÇÃO DE CURSORES: [https://webeponto.notion.site/Cursores-12f605114bde45e1a55af00954299f65]
+//? --------------------------------------------------------------------------------------------------------//
+
+//* Tipo de Cursor:
+@each $cursor, $value in var.$mouse-cursors {
+    .#{$cursor} {
+        cursor: unquote($value);
+    }
+
+	:root{
+        --#{$cursor}: #{unquote($value)};
+    }
+}
+
+//? CONFIGURAÇÃO DE EFEITOS: [https://webeponto.notion.site/Vari-veis-do-WPF-909d92a226844eac9177d776bf51fc61]
+//? --------------------------------------------------------------------------------------------------------//
+
+//* Tipo de Cursor:
+@each $vfx, $value in var.$visual-effects {
+    .fx\(#{$vfx}\) {
+        filter: unquote($value);
+    }
+    
+	.fx\(bs\,#{$vfx}\){
+        box-shadow: unquote($value);
+    }
+	
+	.fx\(ts\,#{$vfx}\){
+        text-shadow: unquote($value);
+    }
+
+	:root{
+        --#{$vfx}: #{unquote($value)};
     }
 }
