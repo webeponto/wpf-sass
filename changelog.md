@@ -7,6 +7,13 @@
 
 **Changelog**
 
+## 2.0.2 - Alpha
+- `wpf/vendor/wpf`: Inserido as subpropriedades *min* e *max* para as opções de tamanho *w100* / *w-100*;
+- `wpf/vendor/wpf`: Adicionado a funcionalidade de renderização de bordas através da classe auxiliar *.b*;
+- `wpf/vendor/wpf`: Também foi inserido a funcionalidade de raio de borda (border-radius) através da classe auxiliar *.rounded*;
+- `wpf/vendor/wpf`: Corrigido um bug com a classe auxiliar *.delay*, relacionada a atraso de transições, que equivocadamente performava o mesmo comportamento da classe auxiliar *.duration*, responsável por ditar a duração total da transição;
+- Atualizado a documentação do projeto com as novas funcionalidades inseridas;
+
 ## 2.0.1 - Alpha
 - `wpf/vendor/vars` / `vars/default`: Corrigido um problema onde as funções de classe não iriam conseguir gerar corretamente as classes dinâmicas baseadas nas variáveis. Agora, é obrigatório envolver todo o conteúdo das variáveis em aspas simples;
 - `wpf/vendor/vars`: Agora é possível incluir variáveis de background que sejam imagens;
