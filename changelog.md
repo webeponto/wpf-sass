@@ -7,6 +7,17 @@
 
 **Changelog**
 
+## 2.0.3 - Alpha
+- `wpf/vendor/vars`: Corrigido um erro onde as funções de classe relacionadas à volume de fonte e algumas funções de classe relacionadas à cores não convertiam adequadamente o tipo de variável SCSS para CSS Vanilla afim de poder ser utilizável em folhas de estilo SCSS convencionais;
+- `wpf/vendor/vars`: As variáveis SCSS de transição agora também estão disponíveis para serem usadas em folhas de estilo SCSS convencionais;
+- `wpf/vendor/wpf`: Otimizado a maneira como é gerado as classes auxiliares voltadas para posicionamento, afim de ocupar menos espaço de arquivo SCSS;
+- `wpf/vendor/wpf`: Criado uma versão do mixin *CenterPosition()* em formato de classe auxiliar. Se um elemento conter a classe *sticky, relative, absolute ou fixed*, é possível adicionar as a função *center()* com os parâmetros "c", "v" ou "h" para posicioná-los igualmente, verticalmente ou horizontalmente;
+- `wpf/vendor/wpf`: Dentro da classe auxiliar *dp-grid*, adicionado duas subclasses *ltr* e *rtl* que configuram a ordenação do preenchimento de novas células com conteúdos, que referem-se, respectivamente, da esquerda para direita e da direita para esquerda;
+- `wpf/vendor/wpf`: Aumentado o limite do valor para arredondamento de bordas na classe auxiliar *rounded*, em pixels, de 100 para 200;
+- `wpf/vendor/wpf`: Aumentado o limite do valor para arredondamento de bordas na classe auxiliar *rounded*, em pixels, de 100 para 200;
+- `wpf/vendor/wpf`: Restaurado a funcionalidade do WPF1 que permitia aplicar um efeito especial em caixas de texto, através da classe auxiliar *webkit-box*, que personalizava limites de conteúdo por linha e orientação de texto;
+- `wpf/vendor/wpf`: Corrigido um erro onde a classe auxiliar *rotate* não aplicava o valor corretamente em graus;
+
 ## 2.0.2 - Alpha
 - `wpf/vendor/wpf`: Inserido as subpropriedades *min* e *max* para as opções de tamanho *w100* / *w-100*;
 - `wpf/vendor/wpf`: Adicionado a funcionalidade de renderização de bordas através da classe auxiliar *.b*;

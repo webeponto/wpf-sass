@@ -324,7 +324,7 @@
 	}
 
 	:root{
-        --#{$color}: $value;
+        --#{$color}: #{$value};
     }
 }
 
@@ -358,7 +358,7 @@
 	}
 
 	:root{
-        --#{$color}: $value;
+        --#{$color}: #{$value};
     }
 }
 
@@ -397,7 +397,7 @@
 	}
 
 	:root{
-        --#{$weight}: $value;
+        --#{$weight}: #{$value};
     }
 }
 
@@ -434,5 +434,19 @@
 
 	:root{
         --#{$vfx}: #{unquote($value)};
+    }
+}
+
+//? TRANSIÇÕES: [https://webeponto.notion.site/Vari-veis-do-WPF-909d92a226844eac9177d776bf51fc61]
+//? --------------------------------------------------------------------------------------------------------//
+
+//* Duração:
+@each $t, $value in var.$transitions {
+    .#{$t} {
+        transition: unquote($value);
+    }
+
+	:root{
+        --#{$t}: #{unquote($value)};
     }
 }

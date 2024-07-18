@@ -46,36 +46,171 @@
 
 	//* Posicionamento: [https://webeponto.notion.site/Posicionamento-d96cf6193d484249979bd186b767b7c6]
 	$positions: static, sticky, relative, absolute, fixed;
+	$sides: top, right, bottom, left;
 
 	@each $position in $positions {
 		.#{$position} {
-			position: $position !important;
-		}
-	}
+			position: $position;
 
-	@include mix.responsive() {
-		.mob\: {
-			&static {
-				position: static !important;
+			@if $position == relative or $position == absolute or $position == fixed {
+				@each $side in $sides {
+					@for $pos from 1 through 100 {
+						.#{$side}\(#{$pos}\) {
+							#{$side}: #{$pos * 1%};
+						}
+
+						@include mix.responsive()
+						{
+							.mob\:#{$side}\(#{$pos}\) {
+								#{$side}: #{$pos * 1%};
+							}
+						}
+					}
+					
+					@for $pos from 0 through 200 {
+						.#{$side}\(#{$pos}px\) {
+							#{$side}: #{$pos * 1px};
+						}
+
+						@include mix.responsive()
+						{
+							.mob\:#{$side}\(#{$pos}px\) {
+								#{$side}: #{$pos * 1px};
+							}
+						}
+					}
+					
+					@for $pos from 0 through 100 {
+						.#{$side}\(#{$pos}dvh\) {
+							#{$side}: #{$pos * 1dvh};
+						}
+
+						@include mix.responsive()
+						{
+							.mob\:#{$side}\(#{$pos}dvh\) {
+								#{$side}: #{$pos * 1dvh};
+							}
+						}
+					}
+					
+					@for $pos from 0 through 100 {
+						.#{$side}\(#{$pos}dvw\) {
+							#{$side}: #{$pos * 1dvw};
+						}
+
+						@include mix.responsive()
+						{
+							.mob\:#{$side}\(#{$pos}dvw\) {
+								#{$side}: #{$pos * 1dvw};
+							}
+						}
+					}
+				}
 			}
-			
-			&sticky {
-				position: sticky !important;
+
+			.center{
+				&\(h\) {
+					left: 50%;
+					transform: translateX(-50%);
+				}
+				
+				&\(v\) {
+					top: 50%;
+					transform: translateY(-50%);
+				}
+				
+				&\(c\) {
+					left: 50%;
+					top: 50%;
+					transform: translateX(-50%) translateY(-50%);
+				}
 			}
+
+			@include mix.responsive(){
+				.mob\:center{
+					&\(h\) {
+						left: 50%;
+						transform: translateX(-50%);
+					}
+					
+					&\(v\) {
+						top: 50%;
+						transform: translateY(-50%);
+					}
+					
+					&\(c\) {
+						left: 50%;
+						top: 50%;
+						transform: translateX(-50%) translateY(-50%);
+					}
+				}
+			}
+		}
 	
-			&relative {
-				position: relative !important;
-			}
+		@include mix.responsive() {
+			.mob\:{
+				&#{$position} {
+					position: $position;
 
-			&absolute {
-				position: absolute !important;
-			}
+					@if $position == relative or $position == absolute or $position == fixed {
+						@each $side in $sides {
+							@for $pos from 1 through 100 {
+								.#{$side}\(#{$pos}\) {
+									#{$side}: #{$pos * 1%};
+								}
+							}
+							
+							@for $pos from 1 through 200 {
+								.#{$side}\(#{$pos}px\) {
+									#{$side}: #{$pos * 1px};
+								}
+							}
+						}
+					}
 
-			&fixed {
-				position: fixed !important;
+					.center{
+						&\(h\) {
+							left: 50%;
+							transform: translateX(-50%);
+						}
+						
+						&\(v\) {
+							top: 50%;
+							transform: translateY(-50%);
+						}
+						
+						&\(c\) {
+							left: 50%;
+							top: 50%;
+							transform: translateX(-50%) translateY(-50%);
+						}
+					}
+				}
 			}
 		}
 	}
+
+	.z{
+		@for $z from 1 through 100 {
+			&-#{$z}{
+				z-index: $z;
+			}
+		}
+	}
+
+	@include mix.responsive()
+	{
+		.mob\:{
+			&z{
+				@for $z from 1 through 100 {
+					&-#{$z}{
+						z-index: $z;
+					}
+				}
+			}		
+		}
+	}
+
 
 	//* Menu de Contexto: [https://webeponto.notion.site/Popover-Menu-Contextual-8e86b746525446e382a24b9826bdef85]
 	[popover]{
@@ -1673,6 +1808,26 @@
 					&-between {
 						justify-content: space-between
 					}
+				}
+			}
+
+			// Alinhamento de renderização (elemento mãe):
+			&.ltr{
+				direction: ltr;
+			}
+			
+			&.rtl{
+				direction: rtl;
+			}
+
+			@include mix.responsive()
+			{
+				.mob\:ltr{
+					direction: ltr;
+				}
+				
+				.mob\:rtl{
+					direction: rtl;
 				}
 			}
 
@@ -4058,7 +4213,7 @@
             }
         }
 		
-		@for $r from 1 through 100 {
+		@for $r from 1 through 200 {
             &#{$r}px,
             &-#{$r}px {
                 border-radius: #{$r * 1px};
@@ -4634,6 +4789,62 @@
 		box-sizing: content-box;
 	}
 
+	.webkit-box{
+		display: -webkit-box;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&.v-oriented{
+			-webkit-box-orient: vertical;
+		}
+		
+		&.h-oriented{
+			-webkit-box-orient: horizontal;
+		}
+		
+		&.block-oriented{
+			-webkit-box-orient: block-axis;
+		}
+		
+		&.inline-oriented{
+			-webkit-box-orient: inline-axis;
+		}
+
+		&.clamp{
+			@for $c from 1 through 10{
+				&-#{$c}{
+					-webkit-line-clamp: $c;
+				}
+			}
+		}
+
+		@include mix.responsive() {
+			&.mob\:v-oriented{
+				-webkit-box-orient: vertical;
+			}
+			
+			&.mob\:h-oriented{
+				-webkit-box-orient: horizontal;
+			}
+			
+			&.mob\:block-oriented{
+				-webkit-box-orient: block-axis;
+			}
+			
+			&.mob\:inline-oriented{
+				-webkit-box-orient: inline-axis;
+			}
+
+			&.mob\:clamp{
+				@for $c from 1 through 10{
+					&-#{$c}{
+						-webkit-line-clamp: $c;
+					}
+				}
+			}
+		}
+	}
+
 	@include mix.responsive() {
 		.mob\:border-box {
 			box-sizing: border-box;
@@ -4641,6 +4852,36 @@
 
 		.mob\:content-box {
 			box-sizing: content-box;
+		}
+
+		.mob\:webkit-box{
+			display: -webkit-box;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			&.mob\:v-oriented{
+				-webkit-box-orient: vertical;
+			}
+			
+			&.mob\:h-oriented{
+				-webkit-box-orient: horizontal;
+			}
+			
+			&.mob\:block-oriented{
+				-webkit-box-orient: block-axis;
+			}
+			
+			&.mob\:inline-oriented{
+				-webkit-box-orient: inline-axis;
+			}
+
+			&.mob\:clamp{
+				@for $c from 1 through 10{
+					&-#{$c}{
+						-webkit-line-clamp: $c;
+					}
+				}
+			}
 		}
 	}
 
@@ -4806,10 +5047,10 @@
 	.rotate {
 		@for $r from 0 through 360 {
 			&-#{$r} {
-				transform: rotate(#{$r});
+				transform: rotate(#{$r}deg);
 
 				&-neg {
-					transform: rotate(-#{$r});
+					transform: rotate(-#{$r}deg);
 				}
 			}
 
