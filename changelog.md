@@ -7,6 +7,9 @@
 
 **Changelog**
 
+## 2.0.4 - Alpha
+- `wpf/vendor/wpf`: Adicionado a opção de configurar margens, padding e gaps (dentro do contexto do display flex) negativos através do sufixo *-neg* ao final da classe auxiliar. É importante frisar que gaps negativos ainda não são totalmente suportados;
+
 ## 2.0.3 - Alpha
 - `wpf/vendor/vars`: Corrigido um erro onde as funções de classe relacionadas à volume de fonte e algumas funções de classe relacionadas à cores não convertiam adequadamente o tipo de variável SCSS para CSS Vanilla afim de poder ser utilizável em folhas de estilo SCSS convencionais;
 - `wpf/vendor/vars`: As variáveis SCSS de transição agora também estão disponíveis para serem usadas em folhas de estilo SCSS convencionais;

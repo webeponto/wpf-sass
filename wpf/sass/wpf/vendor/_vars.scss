@@ -40,7 +40,7 @@
 	.c\(#{$color}\) {
 		color: unquote($value)!important;
 	}
-
+	
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
@@ -418,7 +418,7 @@
 //? CONFIGURAÇÃO DE EFEITOS: [https://webeponto.notion.site/Vari-veis-do-WPF-909d92a226844eac9177d776bf51fc61]
 //? --------------------------------------------------------------------------------------------------------//
 
-//* Tipo de Cursor:
+//* Tipo de Efeito:
 @each $vfx, $value in var.$visual-effects {
     .fx\(#{$vfx}\) {
         filter: unquote($value);

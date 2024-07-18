@@ -627,24 +627,40 @@
 		@for $p from 1 through 5 {
 			&-#{$p} {
 				padding: #{$p * 1%};
+
+				&-neg{
+					padding: -#{$p * 1%};
+				}
 			}
 		}
 
 		@for $p from 1 through 300 {
 			&-#{$p}px {
 				padding: #{$p * 1px};
+
+				&-neg{
+                    padding: -#{$p * 1px};
+                }
 			}
 		}
 
 		@for $p from 1 through 30 {
 			&-#{$p}r {
 				padding: #{$p * 1rem};
+
+				&-neg{
+                    padding: -#{$p * 1rem};
+                }
 			}
 		}
 		
 		@for $p from 1 through 30 {
 			&-#{$p}em {
 				padding: #{$p * 1em};
+
+				&-neg{
+                    padding: -#{$p * 1em};
+                }
 			}
 		}
 
@@ -663,6 +679,11 @@
 				&-#{$py} {
 					padding-top: #{$py * 1%};
 					padding-bottom: #{$py * 1%};
+
+					&-neg{
+                        padding-top: -#{$py * 1%};
+                        padding-bottom: -#{$py * 1%};
+                    }
 				}
 			}
 
@@ -670,6 +691,11 @@
 				&-#{$py}px {
 					padding-top: #{$py * 1px};
 					padding-bottom: #{$py * 1px};
+
+					&-neg{
+						padding-top: -#{$py * 1px};
+                        padding-bottom: -#{$py * 1px};
+                    }
 				}
 			}
 
@@ -677,6 +703,11 @@
 				&-#{$py}r {
 					padding-top: #{$py * 1rem};
 					padding-bottom: #{$py * 1rem};
+
+					&-neg{
+                        padding-top: -#{$py * 1rem};
+                        padding-bottom: -#{$py * 1rem};
+                    }
 				}
 			}
 			
@@ -684,6 +715,11 @@
 				&-#{$py}em {
 					padding-top: #{$py * 1em};
 					padding-bottom: #{$py * 1em};
+
+					&-neg{
+                        padding-top: -#{$py * 1em};
+                        padding-bottom: -#{$py * 1em};
+                    }
 				}
 			}
 
@@ -705,6 +741,11 @@
 				&-#{$px} {
 					padding-left: #{$px * 1%};
 					padding-right: #{$px * 1%};
+
+					&-neg{
+                        padding-left: -#{$px * 1%};
+                        padding-right: -#{$px * 1%};
+                    }
 				}
 			}
 
@@ -712,6 +753,11 @@
 				&-#{$px}px {
 					padding-left: #{$px * 1px};
 					padding-right: #{$px * 1px};
+
+					&-neg{
+                        padding-left: -#{$px * 1px};
+                        padding-right: -#{$px * 1px};
+                    }
 				}
 			}
 
@@ -719,6 +765,11 @@
 				&-#{$px}r {
 					padding-left: #{$px * 1rem};
 					padding-right: #{$px * 1rem};
+
+					&-neg{
+                        padding-left: -#{$px * 1rem};
+                        padding-right: -#{$px * 1rem};
+                    }
 				}
 			}
 			
@@ -726,6 +777,11 @@
 				&-#{$px}em {
 					padding-left: #{$px * 1em};
 					padding-right: #{$px * 1em};
+
+					&-neg{
+                        padding-left: -#{$px * 1em};
+                        padding-right: -#{$px * 1em};
+                    }
 				}
 			}
 
@@ -746,24 +802,40 @@
 			@for $mt from 1 through 5 {
 				&-#{$mt} {
 					padding-top: #{$mt * 1%};
+
+					&-neg{
+                        padding-top: -#{$mt * 1%};
+                    }
 				}
 			}
 
 			@for $mt from 1 through 300 {
 				&-#{$mt}px {
 					padding-top: #{$mt * 1px};
+
+					&-neg{
+                        padding-top: -#{$mt * 1px};
+                    }
 				}
 			}
 
 			@for $mt from 1 through 15 {
 				&-#{$mt}r {
 					padding-top: #{$mt * 1rem};
+
+					&-neg{
+                        padding-top: -#{$mt * 1rem};
+                    }
 				}
 			}
 			
 			@for $mt from 1 through 15 {
 				&-#{$mt}em {
 					padding-top: #{$mt * 1em};
+
+					&-neg{
+                        padding-top: -#{$mt * 1em};
+                    }
 				}
 			}
 
@@ -782,24 +854,40 @@
 			@for $pr from 1 through 5 {
 				&-#{$pr} {
 					padding-right: #{$pr * 1%};
+
+					&-neg{
+                        padding-right: -#{$pr * 1%};
+                    }
 				}
 			}
 
 			@for $pr from 1 through 300 {
 				&-#{$pr}px {
 					padding-right: #{$pr * 1px};
+
+					&-neg{
+                        padding-right: -#{$pr * 1px};
+                    }
 				}
 			}
 
 			@for $pr from 1 through 15 {
 				&-#{$pr}r {
 					padding-right: #{$pr * 1rem};
+
+					&-neg{
+                        padding-right: -#{$pr * 1rem};
+                    }
 				}
 			}
 			
 			@for $pr from 1 through 15 {
 				&-#{$pr}em {
 					padding-right: #{$pr * 1em};
+
+					&-neg{
+                        padding-right: -#{$pr * 1em};
+                    }
 				}
 			}
 
@@ -818,24 +906,40 @@
 			@for $pb from 1 through 5 {
 				&-#{$pb} {
 					padding-bottom: #{$pb * 1%};
+
+					&-neg{
+                        padding-bottom: -#{$pb * 1%};
+                    }
 				}
 			}
 
 			@for $pb from 1 through 300 {
 				&-#{$pb}px {
 					padding-bottom: #{$pb * 1px};
+
+					&-neg{
+                        padding-bottom: -#{$pb * 1px};
+                    }
 				}
 			}
 
 			@for $pb from 1 through 15 {
 				&-#{$pb}r {
 					padding-bottom: #{$pb * 1rem};
+
+					&-neg{
+                        padding-bottom: -#{$pb * 1rem};
+                    }
 				}
 			}
 			
 			@for $pb from 1 through 15 {
 				&-#{$pb}em {
 					padding-bottom: #{$pb * 1em};
+
+					&-neg{
+                        padding-bottom: -#{$pb * 1em};
+                    }
 				}
 			}
 
@@ -854,24 +958,40 @@
 			@for $pl from 1 through 5 {
 				&-#{$pl} {
 					padding-left: #{$pl * 1%};
+
+					&-neg{
+                        padding-left: -#{$pl * 1%};
+                    }
 				}
 			}
 
 			@for $pl from 1 through 300 {
 				&-#{$pl}px {
 					padding-left: #{$pl * 1px};
+
+					&-neg{
+                        padding-left: -#{$pl * 1px};
+                    }
 				}
 			}
 
 			@for $pl from 1 through 15 {
 				&-#{$pl}r {
 					padding-left: #{$pl * 1rem};
+
+					&-neg{
+                        padding-left: -#{$pl * 1rem};
+                    }
 				}
 			}
 			
 			@for $pl from 1 through 15 {
 				&-#{$pl}em {
 					padding-left: #{$pl * 1em};
+
+					&-neg{
+                        padding-left: -#{$pl * 1em};
+                    }
 				}
 			}
 
@@ -893,24 +1013,40 @@
 				@for $p from 1 through 5 {
 					&-#{$p} {
 						padding: #{$p * 1%};
+
+						&-neg{
+                            padding: -#{$p * 1%};
+                        }
 					}
 				}
 
 				@for $p from 1 through 300 {
 					&-#{$p}px {
 						padding: #{$p * 1px};
+
+						&-neg{
+                            padding: -#{$p * 1px};
+                        }
 					}
 				}
 
 				@for $p from 1 through 30 {
 					&-#{$p}r {
 						padding: #{$p * 1rem};
+
+						&-neg{
+                            padding: -#{$p * 1rem};
+                        }
 					}
 				}
 				
 				@for $p from 1 through 30 {
 					&-#{$p}em {
 						padding: #{$p * 1em};
+
+						&-neg{
+                            padding: -#{$p * 1em};
+                        }
 					}
 				}
 
@@ -929,6 +1065,11 @@
 						&-#{$py} {
 							padding-top: #{$py * 1%};
 							padding-bottom: #{$py * 1%};
+
+							&-neg{
+                                padding-top: -#{$py * 1%};
+                                padding-bottom: -#{$py * 1%};
+                            }
 						}
 					}
 
@@ -936,6 +1077,11 @@
 						&-#{$py}px {
 							padding-top: #{$py * 1px};
 							padding-bottom: #{$py * 1px};
+
+							&-neg{
+                                padding-top: -#{$py * 1px};
+                                padding-bottom: -#{$py * 1px};
+                            }
 						}
 					}
 
@@ -943,6 +1089,11 @@
 						&-#{$py}r {
 							padding-top: #{$py * 1rem};
 							padding-bottom: #{$py * 1rem};
+
+							&-neg{
+                                padding-top: -#{$py * 1rem};
+                                padding-bottom: -#{$py * 1rem};
+                            }
 						}
 					}
 					
@@ -950,6 +1101,11 @@
 						&-#{$py}em {
 							padding-top: #{$py * 1em};
 							padding-bottom: #{$py * 1em};
+
+							&-neg{
+                                padding-top: -#{$py * 1em};
+                                padding-bottom: -#{$py * 1em};
+                            }
 						}
 					}
 
@@ -971,6 +1127,11 @@
 						&-#{$px} {
 							padding-left: #{$px * 1%};
 							padding-right: #{$px * 1%};
+
+							&-neg{
+                                padding-left: -#{$px * 1%};
+                                padding-right: -#{$px * 1%};
+                            }
 						}
 					}
 
@@ -978,6 +1139,11 @@
 						&-#{$px}px {
 							padding-left: #{$px * 1px};
 							padding-right: #{$px * 1px};
+
+							&-neg{
+                                padding-left: -#{$px * 1px};
+                                padding-right: -#{$px * 1px};
+                            }
 						}
 					}
 
@@ -985,6 +1151,11 @@
 						&-#{$px}r {
 							padding-left: #{$px * 1rem};
 							padding-right: #{$px * 1rem};
+
+							&-neg{
+                                padding-left: -#{$px * 1rem};
+                                padding-right: -#{$px * 1rem};
+                            }
 						}
 					}
 					
@@ -992,6 +1163,11 @@
 						&-#{$px}em {
 							padding-left: #{$px * 1em};
 							padding-right: #{$px * 1em};
+
+							&-neg{
+                                padding-left: -#{$px * 1em};
+                                padding-right: -#{$px * 1em};
+                            }
 						}
 					}
 
@@ -1012,24 +1188,40 @@
 					@for $mt from 1 through 5 {
 						&-#{$mt} {
 							padding-top: #{$mt * 1%};
+
+							&-neg{
+                                padding-top: -#{$mt * 1%};
+                            }
 						}
 					}
 
 					@for $mt from 1 through 300 {
 						&-#{$mt}px {
 							padding-top: #{$mt * 1px};
+
+							&-neg{
+                                padding-top: -#{$mt * 1px};
+                            }
 						}
 					}
 
 					@for $mt from 1 through 15 {
 						&-#{$mt}r {
 							padding-top: #{$mt * 1rem};
+
+							&-neg{
+                                padding-top: -#{$mt * 1rem};
+                            }
 						}
 					}
 					
 					@for $mt from 1 through 15 {
 						&-#{$mt}em {
 							padding-top: #{$mt * 1em};
+
+							&-neg{
+                                padding-top: -#{$mt * 1em};
+                            }
 						}
 					}
 
@@ -1048,24 +1240,40 @@
 					@for $pr from 1 through 5 {
 						&-#{$pr} {
 							padding-right: #{$pr * 1%};
+
+							&-neg{
+                                padding-right: -#{$pr * 1%};
+                            }
 						}
 					}
 
 					@for $pr from 1 through 300 {
 						&-#{$pr}px {
 							padding-right: #{$pr * 1px};
+
+							&-neg{
+                                padding-right: -#{$pr * 1px};
+                            }
 						}
 					}
 
 					@for $pr from 1 through 15 {
 						&-#{$pr}r {
 							padding-right: #{$pr * 1rem};
+
+							&-neg{
+                                padding-right: -#{$pr * 1rem};
+                            }
 						}
 					}
 					
 					@for $pr from 1 through 15 {
 						&-#{$pr}em {
 							padding-right: #{$pr * 1em};
+
+							&-neg{
+                                padding-right: -#{$pr * 1em};
+                            }
 						}
 					}
 
@@ -1084,24 +1292,40 @@
 					@for $pb from 1 through 5 {
 						&-#{$pb} {
 							padding-bottom: #{$pb * 1%};
+
+							&-neg{
+                                padding-bottom: -#{$pb * 1%};
+                            }
 						}
 					}
 
 					@for $pb from 1 through 300 {
 						&-#{$pb}px {
 							padding-bottom: #{$pb * 1px};
+
+							&-neg{
+                                padding-bottom: -#{$pb * 1px};
+                            }
 						}
 					}
 
 					@for $pb from 1 through 15 {
 						&-#{$pb}r {
 							padding-bottom: #{$pb * 1rem};
+
+							&-neg{
+                                padding-bottom: -#{$pb * 1rem};
+                            }
 						}
 					}
 					
 					@for $pb from 1 through 15 {
 						&-#{$pb}em {
 							padding-bottom: #{$pb * 1em};
+
+							&-neg{
+                                padding-bottom: -#{$pb * 1em};
+                            }
 						}
 					}
 
@@ -1120,24 +1344,40 @@
 					@for $pl from 1 through 5 {
 						&-#{$pl} {
 							padding-left: #{$pl * 1%};
+
+							&-neg{
+                                padding-left: -#{$pl * 1%};
+                            }
 						}
 					}
 
 					@for $pl from 1 through 300 {
 						&-#{$pl}px {
 							padding-left: #{$pl * 1px};
+
+							&-neg{
+                                padding-left: -#{$pl * 1px};
+                            }
 						}
 					}
 
 					@for $pl from 1 through 15 {
 						&-#{$pl}r {
 							padding-left: #{$pl * 1rem};
+
+							&-neg{
+                                padding-left: -#{$pl * 1rem};
+                            }
 						}
 					}
 					
 					@for $pl from 1 through 15 {
 						&-#{$pl}em {
 							padding-left: #{$pl * 1em};
+
+							&-neg{
+                                padding-left: -#{$pl * 1em};
+                            }
 						}
 					}
 
@@ -1160,24 +1400,40 @@
 		@for $m from 1 through 5 {
 			&-#{$m} {
 				margin: #{$m * 1%};
+
+				&-neg{
+					margin: -#{$m * 1%};
+				}
 			}
 		}
 
 		@for $m from 1 through 300 {
 			&-#{$m}px {
 				margin: #{$m * 1px};
+
+				&-neg{
+                    margin: -#{$m * 1px};
+                }
 			}
 		}
 
 		@for $m from 1 through 15 {
 			&-#{$m}r {
 				margin: #{$m * 1rem};
+
+				&-neg{
+                    margin: -#{$m * 1rem};
+                }
 			}
 		}
 		
 		@for $m from 1 through 15 {
 			&-#{$m}em {
 				margin: #{$m * 1em};
+
+				&-neg{
+                    margin: -#{$m * 1em};
+                }
 			}
 		}
 
@@ -1196,6 +1452,11 @@
 				&-#{$my} {
 					margin-top: #{$my * 1%};
 					margin-bottom: #{$my * 1%};
+
+					&-neg{
+                        margin-top: -#{$my * 1%};
+                        margin-bottom: -#{$my * 1%};
+                    }
 				}
 			}
 
@@ -1203,6 +1464,11 @@
 				&-#{$my}px {
 					margin-top: #{$my * 1px};
 					margin-bottom: #{$my * 1px};
+
+					&-neg{
+                        margin-top: -#{$my * 1px};
+                        margin-bottom: -#{$my * 1px};
+                    }
 				}
 			}
 
@@ -1210,6 +1476,11 @@
 				&-#{$my}r {
 					margin-top: #{$my * 1rem};
 					margin-bottom: #{$my * 1rem};
+
+					&-neg{
+                        margin-top: -#{$my * 1rem};
+                        margin-bottom: -#{$my * 1rem};
+                    }
 				}
 			}
 			
@@ -1217,6 +1488,11 @@
 				&-#{$my}em {
 					margin-top: #{$my * 1em};
 					margin-bottom: #{$my * 1em};
+
+					&-neg{
+                        margin-top: -#{$my * 1em};
+                        margin-bottom: -#{$my * 1em};
+                    }
 				}
 			}
 
@@ -1238,6 +1514,11 @@
 				&-#{$mx} {
 					margin-left: #{$mx * 1%};
 					margin-right: #{$mx * 1%};
+
+					&-neg{
+                        margin-left: -#{$mx * 1%};
+                        margin-right: -#{$mx * 1%};
+                    }
 				}
 			}
 
@@ -1245,6 +1526,11 @@
 				&-#{$mx}px {
 					margin-left: #{$mx * 1px};
 					margin-right: #{$mx * 1px};
+
+					&-neg{
+                        margin-left: -#{$mx * 1px};
+                        margin-right: -#{$mx * 1px};
+                    }
 				}
 			}
 
@@ -1252,6 +1538,11 @@
 				&-#{$mx}r {
 					margin-left: #{$mx * 1rem};
 					margin-right: #{$mx * 1rem};
+
+					&-neg{
+                        margin-left: -#{$mx * 1rem};
+                        margin-right: -#{$mx * 1rem};
+                    }
 				}
 			}
 			
@@ -1259,6 +1550,11 @@
 				&-#{$mx}em {
 					margin-left: #{$mx * 1em};
 					margin-right: #{$mx * 1em};
+
+					&-neg{
+                        margin-left: -#{$mx * 1em};
+                        margin-right: -#{$mx * 1em};
+                    }
 				}
 			}
 
@@ -1279,24 +1575,40 @@
 			@for $mt from 1 through 5 {
 				&-#{$mt} {
 					margin-top: #{$mt * 1%};
+
+					&-neg{
+                        margin-top: -#{$mt * 1%};
+                    }
 				}
 			}
 
 			@for $mt from 1 through 300 {
 				&-#{$mt}px {
 					margin-top: #{$mt * 1px};
+
+					&-neg{
+                        margin-top: -#{$mt * 1px};
+                    }
 				}
 			}
 
 			@for $mt from 1 through 15 {
 				&-#{$mt}r {
 					margin-top: #{$mt * 1rem};
+
+					&-neg{
+                        margin-top: -#{$mt * 1rem};
+                    }
 				}
 			}
 			
 			@for $mt from 1 through 15 {
 				&-#{$mt}em {
 					margin-top: #{$mt * 1em};
+
+					&-neg{
+                        margin-top: -#{$mt * 1em};
+                    }
 				}
 			}
 
@@ -1315,24 +1627,40 @@
 			@for $mr from 1 through 100 {
 				&-#{$mr} {
 					margin-right: #{$mr * 1%};
+
+					&-neg{
+                        margin-right: -#{$mr * 1%};
+                    }
 				}
 			}
 
 			@for $mr from 1 through 300 {
 				&-#{$mr}px {
 					margin-right: #{$mr * 1px};
+
+					&-neg{
+                        margin-right: -#{$mr * 1px};
+                    }
 				}
 			}
 
 			@for $mr from 1 through 100 {
 				&-#{$mr}r {
 					margin-right: #{$mr * 1rem};
+
+					&-neg{
+                        margin-right: -#{$mr * 1rem};
+                    }
 				}
 			}
 			
 			@for $mr from 1 through 100 {
 				&-#{$mr}em {
 					margin-right: #{$mr * 1em};
+
+					&-neg{
+                        margin-right: -#{$mr * 1em};
+                    }
 				}
 			}
 
@@ -1351,24 +1679,40 @@
 			@for $mb from 1 through 5 {
 				&-#{$mb} {
 					margin-bottom: #{$mb * 1%};
+
+					&-neg{
+                        margin-bottom: -#{$mb * 1%};
+                    }
 				}
 			}
 
 			@for $mb from 1 through 300 {
 				&-#{$mb}px {
 					margin-bottom: #{$mb * 1px};
+
+					&-neg{
+                        margin-bottom: -#{$mb * 1px};
+                    }
 				}
 			}
 
 			@for $mb from 1 through 15 {
 				&-#{$mb}r {
 					margin-bottom: #{$mb * 1rem};
+
+					&-neg{
+                        margin-bottom: -#{$mb * 1rem};
+                    }
 				}
 			}
 			
 			@for $mb from 1 through 15 {
 				&-#{$mb}em {
 					margin-bottom: #{$mb * 1em};
+
+					&-neg{
+                        margin-bottom: -#{$mb * 1em};
+                    }
 				}
 			}
 
@@ -1387,24 +1731,40 @@
 			@for $ml from 1 through 5 {
 				&-#{$ml} {
 					margin-left: #{$ml * 1%};
+
+					&-neg{
+                        margin-left: -#{$ml * 1%};
+                    }
 				}
 			}
 
 			@for $ml from 1 through 300 {
 				&-#{$ml}px {
 					margin-left: #{$ml * 1px};
+
+					&-neg{
+                        margin-left: -#{$ml * 1px};
+                    }
 				}
 			}
 
 			@for $ml from 1 through 15 {
 				&-#{$ml}r {
 					margin-left: #{$ml * 1rem};
+
+					&-neg{
+                        margin-left: -#{$ml * 1rem};
+                    }
 				}
 			}
 			
 			@for $ml from 1 through 15 {
 				&-#{$ml}r {
 					margin-left: #{$ml * 1em};
+
+					&-neg{
+                        margin-left: -#{$ml * 1em};
+                    }
 				}
 			}
 
@@ -1426,24 +1786,40 @@
 				@for $m from 1 through 5 {
 					&-#{$m} {
 						margin: #{$m * 1%};
+
+						&-neg{
+                            margin: -#{$m * 1%};
+                        }
 					}
 				}
 
 				@for $m from 1 through 300 {
 					&-#{$m}px {
 						margin: #{$m * 1px};
+
+						&-neg{
+                            margin: -#{$m * 1px};
+                        }
 					}
 				}
 
 				@for $m from 1 through 15 {
 					&-#{$m}r {
 						margin: #{$m * 1rem};
+
+						&-neg{
+                            margin: -#{$m * 1rem};
+                        }
 					}
 				}
 				
 				@for $m from 1 through 15 {
 					&-#{$m}em {
 						margin: #{$m * 1em};
+
+						&-neg{
+                            margin: -#{$m * 1em};
+                        }
 					}
 				}
 
@@ -1462,6 +1838,11 @@
 						&-#{$my} {
 							margin-top: #{$my * 1%};
 							margin-bottom: #{$my * 1%};
+
+							&-neg{
+                                margin-top: -#{$my * 1%};
+                                margin-bottom: -#{$my * 1%};
+                            }
 						}
 					}
 
@@ -1469,6 +1850,11 @@
 						&-#{$my}px {
 							margin-top: #{$my * 1px};
 							margin-bottom: #{$my * 1px};
+
+							&-neg{
+                                margin-top: -#{$my * 1px};
+                                margin-bottom: -#{$my * 1px};
+                            }
 						}
 					}
 
@@ -1476,6 +1862,11 @@
 						&-#{$my}r {
 							margin-top: #{$my * 1rem};
 							margin-bottom: #{$my * 1rem};
+
+							&-neg{
+                                margin-top: -#{$my * 1rem};
+                                margin-bottom: -#{$my * 1rem};
+                            }
 						}
 					}
 					
@@ -1483,6 +1874,11 @@
 						&-#{$my}em {
 							margin-top: #{$my * 1em};
 							margin-bottom: #{$my * 1em};
+
+							&-neg{
+                                margin-top: -#{$my * 1em};
+                                margin-bottom: -#{$my * 1em};
+                            }
 						}
 					}
 
@@ -1504,6 +1900,11 @@
 						&-#{$mx} {
 							margin-left: #{$mx * 1%};
 							margin-right: #{$mx * 1%};
+
+							&-neg{
+                                margin-left: -#{$mx * 1%};
+                                margin-right: -#{$mx * 1%};
+                            }
 						}
 					}
 
@@ -1511,6 +1912,11 @@
 						&-#{$mx}px {
 							margin-left: #{$mx * 1px};
 							margin-right: #{$mx * 1px};
+
+							&-neg{
+                                margin-left: -#{$mx * 1px};
+                                margin-right: -#{$mx * 1px};
+                            }
 						}
 					}
 
@@ -1518,6 +1924,11 @@
 						&-#{$mx}r {
 							margin-left: #{$mx * 1rem};
 							margin-right: #{$mx * 1rem};
+
+							&-neg{
+                                margin-left: -#{$mx * 1rem};
+                                margin-right: -#{$mx * 1rem};
+                            }
 						}
 					}
 					
@@ -1525,6 +1936,11 @@
 						&-#{$mx}em {
 							margin-left: #{$mx * 1em};
 							margin-right: #{$mx * 1em};
+
+							&-neg{
+                                margin-left: -#{$mx * 1em};
+                                margin-right: -#{$mx * 1em};
+                            }
 						}
 					}
 
@@ -1545,24 +1961,40 @@
 					@for $mt from 1 through 5 {
 						&-#{$mt} {
 							margin-top: #{$mt * 1%};
+
+							&-neg{
+                                margin-top: -#{$mt * 1%};
+                            }
 						}
 					}
 
 					@for $mt from 1 through 300 {
 						&-#{$mt}px {
 							margin-top: #{$mt * 1px};
+
+							&-neg{
+                                margin-top: -#{$mt * 1px};
+                            }
 						}
 					}
 
 					@for $mt from 1 through 15 {
 						&-#{$mt}r {
 							margin-top: #{$mt * 1rem};
+
+							&-neg{
+                                margin-top: -#{$mt * 1rem};
+                            }
 						}
 					}
 					
 					@for $mt from 1 through 15 {
 						&-#{$mt}em {
 							margin-top: #{$mt * 1em};
+
+							&-neg{
+                                margin-top: -#{$mt * 1em};
+                            }
 						}
 					}
 
@@ -1581,24 +2013,40 @@
 					@for $mr from 1 through 100 {
 						&-#{$mr} {
 							margin-right: #{$mr * 1%};
+
+							&-neg{
+                                margin-right: -#{$mr * 1%};
+                            }
 						}
 					}
 
 					@for $mr from 1 through 300 {
 						&-#{$mr}px {
 							margin-right: #{$mr * 1px};
+
+							&-neg{
+                                margin-right: -#{$mr * 1px};
+                            }
 						}
 					}
 
 					@for $mr from 1 through 100 {
 						&-#{$mr}r {
 							margin-right: #{$mr * 1rem};
+
+							&-neg{
+                                margin-right: -#{$mr * 1rem};
+                            }
 						}
 					}
 					
 					@for $mr from 1 through 100 {
 						&-#{$mr}em {
 							margin-right: #{$mr * 1em};
+
+							&-neg{
+                                margin-right: -#{$mr * 1em};
+                            }
 						}
 					}
 
@@ -1617,24 +2065,40 @@
 					@for $mb from 1 through 5 {
 						&-#{$mb} {
 							margin-bottom: #{$mb * 1%};
+
+							&-neg{
+                                margin-bottom: -#{$mb * 1%};
+                            }
 						}
 					}
 
 					@for $mb from 1 through 300 {
 						&-#{$mb}px {
 							margin-bottom: #{$mb * 1px};
+
+							&-neg{
+                                margin-bottom: -#{$mb * 1px};
+                            }
 						}
 					}
 
 					@for $mb from 1 through 15 {
 						&-#{$mb}r {
 							margin-bottom: #{$mb * 1rem};
+
+							&-neg{
+                                margin-bottom: -#{$mb * 1rem};
+                            }
 						}
 					}
 					
 					@for $mb from 1 through 15 {
 						&-#{$mb}em {
 							margin-bottom: #{$mb * 1em};
+
+							&-neg{
+                                margin-bottom: -#{$mb * 1em};
+                            }
 						}
 					}
 
@@ -1653,24 +2117,40 @@
 					@for $ml from 1 through 5 {
 						&-#{$ml} {
 							margin-left: #{$ml * 1%};
+
+							&-neg{
+                                margin-left: -#{$ml * 1%};
+                            }
 						}
 					}
 
 					@for $ml from 1 through 300 {
 						&-#{$ml}px {
 							margin-left: #{$ml * 1px};
+
+							&-neg{
+                                margin-left: -#{$ml * 1px};
+                            }
 						}
 					}
 
 					@for $ml from 1 through 15 {
 						&-#{$ml}r {
 							margin-left: #{$ml * 1rem};
+
+							&-neg{
+                                margin-left: -#{$ml * 1rem};
+                            }
 						}
 					}
 					
 					@for $ml from 1 through 15 {
 						&-#{$ml}r {
 							margin-left: #{$ml * 1em};
+
+							&-neg{
+                                margin-left: -#{$ml * 1em};
+                            }
 						}
 					}
 
@@ -2206,24 +2686,40 @@
 				@for $g from 0 through 5 {
 					&-#{$g} {
 						gap: #{$g * 1%};
+
+						&-neg{
+							gap: -#{$g * 1%};
+						}
 					}
 				}
 
 				@for $g from 0 through 100 {
 					&-#{$g}px {
 						gap: #{$g * 1px};
+						
+						&-neg{
+							gap: -#{$g * 1px};
+						}
 					}
 				}
 
 				@for $g from 0 through 15 {
 					&-#{$g}r {
 						gap: #{$g * 1rem};
+						
+						&-neg{
+							gap: -#{$g * 1rem};
+						}
 					}
 				}
 				
 				@for $g from 0 through 15 {
 					&-#{$g}em {
 						gap: #{$g * 1em};
+						
+						&-neg{
+							gap: -#{$g * 1em};
+						}
 					}
 				}
 			}
@@ -2235,24 +2731,40 @@
 					@for $g from 0 through 5 {
 						&-#{$g} {
 							gap: #{$g * 1%};
+							
+							&-neg{
+								gap: -#{$g * 1%};
+							}
 						}
 					}
 
 					@for $g from 0 through 100 {
 						&-#{$g}px {
 							gap: #{$g * 1px};
+							
+							&-neg{
+								gap: -#{$g * 1px};
+							}
 						}
 					}
 
 					@for $g from 0 through 15 {
 						&-#{$g}r {
 							gap: #{$g * 1rem};
+							
+							&-neg{
+								gap: -#{$g * 1rem};
+							}
 						}
 					}
 					
 					@for $g from 0 through 15 {
 						&-#{$g}em {
 							gap: #{$g * 1em};
+							
+							&-neg{
+								gap: -#{$g * 1em};
+							}
 						}
 					}
 				}
