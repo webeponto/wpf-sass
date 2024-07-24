@@ -7,6 +7,9 @@
 
 **Changelog**
 
+## 2.0.5 - Alpha
+- `wpf/vendor/wpf`: Adicionado a opção de determinar a direção da borda durante a sua customização pelas classes auxiliares. *br* é border-right, *bl* é border-left, *by* é border-top/border-bottom e assim sucetivamente;
+
 ## 2.0.4 - Alpha
 - `wpf/vendor/wpf`: Adicionado a opção de configurar margens, padding e gaps (dentro do contexto do display flex) negativos através do sufixo *-neg* ao final da classe auxiliar. É importante frisar que gaps negativos ainda não são totalmente suportados;
 
