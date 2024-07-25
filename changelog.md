@@ -7,6 +7,9 @@
 
 **Changelog**
 
+## 2.0.7 - Alpha
+- `wpf/vendor/wpf`: Aumentado o limite para certos tipos de valor da classe auxiliar *fs* e adicionado a possibilidade de inserir valores em 'rem';
+
 ## 2.0.6 - Alpha
 - `wpf/vendor/wpf`: Inserido a possibilidade de configurar tamanhos de texto em medidas de pixels, porcentagem e 'em' através da classe auxiliar *fs*;
 

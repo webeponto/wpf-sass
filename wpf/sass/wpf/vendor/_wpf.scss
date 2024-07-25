@@ -621,7 +621,7 @@ $sides: top, right, bottom, left;
 
 //* Tamanho do Texto:
 .fs {
-    @for $fs from 1 through 70 {
+    @for $fs from 1 through 200 {
         $v: $fs * 1%;
 
         &-#{$fs} {
@@ -637,10 +637,20 @@ $sides: top, right, bottom, left;
         }
     }
 
-    @for $fs from 1 through 70 {
-        $v: $fs * 0.1em;
+    @for $fs from 1 through 200 {
+        $rv: $fs * 5;
+        $v: $rv * 0.1em;
 
-        &-#{$fs}em {
+        &-#{$rv}em {
+            font-size: #{$v};
+        }
+    }
+    
+	@for $fs from 1 through 200 {
+        $rv: $fs * 5;
+		$v: $rv * 0.1rem;
+
+        &-#{$rv}rem {
             font-size: #{$v};
         }
     }
@@ -649,7 +659,7 @@ $sides: top, right, bottom, left;
 @include mix.responsive() {
 	.mob\: {
         &fs {
-            @for $fs from 1 through 70 {
+            @for $fs from 1 through 200 {
                 $v: $fs * 1%;
 
                 &-#{$fs} {
@@ -665,13 +675,21 @@ $sides: top, right, bottom, left;
                 }
             }
 
-            @for $fs from 1 through 70 {
+            @for $fs from 1 through 200 {
                 $v: $fs * 0.1em;
 
                 &-#{$fs}em {
                     font-size: #{$v};
                 }
             }
+
+			@for $fs from 1 through 200 {
+				$v: $fs * 0.1rem;
+
+				&-#{$fs}rem {
+					font-size: #{$v};
+				}
+			}
         }
     }
 }
