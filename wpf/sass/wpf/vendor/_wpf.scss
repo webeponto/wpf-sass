@@ -621,77 +621,79 @@ $sides: top, right, bottom, left;
 
 //* Tamanho do Texto:
 .fs {
-    @for $fs from 1 through 200 {
-        $v: $fs * 1%;
-
-        &-#{$fs} {
-            font-size: #{$v};
-        }
-    }
-
-    @for $fs from 1 through 300 {
-        $v: $fs * 1px;
-
-        &-#{$fs}px {
-            font-size: #{$v};
-        }
-    }
-
-    @for $fs from 1 through 200 {
-        $rv: $fs * 5;
-        $v: $rv * 0.1em;
-
-        &-#{$rv}em {
-            font-size: #{$v};
-        }
-    }
-    
 	@for $fs from 1 through 200 {
-        $rv: $fs * 5;
-		$v: $rv * 0.1rem;
+		$v: $fs * 1%;
 
-        &-#{$rv}rem {
-            font-size: #{$v};
-        }
-    }
+		&-#{$fs} {
+			font-size: #{$v};
+		}
+	}
+
+	@for $fs from 1 through 300 {
+		$v: $fs * 1px;
+
+		&-#{$fs}px {
+			font-size: #{$v};
+		}
+	}
+
+	@for $fs from 1 through 200 {
+		$rv: $fs * 5;
+		$v: $rv * 0.01em;
+
+		&-#{$rv}em {
+			font-size: #{$v};
+		}
+	}
+
+	@for $fs from 1 through 200 {
+		$rv: $fs * 5;
+		$v: $rv * 0.01rem;
+
+		&-#{$rv}rem {
+			font-size: #{$v};
+		}
+	}
 }
 
 @include mix.responsive() {
 	.mob\: {
-        &fs {
-            @for $fs from 1 through 200 {
-                $v: $fs * 1%;
-
-                &-#{$fs} {
-                    font-size: #{$v};
-                }
-            }
-
-            @for $fs from 1 through 300 {
-                $v: $fs * 1px;
-
-                &-#{$fs}px {
-                    font-size: #{$v};
-                }
-            }
-
-            @for $fs from 1 through 200 {
-                $v: $fs * 0.1em;
-
-                &-#{$fs}em {
-                    font-size: #{$v};
-                }
-            }
-
+		&fs {
 			@for $fs from 1 through 200 {
-				$v: $fs * 0.1rem;
+				$v: $fs * 1%;
 
-				&-#{$fs}rem {
+				&-#{$fs} {
 					font-size: #{$v};
 				}
 			}
-        }
-    }
+
+			@for $fs from 1 through 300 {
+				$v: $fs * 1px;
+
+				&-#{$fs}px {
+					font-size: #{$v};
+				}
+			}
+
+			@for $fs from 1 through 200 {
+				$rv: $fs * 5;
+				$v: $rv * 0.01em;
+
+				&-#{$rv}em {
+					font-size: #{$v};
+				}
+			}
+
+			@for $fs from 1 through 200 {
+				$rv: $fs * 5;
+				$v: $rv * 0.01rem;
+
+				&-#{$rv}rem {
+					font-size: #{$v};
+				}
+			}
+		}
+	}
 }
 
 //* Padding: [https://webeponto.notion.site/Padding-2dea7be58df54fd38275309aaa177708]
