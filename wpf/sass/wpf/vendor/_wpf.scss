@@ -619,6 +619,63 @@ $sides: top, right, bottom, left;
 	}
 }
 
+//* Tamanho do Texto:
+.fs {
+    @for $fs from 1 through 70 {
+        $v: $fs * 1%;
+
+        &-#{$fs} {
+            font-size: #{$v};
+        }
+    }
+
+    @for $fs from 1 through 300 {
+        $v: $fs * 1px;
+
+        &-#{$fs}px {
+            font-size: #{$v};
+        }
+    }
+
+    @for $fs from 1 through 70 {
+        $v: $fs * 0.1em;
+
+        &-#{$fs}em {
+            font-size: #{$v};
+        }
+    }
+}
+
+@include mix.responsive() {
+	.mob\: {
+        &fs {
+            @for $fs from 1 through 70 {
+                $v: $fs * 1%;
+
+                &-#{$fs} {
+                    font-size: #{$v};
+                }
+            }
+
+            @for $fs from 1 through 300 {
+                $v: $fs * 1px;
+
+                &-#{$fs}px {
+                    font-size: #{$v};
+                }
+            }
+
+            @for $fs from 1 through 70 {
+                $v: $fs * 0.1em;
+
+                &-#{$fs}em {
+                    font-size: #{$v};
+                }
+            }
+        }
+    }
+}
+
 //* Padding: [https://webeponto.notion.site/Padding-2dea7be58df54fd38275309aaa177708]
 .p {
 

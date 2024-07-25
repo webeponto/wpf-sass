@@ -7,6 +7,9 @@
 
 **Changelog**
 
+## 2.0.6 - Alpha
+- `wpf/vendor/wpf`: Inserido a possibilidade de configurar tamanhos de texto em medidas de pixels, porcentagem e 'em' através da classe auxiliar *fs*;
+
 ## 2.0.5 - Alpha
 - `wpf/vendor/wpf`: Adicionado a opção de determinar a direção da borda durante a sua customização pelas classes auxiliares. *br* é border-right, *bl* é border-left, *by* é border-top/border-bottom e assim sucetivamente;
 
