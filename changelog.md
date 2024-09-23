@@ -7,6 +7,16 @@
 
 **Changelog**
 
+## 2.1.0
+- É com segurança que podemos dizer que o WPF2 saí do estágio alpha de desenvolvimento para uma nova etapa de testes de conclusão para a correção dos erros e incongruênciais finais da versão 2.0 do framework WPF;
+- `js/wpf`: Iniciado uma nova era de funcionalidades dinâmicas e altamente responsivas para o framework CSS WPF2, baseada em TypeScript e JavaScript, capaz de ler e manipular dados rapidamente e incluir uma intensa nova gama de classes auxiliares robustas que definirão o futuro da ferramenta nas atualizações que virão. Como parte do início desse movimento, as funcionalidades que marcam a estréia dessa ferramenta são:
+	- `Lazyload`: De forma integrada e responsiva, através da classe auxiliar *.wpf-lazy-load*, tanto imagens como elementos complexos (divs, formulários, sections) podem ser carregados e descarregados dinâmicamente e somente serem renderizados caso estejam em contato com a viewport da tela do dispositivo do usuário, tornando o site ainda mais dinâmico e responsivo, otimizando a sua carga de consumo;
+	- `Pseudos`: Uma nova ferramenta do WPF2 que cria novas medidas para se descrever classes auxiliares já funcionais e consolidadas do WPF2. Desde os primeiros updates da ferramenta, era possível específicar um condicionamento como *'mob:'* para instruir o framework a somente renderizar classes para escopos responsivos. Com `Pseudos`, o número de específicações passa de 1 para 5. *('hover:', 'active:', 'focus:' e 'placeholder:')* e todos eles funcionam em conjunto com a instrução *'mob:'*;
+	- `Painter`: É a próxima evolução de classes verdadeiramente dinâmicas do WPF2. Para o update v2.1.0 do WPF2, estamos soltando uma atualização que já consegue permitir o uso das funções de classe voltadas para coloração *(como 'bg()', 'bc()' e 'c()')* para funcionarem com qualquer cor pura em formato hex (ao invés de defini-la como 'bg(c-red)', você pode simplesmente escrevê-la assim: 'bg(#f00)');
+- `sass/vendor/wpf`: Alterado a lógica de escrita das classes auxiliares relacionadas ao *line-height* do WPF2;
+- `sass/vendor/wpf`: Desenvolvido versões das classes auxiliares para *text-transform e line-height* compatíveis para escopos responsivos;
+- Atualizado a documentação oficial de inúmeras novas funcionalidades adicionadas, além de funcionalidades já existentes em updates anteriores;
+
 ## 2.0.7 - Alpha
 - `wpf/vendor/wpf`: Aumentado o limite para certos tipos de valor da classe auxiliar *fs* e adicionado a possibilidade de inserir valores em 'rem';
 
@@ -45,7 +55,6 @@
 - `wpf/vendor/vars`: Corrigido um erro onde as variáveis CSS não eram renderizadas corretamente;
 - `purgecss.config`: Incluído no repositório um template atualizado de como o purge necessita se comportar para que o WPF2 possa ser utilizado no projeto;
 - Atualizado a documentação do projeto com novos dados a cerca das funcionalidades implementadas;
-
 
 ## 2.0.0 - Alpha
 - Atualizado o arquivo `README.md` com novas informações a respeito da nova versão do WPF2;

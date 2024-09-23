@@ -12,7 +12,7 @@
 //? --------------------------------------------------------------------------------------------------------//
 
 //* Cores de Plano de Fundo:
-@each $color, $value in var.$c-backgrounds {
+@each $color, $value in var.$c-backgrounds { 
     .bg\(#{$color}\) {
 		@if(str-index($value, "url"))
 		{

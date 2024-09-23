@@ -4,3 +4,6 @@
 @forward 'mix.scss';
 @forward 'reset.scss';
 @forward 'wpf.scss';
+
+// Inclusões de folhas de estilos dinâmicamente alteradas via TypeScript e JavaScript
+@forward 'dynamic';

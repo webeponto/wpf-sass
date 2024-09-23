@@ -1,0 +1,9 @@
+//* Otimização (Altere como precisar):
+.wpf-lazy-load {
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+
+	&.fade-in {
+		opacity: 1;
+	}
+}
