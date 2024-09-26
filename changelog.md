@@ -7,6 +7,12 @@
 
 **Changelog**
 
+## 2.1.1
+- `sass/vendor/wpf`: Em praticamente todas as classes auxiliares que dependem de valores numéricos, agora é possível definir sua propriedade principal para ter um valor igual a zero;
+- `sass/vendor/wpf`: Nas funções de classe referentes ao posicionamento absoluto, agora é possível definir valores negativos diretamente como parte do valor da propriedade da função;
+- `sass/vendor/wpf`: As classes auxiliares relacionadas à *border-radius* agora podem ter um valor diferente sobre a diretiva *mob:*;
+- `sass/vendor/wpf`: Foi corrigido um problema onde, dependendo da combinação de classes referentes ao display *dp-flex* em um elemento, a ordem e o tipo de combinação de classes poderia limitar ou bloquear totalmente o funcionamento de uma ou mais partes dessas classes. Isso não deve mais acontecer;
+
 ## 2.1.0
 - É com segurança que podemos dizer que o WPF2 saí do estágio alpha de desenvolvimento para uma nova etapa de testes de conclusão para a correção dos erros e incongruênciais finais da versão 2.0 do framework WPF;
 - `js/wpf`: Iniciado uma nova era de funcionalidades dinâmicas e altamente responsivas para o framework CSS WPF2, baseada em TypeScript e JavaScript, capaz de ler e manipular dados rapidamente e incluir uma intensa nova gama de classes auxiliares robustas que definirão o futuro da ferramenta nas atualizações que virão. Como parte do início desse movimento, as funcionalidades que marcam a estréia dessa ferramenta são:
