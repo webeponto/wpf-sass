@@ -1,6 +1,6 @@
 //?	FRAMEWORK SCSS WPF 2
 /***
-	* Versão v2.1.0 do Framework SCSS WPF
+	* Versão v2.2.0 do Framework SCSS WPF
 	* Autores: Lyautey M. N. / Matheus P. / David H.
 	* 
 	* ! Não altere nada presente neste documento.
@@ -99,6 +99,54 @@ $sides: top, right, bottom, left;
 						.mob\:#{$side}\(#{$pos}dvw\) {
 							#{$side}: #{$pos * 1dvw};
 						}
+					}
+				}
+			}
+
+			@for $pos from -100 through 100 {
+				.inset\(#{$pos}\) {
+					inset: #{$pos * 1%};
+				}
+
+				@include mix.responsive() {
+					.mob\:inset\(#{$pos}\) {
+						inset: #{$pos * 1%};
+					}
+				}
+			}
+
+			@for $pos from -200 through 200 {
+				.inset\(#{$pos}px\) {
+					inset: #{$pos * 1px};
+				}
+
+				@include mix.responsive() {
+					.mob\:inset\(#{$pos}px\) {
+						inset: #{$pos * 1px};
+					}
+				}
+			}
+
+			@for $pos from -100 through 100 {
+				.inset\(#{$pos}dvh\) {
+					inset: #{$pos * 1dvh};
+				}
+
+				@include mix.responsive() {
+					.mob\:inset\(#{$pos}dvh\) {
+						inset: #{$pos * 1dvh};
+					}
+				}
+			}
+
+			@for $pos from -100 through 100 {
+				.inset\(#{$pos}dvw\) {
+					inset: #{$pos * 1dvw};
+				}
+
+				@include mix.responsive() {
+					.mob\:inset\(#{$pos}dvw\) {
+						inset: #{$pos * 1dvw};
 					}
 				}
 			}
@@ -235,7 +283,6 @@ $sides: top, right, bottom, left;
 	}
 
 	&.inset {
-
 		// Top:
 		&-top {
 			inset-area: top;
@@ -328,7 +375,7 @@ $sides: top, right, bottom, left;
 
 	// Especificação de tamanho:
 	&.w {
-		@for $w from 0 through 18 {
+		@for $w from 0 through 19 {
 			$v: $w * 5;
 
 			&#{$v},
@@ -4262,7 +4309,7 @@ $sides: top, right, bottom, left;
 
 //* Tamanhos: [https://webeponto.notion.site/Definindo-Tamanhos-896fc9400ad34d73a8db6b1863740659]
 .w {
-	@for $w from 0 through 18 {
+	@for $w from 0 through 19 {
 		$v: $w * 5;
 
 		&#{$v},
@@ -4459,7 +4506,7 @@ $sides: top, right, bottom, left;
 
 @include mix.responsive() {
 	.mob\:w {
-		@for $w from 0 through 18 {
+		@for $w from 0 through 19 {
 			$v: $w * 5;
 
 			&#{$v},
@@ -4620,7 +4667,7 @@ $sides: top, right, bottom, left;
 }
 
 .h {
-	@for $h from 0 through 18 {
+	@for $h from 0 through 19 {
 		$v: $h * 5;
 
 		&#{$h},
@@ -4846,14 +4893,13 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 .b {
 	@for $b from 0 through 10 {
-
 		&#{$b}px,
 		&-#{$b}px {
-			border: #{$b * 1px};
+			border-width: #{$b * 1px};
 
 			@each $border in $borders {
 				&-#{$border} {
-					border: #{$b * 1px};
+					border-width: #{$b * 1px};
 					border-style: $border;
 				}
 			}
@@ -4861,13 +4907,13 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 		&y#{$b}px,
 		&y-#{$b}px {
-			border-top: #{$b * 1px};
-			border-bottom: #{$b * 1px};
+			border-top-width: #{$b * 1px};
+			border-bottom-width: #{$b * 1px};
 
 			@each $border in $borders {
 				&-#{$border} {
-					border-top: #{$b * 1px};
-					border-bottom: #{$b * 1px};
+					border-top-width: #{$b * 1px};
+					border-bottom-width: #{$b * 1px};
 					border-style: $border;
 				}
 			}
@@ -4875,13 +4921,13 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 		&x#{$b}px,
 		&x-#{$b}px {
-			border-left: #{$b * 1px};
-			border-right: #{$b * 1px};
+			border-left-width: #{$b * 1px};
+			border-right-width: #{$b * 1px};
 
 			@each $border in $borders {
 				&-#{$border} {
-					border-left: #{$b * 1px};
-					border-right: #{$b * 1px};
+					border-left-width: #{$b * 1px};
+					border-right-width: #{$b * 1px};
 					border-style: $border;
 				}
 			}
@@ -4889,11 +4935,11 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 		&t#{$b}px,
 		&t-#{$b}px {
-			border-top: #{$b * 1px};
+			border-top-width: #{$b * 1px};
 
 			@each $border in $borders {
 				&-#{$border} {
-					border-top: #{$b * 1px};
+					border-top-width: #{$b * 1px};
 					border-style: $border;
 				}
 			}
@@ -4901,11 +4947,11 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 		&r#{$b}px,
 		&r-#{$b}px {
-			border-right: #{$b * 1px};
+			border-right-width: #{$b * 1px};
 
 			@each $border in $borders {
 				&-#{$border} {
-					border-right: #{$b * 1px};
+					border-right-width: #{$b * 1px};
 					border-style: $border;
 				}
 			}
@@ -4913,11 +4959,11 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 		&b#{$b}px,
 		&b-#{$b}px {
-			border-bottom: #{$b * 1px};
+			border-bottom-width: #{$b * 1px};
 
 			@each $border in $borders {
 				&-#{$border} {
-					border-bottom: #{$b * 1px};
+					border-bottom-width: #{$b * 1px};
 					border-style: $border;
 				}
 			}
@@ -4925,12 +4971,93 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 		&l#{$b}px,
 		&l-#{$b}px {
-			border-left: #{$b * 1px};
+			border-left-width: #{$b * 1px};
 
 			@each $border in $borders {
 				&-#{$border} {
-					border-left: #{$b * 1px};
+					border-left-width: #{$b * 1px};
 					border-style: $border;
+				}
+			}
+		}
+
+		// Divisores:
+		&div-{
+			&y#{$b}px,
+			&y-#{$b}px {
+				& > *:not(:first-child){
+					border-top-width: #{$b * 1px};
+				}
+				
+				& > *:not(:last-child){
+					border-bottom-width: #{$b * 1px};
+				}
+
+				& > *:not(:first-child),
+				& > *:not(:last-child){
+					border-top-width: #{$b * 1px};
+					border-bottom-width: #{$b * 1px};
+				}
+
+				@each $border in $borders {
+					&-#{$border} {
+						& > *{
+							border-style: $border;
+						}
+						
+						& > *:not(:first-child){
+							border-top-width: #{$b * 1px};
+						}
+						
+						& > *:not(:last-child){
+							border-bottom-width: #{$b * 1px};
+						}
+
+						& > *:not(:first-child),
+						& > *:not(:last-child){
+							border-top-width: #{$b * 1px};
+							border-bottom-width: #{$b * 1px};
+						}
+					}
+				}
+			}
+			
+			&x#{$b}px,
+			&x-#{$b}px {
+				& > *:not(:first-child){
+					border-right-width: #{$b * 1px};
+				}
+				
+				& > *:not(:last-child){
+					border-left-width: #{$b * 1px};
+				}
+
+				& > *:not(:first-child),
+				& > *:not(:last-child){
+					border-right-width: #{$b * 1px};
+					border-left-width: #{$b * 1px};
+				}
+
+				@each $border in $borders {
+					&-#{$border} {
+						& > *{
+							border-style: $border;
+						}
+						
+						& > *:not(:first-child){
+							border-right-width: #{$b * 1px};
+						}
+						
+						& > *:not(:last-child){
+							border-left-width: #{$b * 1px};
+						}
+
+						& > *:not(:first-child),
+						& > *:not(:last-child){
+							border-right-width: #{$b * 1px};
+							border-left-width: #{$b * 1px};
+						}
+					}
 				}
 			}
 		}
@@ -4945,11 +5072,11 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 			&#{$b}px,
 			&-#{$b}px {
-				border: #{$b * 1px};
+				border-width: #{$b * 1px};
 
 				@each $border in $borders {
 					&-#{$border} {
-						border: #{$b * 1px};
+						border-width: #{$b * 1px};
 						border-style: $border;
 					}
 				}
@@ -4957,13 +5084,13 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 			&y#{$b}px,
 			&y-#{$b}px {
-				border-top: #{$b * 1px};
-				border-bottom: #{$b * 1px};
+				border-top-width: #{$b * 1px};
+				border-bottom-width: #{$b * 1px};
 
 				@each $border in $borders {
 					&-#{$border} {
-						border-top: #{$b * 1px};
-						border-bottom: #{$b * 1px};
+						border-top-width: #{$b * 1px};
+						border-bottom-width: #{$b * 1px};
 						border-style: $border;
 					}
 				}
@@ -4971,13 +5098,13 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 			&x#{$b}px,
 			&x-#{$b}px {
-				border-left: #{$b * 1px};
-				border-right: #{$b * 1px};
+				border-left-width: #{$b * 1px};
+				border-right-width: #{$b * 1px};
 
 				@each $border in $borders {
 					&-#{$border} {
-						border-left: #{$b * 1px};
-						border-right: #{$b * 1px};
+						border-left-width: #{$b * 1px};
+						border-right-width: #{$b * 1px};
 						border-style: $border;
 					}
 				}
@@ -4985,11 +5112,11 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 			&t#{$b}px,
 			&t-#{$b}px {
-				border-top: #{$b * 1px};
+				border-top-width: #{$b * 1px};
 
 				@each $border in $borders {
 					&-#{$border} {
-						border-top: #{$b * 1px};
+						border-top-width: #{$b * 1px};
 						border-style: $border;
 					}
 				}
@@ -4997,11 +5124,11 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 			&r#{$b}px,
 			&r-#{$b}px {
-				border-right: #{$b * 1px};
+				border-right-width: #{$b * 1px};
 
 				@each $border in $borders {
 					&-#{$border} {
-						border-right: #{$b * 1px};
+						border-right-width: #{$b * 1px};
 						border-style: $border;
 					}
 				}
@@ -5009,11 +5136,11 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 			&b#{$b}px,
 			&b-#{$b}px {
-				border-bottom: #{$b * 1px};
+				border-bottom-width: #{$b * 1px};
 
 				@each $border in $borders {
 					&-#{$border} {
-						border-bottom: #{$b * 1px};
+						border-bottom-width: #{$b * 1px};
 						border-style: $border;
 					}
 				}
@@ -5021,11 +5148,11 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 
 			&l#{$b}px,
 			&l-#{$b}px {
-				border-left: #{$b * 1px};
+				border-left-width: #{$b * 1px};
 
 				@each $border in $borders {
 					&-#{$border} {
-						border-left: #{$b * 1px};
+						border-left-width: #{$b * 1px};
 						border-style: $border;
 					}
 				}
@@ -5681,6 +5808,25 @@ $borders: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, so
 	}
 }
 
+//* Outlines:
+$outlines: dashed, dotted, double, groove, hidden, inset, none, outset, ridge, solid;
+.o{
+	@for $o from 0 through 10 {
+
+		&#{$o}px,
+		&-#{$o}px {
+			outline: #{$o * 1px};
+
+			@each $outline in $outlines {
+				&-#{$outline} {
+					outline: #{$o * 1px};
+					outline-style: $outline;
+				}
+			}
+		}
+	}
+}
+
 //* Caixas de Conteúdo:
 .border-box {
 	box-sizing: border-box;
@@ -5821,6 +5967,51 @@ img {
 
 		&-cover {
 			object-fit: cover;
+
+			&-top{
+				object-fit: cover;
+				object-position: top;
+			}
+
+			&-bottom{
+                object-fit: cover;
+                object-position: bottom;
+            }
+
+            &-left{
+                object-fit: cover;
+                object-position: left;
+            }
+
+            &-right{
+                object-fit: cover;
+                object-position: right;
+            }
+
+            &-center{
+                object-fit: cover;
+                object-position: center;
+            }
+
+            &-top-left{
+                object-fit: cover;
+                object-position: top left;
+            }
+
+            &-top-right{
+                object-fit: cover;
+                object-position: top right;
+            }
+
+            &-bottom-left{
+                object-fit: cover;
+                object-position: bottom left;
+            }
+
+            &-bottom-right{
+                object-fit: cover;
+				object-position: bottom right;
+            }
 		}
 
 		&-contain {
@@ -5831,6 +6022,8 @@ img {
 			object-fit: scale-down;
 		}
 	}
+
+
 }
 
 //* Razão de Aspecto:

@@ -16,19 +16,19 @@
     .bg\(#{$color}\) {
 		@if(str-index($value, "url"))
 		{
-        	background-image: unquote($value)!important;
+        	background-image: unquote($value);
 		}
 
 		@else
 		{
-			background-color: unquote($value)!important;
+			background-color: unquote($value);
 		}
     }
 
 	.bc\(#{$color}\) {
 		@if(str-index($value, "url"))
 		{
-        	border-image: unquote($value)!important;
+        	border-image: unquote($value);
 		}
 
 		@else
@@ -38,7 +38,7 @@
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value)!important;
+		color: unquote($value);
 	}
 	
 	@include mix.responsive()
@@ -46,19 +46,19 @@
 		.mob\:bg\(#{$color}\) {
 			@if(str-index($value, "url"))
 			{
-				background-image: unquote($value)!important;
+				background-image: unquote($value);
 			}
 
 			@else
 			{
-				background-color: unquote($value)!important;
+				background-color: unquote($value);
 			}
 		}
 
 		.mob\:bc\(#{$color}\) {
             @if(str-index($value, "url"))
 			{
-				border-image: unquote($value)!important;
+				border-image: unquote($value);
 			}
 
 			@else
@@ -68,7 +68,7 @@
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value)!important;
+            color: unquote($value);
         }
 	}
 
@@ -80,7 +80,7 @@
 //* Cores de Superfície:
 @each $color, $value in var.$c-surfaces {
     .bg\(#{$color}\) {
-        background-color: unquote($value)!important;
+        background-color: unquote($value);
     }
 
 	.bc\(#{$color}\) {
@@ -88,13 +88,13 @@
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value)!important;
+		color: unquote($value);
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: unquote($value)!important;
+			background-color: unquote($value);
 		}
 
 		.mob\:bc\(#{$color}\) {
@@ -102,7 +102,7 @@
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value)!important;
+            color: unquote($value);
         }
 	}
 
@@ -114,17 +114,17 @@
 //* Cores de Gradiente:
 @each $color, $value in var.$c-gradients {
     .bg\(#{$color}\) {
-        background: unquote($value)!important;
+        background: unquote($value);
     }
 
 	.bc\(#{$color}\) {
-		border-image: unquote($value)!important;
+		border-image: unquote($value);
 	}
 
 	.c\(#{$color}\) {
-		background: unquote($value)!important;
+		background: unquote($value);
 
-		color: none!important;
+		color: none;
 
 		-webkit-background-clip: text;
   		-webkit-text-fill-color: transparent;
@@ -133,17 +133,17 @@
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background: unquote($value)!important;
+			background: unquote($value);
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-image: unquote($value)!important;
+            border-image: unquote($value);
         }
 
 		.mob\:c\(#{$color}\) {
-            background: unquote($value)!important;
+            background: unquote($value);
 
-			color: none!important;
+			color: none;
 
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
@@ -158,7 +158,7 @@
 //* Cores Temas:
 @each $color, $value in var.$c-themes {
     .bg\(#{$color}\) {
-        background-color: unquote($value)!important;
+        background-color: unquote($value);
     }
 
 	.bc\(#{$color}\) {
@@ -166,13 +166,13 @@
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value)!important;
+		color: unquote($value);
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: unquote($value)!important;
+			background-color: unquote($value);
 		}
 
 		.mob\:bc\(#{$color}\) {
@@ -180,7 +180,7 @@
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value)!important;
+            color: unquote($value);
         }
 	}
 
@@ -192,7 +192,7 @@
 //* Cores de Texto:
 @each $color, $value in var.$c-strings {
     .bg\(#{$color}\) {
-        background-color: unquote($value)!important;
+        background-color: unquote($value);
     }
 
 	.bc\(#{$color}\) {
@@ -200,13 +200,13 @@
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value)!important;
+		color: unquote($value);
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: unquote($value)!important;
+			background-color: unquote($value);
 		}
 
 		.mob\:bc\(#{$color}\) {
@@ -214,7 +214,7 @@
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value)!important;
+            color: unquote($value);
         }
 	}
 
@@ -226,7 +226,7 @@
 //* Cores de Borda:
 @each $color, $value in var.$c-borders {
     .bg\(#{$color}\) {
-        background-color: unquote($value)!important;
+        background-color: unquote($value);
     }
 
 	.bc\(#{$color}\) {
@@ -234,13 +234,13 @@
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value)!important;
+		color: unquote($value);
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: unquote($value)!important;
+			background-color: unquote($value);
 		}
 
 		.mob\:bc\(#{$color}\) {
@@ -248,7 +248,7 @@
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value)!important;
+            color: unquote($value);
         }
 	}
 
@@ -260,7 +260,7 @@
 //* Cores Indicadoras:
 @each $color, $value in var.$c-indicators {
     .bg\(#{$color}\) {
-        background-color: unquote($value)!important;
+        background-color: unquote($value);
     }
 
 	.bc\(#{$color}\) {
@@ -268,13 +268,13 @@
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value)!important;
+		color: unquote($value);
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: unquote($value)!important;
+			background-color: unquote($value);
 		}
 
 		.mob\:bc\(#{$color}\) {
@@ -282,7 +282,7 @@
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value)!important;
+            color: unquote($value);
         }
 	}
 
@@ -297,7 +297,7 @@
 //* Elevações de Superfícies:
 @each $color, $value in var.$c-surface-elevations {
     .bg\(#{$color}\) {
-        background-color: $value!important;
+        background-color: $value;
     }
 
 	.bc\(#{$color}\) {
@@ -305,13 +305,13 @@
 	}
 
 	.c\(#{$color}\) {
-		color: $value!important;
+		color: $value;
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: $value!important;
+			background-color: $value;
 		}
 
 		.mob\:bc\(#{$color}\) {
@@ -319,7 +319,7 @@
         }
 
 		.mob\:c\(#{$color}\) {
-            color: $value!important;
+            color: $value;
         }
 	}
 
@@ -331,7 +331,7 @@
 //* Elevações Primárias:
 @each $color, $value in var.$c-primary-elevations {
     .bg\(#{$color}\) {
-        background-color: $value!important;
+        background-color: $value;
     }
 
 	.bc\(#{$color}\) {
@@ -339,13 +339,13 @@
 	}
 
 	.c\(#{$color}\) {
-		color: $value!important;
+		color: $value;
 	}
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: $value!important;
+			background-color: $value;
 		}
 
 		.mob\:bc\(#{$color}\) {
@@ -353,7 +353,7 @@
         }
 
 		.mob\:c\(#{$color}\) {
-            color: $value!important;
+            color: $value;
         }
 	}
 
@@ -368,13 +368,13 @@
 //* Família de Fontes:
 @each $font, $value in var.$fonts {
     .fnt\(#{$font}\) {
-        font-family: unquote($value)!important;
+        font-family: unquote($value);
     }
 
 	@include mix.responsive()
 	{
 		.mob\:fnt\(#{$font}\) {
-			font-family: unquote($value)!important;
+			font-family: unquote($value);
 		}
 	}
 
@@ -386,13 +386,13 @@
 //* Peso de Fontes:
 @each $weight, $value in var.$font-weights {
     .fnt\(#{$weight}\) {
-        font-weight: $value!important;
+        font-weight: $value;
     }
 
 	@include mix.responsive()
 	{
 		.mob\:fnt\(#{$weight}\) {
-			font-weight: $value!important;
+			font-weight: $value;
 		}
 	}
 
@@ -422,6 +422,7 @@
 @each $vfx, $value in var.$visual-effects {
     .fx\(#{$vfx}\) {
         filter: unquote($value);
+		will-change: filter;
     }
     
 	.fx\(bs\,#{$vfx}\){

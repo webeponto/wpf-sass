@@ -13,7 +13,7 @@ export class LazyLoad {
 		* @param boolean 	**[convertAllImages]**		Parâmetro que define se a ferramenta deve automaticamente converter todas as imagens do site para serem compatíveis com essa funcionalidade;
 		* @param boolean 	**[allowRemoving]**			Parâmetro que define se a ferramenta deve remover as imagens novamente quando fora de visibilidade;
 		*
-		* @version 			2.0.8
+		* @version 			2.0.9
 		* @access public
 	*/
 	start(convertAllImages: boolean = false, allowRemoving: boolean = false): void {
@@ -35,6 +35,11 @@ export class LazyLoad {
 			// Se a imagem possuir a classe 'wpf-lazy-load' e possuir um atributo src, faz a conversão para data-src.
 			allImages.forEach(function (img: HTMLImageElement): void {
 				if (img.classList.contains("wpf-lazy-load")) {
+					if (!img.classList.contains("wpf-lazy-ignore")) {
+						// Adiciona o atributo loading='lazy'
+						img.setAttribute("loading", "lazy");
+					}
+
 					if (img.getAttribute("src")) {
 						// Transfere o valor de 'src' para 'data-src'
 						img.setAttribute("data-src", img.getAttribute("src") as string);
@@ -49,8 +54,12 @@ export class LazyLoad {
 					entries.forEach(function (entry: IntersectionObserverEntry): void {
 						let element: HTMLElement = entry.target as HTMLElement;
 
-						if( element.classList.contains("wpf-lazy-ignore") )
+						if (element.classList.contains("wpf-lazy-ignore")) {
+							let img = element as HTMLImageElement;
+							img.src = img.getAttribute("data-src") as string;
+							img.classList.remove("wpf-lazy-load");
 							return;
+						}
 
 						if (entry.isIntersecting) {
 							if (element.tagName === "IMG") {

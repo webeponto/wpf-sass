@@ -43,6 +43,34 @@ $hash: 0;
 }
 
 /**
+	*#	Rotate
+	*	Executa uma animação de rotação específica
+	*
+	*	$first 				-> Posição, em graus, que o elemento começa sua animação;
+	*	$last 				-> Posição, em graus, que o elemento deve rotacionar;
+	*	$duration 			-> Tempo de duração da animação;
+*/
+@mixin rotate(
+	$first: 0deg,
+	$last: 90deg,
+	$duration: 1s
+){
+	$localHash: getHash();
+
+	animation: rotate#{$localHash} $duration linear;
+
+	@keyframes spin#{$localHash} {
+		from {
+			transform: rotate($first);
+		}
+
+		to {
+			transform: rotate($last);
+		}
+	}
+}
+
+/**
 	*#	Ping
 	*	Executa uma animação de destaque rápido.
 	*

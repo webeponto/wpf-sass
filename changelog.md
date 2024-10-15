@@ -7,6 +7,19 @@
 
 **Changelog**
 
+## 2.2.0
+- `js/wpf/lazyload.ts`: Adicionado uma classe auxiliar ".lazy-load.ignore" que nega as implementações organizadas pelo script de LazyLoad somente em elementos específicados pelo usuário;
+- `js/wpf/pseudos.js`: Integrado as funcionalidades de pintura dinâmica disponibilizadas pela ferramenta `js/wpf/painter.js` em união com as pseudo classes que compõem a arquitetura do plugin *Pseudos*;
+- `js/wpf/raw-values.ts`: Temporariamente removido do escopo do projeto a projeção para programar um plugin para implementar valores puros no WPF2 diretamente no arquivo de front-end;
+- `sass/vendor/anim.scss`: Adicionado uma nova animação de rotação à listagem de animações originais da ferramenta;
+- `sass/vendor/vars.scss`: Removido a imposição de hierarquia importante à algumas das funções de classe do WPF2;
+- `sass/vendor/wpf.scss`: Dentre a lista de funções de classe relacionadas à posicionamento absoluto, agora é possível especificar a propriedade *left*, *right*, *top* e *bottom* rapidamente e universalmente através da função de classe *inset()*;
+- `sass/vendor/wpf.scss`: Foi corrigido um erro onde as classes auxiliares *.w* e *.h* não poderiam receber valores de 95% ou suas variantes que incrementam margens (w95-1, h-95-2 etc...);
+- `sass/vendor/wpf.scss`: Está sendo estudada uma solução para criar medidas preventivas para que valores de cor denomidados à bordas usando o WPF2 não sejam de maneira alguma sobrescritas por outras propriedades conflitantes (como *color* em casos muito específicos). Essa solução é um teste que muda a lógica de como essas propriedades são inseridas dentro do projeto;
+- `sass/vendor/wpf.scss`: Também foi adicionado uma nova classe auxiliar *bdiv* para automaticamente incrementar bordas divisórias em elementos filhos, quando o mesmo é atribuído ao elemento pai;
+- `sass/vendor/wpf.scss`: Também foi adicionado outra classe auxiliar *.o*, que funciona igualmente as classes auxiliares de borda, mas regem o comportamento da propriedade *outline*;
+- `sass/vendor/wpf.scss`: Na classe auxiliar para imagens *.fit*, a modalidade *cover* ganhou mais novas opções de customização que permitem especificar a orientação da imagem utilizando sufixos na classe como *.fit-cover-top*, *.fit-cover-bottom-left*, *.fit-cover-right*, *.fit-cover-bottom-right* etc;
+
 ## 2.1.1
 - `sass/vendor/wpf`: Em praticamente todas as classes auxiliares que dependem de valores numéricos, agora é possível definir sua propriedade principal para ter um valor igual a zero;
 - `sass/vendor/wpf`: Nas funções de classe referentes ao posicionamento absoluto, agora é possível definir valores negativos diretamente como parte do valor da propriedade da função;
