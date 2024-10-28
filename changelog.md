@@ -7,6 +7,11 @@
 
 **Changelog**
 
+## 2.3.0
+- `sass/vars/dark.scss` / `sass/vendor/vars.scss` / `sass/vars/config.scss`: O WPF2 agora oficialmente suporta a inclusão de temas escuros no escopo de projetos. Para configurar essa funcionalidade, é necessário editar o arquivo `dark.scss` com as novas cores e se certificar de que a variável de configuração *hasDarkTheme* no arquivo `config.scss` está definido como verdadeiro;
+- `sass/vendor/vars.scss`: Agora todas as funções de classe terão prioridade máxima na renderização de estilos dentro de um site;
+- `sass/vendor/wpf.scss`: Adicionado uma nova regra aplicável à maioria das classes auxiliares dentro do WPF2 que força o comportamento *!important* nos atributos. Para adicionar o comportamento, basta escrever *'!'* antes da classe desejada. Essa funcionalidade, apesar de funcionar na maioria das classes, ainda está sendo implementada e novos updates atualizarão essa ferramenta conforme a necessidade;
+
 ## 2.2.0
 - `js/wpf/lazyload.ts`: Adicionado uma classe auxiliar ".lazy-load.ignore" que nega as implementações organizadas pelo script de LazyLoad somente em elementos específicados pelo usuário;
 - `js/wpf/pseudos.js`: Integrado as funcionalidades de pintura dinâmica disponibilizadas pela ferramenta `js/wpf/painter.js` em união com as pseudo classes que compõem a arquitetura do plugin *Pseudos*;

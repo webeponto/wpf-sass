@@ -1,293 +1,589 @@
 //?	Vars (WPF2)
 //!	Lógica para gerenciamento de classes WPF baseada em variáveis:
 
-//* Instâncias: extensões da folha de estilos. 
-@use "../../vars" 	as var;
-@use "mix" 			as mix;
+//* Instâncias: extensões da folha de estilos.
+@use "../../vars/default" 	    as var;
+@use "../../vars/dark" 	        as dark;
+@use "../../vars/config"        as config;
+@use "mix" 					    as mix;
+
 @use "sass:color";
 @use "sass:math";
 @use "sass:string";
+@use "sass:map";
 
 //? CONFIGURAÇÃO DE CORES: [https://webeponto.notion.site/Vari-veis-do-WPF-909d92a226844eac9177d776bf51fc61]
 //? --------------------------------------------------------------------------------------------------------//
 
 //* Cores de Plano de Fundo:
-@each $color, $value in var.$c-backgrounds { 
-    .bg\(#{$color}\) {
+@each $color, $value in var.$c-backgrounds {
+	.bg\(#{$color}\) {
 		@if(str-index($value, "url"))
 		{
-        	background-image: unquote($value);
+        	background-image: var(--#{$color})!important;
 		}
 
 		@else
 		{
-			background-color: unquote($value);
+			background-color: var(--#{$color})!important;
 		}
     }
 
 	.bc\(#{$color}\) {
 		@if(str-index($value, "url"))
 		{
-        	border-image: unquote($value);
+        	border-image: var(--#{$color})!important;
 		}
 
 		@else
 		{
-			border-color: unquote($value)!important;
+			border-color: var(--#{$color})!important;
 		}
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value);
+		color: var(--#{$color})!important;
 	}
-	
+
+    .f\(#{$color}\) {
+		fill: var(--#{$color})!important;
+	}
+
+    .f\*\(#{$color}\) {
+        *{
+            fill: var(--#{$color})!important;
+        }
+	}
+
+    .s\(#{$color}\) {
+		stroke: var(--#{$color})!important;
+	}
+
+    .s\*\(#{$color}\) {
+        *{
+            stroke: var(--#{$color})!important;
+        }
+    }
+
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
 			@if(str-index($value, "url"))
 			{
-				background-image: unquote($value);
+				background-image: var(--#{$color})!important;
 			}
 
 			@else
 			{
-				background-color: unquote($value);
+				background-color: var(--#{$color})!important;
 			}
 		}
 
 		.mob\:bc\(#{$color}\) {
             @if(str-index($value, "url"))
 			{
-				border-image: unquote($value);
+				border-image: var(--#{$color})!important;
 			}
 
 			@else
 			{
-				border-color: unquote($value)!important;
+				border-color: var(--#{$color})!important;
 			}
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value);
+            color: var(--#{$color})!important;
+        }
+
+        .mob\:f\(#{$color}\) {
+            fill: var(--#{$color})!important;
+        }
+
+        .mob\:f\*\(#{$color}\) {
+            *{
+                fill: var(--#{$color})!important;
+            }
+        }
+
+        .mob\:s\(#{$color}\) {
+            stroke: var(--#{$color})!important;
+        }
+
+        .mob\:s\*\(#{$color}\) {
+            *{
+                stroke: var(--#{$color})!important;
+            }
         }
 	}
 
 	:root{
 		--#{$color}: #{unquote($value)};
 	}
+
+    @if config.$hasDarkTheme {
+        html.dark-theme{
+            --#{$color}: #{map-get(dark.$c-backgrounds-dark, "#{$color}")};
+        }
+    }
 }
 
 //* Cores de Superfície:
 @each $color, $value in var.$c-surfaces {
-    .bg\(#{$color}\) {
-        background-color: unquote($value);
+	.bg\(#{$color}\) {
+        background-color: var(--#{$color})!important;
     }
 
 	.bc\(#{$color}\) {
-		border-color: unquote($value)!important;
+		border-color: var(--#{$color})!important;
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value);
+		color: var(--#{$color})!important;
 	}
+
+    .f\(#{$color}\) {
+		fill: var(--#{$color})!important;
+	}
+
+    .f\*\(#{$color}\) {
+        *{
+            fill: var(--#{$color})!important;
+        }
+	}
+
+    .s\(#{$color}\) {
+		stroke: var(--#{$color})!important;
+	}
+
+    .s\*\(#{$color}\) {
+        *{
+            stroke: var(--#{$color})!important;
+        }
+    }
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: unquote($value);
+			background-color: var(--#{$color})!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: unquote($value)!important;
+            border-color: var(--#{$color})!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value);
+            color: var(--#{$color})!important;
+        }
+
+        .mob\:f\(#{$color}\) {
+            fill: var(--#{$color})!important;
+        }
+
+        .mob\:f\*\(#{$color}\) {
+            *{
+                fill: var(--#{$color})!important;
+            }
+        }
+
+        .mob\:s\(#{$color}\) {
+            stroke: var(--#{$color})!important;
+        }
+
+        .mob\:s\*\(#{$color}\) {
+            *{
+                stroke: var(--#{$color})!important;
+            }
         }
 	}
 
 	:root{
 		--#{$color}: #{unquote($value)};
 	}
+
+    @if config.$hasDarkTheme {
+        html.dark-theme{
+            --#{$color}: #{map-get(dark.$c-surfaces-dark, "#{$color}")};
+        }
+    }
 }
 
 //* Cores de Gradiente:
 @each $color, $value in var.$c-gradients {
     .bg\(#{$color}\) {
-        background: unquote($value);
+        background: var(--#{$color})!important;
     }
 
 	.bc\(#{$color}\) {
-		border-image: unquote($value);
+		border-image: var(--#{$color})!important;
 	}
 
 	.c\(#{$color}\) {
-		background: unquote($value);
+		background: var(--#{$color})!important;
 
-		color: none;
+		color: none!important;
 
-		-webkit-background-clip: text;
-  		-webkit-text-fill-color: transparent;
+		background-clip: text!important;
+        -webkit-background-clip: text!important;
+  		-webkit-text-fill-color: transparent!important;
 	}
+
+    /*
+		As propriedades fill e stroke não são compatíveis com valores de gradiente
+	*/
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background: unquote($value);
+			background: var(--#{$color})!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-image: unquote($value);
+            border-image: var(--#{$color})!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            background: unquote($value);
+            background: var(--#{$color})!important;
 
-			color: none;
+			color: none!important;
 
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
+			background-clip: text!important;
+            -webkit-background-clip: text!important;
+			-webkit-text-fill-color: transparent!important;
         }
+
+        /*
+			As propriedades fill e stroke não são compatíveis com valores de gradiente
+		*/
 	}
 
 	:root{
         --#{$color}: #{unquote($value)};
+    }
+
+	@if config.$hasDarkTheme {
+        html.dark-theme{
+            --#{$color}: #{map-get(dark.$c-gradients-dark, "#{$color}")};
+        }
     }
 }
 
 //* Cores Temas:
 @each $color, $value in var.$c-themes {
     .bg\(#{$color}\) {
-        background-color: unquote($value);
+        background-color: var(--#{$color})!important;
     }
 
 	.bc\(#{$color}\) {
-		border-color: unquote($value)!important;
+		border-color: var(--#{$color})!important;
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value);
+		color: var(--#{$color})!important;
 	}
+
+    .f\(#{$color}\) {
+		fill: var(--#{$color})!important;
+	}
+
+    .f\*\(#{$color}\) {
+        *{
+            fill: var(--#{$color})!important;
+        }
+	}
+
+    .s\(#{$color}\) {
+		stroke: var(--#{$color})!important;
+	}
+
+    .s\*\(#{$color}\) {
+        *{
+            stroke: var(--#{$color})!important;
+        }
+    }
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: unquote($value);
+			background-color: var(--#{$color})!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: unquote($value)!important;
+            border-color: var(--#{$color})!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value);
+            color: var(--#{$color})!important;
+        }
+
+        .mob\:f\(#{$color}\) {
+            fill: var(--#{$color})!important;
+        }
+
+        .mob\:f\*\(#{$color}\) {
+            *{
+                fill: var(--#{$color})!important;
+            }
+        }
+
+        .mob\:s\(#{$color}\) {
+            stroke: var(--#{$color})!important;
+        }
+
+        .mob\:s\*\(#{$color}\) {
+            *{
+                stroke: var(--#{$color})!important;
+            }
         }
 	}
 
 	:root{
         --#{$color}: #{unquote($value)};
+    }
+
+	@if config.$hasDarkTheme {
+        html.dark-theme{
+            --#{$color}: #{map-get(dark.$c-themes-dark, "#{$color}")};
+        }
     }
 }
 
 //* Cores de Texto:
 @each $color, $value in var.$c-strings {
     .bg\(#{$color}\) {
-        background-color: unquote($value);
+        background-color: var(--#{$color})!important;
     }
 
 	.bc\(#{$color}\) {
-		border-color: unquote($value)!important;
+		border-color: var(--#{$color})!important;
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value);
+		color: var(--#{$color})!important;
 	}
+
+    .f\(#{$color}\) {
+		fill: var(--#{$color})!important;
+	}
+
+    .f\*\(#{$color}\) {
+        *{
+            fill: var(--#{$color})!important;
+        }
+	}
+
+    .s\(#{$color}\) {
+		stroke: var(--#{$color})!important;
+	}
+
+    .s\*\(#{$color}\) {
+        *{
+            stroke: var(--#{$color})!important;
+        }
+    }
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: unquote($value);
+			background-color: var(--#{$color})!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: unquote($value)!important;
+            border-color: var(--#{$color})!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value);
+            color: var(--#{$color})!important;
+        }
+
+        .mob\:f\(#{$color}\) {
+            fill: var(--#{$color})!important;
+        }
+
+        .mob\:f\*\(#{$color}\) {
+            *{
+                fill: var(--#{$color})!important;
+            }
+        }
+
+        .mob\:s\(#{$color}\) {
+            stroke: var(--#{$color})!important;
+        }
+
+        .mob\:s\*\(#{$color}\) {
+            *{
+                stroke: var(--#{$color})!important;
+            }
         }
 	}
 
 	:root{
         --#{$color}: #{unquote($value)};
+    }
+
+	@if config.$hasDarkTheme {
+        html.dark-theme{
+            --#{$color}: #{map-get(dark.$c-strings-dark, "#{$color}")};
+        }
     }
 }
 
 //* Cores de Borda:
 @each $color, $value in var.$c-borders {
     .bg\(#{$color}\) {
-        background-color: unquote($value);
+        background-color: var(--#{$color})!important;
     }
 
 	.bc\(#{$color}\) {
-		border-color: unquote($value)!important;
+		border-color: var(--#{$color})!important;
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value);
+		color: var(--#{$color})!important;
 	}
+
+    .f\(#{$color}\) {
+		fill: var(--#{$color})!important;
+	}
+
+    .f\*\(#{$color}\) {
+        *{
+            fill: var(--#{$color})!important;
+        }
+	}
+
+    .s\(#{$color}\) {
+		stroke: var(--#{$color})!important;
+	}
+
+    .s\*\(#{$color}\) {
+        *{
+            stroke: var(--#{$color})!important;
+        }
+    }
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: unquote($value);
+			background-color: var(--#{$color})!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: unquote($value)!important;
+            border-color: var(--#{$color})!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value);
+            color: var(--#{$color})!important;
+        }
+
+        .mob\:f\(#{$color}\) {
+            fill: var(--#{$color})!important;
+        }
+
+        .mob\:f\*\(#{$color}\) {
+            *{
+                fill: var(--#{$color})!important;
+            }
+        }
+
+        .mob\:s\(#{$color}\) {
+            stroke: var(--#{$color})!important;
+        }
+
+        .mob\:s\*\(#{$color}\) {
+            *{
+                stroke: var(--#{$color})!important;
+            }
         }
 	}
 
 	:root{
         --#{$color}: #{unquote($value)};
+    }
+
+	@if config.$hasDarkTheme {
+        html.dark-theme{
+            --#{$color}: #{map-get(dark.$c-borders-dark, "#{$color}")};
+        }
     }
 }
 
 //* Cores Indicadoras:
 @each $color, $value in var.$c-indicators {
     .bg\(#{$color}\) {
-        background-color: unquote($value);
+        background-color: var(--#{$color})!important;
     }
 
 	.bc\(#{$color}\) {
-		border-color: unquote($value)!important;
+		border-color: var(--#{$color})!important;
 	}
 
 	.c\(#{$color}\) {
-		color: unquote($value);
+		color: var(--#{$color})!important;
 	}
+
+    .f\(#{$color}\) {
+		fill: var(--#{$color})!important;
+	}
+
+    .f\*\(#{$color}\) {
+        *{
+            fill: var(--#{$color})!important;
+        }
+	}
+
+    .s\(#{$color}\) {
+		stroke: var(--#{$color})!important;
+	}
+
+    .s\*\(#{$color}\) {
+        *{
+            stroke: var(--#{$color})!important;
+        }
+    }
 
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			background-color: unquote($value);
+			background-color: var(--#{$color})!important;
 		}
 
 		.mob\:bc\(#{$color}\) {
-            border-color: unquote($value)!important;
+            border-color: var(--#{$color})!important;
         }
 
 		.mob\:c\(#{$color}\) {
-            color: unquote($value);
+            color: var(--#{$color})!important;
+        }
+
+        .mob\:f\(#{$color}\) {
+            fill: var(--#{$color})!important;
+        }
+
+        .mob\:f\*\(#{$color}\) {
+            *{
+                fill: var(--#{$color})!important;
+            }
+        }
+
+        .mob\:s\(#{$color}\) {
+            stroke: var(--#{$color})!important;
+        }
+
+        .mob\:s\*\(#{$color}\) {
+            *{
+                stroke: var(--#{$color})!important;
+            }
         }
 	}
 
 	:root{
         --#{$color}: #{unquote($value)};
+    }
+
+	@if config.$hasDarkTheme {
+        html.dark-theme{
+            --#{$color}: #{map-get(dark.$c-indicators-dark, "#{$color}")};
+        }
     }
 }
 
@@ -326,6 +622,12 @@
 	:root{
         --#{$color}: #{$value};
     }
+
+	@if config.$hasDarkTheme {
+        html.dark-theme{
+            --#{$color}: #{map-get(dark.$c-surface-elevations-dark, "#{$color}")};
+        }
+    }
 }
 
 //* Elevações Primárias:
@@ -360,6 +662,12 @@
 	:root{
         --#{$color}: #{$value};
     }
+
+	@if config.$hasDarkTheme {
+        html.dark-theme{
+            --#{$color}: #{map-get(dark.$c-primary-elevations-dark, "#{$color}")};
+        }
+    }
 }
 
 //? CONFIGURAÇÃO DE FONTES: [https://webeponto.notion.site/Vari-veis-do-WPF-909d92a226844eac9177d776bf51fc61]
@@ -368,13 +676,13 @@
 //* Família de Fontes:
 @each $font, $value in var.$fonts {
     .fnt\(#{$font}\) {
-        font-family: unquote($value);
+        font-family: var(--#{$font})!important;
     }
 
 	@include mix.responsive()
 	{
 		.mob\:fnt\(#{$font}\) {
-			font-family: unquote($value);
+			font-family: var(--#{$font})!important;
 		}
 	}
 
@@ -407,11 +715,17 @@
 //* Tipo de Cursor:
 @each $cursor, $value in var.$mouse-cursors {
     .#{$cursor} {
-        cursor: unquote($value);
+        cursor: var(--#{$cursor})!important;
     }
 
 	:root{
         --#{$cursor}: #{unquote($value)};
+    }
+
+	@if config.$hasDarkTheme {
+        html.dark-theme{
+            --#{$color}: #{map-get(dark.$c-mouse-cursors-dark, "#{$color}")};
+        }
     }
 }
 
@@ -421,16 +735,16 @@
 //* Tipo de Efeito:
 @each $vfx, $value in var.$visual-effects {
     .fx\(#{$vfx}\) {
-        filter: unquote($value);
+        filter: var(--#{$vfx})!important;
 		will-change: filter;
     }
-    
+
 	.fx\(bs\,#{$vfx}\){
-        box-shadow: unquote($value);
+        box-shadow: var(--#{$vfx})!important;
     }
-	
+
 	.fx\(ts\,#{$vfx}\){
-        text-shadow: unquote($value);
+        text-shadow: var(--#{$vfx})!important;
     }
 
 	:root{
@@ -444,7 +758,7 @@
 //* Duração:
 @each $t, $value in var.$transitions {
     .#{$t} {
-        transition: unquote($value);
+        transition: var(--#{$t})!important;
     }
 
 	:root{
