@@ -4451,6 +4451,7 @@ $sides: top, right, bottom, left;
 }
 
 //* Displays:
+// Configurações iniciais:
 .dp {
 	// Contents:
 	&-contents {
@@ -4479,97 +4480,330 @@ $sides: top, right, bottom, left;
 		display: block;
 	}
 
-	// Flex: [https://webeponto.notion.site/Flex-1f86c47e430f4d6987aa112b17bad82e]
+	// Flex:
 	&-flex {
 		display: flex;
 	}
 
-	// Grid: [https://webeponto.notion.site/Grid-c60674a00c174d0f8eba57775969e4db]
+	// Grid:
 	&-grid {
 		display: grid;
+	}
 
+	// Table:
+	&-table {
+		display: table;
+	}
+}
+
+.\!dp {
+	// Contents:
+	&-contents {
+		display: contents !important;
+	}
+
+	// Inlines:
+	&-inline {
+		display: inline !important;
+
+		&-block {
+			display: inline-block !important;
+		}
+
+		&-flex {
+			display: inline-flex !important;
+		}
+
+		&-table {
+			display: inline-table !important;
+		}
+	}
+
+	// Block:
+	&-block {
+		display: block !important;
+	}
+
+	// Flex:
+	&-flex {
+		display: flex !important;
+	}
+
+	// Grid:
+	&-grid {
+		display: grid !important;
+	}
+
+	// Table:
+	&-table {
+		display: table !important;
+	}
+}
+
+// Versão responsiva
+@include mix.responsive() {
+	.mob\:dp {
+		// Contents:
+		&-contents {
+			display: contents;
+		}
+
+		// Inlines:
+		&-inline {
+			display: inline;
+
+			&-block {
+				display: inline-block;
+			}
+
+			&-flex {
+				display: inline-flex;
+			}
+
+			&-table {
+				display: inline-table;
+			}
+		}
+
+		// Block:
+		&-block {
+			display: block;
+		}
+
+		// Flex:
+		&-flex {
+			display: flex;
+		}
+
+		// Grid:
+		&-grid {
+			display: grid;
+		}
+
+		// Table:
+		&-table {
+			display: table;
+		}
+	}
+
+	// Versão responsiva com "!important"
+	.mob\:\!dp {
+		// Contents:
+		&-contents {
+			display: contents !important;
+		}
+
+		// Inlines:
+		&-inline {
+			display: inline !important;
+
+			&-block {
+				display: inline-block !important;
+			}
+
+			&-flex {
+				display: inline-flex !important;
+			}
+
+			&-table {
+				display: inline-table !important;
+			}
+		}
+
+		// Block:
+		&-block {
+			display: block !important;
+		}
+
+		// Flex:
+		&-flex {
+			display: flex !important;
+		}
+
+		// Grid:
+		&-grid {
+			display: grid !important;
+		}
+
+		// Table:
+		&-table {
+			display: table !important;
+		}
+	}
+}
+
+// Configurações avançadas:
+.dp,
+.\!dp {
+	// Grid: [https://webeponto.notion.site/Grid-c60674a00c174d0f8eba57775969e4db]
+	&-grid {
 		//	Alinhamento vertical (elemento mãe):
-		&.v {
+		.v {
 			&-top {
-				align-items: start
+				align-items: start;
 			}
 
 			&-center {
-				align-items: start
+				align-items: center;
 			}
 
 			&-bottom {
-				align-items: end
+				align-items: end;
 			}
 
 			&-stretch {
-				align-items: stretch
+				align-items: stretch;
 			}
 
 			&-baseline {
-				align-items: baseline
+				align-items: baseline;
 			}
 		}
 
-		@include mix.responsive() {
-			.mob\:v {
-				&-top {
-					align-items: start
-				}
-
-				&-center {
-					align-items: start
-				}
-
-				&-bottom {
-					align-items: end
-				}
-
-				&-stretch {
-					align-items: stretch
-				}
-
-				&-baseline {
-					align-items: baseline
-				}
-			}
-		}
-
-		//	Alinhamento horizontal (elemento mãe):
-		&.h {
-			&-left {
-				justify-content: start
+		// Versão com "!important"
+		.\!v {
+			&-top {
+				align-items: start !important;
 			}
 
 			&-center {
-				justify-content: center
+				align-items: center !important;
 			}
 
-			&-right {
-				justify-content: end
+			&-bottom {
+				align-items: end !important;
 			}
 
-			&-between {
-				justify-content: space-between
+			&-stretch {
+				align-items: stretch !important;
+			}
+
+			&-baseline {
+				align-items: baseline !important;
 			}
 		}
 
+		// Versão responsiva
 		@include mix.responsive() {
-			.mob\:h {
-				&-left {
-					justify-content: start
+			.mob\:v {
+				&-top {
+					align-items: start;
 				}
 
 				&-center {
-					justify-content: center
+					align-items: center;
+				}
+
+				&-bottom {
+					align-items: end;
+				}
+
+				&-stretch {
+					align-items: stretch;
+				}
+
+				&-baseline {
+					align-items: baseline;
+				}
+			}
+
+			// Versão responsiva com "!important"
+			.mob\:\!v {
+				&-top {
+					align-items: start !important;
+				}
+
+				&-center {
+					align-items: center !important;
+				}
+
+				&-bottom {
+					align-items: end !important;
+				}
+
+				&-stretch {
+					align-items: stretch !important;
+				}
+
+				&-baseline {
+					align-items: baseline !important;
+				}
+			}
+		}
+
+		.h {
+			&-left {
+				justify-content: start;
+			}
+
+			&-center {
+				justify-content: center;
+			}
+
+			&-right {
+				justify-content: end;
+			}
+
+			&-between {
+				justify-content: space-between;
+			}
+		}
+
+		// Versão com "!important"
+		.\!h {
+			&-left {
+				justify-content: start !important;
+			}
+
+			&-center {
+				justify-content: center !important;
+			}
+
+			&-right {
+				justify-content: end !important;
+			}
+
+			&-between {
+				justify-content: space-between !important;
+			}
+		}
+
+		// Versão responsiva
+		@include mix.responsive() {
+			.mob\:h {
+				&-left {
+					justify-content: start;
+				}
+
+				&-center {
+					justify-content: center;
 				}
 
 				&-right {
-					justify-content: end
+					justify-content: end;
 				}
 
 				&-between {
-					justify-content: space-between
+					justify-content: space-between;
+				}
+			}
+
+			// Versão responsiva com "!important"
+			.mob\:\!h {
+				&-left {
+					justify-content: start !important;
+				}
+
+				&-center {
+					justify-content: center !important;
+				}
+
+				&-right {
+					justify-content: end !important;
+				}
+
+				&-between {
+					justify-content: space-between !important;
 				}
 			}
 		}
@@ -4830,8 +5064,6 @@ $sides: top, right, bottom, left;
 
 	// Table:
 	&-table {
-		display: table;
-
 		// Renderização de células:
 		&.collapse {
 			border-collapse: collapse;
@@ -4961,8 +5193,7 @@ $sides: top, right, bottom, left;
 	// Grid: [https://webeponto.notion.site/Grid-c60674a00c174d0f8eba57775969e4db]
 	&-flex,
 	&-grid {
-
-		// Espaçamentos entre elementos (elemento mãe): 
+		// Espaçamentos entre elementos (elemento mãe):
 		&.gap,
 		& .gap {
 			@for $g from 0 through 5 {
@@ -5006,8 +5237,52 @@ $sides: top, right, bottom, left;
 			}
 		}
 
-		@include mix.responsive() {
+		// Versão com "!important"
+		&.\!gap,
+		& .\!gap {
+			@for $g from 0 through 5 {
+				&-#{$g} {
+					gap: #{$g * 1%} !important;
 
+					&-neg {
+						gap: -#{$g * 1%} !important;
+					}
+				}
+			}
+
+			@for $g from 0 through 100 {
+				&-#{$g}px {
+					gap: #{$g * 1px} !important;
+
+					&-neg {
+						gap: -#{$g * 1px} !important;
+					}
+				}
+			}
+
+			@for $g from 0 through 15 {
+				&-#{$g}r {
+					gap: #{$g * 1rem} !important;
+
+					&-neg {
+						gap: -#{$g * 1rem} !important;
+					}
+				}
+			}
+
+			@for $g from 0 through 15 {
+				&-#{$g}em {
+					gap: #{$g * 1em} !important;
+
+					&-neg {
+						gap: -#{$g * 1em} !important;
+					}
+				}
+			}
+		}
+
+		// Versão para responsivo
+		@include mix.responsive() {
 			&.mob\:gap,
 			& .mob\:gap {
 				@for $g from 0 through 5 {
@@ -5050,7 +5325,52 @@ $sides: top, right, bottom, left;
 					}
 				}
 			}
+
+			// Versão responsiva com "!important"
+			&.mob\:\!gap,
+			& .mob\:\!gap {
+				@for $g from 0 through 5 {
+					&-#{$g} {
+						gap: #{$g * 1%} !important;
+
+						&-neg {
+							gap: -#{$g * 1%} !important;
+						}
+					}
+				}
+
+				@for $g from 0 through 100 {
+					&-#{$g}px {
+						gap: #{$g * 1px} !important;
+
+						&-neg {
+							gap: -#{$g * 1px} !important;
+						}
+					}
+				}
+
+				@for $g from 0 through 15 {
+					&-#{$g}r {
+						gap: #{$g * 1rem} !important;
+
+						&-neg {
+							gap: -#{$g * 1rem} !important;
+						}
+					}
+				}
+
+				@for $g from 0 through 15 {
+					&-#{$g}em {
+						gap: #{$g * 1em} !important;
+
+						&-neg {
+							gap: -#{$g * 1em} !important;
+						}
+					}
+				}
+			}
 		}
+
 	}
 
 	// Flex & Inline-Flex: [https://webeponto.notion.site/Flex-1f86c47e430f4d6987aa112b17bad82e]
@@ -5161,7 +5481,7 @@ $sides: top, right, bottom, left;
 				}
 			}
 
-			//*	Alinhamento vertical (elemento mãe):
+			//* Alinhamento vertical (elemento mãe)
 			&.v {
 				&-top {
 					align-items: flex-start;
@@ -5180,6 +5500,26 @@ $sides: top, right, bottom, left;
 				}
 			}
 
+			//* Versão com "!important"
+			&.\!v {
+				&-top {
+					align-items: flex-start !important;
+				}
+
+				&-center {
+					align-items: center !important;
+				}
+
+				&-bottom {
+					align-items: flex-end !important;
+				}
+
+				&-stretch {
+					align-items: stretch !important;
+				}
+			}
+
+			//* Versão responsiva para alinhamento vertical
 			@include mix.responsive() {
 				&.mob\:v {
 					&-top {
@@ -5198,9 +5538,28 @@ $sides: top, right, bottom, left;
 						align-items: stretch;
 					}
 				}
+
+				// Versão responsiva com "!important"
+				&.mob\:\!v {
+					&-top {
+						align-items: flex-start !important;
+					}
+
+					&-center {
+						align-items: center !important;
+					}
+
+					&-bottom {
+						align-items: flex-end !important;
+					}
+
+					&-stretch {
+						align-items: stretch !important;
+					}
+				}
 			}
 
-			//*	Alinhamento horizontal (elemento mãe):
+			//* Alinhamento horizontal (elemento mãe)
 			&.h {
 				&-left {
 					justify-content: flex-start;
@@ -5227,6 +5586,34 @@ $sides: top, right, bottom, left;
 				}
 			}
 
+			//* Versão com "!important" para alinhamento horizontal
+			&.\!h {
+				&-left {
+					justify-content: flex-start !important;
+				}
+
+				&-center {
+					justify-content: center !important;
+				}
+
+				&-right {
+					justify-content: flex-end !important;
+				}
+
+				&-between {
+					justify-content: space-between !important;
+				}
+
+				&-around {
+					justify-content: space-around !important;
+				}
+
+				&-evenly {
+					justify-content: space-evenly !important;
+				}
+			}
+
+			//* Versão responsiva para alinhamento horizontal
 			@include mix.responsive() {
 				&.mob\:h {
 					&-left {
@@ -5251,6 +5638,33 @@ $sides: top, right, bottom, left;
 
 					&-evenly {
 						justify-content: space-evenly;
+					}
+				}
+
+				// Versão responsiva com "!important"
+				&.mob\:\!h {
+					&-left {
+						justify-content: flex-start !important;
+					}
+
+					&-center {
+						justify-content: center !important;
+					}
+
+					&-right {
+						justify-content: flex-end !important;
+					}
+
+					&-between {
+						justify-content: space-between !important;
+					}
+
+					&-around {
+						justify-content: space-around !important;
+					}
+
+					&-evenly {
+						justify-content: space-evenly !important;
 					}
 				}
 			}
@@ -5357,7 +5771,7 @@ $sides: top, right, bottom, left;
 				}
 			}
 
-			//*	Alinhamento vertical (elemento mãe):
+			//* Alinhamento vertical (elemento mãe)
 			&.v {
 				&-top {
 					justify-content: flex-start;
@@ -5384,6 +5798,34 @@ $sides: top, right, bottom, left;
 				}
 			}
 
+			//* Versão com "!important" para alinhamento vertical
+			&.\!v {
+				&-top {
+					justify-content: flex-start !important;
+				}
+
+				&-center {
+					justify-content: center !important;
+				}
+
+				&-bottom {
+					justify-content: flex-end !important;
+				}
+
+				&-between {
+					justify-content: space-between !important;
+				}
+
+				&-around {
+					justify-content: space-around !important;
+				}
+
+				&-evenly {
+					justify-content: space-evenly !important;
+				}
+			}
+
+			//* Versão responsiva para alinhamento vertical
 			@include mix.responsive() {
 				&.mob\:v {
 					&-top {
@@ -5410,9 +5852,36 @@ $sides: top, right, bottom, left;
 						justify-content: space-evenly;
 					}
 				}
+
+				// Versão responsiva com "!important" para alinhamento vertical
+				&.mob\:\!v {
+					&-top {
+						justify-content: flex-start !important;
+					}
+
+					&-center {
+						justify-content: center !important;
+					}
+
+					&-bottom {
+						justify-content: flex-end !important;
+					}
+
+					&-between {
+						justify-content: space-between !important;
+					}
+
+					&-around {
+						justify-content: space-around !important;
+					}
+
+					&-evenly {
+						justify-content: space-evenly !important;
+					}
+				}
 			}
 
-			//*	Alinhamento horizontal (elemento mãe):
+			//* Alinhamento horizontal (elemento mãe)
 			&.h {
 				&-left {
 					align-items: flex-start;
@@ -5431,6 +5900,26 @@ $sides: top, right, bottom, left;
 				}
 			}
 
+			//* Versão com "!important" para alinhamento horizontal
+			&.\!h {
+				&-left {
+					align-items: flex-start !important;
+				}
+
+				&-center {
+					align-items: center !important;
+				}
+
+				&-right {
+					align-items: flex-end !important;
+				}
+
+				&-stretch {
+					align-items: stretch !important;
+				}
+			}
+
+			//* Versão responsiva para alinhamento horizontal
 			@include mix.responsive() {
 				&.mob\:h {
 					&-left {
@@ -5449,7 +5938,27 @@ $sides: top, right, bottom, left;
 						align-items: stretch;
 					}
 				}
+
+				// Versão responsiva com "!important" para alinhamento horizontal
+				&.mob\:\!h {
+					&-left {
+						align-items: flex-start !important;
+					}
+
+					&-center {
+						align-items: center !important;
+					}
+
+					&-right {
+						align-items: flex-end !important;
+					}
+
+					&-stretch {
+						align-items: stretch !important;
+					}
+				}
 			}
+
 		}
 
 		@include mix.responsive() {
@@ -5504,6 +6013,7 @@ $sides: top, right, bottom, left;
 					}
 				}
 
+				//* Alinhamento vertical (elemento mãe)
 				&.mob\:v {
 					&-top {
 						align-items: flex-start;
@@ -5519,6 +6029,25 @@ $sides: top, right, bottom, left;
 
 					&-stretch {
 						align-items: stretch;
+					}
+				}
+
+				//* Versão com "!important"
+				&.mob\:\!v {
+					&-top {
+						align-items: flex-start !important;
+					}
+
+					&-center {
+						align-items: center !important;
+					}
+
+					&-bottom {
+						align-items: flex-end !important;
+					}
+
+					&-stretch {
+						align-items: stretch !important;
 					}
 				}
 
@@ -5545,6 +6074,60 @@ $sides: top, right, bottom, left;
 
 					&-evenly {
 						justify-content: space-evenly;
+					}
+				}
+
+				//* Alinhamento horizontal (elemento mãe)
+				&.h {
+					&-left {
+						justify-content: flex-start;
+					}
+
+					&-center {
+						justify-content: center;
+					}
+
+					&-right {
+						justify-content: flex-end;
+					}
+
+					&-between {
+						justify-content: space-between;
+					}
+
+					&-around {
+						justify-content: space-around;
+					}
+
+					&-evenly {
+						justify-content: space-evenly;
+					}
+				}
+
+				//* Versão com "!important" para alinhamento horizontal
+				&.\!h {
+					&-left {
+						justify-content: flex-start !important;
+					}
+
+					&-center {
+						justify-content: center !important;
+					}
+
+					&-right {
+						justify-content: flex-end !important;
+					}
+
+					&-between {
+						justify-content: space-between !important;
+					}
+
+					&-around {
+						justify-content: space-around !important;
+					}
+
+					&-evenly {
+						justify-content: space-evenly !important;
 					}
 				}
 			}
@@ -5600,6 +6183,7 @@ $sides: top, right, bottom, left;
 					}
 				}
 
+				//* Alinhamento vertical (elemento mãe)
 				&.mob\:v {
 					&-top {
 						justify-content: flex-start;
@@ -5626,6 +6210,34 @@ $sides: top, right, bottom, left;
 					}
 				}
 
+				//* Versão com "!important" para alinhamento vertical
+				&.mob\:\!v {
+					&-top {
+						justify-content: flex-start !important;
+					}
+
+					&-center {
+						justify-content: center !important;
+					}
+
+					&-bottom {
+						justify-content: flex-end !important;
+					}
+
+					&-between {
+						justify-content: space-between !important;
+					}
+
+					&-around {
+						justify-content: space-around !important;
+					}
+
+					&-evenly {
+						justify-content: space-evenly !important;
+					}
+				}
+
+				//* Alinhamento horizontal (elemento mãe)
 				&.mob\:h {
 					&-left {
 						align-items: flex-start;
@@ -5641,6 +6253,25 @@ $sides: top, right, bottom, left;
 
 					&-stretch {
 						align-items: stretch;
+					}
+				}
+
+				//* Versão com "!important" para alinhamento horizontal
+				&.mob\:\!h {
+					&-left {
+						align-items: flex-start !important;
+					}
+
+					&-center {
+						align-items: center !important;
+					}
+
+					&-right {
+						align-items: flex-end !important;
+					}
+
+					&-stretch {
+						align-items: stretch !important;
 					}
 				}
 			}
@@ -5829,33 +6460,8 @@ $sides: top, right, bottom, left;
 
 @include mix.responsive() {
 	.mob\: {
-		&dp {
-
-			// Contents:
-			&-contents {
-				display: contents;
-			}
-
-			// Inlines:
-			&-inline {
-				display: inline;
-
-				&-block {
-					display: inline-block;
-				}
-
-				&-flex {
-					display: inline-flex;
-				}
-
-				&-table {
-					display: inline-table;
-				}
-
-				&-table {
-					display: inline-table;
-				}
-			}
+		&dp,
+		&\!dp {
 
 			// Flex & Grid:
 			&-flex,

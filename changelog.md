@@ -7,6 +7,10 @@
 
 **Changelog**
 
+## 2.3.1
+- `sass/vars/config.scss`: A variável de permissão para exibição (e cálculo de classes) para o tema escuro vem desativado por padrão;
+- `sass/vendor/wpf.scss`: Adicionado suporte para a diretiva *!* em mais classes do framework, principalmente as classes que configuram tipos de displays;
+
 ## 2.3.0
 - `sass/vars/dark.scss` / `sass/vendor/vars.scss` / `sass/vars/config.scss`: O WPF2 agora oficialmente suporta a inclusão de temas escuros no escopo de projetos. Para configurar essa funcionalidade, é necessário editar o arquivo `dark.scss` com as novas cores e se certificar de que a variável de configuração *hasDarkTheme* no arquivo `config.scss` está definido como verdadeiro;
 - `sass/vendor/vars.scss`: Agora todas as funções de classe terão prioridade máxima na renderização de estilos dentro de um site;
