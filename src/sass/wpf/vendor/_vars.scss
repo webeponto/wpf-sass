@@ -12,13 +12,48 @@
 @use "sass:string";
 @use "sass:map";
 
+//? NEGAÇÃO DE CORES:
+//? --------------------------------------------------------------------------------------------------------//
+
+.bg\(transparent\) {
+    background-color: transparent!important;
+}
+
+.bc\(transparent\) {
+    border-color: transparent!important;
+}
+
+.c\(transparent\) {
+    color: transparent!important;
+}
+
+.f\(transparent\) {
+    fill: transparent!important;
+}
+
+.f\*\(transparent\) {
+    *{
+        fill: transparent!important;
+    }
+}
+
+.s\(transparent\) {
+    stroke: transparent!important;
+}
+
+.s\*\(transparent\) {
+    *{
+        stroke: transparent!important;
+    }
+}
+
 //? CONFIGURAÇÃO DE CORES: [https://webeponto.notion.site/Vari-veis-do-WPF-909d92a226844eac9177d776bf51fc61]
 //? --------------------------------------------------------------------------------------------------------//
 
 //* Cores de Plano de Fundo:
 @each $color, $value in var.$c-backgrounds {
 	.bg\(#{$color}\) {
-		@if(str-index($value, "url"))
+		@if(string.index($value, "url"))
 		{
         	background-image: var(--#{$color})!important;
 		}
@@ -30,7 +65,7 @@
     }
 
 	.bc\(#{$color}\) {
-		@if(str-index($value, "url"))
+		@if(string.index($value, "url"))
 		{
         	border-image: var(--#{$color})!important;
 		}
@@ -68,7 +103,7 @@
 	@include mix.responsive()
 	{
 		.mob\:bg\(#{$color}\) {
-			@if(str-index($value, "url"))
+			@if(string.index($value, "url"))
 			{
 				background-image: var(--#{$color})!important;
 			}
@@ -80,7 +115,7 @@
 		}
 
 		.mob\:bc\(#{$color}\) {
-            @if(str-index($value, "url"))
+            @if(string.index($value, "url"))
 			{
 				border-image: var(--#{$color})!important;
 			}
@@ -117,12 +152,12 @@
 	}
 
 	:root{
-		--#{$color}: #{unquote($value)};
+		--#{$color}: #{string.unquote($value)};
 	}
 
     @if config.$hasDarkTheme {
         html.dark-theme{
-            --#{$color}: #{map-get(dark.$c-backgrounds-dark, "#{$color}")};
+            --#{$color}: #{map.get(dark.$c-backgrounds-dark, "#{$color}")};
         }
     }
 }
@@ -197,12 +232,12 @@
 	}
 
 	:root{
-		--#{$color}: #{unquote($value)};
+		--#{$color}: #{string.unquote($value)};
 	}
 
     @if config.$hasDarkTheme {
         html.dark-theme{
-            --#{$color}: #{map-get(dark.$c-surfaces-dark, "#{$color}")};
+            --#{$color}: #{map.get(dark.$c-surfaces-dark, "#{$color}")};
         }
     }
 }
@@ -257,12 +292,12 @@
 	}
 
 	:root{
-        --#{$color}: #{unquote($value)};
+        --#{$color}: #{string.unquote($value)};
     }
 
 	@if config.$hasDarkTheme {
         html.dark-theme{
-            --#{$color}: #{map-get(dark.$c-gradients-dark, "#{$color}")};
+            --#{$color}: #{map.get(dark.$c-gradients-dark, "#{$color}")};
         }
     }
 }
@@ -337,12 +372,12 @@
 	}
 
 	:root{
-        --#{$color}: #{unquote($value)};
+        --#{$color}: #{string.unquote($value)};
     }
 
 	@if config.$hasDarkTheme {
         html.dark-theme{
-            --#{$color}: #{map-get(dark.$c-themes-dark, "#{$color}")};
+            --#{$color}: #{map.get(dark.$c-themes-dark, "#{$color}")};
         }
     }
 }
@@ -417,12 +452,12 @@
 	}
 
 	:root{
-        --#{$color}: #{unquote($value)};
+        --#{$color}: #{string.unquote($value)};
     }
 
 	@if config.$hasDarkTheme {
         html.dark-theme{
-            --#{$color}: #{map-get(dark.$c-strings-dark, "#{$color}")};
+            --#{$color}: #{map.get(dark.$c-strings-dark, "#{$color}")};
         }
     }
 }
@@ -497,12 +532,12 @@
 	}
 
 	:root{
-        --#{$color}: #{unquote($value)};
+        --#{$color}: #{string.unquote($value)};
     }
 
 	@if config.$hasDarkTheme {
         html.dark-theme{
-            --#{$color}: #{map-get(dark.$c-borders-dark, "#{$color}")};
+            --#{$color}: #{map.get(dark.$c-borders-dark, "#{$color}")};
         }
     }
 }
@@ -577,12 +612,12 @@
 	}
 
 	:root{
-        --#{$color}: #{unquote($value)};
+        --#{$color}: #{string.unquote($value)};
     }
 
 	@if config.$hasDarkTheme {
         html.dark-theme{
-            --#{$color}: #{map-get(dark.$c-indicators-dark, "#{$color}")};
+            --#{$color}: #{map.get(dark.$c-indicators-dark, "#{$color}")};
         }
     }
 }
@@ -625,7 +660,7 @@
 
 	@if config.$hasDarkTheme {
         html.dark-theme{
-            --#{$color}: #{map-get(dark.$c-surface-elevations-dark, "#{$color}")};
+            --#{$color}: #{map.get(dark.$c-surface-elevations-dark, "#{$color}")};
         }
     }
 }
@@ -665,7 +700,7 @@
 
 	@if config.$hasDarkTheme {
         html.dark-theme{
-            --#{$color}: #{map-get(dark.$c-primary-elevations-dark, "#{$color}")};
+            --#{$color}: #{map.get(dark.$c-primary-elevations-dark, "#{$color}")};
         }
     }
 }
@@ -687,7 +722,7 @@
 	}
 
 	:root{
-        --#{$font}: #{unquote($value)};
+        --#{$font}: #{string.unquote($value)};
     }
 }
 
@@ -719,12 +754,12 @@
     }
 
 	:root{
-        --#{$cursor}: #{unquote($value)};
+        --#{$cursor}: #{string.unquote($value)};
     }
 
 	@if config.$hasDarkTheme {
         html.dark-theme{
-            --#{$color}: #{map-get(dark.$c-mouse-cursors-dark, "#{$color}")};
+            --#{$cursor}: #{map.get(dark.$c-mouse-cursors-dark, "#{$cursor}")};
         }
     }
 }
@@ -748,7 +783,7 @@
     }
 
 	:root{
-        --#{$vfx}: #{unquote($value)};
+        --#{$vfx}: #{string.unquote($value)};
     }
 }
 
@@ -762,6 +797,6 @@
     }
 
 	:root{
-        --#{$t}: #{unquote($value)};
+        --#{$t}: #{string.unquote($value)};
     }
 }

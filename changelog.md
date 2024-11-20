@@ -7,6 +7,14 @@
 
 **Changelog**
 
+## 2.4.0
+- `sass/vars/config.scss`: Foi corrigido um erro onde o arquivo de configuração de temas estava marcado para ser renderizado para CSS pelo framework do SASS, quando o mesmo não é necessário para o funcionamento da ferramenta;
+- `sass/vendor/vars.scss`: Agora é possível usar as funções de classe relacionadas a cores como *bg(), bc(), c(), f() e s()* e atribuí-las o valor *transparent* para informar a cor transparente diretamente no elemento através de classes;
+- `sass/vendor/vars.scss`: Também no arquivo responsável por renderizar as variáveis CSS e gerenciar as funções de classes, foi refeito a lógica do processamento desses valores para se comunicar eficientemente com as versões mais recentes do SASS e evitar depreciação de funcionalidades que deixariam de ser suportadas em versões mais recentes do framework;
+- `sass/vendor/wpf.scss`: O WPF2 agora, por padrão, sabe interpolar tamanhos de elementos que são designados com valores em formatos diferentes de pixels, evitando assim inúmeros comportamentos estranhos ou inesperados quando se é necessário criar animações usando medidas responsivas e não exatas;
+- `sass/vendor/wpf.scss`: As classes *t-wrap* e *t-nowrap* foram adicionadas para se referenciarem ao valor CSS *text-wrap*. Dentro da opção *t-wrap* ainda é possível especificar tipos diferentes de efeitos de reajuste de textos como *.t-wrap-auto, .t-wrap-balance, .t-wrap-stable* ou *.t-wrap-pretty* para diferentes combinações de efeitos;
+- `sass/vendor/wpf.scss`: Adicionado o suporte à diretiva *.!* para as classes de orientação vertical e horizontal dos posicionamentos *.dp-flex* e *.dp-inline-flex*, tanto no escopo original como o responsivo;
+
 ## 2.3.1
 - `sass/vars/config.scss`: A variável de permissão para exibição (e cálculo de classes) para o tema escuro vem desativado por padrão;
 - `sass/vendor/wpf.scss`: Adicionado suporte para a diretiva *!* em mais classes do framework, principalmente as classes que configuram tipos de displays;
