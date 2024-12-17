@@ -1,10 +1,3 @@
-/**
-	*#					Painter
-	* @description		A classe *Painter* permite adicionar cores dinamicamente a elementos HTML, oferecendo uma maneira elegante e simplificada de manipular as cores de fundo, texto e borda de elementos diretamente por meio de classes CSS. Isso possibilita uma estilização altamente flexível e prática para desenvolvedores.
-	*
-	* @version 			2.X
-	* @author 			Web e Ponto, Blaster Lizard Co.
-*/
 export class Painter {
 	/**
 		*#					Start

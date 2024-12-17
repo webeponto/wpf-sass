@@ -1,6 +1,6 @@
 //?	FRAMEWORK SCSS WPF 2
 /***
-	* Versão v2.4.0 do Framework SCSS WPF
+	* Versão v2.5.0 do Framework SCSS WPF
 	* Autores: Lyautey M. N. / Matheus P. / David H.
 	*
 	* ! Não altere nada presente neste documento.
@@ -71,7 +71,7 @@ $sides: top, right, bottom, left;
     .#{$position} {
         position: $position;
 
-        @if $position == relative or $position == absolute or $position == fixed {
+        @if $position == relative or $position == absolute or $position == fixed or $position == sticky {
             @each $side in $sides {
                 @for $pos from -100 through 100 {
                     .#{$side}\(#{$pos}\) {
@@ -1032,6 +1032,199 @@ $sides: top, right, bottom, left;
     }
 }
 
+.\!{
+    &t-nowrap{
+        text-wrap: nowrap!important;
+    }
+
+    &t-wrap{
+        text-wrap: wrap!important;
+
+        &-auto{
+            text-wrap: auto!important;
+        }
+
+        &-balance{
+            text-wrap: balance!important;
+        }
+
+        &-stable{
+            text-wrap: stable!important;
+        }
+
+        &-pretty{
+            text-wrap: pretty!important;
+        }
+    }
+}
+
+@include mix.responsive() {
+	.mob\: {
+		&t-nowrap{
+            text-wrap: nowrap;
+        }
+
+        &t-wrap{
+            text-wrap: wrap;
+
+            &-auto{
+                text-wrap: auto;
+            }
+
+            &-balance{
+                text-wrap: balance;
+            }
+
+            &-stable{
+                text-wrap: stable;
+            }
+
+            &-pretty{
+                text-wrap: pretty;
+            }
+        }
+	}
+
+	.mob\:\! {
+		&t-nowrap{
+            text-wrap: nowrap!important;
+        }
+
+        &t-wrap{
+            text-wrap: wrap!important;
+
+            &-auto{
+                text-wrap: auto!important;
+            }
+
+            &-balance{
+                text-wrap: balance!important;
+            }
+
+            &-stable{
+                text-wrap: stable!important;
+            }
+
+            &-pretty{
+                text-wrap: pretty!important;
+            }
+        }
+	}
+}
+
+//* Recorte de Palavra
+.w-nowrap{
+    word-wrap: normal;
+}
+
+.w-wrap{
+    word-wrap: break-word;
+}
+
+.\!{
+    &w-nowrap{
+        word-wrap: normal!important;
+    }
+
+    &w-wrap{
+        word-wrap: break-word!important;
+    }
+}
+
+@include mix.responsive() {
+	.mob\: {
+		&w-nowrap{
+            word-wrap: normal;
+        }
+
+        &w-wrap{
+            word-wrap: break-word;
+        }
+
+        &\!{
+            &w-nowrap{
+                word-wrap: normal!important;
+            }
+
+            &w-wrap{
+                word-wrap: break-word!important;
+            }
+        }
+	}
+}
+
+//* Quebra de Palavra
+.w-nobreak{
+    word-break: normal;
+}
+
+.w-break{
+    word-break: break-word;
+
+    &-all {
+        word-break: break-all;
+    }
+
+    &-keep-all {
+        word-break: keep-all;
+    }
+}
+
+.\! {
+    &w-nobreak {
+        word-break: normal!important;
+    }
+
+    &w-break {
+        word-break: break-word!important;
+
+        &-all {
+            word-break: break-all!important;
+        }
+
+        &-keep-all {
+            word-break: keep-all!important;
+        }
+    }
+}
+
+@include mix.responsive() {
+    .mob\:{
+        &w-nobreak{
+            word-break: normal;
+        }
+
+        &w-break{
+            word-break: break-word;
+
+            &-all {
+                word-break: break-all;
+            }
+
+            &-keep-all {
+                word-break: keep-all;
+            }
+        }
+
+        &\! {
+            &w-nobreak {
+                word-break: normal!important;
+            }
+
+            &w-break {
+                word-break: break-word!important;
+
+                &-all {
+                    word-break: break-all!important;
+                }
+
+                &-keep-all {
+                    word-break: keep-all!important;
+                }
+            }
+        }
+    }
+}
 
 //* Distanciamento de Linhas de Texto:
 .lh {
@@ -1157,7 +1350,7 @@ $sides: top, right, bottom, left;
 			$v: $fs * 1%;
 
 			&-#{$fs} {
-				font-size: #{$v};
+				font-size: #{$v}!important;
 			}
 		}
 
@@ -1165,7 +1358,7 @@ $sides: top, right, bottom, left;
 			$v: $fs * 1px;
 
 			&-#{$fs}px {
-				font-size: #{$v};
+				font-size: #{$v}!important;
 			}
 		}
 
@@ -1174,7 +1367,7 @@ $sides: top, right, bottom, left;
 			$v: $rv * 0.01em;
 
 			&-#{$rv}em {
-				font-size: #{$v};
+				font-size: #{$v}!important;
 			}
 		}
 
@@ -1183,7 +1376,7 @@ $sides: top, right, bottom, left;
 			$v: $rv * 0.01rem;
 
 			&-#{$rv}rem {
-				font-size: #{$v};
+				font-size: #{$v}!important;
 			}
 		}
 	}
@@ -1234,7 +1427,7 @@ $sides: top, right, bottom, left;
 				$v: $fs * 1%;
 
 				&-#{$fs} {
-					font-size: #{$v};
+					font-size: #{$v}!important;
 				}
 			}
 
@@ -1242,7 +1435,7 @@ $sides: top, right, bottom, left;
 				$v: $fs * 1px;
 
 				&-#{$fs}px {
-					font-size: #{$v};
+					font-size: #{$v}!important;
 				}
 			}
 
@@ -1251,7 +1444,7 @@ $sides: top, right, bottom, left;
 				$v: $rv * 0.01em;
 
 				&-#{$rv}em {
-					font-size: #{$v};
+					font-size: #{$v}!important;
 				}
 			}
 
@@ -1260,7 +1453,7 @@ $sides: top, right, bottom, left;
 				$v: $rv * 0.01rem;
 
 				&-#{$rv}rem {
-					font-size: #{$v};
+					font-size: #{$v}!important;
 				}
 			}
 		}
@@ -1378,6 +1571,71 @@ $sides: top, right, bottom, left;
 			}
 		}
 	}
+}
+
+//* Seleção de Conteúdo:
+.select{
+    &-none{
+        user-select: none;
+    }
+
+    &-text{
+        user-select: text;
+    }
+
+    &-all{
+        user-select: all;
+    }
+}
+
+.\!{
+    &select{
+        &-none{
+            user-select: none!important;
+        }
+
+        &-text{
+            user-select: text!important;
+        }
+
+        &-all{
+            user-select: all!important;
+        }
+    }
+}
+
+@include mix.responsive() {
+    .mob\:{
+        &select{
+            &-none{
+                user-select: none;
+            }
+
+            &-text{
+                user-select: text;
+            }
+
+            &-all{
+                user-select: all;
+            }
+        }
+
+        &\!{
+            &select{
+                &-none{
+                    user-select: none!important;
+                }
+
+                &-text{
+                    user-select: text!important;
+                }
+
+                &-all{
+                    user-select: all!important;
+                }
+            }
+        }
+    }
 }
 
 //* Padding: [https://webeponto.notion.site/Padding-2dea7be58df54fd38275309aaa177708]
@@ -2543,7 +2801,7 @@ $sides: top, right, bottom, left;
 }
 
 @include mix.responsive() {
-	.\!mob\: {
+	.mob\:\! {
 		&p {
 
 			// General
@@ -4094,7 +4352,7 @@ $sides: top, right, bottom, left;
 }
 
 @include mix.responsive(){
-	.\!mob\: {
+	.mob\:\! {
 		&m {
 
 			// General
@@ -8136,7 +8394,7 @@ $sides: top, right, bottom, left;
 		}
 	}
 
-	@for $w from 0 through 60 {
+	@for $w from 0 through 120 {
 		$v: $w * 5;
 
 		&#{$v}px,
@@ -8167,6 +8425,56 @@ $sides: top, right, bottom, left;
 		}
 	}
 
+    @for $w from 0 through 100 {
+		$v: $w * 1;
+
+		&#{$v}vw,
+		&-#{$v}vw {
+			width: #{$v * 1vw};
+
+			&-min {
+				min-width: #{$v * 1vw};
+			}
+
+			&-max {
+				max-width: #{$v * 1vw};
+			}
+
+			@for $p from 0 through 5 {
+				&-#{$p} {
+					width: #{($v - $p) * 1vw};
+					margin-left: #{$p * 1px};
+					margin-right: #{$p * 1px};
+				}
+			}
+		}
+	}
+
+    @for $w from 0 through 100 {
+		$v: $w * 1;
+
+		&#{$v}dvw,
+		&-#{$v}dvw {
+			width: #{$v * 1dvw};
+
+			&-min {
+				min-width: #{$v * 1dvw};
+			}
+
+			&-max {
+				max-width: #{$v * 1dvw};
+			}
+
+			@for $p from 0 through 5 {
+				&-#{$p} {
+					width: #{($v - $p) * 1dvw};
+					margin-left: #{$p * 1px};
+					margin-right: #{$p * 1px};
+				}
+			}
+		}
+	}
+
 	&-full,
 	&100,
 	&-100 {
@@ -8184,6 +8492,18 @@ $sides: top, right, bottom, left;
 	&-auto {
 		width: auto !important;
 	}
+
+    &-max{
+        width: max-content;
+    }
+
+    &-min{
+        width: min-content;
+    }
+
+    &-fit{
+        width: fit-content;
+    }
 }
 
 .\!{
@@ -8331,7 +8651,7 @@ $sides: top, right, bottom, left;
 			}
 		}
 
-		@for $w from 0 through 60 {
+		@for $w from 0 through 120 {
 			$v: $w * 5;
 
 			&#{$v}px,
@@ -8362,6 +8682,56 @@ $sides: top, right, bottom, left;
 			}
 		}
 
+        @for $w from 0 through 100 {
+            $v: $w * 1;
+
+            &#{$v}vw,
+            &-#{$v}vw {
+                width: #{$v * 1vw}!important;
+
+                &-min {
+                    min-width: #{$v * 1vw}!important;
+                }
+
+                &-max {
+                    max-width: #{$v * 1vw}!important;
+                }
+
+                @for $p from 0 through 5 {
+                    &-#{$p} {
+                        width: #{($v - $p) * 1vw}!important;
+                        margin-left: #{$p * 1px}!important;
+                        margin-right: #{$p * 1px}!important;
+                    }
+                }
+            }
+        }
+
+        @for $w from 0 through 100 {
+            $v: $w * 1;
+
+            &#{$v}dvw,
+            &-#{$v}dvw {
+                width: #{$v * 1dvw}!important;
+
+                &-min {
+                    min-width: #{$v * 1dvw}!important;
+                }
+
+                &-max {
+                    max-width: #{$v * 1dvw}!important;
+                }
+
+                @for $p from 0 through 5 {
+                    &-#{$p} {
+                        width: #{($v - $p) * 1dvw}!important;
+                        margin-left: #{$p * 1px}!important;
+                        margin-right: #{$p * 1px}!important;
+                    }
+                }
+            }
+        }
+
 		&-full,
 		&100,
 		&-100 {
@@ -8379,6 +8749,18 @@ $sides: top, right, bottom, left;
 		&-auto {
 			width: auto !important;
 		}
+
+        &-max{
+            width: max-content!important;
+        }
+
+        &-min{
+            width: min-content!important;
+        }
+
+        &-fit{
+            width: fit-content!important;
+        }
 	}
 }
 
@@ -8501,7 +8883,7 @@ $sides: top, right, bottom, left;
 			}
 		}
 
-		@for $w from 0 through 60 {
+		@for $w from 0 through 120 {
 			$v: $w * 5;
 
 			&#{$v}px,
@@ -8532,6 +8914,56 @@ $sides: top, right, bottom, left;
 			}
 		}
 
+        @for $w from 0 through 100 {
+            $v: $w * 1;
+
+            &#{$v}vw,
+            &-#{$v}vw {
+                width: #{$v * 1vw};
+
+                &-min {
+                    min-width: #{$v * 1vw};
+                }
+
+                &-max {
+                    max-width: #{$v * 1vw};
+                }
+
+                @for $p from 0 through 5 {
+                    &-#{$p} {
+                        width: #{($v - $p) * 1vw};
+                        margin-left: #{$p * 1px};
+                        margin-right: #{$p * 1px};
+                    }
+                }
+            }
+        }
+
+        @for $w from 0 through 100 {
+            $v: $w * 1;
+
+            &#{$v}dvw,
+            &-#{$v}dvw {
+                width: #{$v * 1dvw};
+
+                &-min {
+                    min-width: #{$v * 1dvw};
+                }
+
+                &-max {
+                    max-width: #{$v * 1dvw};
+                }
+
+                @for $p from 0 through 5 {
+                    &-#{$p} {
+                        width: #{($v - $p) * 1dvw};
+                        margin-left: #{$p * 1px};
+                        margin-right: #{$p * 1px};
+                    }
+                }
+            }
+        }
+
 		&-full,
 		&100,
 		&-100 {
@@ -8541,6 +8973,18 @@ $sides: top, right, bottom, left;
 		&-auto {
 			width: auto !important;
 		}
+
+        &-max{
+            width: max-content;
+        }
+
+        &-min{
+            width: min-content;
+        }
+
+        &-fit{
+            width: fit-content;
+        }
 	}
 
 	.mob\:\!{
@@ -8688,7 +9132,7 @@ $sides: top, right, bottom, left;
 				}
 			}
 
-			@for $w from 0 through 60 {
+			@for $w from 0 through 120 {
 				$v: $w * 5;
 
 				&#{$v}px,
@@ -8719,6 +9163,56 @@ $sides: top, right, bottom, left;
 				}
 			}
 
+            @for $w from 0 through 100 {
+                $v: $w * 1;
+
+                &#{$v}vw,
+                &-#{$v}vw {
+                    width: #{$v * 1vw}!important;
+
+                    &-min {
+                        min-width: #{$v * 1vw}!important;
+                    }
+
+                    &-max {
+                        max-width: #{$v * 1vw}!important;
+                    }
+
+                    @for $p from 0 through 5 {
+                        &-#{$p} {
+                            width: #{($v - $p) * 1vw}!important;
+                            margin-left: #{$p * 1px}!important;
+                            margin-right: #{$p * 1px}!important;
+                        }
+                    }
+                }
+            }
+
+            @for $w from 0 through 100 {
+                $v: $w * 1;
+
+                &#{$v}dvw,
+                &-#{$v}dvw {
+                    width: #{$v * 1dvw}!important;
+
+                    &-min {
+                        min-width: #{$v * 1dvw}!important;
+                    }
+
+                    &-max {
+                        max-width: #{$v * 1dvw}!important;
+                    }
+
+                    @for $p from 0 through 5 {
+                        &-#{$p} {
+                            width: #{($v - $p) * 1dvw}!important;
+                            margin-left: #{$p * 1px}!important;
+                            margin-right: #{$p * 1px}!important;
+                        }
+                    }
+                }
+            }
+
 			&-full,
 			&100,
 			&-100 {
@@ -8736,6 +9230,18 @@ $sides: top, right, bottom, left;
 			&-auto {
 				width: auto !important;
 			}
+
+            &-max{
+                width: max-content!important;
+            }
+
+            &-min{
+                width: min-content!important;
+            }
+
+            &-fit{
+                width: fit-content!important;
+            }
 		}
 	}
 }
@@ -8814,7 +9320,7 @@ $sides: top, right, bottom, left;
 		}
 	}
 
-	@for $h from 0 through 60 {
+	@for $h from 0 through 120 {
 		$v: $h * 5;
 
 		&#{$v}px,
@@ -8839,6 +9345,56 @@ $sides: top, right, bottom, left;
 		}
 	}
 
+    @for $h from 0 through 100 {
+		$v: $h * 1;
+
+		&#{$v}vh,
+		&-#{$v}vh {
+			height: #{$v * 1vh};
+
+			&-min {
+				min-height: #{$v * 1vh};
+			}
+
+			&-max {
+				max-height: #{$v * 1vh};
+			}
+
+			@for $p from 0 through 5 {
+				&-#{$p} {
+					height: #{($v - $p) * 1vh};
+					margin-top: #{$p * 1px};
+					margin-bottom: #{$p * 1px};
+				}
+			}
+		}
+	}
+
+    @for $h from 0 through 100 {
+		$v: $h * 1;
+
+		&#{$v}dvh,
+		&-#{$v}dvh {
+			height: #{$v * 1dvh};
+
+			&-min {
+				min-height: #{$v * 1dvh};
+			}
+
+			&-max {
+				max-height: #{$v * 1dvh};
+			}
+
+			@for $p from 0 through 5 {
+				&-#{$p} {
+					height: #{($v - $p) * 1dvh};
+					margin-top: #{$p * 1px};
+					margin-bottom: #{$p * 1px};
+				}
+			}
+		}
+	}
+
 	&-full,
 	&100,
 	&-100 {
@@ -8848,10 +9404,22 @@ $sides: top, right, bottom, left;
 	&-auto {
 		height: auto;
 	}
+
+    &-fit {
+        height: fit-content;
+    }
+
+    &-max {
+        height: max-content;
+    }
+
+    &-min {
+        height: min-content;
+    }
 }
 
 .\!{
-	.h {
+	&h {
 		@for $h from 0 through 19 {
 			$v: $h * 5;
 
@@ -8925,7 +9493,7 @@ $sides: top, right, bottom, left;
 			}
 		}
 
-		@for $h from 0 through 60 {
+		@for $h from 0 through 120 {
 			$v: $h * 5;
 
 			&#{$v}px,
@@ -8949,6 +9517,56 @@ $sides: top, right, bottom, left;
 				}
 			}
 		}
+
+        @for $h from 0 through 100 {
+            $v: $h * 1;
+
+            &#{$v}vh,
+            &-#{$v}vh {
+                height: #{$v * 1vh}!important;
+
+                &-min {
+                    min-height: #{$v * 1vh}!important;
+                }
+
+                &-max {
+                    max-height: #{$v * 1vh}!important;
+                }
+
+                @for $p from 0 through 5 {
+                    &-#{$p} {
+                        height: #{($v - $p) * 1vh}!important;
+                        margin-top: #{$p * 1px}!important;
+                        margin-bottom: #{$p * 1px}!important;
+                    }
+                }
+            }
+        }
+
+        @for $h from 0 through 100 {
+            $v: $h * 1;
+
+            &#{$v}dvh,
+            &-#{$v}dvh {
+                height: #{$v * 1dvh}!important;
+
+                &-min {
+                    min-height: #{$v * 1dvh}!important;
+                }
+
+                &-max {
+                    max-height: #{$v * 1dvh}!important;
+                }
+
+                @for $p from 0 through 5 {
+                    &-#{$p} {
+                        height: #{($v - $p) * 1dvh}!important;
+                        margin-top: #{$p * 1px}!important;
+                        margin-bottom: #{$p * 1px}!important;
+                    }
+                }
+            }
+        }
 
 		&-full,
 		&100,
@@ -9037,7 +9655,7 @@ $sides: top, right, bottom, left;
 			}
 		}
 
-		@for $h from 0 through 60 {
+		@for $h from 0 through 120 {
 			$v: $h * 5;
 
 			&#{$v}px,
@@ -9062,6 +9680,56 @@ $sides: top, right, bottom, left;
 			}
 		}
 
+        @for $h from 0 through 100 {
+            $v: $h * 1;
+
+            &#{$v}vh,
+            &-#{$v}vh {
+                height: #{$v * 1vh};
+
+                &-min {
+                    min-height: #{$v * 1vh};
+                }
+
+                &-max {
+                    max-height: #{$v * 1vh};
+                }
+
+                @for $p from 0 through 5 {
+                    &-#{$p} {
+                        height: #{($v - $p) * 1vh};
+                        margin-top: #{$p * 1px};
+                        margin-bottom: #{$p * 1px};
+                    }
+                }
+            }
+        }
+
+        @for $h from 0 through 100 {
+            $v: $h * 1;
+
+            &#{$v}dvh,
+            &-#{$v}dvh {
+                height: #{$v * 1dvh};
+
+                &-min {
+                    min-height: #{$v * 1dvh};
+                }
+
+                &-max {
+                    max-height: #{$v * 1dvh};
+                }
+
+                @for $p from 0 through 5 {
+                    &-#{$p} {
+                        height: #{($v - $p) * 1dvh};
+                        margin-top: #{$p * 1px};
+                        margin-bottom: #{$p * 1px};
+                    }
+                }
+            }
+        }
+
 		&-full,
 		&100,
 		&-100 {
@@ -9074,7 +9742,7 @@ $sides: top, right, bottom, left;
 	}
 
 	.mob\:\!{
-		.h {
+		&h {
 			@for $h from 0 through 19 {
 				$v: $h * 5;
 
@@ -9148,7 +9816,7 @@ $sides: top, right, bottom, left;
 				}
 			}
 
-			@for $h from 0 through 60 {
+			@for $h from 0 through 120 {
 				$v: $h * 5;
 
 				&#{$v}px,
@@ -9172,6 +9840,56 @@ $sides: top, right, bottom, left;
 					}
 				}
 			}
+
+            @for $h from 0 through 100 {
+                $v: $h * 1;
+
+                &#{$v}vh,
+                &-#{$v}vh {
+                    height: #{$v * 1vh}!important;
+
+                    &-min {
+                        min-height: #{$v * 1vh}!important;
+                    }
+
+                    &-max {
+                        max-height: #{$v * 1vh}!important;
+                    }
+
+                    @for $p from 0 through 5 {
+                        &-#{$p} {
+                            height: #{($v - $p) * 1vh}!important;
+                            margin-top: #{$p * 1px}!important;
+                            margin-bottom: #{$p * 1px}!important;
+                        }
+                    }
+                }
+            }
+
+            @for $h from 0 through 100 {
+                $v: $h * 1;
+
+                &#{$v}dvh,
+                &-#{$v}dvh {
+                    height: #{$v * 1dvh}!important;
+
+                    &-min {
+                        min-height: #{$v * 1dvh}!important;
+                    }
+
+                    &-max {
+                        max-height: #{$v * 1dvh}!important;
+                    }
+
+                    @for $p from 0 through 5 {
+                        &-#{$p} {
+                            height: #{($v - $p) * 1dvh}!important;
+                            margin-top: #{$p * 1px}!important;
+                            margin-bottom: #{$p * 1px}!important;
+                        }
+                    }
+                }
+            }
 
 			&-full,
 			&100,
@@ -10320,8 +11038,6 @@ img {
 			object-fit: scale-down;
 		}
 	}
-
-
 }
 
 //* Razão de Aspecto:
@@ -10491,10 +11207,10 @@ img {
 .rotate {
 	@for $r from 0 through 360 {
 		&-#{$r} {
-			transform: rotate(#{$r}deg);
+			rotate: #{$r}deg;
 
 			&-neg {
-				transform: rotate(-#{$r}deg);
+				rotate: -#{$r}deg;
 			}
 		}
 
@@ -10505,8 +11221,138 @@ img {
 	.mob\:rotate {
         @for $r from 0 through 360 {
             &-#{$r} {
-                transform: rotate(#{$r}deg);
+                rotate: #{$r}deg;
+
+                &-neg {
+                    rotate: -#{$r}deg;
+                }
             }
+        }
+    }
+}
+
+//* Pivot:
+.pivot {
+    &-center{
+        transform-origin: center center;
+    }
+
+    &-top{
+        transform-origin: top center;
+    }
+
+    &-bottom{
+        transform-origin: bottom center;
+    }
+
+    &-left{
+        transform-origin: center left;
+    }
+
+    &-right{
+        transform-origin: center right;
+    }
+
+    &-top-left{
+        transform-origin: top left;
+    }
+
+    &-top-right{
+        transform-origin: top right;
+    }
+
+    &-bottom-left{
+        transform-origin: bottom left;
+    }
+
+    &-bottom-right{
+        transform-origin: bottom right;
+    }
+
+    @for $p from 0 through 100 {
+        $v: $p * 1px;
+
+        &-x-#{$v} {
+            transform-origin: #{$v} center;
+        }
+
+        &-y-#{$v} {
+            transform-origin: center #{$v};
+        }
+    }
+}
+
+@include mix.responsive(){
+    .mob\:pivot {
+        &-center{
+            transform-origin: center center;
+        }
+
+        &-top{
+            transform-origin: top center;
+        }
+
+        &-bottom{
+            transform-origin: bottom center;
+        }
+
+        &-left{
+            transform-origin: center left;
+        }
+
+        &-right{
+            transform-origin: center right;
+        }
+
+        &-top-left{
+            transform-origin: top left;
+        }
+
+        &-top-right{
+            transform-origin: top right;
+        }
+
+        &-bottom-left{
+            transform-origin: bottom left;
+        }
+
+        &-bottom-right{
+            transform-origin: bottom right;
+        }
+
+        @for $p from 0 through 100 {
+            $v: $p * 1px;
+
+            &-x-#{$v} {
+                transform-origin: #{$v} center;
+            }
+
+            &-y-#{$v} {
+                transform-origin: center #{$v};
+            }
+        }
+    }
+}
+
+//* Espelhamento
+.flip {
+    &-h {
+        scale: -1 0;
+    }
+
+    &-v {
+        scale: 0 -1;
+    }
+}
+
+@include mix.responsive(){
+   .mob\:flip {
+        &-h {
+            scale: -1 0;
+        }
+
+        &-v {
+            scale: 0 -1;
         }
     }
 }

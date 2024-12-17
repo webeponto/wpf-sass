@@ -7,6 +7,22 @@
 
 **Changelog**
 
+## 2.5.0
+- `sass/vendor/wpf.scss`: Agora é possível aplicar a instrução *!important* às classes de recorte de texto com a diretiva *'!'* antes da classe. Além disso, agora ela também é utilizável em contextos responsivos com a diretiva *mob:*;
+- `sass/vendor/wpf.scss`: Foi adicionado um novo conjunto de classes auxiliares focado na configuração do recorte de palavras. As classes *'w-wrap'* e *'w-nowrap'* manipulam o atributo CSS *word-wrap*;
+- `sass/vendor/wpf.scss`: Também foi inserido novas classes para configurar o momento de quebra de palavras. As classes *'w-break'* e *'w-nobreak'* manipulam o atributo *word-break*. É possível configurar mais precisamente com instruções mais específicas, como *'w-break-all'* ou *'w-break-keep-all'* etc;
+- `sass/vendor/wpf.scss`: É possível definir quais elementos são cabíveis de serem selecionados ou não pelo usuário através de novas classes úteis como *'select'*. Ela pode ser personalizada com instruções como *'select-none'*, *'select-all'* ou *'select-text'*;
+- `sass/vendor/wpf.scss`: Foi corrigido um bug onde a sintaxe para aplicar a instrução *!important* em classes de padding ou margin, quando a instrução *mob:* já havia sido aplicada, estava errada e fora do padrão;
+- `sass/vendor/wpf.scss`: Foi duplicado o limite em pixels para denominações de largura e altura usando as classes *'w'* ou *'h'*. O limite era 300 e agora é 600 pixels;
+- `sass/vendor/wpf.scss`: Além da mudança no limite, agora também é possível denominar larguras e alturas usando os tipos de valor *'vw'* e *'dvw'* para largura e *'vh'* e *'dvh'* para altura;
+- `sass/vendor/wpf.scss`: Para largura e altura, além dos tipos de valor numéricos, agora você também pode instruir um elemento a ter os tipos de tamanho *max-content*, *min-content* e *fit-content* usando as classes auxiliares *.w-max, .w-min ou .w-fit* para largura ou *.h-max, .h-min ou .h-fit* para altura;
+- `sass/vendor/wpf.scss`: Corrigido um erro onde não era possível determinar valores de altura usando a instrução *!important*;
+- `sass/vendor/wpf.scss`: Alterado qual é a propriedade utilizada para configurar rotação de elementos afim de torná-lo mais compatível quando utilizado com outros elementos de transformação;
+- `sass/vendor/wpf.scss`: Adicionado a classe auxiliar *'pivot'* para determinar a origem de transformação de elementos;
+- `sass/vendor/wpf.scss`: Adicionado a classe auxiliar *'flip'* que permite o usuário rapidamente espelhar elementos horizontalmente ou verticalmente através das classes *.flip-h ou .flip-v*;
+- `js/wpf/themes.ts`: Foi desenvolvido um novo plugin `themes.ts` para o framework SCSS WPF2 capaz de ler e reconhecer diferentes temas e estilos presentes em sites/painéis e aplicar classes auxiliares/instruções/funções de classes específicamente em estilos/temas diferentes designados pelo programador através da diretiva *theme.nomedotema[nomedaclasse]*. Para essa alteração ser aplicada, deve estar ativo na tag html uma classe com nome *.nomedotema-theme*. Para aplicar o efeito para o tema original (ou seja, sem classe de tema definido), é utilizado a diretiva *theme.default[nomedaclasse]*;
+- `js/wpf/painter.js`: O plugin `painter.ts` foi atualizado para ser capaz de trabalhar em cooperação com os plugins mais recentes do WPF2 sem problemas;
+
 ## 2.4.0
 - `sass/vars/config.scss`: Foi corrigido um erro onde o arquivo de configuração de temas estava marcado para ser renderizado para CSS pelo framework do SASS, quando o mesmo não é necessário para o funcionamento da ferramenta;
 - `sass/vendor/vars.scss`: Agora é possível usar as funções de classe relacionadas a cores como *bg(), bc(), c(), f() e s()* e atribuí-las o valor *transparent* para informar a cor transparente diretamente no elemento através de classes;

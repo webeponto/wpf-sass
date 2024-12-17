@@ -1,10 +1,3 @@
-/**
-	*#					LazyLoad
-	* @description		A ferramenta *LazyLoad* do WPF permite o carregamento dinâmico de imagens e elementos, otimizando o desempenho do site ao carregar conteúdo apenas quando ele está visível para o usuário. Esse recurso é especialmente útil para sites com muitos elementos de mídia, pois evita o carregamento desnecessário de imagens fora da tela.
-	*
-	* @version 			2.X
-	* @author 			Web e Ponto, Blaster Lizard Co.
-*/
 export class LazyLoad {
 	/**
 		*#					Start
