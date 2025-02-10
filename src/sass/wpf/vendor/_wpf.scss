@@ -1,6 +1,6 @@
 //?	FRAMEWORK SCSS WPF 2
 /***
-	* Versão v2.5.0 do Framework SCSS WPF
+	* Versão v2.5.1 do Framework SCSS WPF
 	* Autores: Lyautey M. N. / Matheus P. / David H.
 	*
 	* ! Não altere nada presente neste documento.
@@ -878,6 +878,119 @@ $sides: top, right, bottom, left;
     }
 }
 
+//* Orientação de Listas:
+.list{
+    &-disc{
+        list-style-type: disc;
+    }
+
+    &-circle{
+        list-style-type: circle;
+    }
+
+    &-square{
+        list-style-type: square;
+    }
+
+    &-none{
+        list-style-type: none;
+    }
+
+    &-inside{
+        list-style-position: inside;
+    }
+
+    &-outside{
+        list-style-position: outside;
+    }
+}
+
+.\! {
+    &list{
+        &-disc{
+            list-style-type: disc!important;
+        }
+
+        &-circle{
+            list-style-type: circle!important;
+        }
+
+        &-square{
+            list-style-type: square!important;
+        }
+
+        &-none{
+            list-style-type: none!important;
+        }
+
+        &-inside{
+            list-style-position: inside!important;
+        }
+
+        &-outside{
+            list-style-position: outside!important;
+        }
+    }
+}
+
+@include mix.responsive() {
+	.mob\:{
+        &list{
+            &-disc{
+                list-style-type: disc;
+            }
+
+            &-circle{
+                list-style-type: circle;
+            }
+
+            &-square{
+                list-style-type: square;
+            }
+
+            &-none{
+                list-style-type: none;
+            }
+
+            &-inside{
+                list-style-position: inside;
+            }
+
+            &-outside{
+                list-style-position: outside;
+            }
+        }
+    }
+
+    .mob\:\!{
+        &list{
+            &-disc{
+                list-style-type: disc!important;
+            }
+
+            &-circle{
+                list-style-type: circle!important;
+            }
+
+            &-square{
+                list-style-type: square!important;
+            }
+
+            &-none{
+                list-style-type: none!important;
+            }
+
+            &-inside{
+                list-style-position: inside!important;
+            }
+
+            &-outside{
+                list-style-position: outside!important;
+            }
+        }
+    }
+}
+
 //* Orientação de Texto: [https://webeponto.notion.site/Orienta-o-de-Texto-1e104250dd7c46a48d25cea86d8cfb13]
 .t {
 	&-left {
@@ -1005,6 +1118,149 @@ $sides: top, right, bottom, left;
 			}
 		}
 	}
+}
+
+//* Decoração de Texto:
+.t{
+    &-underline{
+        text-decoration: underline;
+    }
+
+    &-dashed{
+        text-decoration: dashed;
+    }
+
+    &-double{
+        text-decoration: double;
+    }
+
+    &-line-through{
+        text-decoration: line-through;
+    }
+
+    &-overline{
+        text-decoration: overline;
+    }
+
+    &-solid{
+        text-decoration: solid;
+    }
+
+    &-wavy{
+        text-decoration: wavy;
+    }
+
+    &-none{
+        text-decoration: none;
+    }
+}
+
+.\!{
+    &t{
+        &-underline{
+            text-decoration: underline;
+        }
+
+        &-dashed{
+            text-decoration: dashed;
+        }
+
+        &-double{
+            text-decoration: double;
+        }
+
+        &-line-through{
+            text-decoration: line-through;
+        }
+
+        &-overline{
+            text-decoration: overline;
+        }
+
+        &-solid{
+            text-decoration: solid;
+        }
+
+        &-wavy{
+            text-decoration: wavy;
+        }
+
+        &-none{
+            text-decoration: none;
+        }
+    }
+}
+
+@include mix.responsive() {
+    .mob\:t{
+        &-underline{
+            text-decoration: underline;
+        }
+
+        &-dashed{
+            text-decoration: dashed;
+        }
+
+        &-double{
+            text-decoration: double;
+        }
+
+        &-line-through{
+            text-decoration: line-through;
+        }
+
+        &-overline{
+            text-decoration: overline;
+        }
+
+        &-solid{
+            text-decoration: solid;
+        }
+
+        &-wavy{
+            text-decoration: wavy;
+        }
+
+        &-none{
+            text-decoration: none;
+        }
+    }
+
+    .mob\:\!{
+        &t{
+            &-underline{
+                text-decoration: underline;
+            }
+
+            &-dashed{
+                text-decoration: dashed;
+            }
+
+            &-double{
+                text-decoration: double;
+            }
+
+            &-line-through{
+                text-decoration: line-through;
+            }
+
+            &-overline{
+                text-decoration: overline;
+            }
+
+            &-solid{
+                text-decoration: solid;
+            }
+
+            &-wavy{
+                text-decoration: wavy;
+            }
+
+            &-none{
+                text-decoration: none;
+            }
+        }
+    }
 }
 
 //* Recorte de Texto:
@@ -1632,6 +1888,183 @@ $sides: top, right, bottom, left;
 
                 &-all{
                     user-select: all!important;
+                }
+            }
+        }
+    }
+}
+
+//* Área Útil Interativa:
+.pointer-events{
+    &-all{
+        pointer-events: all;
+    }
+
+    &-none{
+        pointer-events: none;
+    }
+
+    &-auto{
+        pointer-events: auto;
+    }
+
+    &-visible{
+        pointer-events: visible;
+    }
+
+    &-visiblePainted{
+        pointer-events: visiblePainted;
+    }
+
+    &-visibleFill{
+        pointer-events: visibleFill;
+    }
+
+    &-visibleStroke{
+        pointer-events: visibleStroke;
+    }
+
+    &-painted{
+        pointer-events: painted;
+    }
+
+    &-fill{
+        pointer-events: fill;
+    }
+
+    &-stroke{
+        pointer-events: stroke;
+    }
+}
+
+.\!{
+    &pointer-events{
+        &-all{
+            pointer-events: all!important;
+        }
+
+        &-none{
+            pointer-events: none!important;
+        }
+
+        &-auto{
+            pointer-events: auto!important;
+        }
+
+        &-visible{
+            pointer-events: visible!important;
+        }
+
+        &-visiblePainted{
+            pointer-events: visiblePainted!important;
+        }
+
+        &-visibleFill{
+            pointer-events: visibleFill!important;
+        }
+
+        &-visibleStroke{
+            pointer-events: visibleStroke!important;
+        }
+
+        &-painted{
+            pointer-events: painted!important;
+        }
+
+        &-fill{
+            pointer-events: fill!important;
+        }
+
+        &-stroke{
+            pointer-events: stroke!important;
+        }
+    }
+}
+
+@include mix.responsive() {
+    .mob\:{
+        &pointer-events{
+            &-all{
+                pointer-events: all;
+            }
+
+            &-none{
+                pointer-events: none;
+            }
+
+            &-auto{
+                pointer-events: auto;
+            }
+
+            &-visible{
+                pointer-events: visible;
+            }
+
+            &-visiblePainted{
+                pointer-events: visiblePainted;
+            }
+
+            &-visibleFill{
+                pointer-events: visibleFill;
+            }
+
+            &-visibleStroke{
+                pointer-events: visibleStroke;
+            }
+
+            &-painted{
+                pointer-events: painted;
+            }
+
+            &-fill{
+                pointer-events: fill;
+            }
+
+            &-stroke{
+                pointer-events: stroke;
+            }
+        }
+
+        &\!{
+            &pointer-events{
+                &-all{
+                    pointer-events: all!important;
+                }
+
+                &-none{
+                    pointer-events: none!important;
+                }
+
+                &-auto{
+                    pointer-events: auto!important;
+                }
+
+                &-visible{
+                    pointer-events: visible!important;
+                }
+
+                &-visiblePainted{
+                    pointer-events: visiblePainted!important;
+                }
+
+                &-visibleFill{
+                    pointer-events: visibleFill!important;
+                }
+
+                &-visibleStroke{
+                    pointer-events: visibleStroke!important;
+                }
+
+                &-painted{
+                    pointer-events: painted!important;
+                }
+
+                &-fill{
+                    pointer-events: fill!important;
+                }
+
+                &-stroke{
+                    pointer-events: stroke!important;
                 }
             }
         }
@@ -8503,7 +8936,7 @@ $sides: top, right, bottom, left;
 
     &-fit{
         width: fit-content;
-    }
+	}
 }
 
 .\!{
@@ -8727,10 +9160,10 @@ $sides: top, right, bottom, left;
                         width: #{($v - $p) * 1dvw}!important;
                         margin-left: #{$p * 1px}!important;
                         margin-right: #{$p * 1px}!important;
-                    }
-                }
-            }
-        }
+					}
+				}
+			}
+		}
 
 		&-full,
 		&100,
@@ -8959,10 +9392,10 @@ $sides: top, right, bottom, left;
                         width: #{($v - $p) * 1dvw};
                         margin-left: #{$p * 1px};
                         margin-right: #{$p * 1px};
-                    }
-                }
-            }
-        }
+					}
+				}
+			}
+		}
 
 		&-full,
 		&100,
@@ -8984,7 +9417,7 @@ $sides: top, right, bottom, left;
 
         &-fit{
             width: fit-content;
-        }
+		}
 	}
 
 	.mob\:\!{
@@ -9208,10 +9641,10 @@ $sides: top, right, bottom, left;
                             width: #{($v - $p) * 1dvw}!important;
                             margin-left: #{$p * 1px}!important;
                             margin-right: #{$p * 1px}!important;
-                        }
-                    }
-                }
-            }
+						}
+					}
+				}
+			}
 
 			&-full,
 			&100,
@@ -9561,12 +9994,12 @@ $sides: top, right, bottom, left;
                 @for $p from 0 through 5 {
                     &-#{$p} {
                         height: #{($v - $p) * 1dvh}!important;
-                        margin-top: #{$p * 1px}!important;
-                        margin-bottom: #{$p * 1px}!important;
-                    }
-                }
-            }
-        }
+						margin-top: #{$p * 1px}!important;
+						margin-bottom: #{$p * 1px}!important;
+					}
+				}
+			}
+		}
 
 		&-full,
 		&100,
@@ -9723,12 +10156,12 @@ $sides: top, right, bottom, left;
                 @for $p from 0 through 5 {
                     &-#{$p} {
                         height: #{($v - $p) * 1dvh};
-                        margin-top: #{$p * 1px};
-                        margin-bottom: #{$p * 1px};
-                    }
-                }
-            }
-        }
+						margin-top: #{$p * 1px};
+						margin-bottom: #{$p * 1px};
+					}
+				}
+			}
+		}
 
 		&-full,
 		&100,
@@ -9884,12 +10317,12 @@ $sides: top, right, bottom, left;
                     @for $p from 0 through 5 {
                         &-#{$p} {
                             height: #{($v - $p) * 1dvh}!important;
-                            margin-top: #{$p * 1px}!important;
-                            margin-bottom: #{$p * 1px}!important;
-                        }
-                    }
-                }
-            }
+							margin-top: #{$p * 1px}!important;
+							margin-bottom: #{$p * 1px}!important;
+						}
+					}
+				}
+			}
 
 			&-full,
 			&100,
@@ -11349,7 +11782,7 @@ img {
    .mob\:flip {
         &-h {
             scale: -1 0;
-        }
+            }
 
         &-v {
             scale: 0 -1;

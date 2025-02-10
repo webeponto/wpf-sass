@@ -7,6 +7,11 @@
 
 **Changelog**
 
+## 2.5.1
+- `js/wpf/painter.ts`: Atualizado o plugin do *Painter* para que os valores hexadecimais possam ser reconhecidos e renderizados em tempo real, durante a execução de um site que já está em produção, e recebeu valores dinâmicamente;
+- `sass/vendor/wpf.scss`: Adicionado as classes auxiliares .list para definir comportamentos de lista como list-style-type e list-style-position;
+- `sass/vendor/wpf.scss`: Na classe auxiliar referente à textos .t, também foi inserido sufixos para declarar todos os tipos de text-decoration como classes independentes;
+
 ## 2.5.0
 - `sass/vendor/wpf.scss`: Agora é possível aplicar a instrução *!important* às classes de recorte de texto com a diretiva *'!'* antes da classe. Além disso, agora ela também é utilizável em contextos responsivos com a diretiva *mob:*;
 - `sass/vendor/wpf.scss`: Foi adicionado um novo conjunto de classes auxiliares focado na configuração do recorte de palavras. As classes *'w-wrap'* e *'w-nowrap'* manipulam o atributo CSS *word-wrap*;
