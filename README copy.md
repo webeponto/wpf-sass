@@ -1,4 +1,4 @@
-# WPF 3.0 - The Intuitive CSS Revolution  
+# WPF 3.0 - The Intuitive CSS
 **Dynamic utility framework that understands context, not just classes**  
 
 ```bash
@@ -29,15 +29,15 @@ While other frameworks force you to learn their language, WPF speaks *your* lang
 
 It encapsulates complex CSS concepts into simple, human-readable classes, making it easy for anyone to create beautiful, responsive designs without deep CSS knowledge, and without making the end result too overwhelming or bloated.
 
-### For CSS Learners  
+### For CSS Learners & Experts
 ```html
 <!-- Discover properties through classes -->
 <div class="
-  absolute   		/* position: absolute */
-  top(50%)			/* top: 50% */
-  center(v)			/* transform: translate(50%, -50%) */
-  opacity-0.8		/* opacity: 0.8 */
-  rotate-15deg		/* transform: rotate(15deg) */
+  absolute		/* position: absolute */
+  top(50%)		/* top: 50% */
+  center(v)		/* transform: translate(50%, -50%) */
+  opacity-0.8	/* opacity: 0.8 */
+  rotate-15deg	/* transform: rotate(15deg) */
 ">
 ```
 
@@ -68,17 +68,8 @@ We're building WPF with:
 - Performance optimization  
 - Educational content  
 
-```md
 [![Contribute](https://img.shields.io/badge/PRs-Welcomed-brightgreen)] 
-[![Discord](https://img.shields.io/discord/123456789?logo=discord)]
-```
-
-## Why We're Different  
-
-### The WPF Philosophy  
-> "CSS should communicate intent, not require translation"  
-
-While other frameworks force you to learn *their* language, WPF speaks *your* language:  
+[![Discord](https://img.shields.io/discord/123456789?logo=discord)] 
 
 ## License  
 MIT Licensed - Freedom for all implementations  
