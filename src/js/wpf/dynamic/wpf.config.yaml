@@ -1,0 +1,615 @@
+#?    FRAMEWORK SCSS WPF 3
+#
+#* Autores: Lyautey M. N. / Matheus P. / David H.
+#* Versão v3.0.0 do Framework SCSS WPF
+#
+#! Alterar o funcionamento do conjunto de regras do SCSS dinâmico pode causar problemas de renderização e funcionamento.
+#! Erros fatais no funcionamento da ferramenta podem acontecer em caso de alterações não planejadas.
+#
+#? DOCUMENTAÇÃO DO PROJETO: [https://webeponto.notion.site/WPF-bbc0a45af56640898b8de57ecaa81676]
+#
+
+#* Configuração da pasta base para monitoramento de arquivos:
+directoriesToWatch:
+  - "resources/js"
+  - "resources/svg"
+  - "resources/views"
+
+#* Configuração do arquivo de saída do SCSS dinâmico:
+outputSCSS: "../../../../scss/panel/wpf/vendor/dynamic/wpf-dynamic.scss"
+
+#? Definição de breakpoints para escopos responsivos:
+breakpoints:
+  sm: 576
+  md: 768
+  lg: 992
+  mob: 1024
+  xl: 1200
+
+#? Estrutura de Regexes para geração de Classes Utilitárias Dinâmicas:
+patterns:
+  #* Posicionamento: [https://webeponto.notion.site/Posicionamento-d96cf6193d484249979bd186b767b7c6]
+  position:
+    regex: "^(static|sticky|relative|absolute|fixed)$"
+    cssTemplate: "{selector} { position: $1; }"
+
+  # Offsets (deslocamentos) para top, right, bottom, left com unidades %, px, dvh e dvw
+  offset:
+    regex: '^(top|right|bottom|left)\((-?\d+)(%|px|dvh|dvw)?\)$'
+    cssTemplate: "{selector} { $1: $2$3; }"
+
+  # Centralização
+  center-h:
+    regex: '^center\(h\)$'
+    cssTemplate: "{selector} { left: 50%; transform: translateX(-50%); }"
+
+  center-v:
+    regex: '^center\(v\)$'
+    cssTemplate: "{selector} { top: 50%; transform: translateY(-50%); }"
+
+  center-c:
+    regex: '^center\(c\)$'
+    cssTemplate: "{selector} { left: 50%; top: 50%; transform: translate(-50%, -50%); }"
+
+  # Z-index
+  z-index:
+    regex: '^z-(-?\d+)$'
+    cssTemplate: "{selector} { z-index: $1; }"
+
+  #* Transbordamento: [https://webeponto.notion.site/Transbordamento-de63bf79f9b74d69a60ad29e5c953c58]
+  # Caso sem eixo e sem tipo: auto
+  overflow:
+    regex: "^overflow$"
+    cssTemplate: "{selector} { overflow: auto; }"
+
+  # Caso sem tipo, com eixo (x ou y)
+  overflow-axis:
+    regex: "^overflow-(x|y)$"
+    cssTemplate: "{selector} { overflow-$1: auto; }"
+
+  # Caso com eixo e tipo (hidden, scroll ou visible)
+  overflow-axis-type:
+    regex: "^overflow-(x|y)-(hidden|scroll|visible)$"
+    cssTemplate: "{selector} { overflow-$1: $2; }"
+
+  # Caso sem eixo e com tipo (hidden, scroll ou visible)
+  overflow-type:
+    regex: "^overflow-(hidden|scroll|visible)$"
+    cssTemplate: "{selector} { overflow: $1; }"
+
+  #* Orientação de Texto: [https://webeponto.notion.site/Orienta-o-de-Texto-1e104250dd7c46a48d25cea86d8cfb13]
+  # Alinhamento de texto (text alignment)
+  text-align:
+    regex: "^t-(left|center|right|start|end|justify)$"
+    cssTemplate: "{selector} { text-align: $1; }"
+
+  # Justify-all específico
+  text-align-all:
+    regex: "^t-justify-all$"
+    cssTemplate: "{selector} { text-align: justify-all; }"
+
+  #* Recorte de texto:
+  t-nowrap:
+    regex: "^t-nowrap$"
+    cssTemplate: "{selector} { text-wrap: nowrap; }"
+
+  t-wrap:
+    regex: "^t-wrap$"
+    cssTemplate: "{selector} { text-wrap: wrap; }"
+
+  t-wrap-type:
+    regex: "^t-wrap-(auto|balance|stable|pretty)$"
+    cssTemplate: "{selector} { text-wrap: $1; }"
+
+  #* Recorte de Palavra:
+  w-nowrap:
+    regex: "^w-nowrap$"
+    cssTemplate: "{selector} { word-wrap: normal; }"
+
+  w-wrap:
+    regex: "^w-wrap$"
+    cssTemplate: "{selector} { word-wrap: break-word; }"
+
+  #* Quebra de Palavra:
+  w-nobreak:
+    regex: "^w-nobreak$"
+    cssTemplate: "{selector} { word-break: normal; }"
+
+  w-break:
+    regex: "^w-break$"
+    cssTemplate: "{selector} { word-break: break-word; }"
+
+  w-break-type:
+    regex: "^w-break-(all|keep-all)$"
+    cssTemplate: "{selector} { word-break: $1; }"
+
+  #* Distanciamento de Linhas de Texto:
+  line-height-percent:
+    regex: '^lh-(\d{1,3})$'
+    cssTemplate: "{selector} { line-height: $1%; }"
+
+  line-height-em:
+    regex: '^lh-(\d*\.?\d+)em$'
+    cssTemplate: "{selector} { line-height: $1em; }"
+
+  line-height-units:
+    regex: '^lh-(\d*\.?\d+)(px|rem|em|%)$'
+    cssTemplate: "{selector} { line-height: $1$2; }"
+
+  #* Tamanho do Texto: [https://webeponto.notion.site/Tamanho-do-Texto-10a7879182e580f7a0e9c871925b3b61?pvs=74]
+  font-size-percent:
+    regex: '^fs-(\d{1,3})$'
+    cssTemplate: "{selector} { font-size: $1%; }"
+
+  font-size-units:
+    regex: '^fs-(\d*\.?\d+)(px|em|rem)$'
+    cssTemplate: "{selector} { font-size: $1$2; }"
+
+  #* Decoração de Texto:
+  text-decoration:
+    regex: "^t-(underline|dashed|double|line-through|overline|solid|wavy|none)$"
+    cssTemplate: "{selector} { text-decoration: $1; }"
+
+  #* Transformação de Texto: [https://webeponto.notion.site/Transforma-o-de-Texto-b40e813e484b49b58d547c70df4c24d9]
+  text-transform:
+    regex: "^tt-(uppercase|lowercase|capitalize|none|math-auto)$"
+    cssTemplate: "{selector} { text-transform: $1; }"
+
+  text-transform-words:
+    regex: "^tt-capitalize-words$"
+    cssTemplate: "{selector} { text-transform: capitalize-words; }"
+
+  #* Seleção de Conteúdo:
+  text-selection:
+    regex: "^select-(none|text|auto|all)$"
+    cssTemplate: "{selector} { user-select: $1; }"
+
+  # Eventos de ponteiro (pointer-events)
+  pointer-events:
+    regex: "^pointer-events-(all|none|auto|visible|visiblePainted|visibleFill|visibleStroke|painted|fill|stroke)$"
+    cssTemplate: "{selector} { pointer-events: $1; }"
+
+  #* Orientação de Listas:
+  list-orientation:
+    regex: "^list-(disc|circle|square|none)$"
+    cssTemplate: "{selector} { list-style-type: $1; }"
+
+  list-position:
+    regex: "^list-(inside|outside)$"
+    cssTemplate: "{selector} { list-style-position: $1; }"
+
+  #* Caixas de Conteúdo:
+  box-sizing:
+    regex: "^(border|content)-box$"
+    cssTemplate: "{selector} { box-sizing: $1-box; }"
+
+  #* Padding: [https://webeponto.notion.site/Padding-2dea7be58df54fd38275309aaa177708]
+  padding:
+    regex: '^p-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { padding: $1$2; }"
+
+  padding-x:
+    regex: '^px-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { padding-left: $1$2; padding-right: $1$2; }"
+
+  padding-y:
+    regex: '^py-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { padding-top: $1$2; padding-bottom: $1$2; }"
+
+  padding-top:
+    regex: '^pt-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { padding-top: $1$2; }"
+
+  padding-right:
+    regex: '^pr-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { padding-right: $1$2; }"
+
+  padding-bottom:
+    regex: '^pb-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { padding-bottom: $1$2; }"
+
+  padding-left:
+    regex: '^pl-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { padding-left: $1$2; }"
+
+  #* Margem: [https://webeponto.notion.site/Margens-13b4ef3cd3f24722bef2898170ee2364]
+  margin:
+    regex: '^m-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { margin: $1$2; }"
+
+  margin-x:
+    regex: '^mx-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { margin-left: $1$2; margin-right: $1$2; }"
+
+  margin-y:
+    regex: '^my-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { margin-top: $1$2; margin-bottom: $1$2; }"
+
+  margin-top:
+    regex: '^mt-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { margin-top: $1$2; }"
+
+  margin-right:
+    regex: '^mr-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { margin-right: $1$2; }"
+
+  margin-bottom:
+    regex: '^mb-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { margin-bottom: $1$2; }"
+
+  margin-left:
+    regex: '^ml-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { margin-left: $1$2; }"
+
+  #* Tamanhos: [https://webeponto.notion.site/Definindo-Tamanhos-896fc9400ad34d73a8db6b1863740659]
+  width:
+    regex: '^w-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)$'
+    cssTemplate: "{selector} { width: $1$2; }"
+
+  max-width:
+    regex: '^w-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)-max$'
+    cssTemplate: "{selector} { max-width: $1$2; }"
+
+  min-width:
+    regex: '^w-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)-min$'
+    cssTemplate: "{selector} { min-width: $1$2; }"
+
+  height:
+    regex: '^h-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)$'
+    cssTemplate: "{selector} { height: $1$2; }"
+
+  max-height:
+    regex: '^h-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)-max$'
+    cssTemplate: "{selector} { max-height: $1$2; }"
+
+  min-height:
+    regex: '^h-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)-min$'
+    cssTemplate: "{selector} { min-height: $1$2; }"
+
+  #* Bordas: [https://webeponto.notion.site/Bordas-a181d070d03245a3b511d34647301fb6]
+  # CORRIGIDO: Regex simplificado e cssTemplate fixo
+  border-all:
+    regex: '^b-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
+    cssTemplate: "{selector} { border: $1$2 $3; }"
+
+  # Top e Bottom simultâneos
+  border-y:
+    regex: '^by-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
+    cssTemplate: "{selector} { border-top: $1$2 $3; border-bottom: $1$2 $3; }"
+
+  # Left e Right simultâneos
+  border-x:
+    regex: '^bx-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
+    cssTemplate: "{selector} { border-left: $1$2 $3; border-right: $1$2 $3; }"
+
+  # Top only
+  border-top:
+    regex: '^bt-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
+    cssTemplate: "{selector} { border-top: $1$2 $3; }"
+
+  # Right only
+  border-right:
+    regex: '^br-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
+    cssTemplate: "{selector} { border-right: $1$2 $3; }"
+
+  # Bottom only
+  border-bottom:
+    regex: '^bb-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
+    cssTemplate: "{selector} { border-bottom: $1$2 $3; }"
+
+  # Left only
+  border-left:
+    regex: '^bl-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
+    cssTemplate: "{selector} { border-left: $1$2 $3; }"
+
+  # Bordas apenas com largura (usa solid como padrão)
+  border-width-all:
+    regex: '^b-(\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border: $1$2 solid; }"
+
+  border-width-y:
+    regex: '^by-(\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-top: $1$2 solid; border-bottom: $1$2 solid; }"
+
+  border-width-x:
+    regex: '^bx-(\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-left: $1$2 solid; border-right: $1$2 solid; }"
+
+  border-width-top:
+    regex: '^bt-(\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-top: $1$2 solid; }"
+
+  border-width-right:
+    regex: '^br-(\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-right: $1$2 solid; }"
+
+  border-width-bottom:
+    regex: '^bb-(\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-bottom: $1$2 solid; }"
+
+  border-width-left:
+    regex: '^bl-(\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-left: $1$2 solid; }"
+
+  #* Raio de Borda: [https://webeponto.notion.site/Raio-de-Borda-bfd74a08896b46a0b34970e3427980da]
+  rounded:
+    regex: '^rounded-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-radius: $1$2; }"
+
+  rounded-t:
+    regex: '^rounded-t-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-top-left-radius: $1$2; border-top-right-radius: $1$2; }"
+
+  rounded-b:
+    regex: '^rounded-b-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-bottom-left-radius: $1$2; border-bottom-right-radius: $1$2; }"
+
+  rounded-l:
+    regex: '^rounded-l-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-top-left-radius: $1$2; border-bottom-left-radius: $1$2; }"
+
+  rounded-r:
+    regex: '^rounded-r-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-top-right-radius: $1$2; border-bottom-right-radius: $1$2; }"
+
+  rounded-tl:
+    regex: '^rounded-tl-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-top-left-radius: $1$2; }"
+
+  rounded-tr:
+    regex: '^rounded-tr-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-top-right-radius: $1$2; }"
+
+  rounded-bl:
+    regex: '^rounded-bl-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-bottom-left-radius: $1$2; }"
+
+  rounded-br:
+    regex: '^rounded-br-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-bottom-right-radius: $1$2; }"
+
+  #* Outlines:
+  #? Outline Completo (width + style)
+  outline:
+    regex: '^o-(\d*\.?\d+)(px|em|rem)-(none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset)$'
+    cssTemplate: "{selector} { outline: $1$2 $3; }"
+
+  #? Outline Color (se precisar de cor específica)
+  outline-color:
+    regex: '^oc\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { outline-color: var(--$1); }"
+
+  #? Outline Offset (distância da borda)
+  outline-offset:
+    regex: '^oo-(\d*\.?\d+)(px|em|rem)$'
+    cssTemplate: "{selector} { outline-offset: $1$2; }"
+
+  #* Razão de Aspecto:
+  #? Aspect Ratio (Padrão fracionado)
+  aspect-ratio-fraction:
+    regex: '^ratio-(\d+)/(\d+)$'
+    cssTemplate: "{selector} { aspect-ratio: $1 / $2; }"
+
+  #? Aspect Ratio (Decimal)
+  aspect-ratio-decimal:
+    regex: '^ratio-(\d*\.?\d+)$'
+    cssTemplate: "{selector} { aspect-ratio: $1; }"
+
+  #? Aspect Ratio (Keywords individuais)
+  aspect-ratio-auto:
+    regex: "^ratio-auto$"
+    cssTemplate: "{selector} { aspect-ratio: auto; }"
+
+  aspect-ratio-square:
+    regex: "^ratio-square$"
+    cssTemplate: "{selector} { aspect-ratio: 1 / 1; }"
+
+  aspect-ratio-video:
+    regex: "^ratio-video$"
+    cssTemplate: "{selector} { aspect-ratio: 16 / 9; }"
+
+  #* Transições:
+  #? DURAÇÃO (Simples e direto)
+  transition-duration:
+    regex: '^t-(\d+)(ms|s)$'
+    cssTemplate: "{selector} { transition-duration: $1$2; }"
+
+  #? TIMING FUNCTION (Leitura natural)
+  transition-timing:
+    regex: '^timing-(linear|ease|ease-in|ease-out|ease-in-out|step-start|step-end|cubic-bezier\(.+?\))$'
+    cssTemplate: "{selector} { transition-timing-function: $1; }"
+
+  #? DELAY (Prático e objetivo)
+  transition-delay:
+    regex: '^delay-(\d+)(ms|s)$'
+    cssTemplate: "{selector} { transition-delay: $1$2; }"
+
+  #? PROPRIEDADE (Autoexplicativo)
+  transition-property:
+    regex: "^transition-(all|none|background|color|opacity|transform|box-shadow|filter)$"
+    cssTemplate: "{selector} { transition-property: $1; }"
+
+  #* Escalas:
+  scale:
+    regex: '^scale-(-?\d*\.?\d+)$'
+    cssTemplate: "{selector} { transform: scale($1); }"
+
+  # Escala somente no eixo X
+  scale-x:
+    regex: '^scale-x-(-?\d*\.?\d+)$'
+    cssTemplate: "{selector} { transform: scaleX($1); }"
+
+  # Escala somente no eixo Y
+  scale-y:
+    regex: '^scale-y-(-?\d*\.?\d+)$'
+    cssTemplate: "{selector} { transform: scaleY($1); }"
+
+  # Escala somente no eixo Z
+  scale-z:
+    regex: '^scale-z-(\d*\.?\d+)$'
+    cssTemplate: "{selector} { transform: scaleZ($1); }"
+
+  #? Escala Combinada (X, Y e Z)
+  scale-3d:
+    regex: '^scale-(\d*\.?\d+)-(\d*\.?\d+)-(\d*\.?\d+)$'
+    cssTemplate: "{selector} { transform: scale3d($1, $2, $3); }"
+
+  #* Opacidade:
+  opacity:
+    regex: '^opacity-(-?\d*\.?\d+)$'
+    cssTemplate: "{selector} { opacity: $1; }"
+
+  #* Rotação:
+  rotate:
+    regex: '^rotate-(-?\d{1,3})deg$'
+    cssTemplate: "{selector} { transform: rotate($1deg); }"
+
+  #? Rotação 3D em Eixos Específicos
+  rotate-x:
+    regex: '^rotate-x-(-?\d{1,3})deg$'
+    cssTemplate: "{selector} { transform: rotateX($1deg); }"
+
+  rotate-y:
+    regex: '^rotate-y-(-?\d{1,3})deg$'
+    cssTemplate: "{selector} { transform: rotateY($1deg); }"
+
+  rotate-z:
+    regex: '^rotate-z-(-?\d{1,3})deg$'
+    cssTemplate: "{selector} { transform: rotateZ($1deg); }"
+
+  #? Rotação 3D Completa (Vetor + Ângulo)
+  rotate-3d:
+    regex: '^rotate3d-(-?\d*\.?\d+)-(-?\d*\.?\d+)-(-?\d*\.?\d+)-(-?\d{1,3})deg$'
+    cssTemplate: "{selector} { transform: rotate3d($1, $2, $3, $4deg); }"
+
+  #? Rotações Direcionais (Atalhos Práticos)
+  rotate-direction:
+    regex: "^rotate-(left|right|inverted|upside)$"
+    cssTemplate: |
+      {selector} { 
+        transform: rotate(#{if($1=='left','-90deg',$1=='right','90deg',$1=='inverted','180deg','0deg')}); 
+      }
+
+  #* Translações:
+  #? Movimento Horizontal (Eixo X)
+  translate-x:
+    regex: '^translate-x-(-?\d*\.?\d+)(px|em|rem|%|vw|vh)$'
+    cssTemplate: "{selector} { transform: translateX($1$2); }"
+
+  #? Movimento Vertical (Eixo Y)
+  translate-y:
+    regex: '^translate-y-(-?\d*\.?\d+)(px|em|rem|%|vw|vh)$'
+    cssTemplate: "{selector} { transform: translateY($1$2); }"
+
+  #? Movimento 3D (Eixo Z - Profundidade)
+  translate-z:
+    regex: '^translate-z-(-?\d*\.?\d+)(px|em|rem)$'
+    cssTemplate: "{selector} { transform: translateZ($1$2); }"
+
+  #? Movimento Combinado (XY)
+  translate-xy:
+    regex: '^translate-(-?\d*\.?\d+)(px|em|rem|%)-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { transform: translate($1$2, $3$4); }"
+
+  #? Movimento 3D Completo (XYZ)
+  translate-3d:
+    regex: '^translate3d-(-?\d*\.?\d+)(px|em|rem)-(-?\d*\.?\d+)(px|em|rem)-(-?\d*\.?\d+)(px|em|rem)$'
+    cssTemplate: "{selector} { transform: translate3d($1$2, $3$4, $5$6); }"
+
+  #? Movimento Relativo (Porcentagem do próprio elemento)
+  translate-percent:
+    regex: '^translate-self-(-?\d{1,3})%$'
+    cssTemplate: "{selector} { transform: translate($1%, $1%); }"
+
+  #! ===== FEATURES EM TESTE: PARTES CONTEXTUAIS ===== #
+
+  # Flex Container
+  display-flex:
+    regex: "^dp-flex$"
+    cssTemplate: "{selector} { display: flex; }"
+
+  # Flex Direction
+  flex-row:
+    regex: "^row$"
+    cssTemplate: "{selector} { flex-direction: row; }"
+
+  flex-col:
+    regex: "^col$"
+    cssTemplate: "{selector} { flex-direction: column; }"
+
+contextPatterns:
+  flex-context:
+    requires: ["dp-flex"] # Apenas classe base
+    mediators:
+      row: "row" # Classe base do mediador
+      col: "col" # Classe base do mediador
+    properties:
+      v-top:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "align-items: flex-start;"
+          col: "justify-content: flex-start;"
+      v-center:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "align-items: center;"
+          col: "justify-content: center;"
+      v-bottom:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "align-items: flex-end;"
+          col: "justify-content: flex-end;"
+      v-stretch:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "align-items: stretch;"
+          col: "justify-content: stretch;"
+
+      h-left:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "justify-content: flex-start;"
+          col: "align-items: flex-start;"
+      h-center:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "justify-content: center;"
+          col: "align-items: center;"
+      h-right:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "justify-content: flex-end;"
+          col: "align-items: flex-end;"
+      h-stretch:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "justify-content: stretch;"
+          col: "align-items: stretch;"
+      h-between:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "justify-content: space-between;"
+          col: "align-items: space-between;"
+      h-around:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "justify-content: space-around;"
+          col: "align-items: space-around;"
+      h-evenly:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rules:
+          row: "justify-content: space-evenly;"
+          col: "align-items: space-evenly;"
+
+      gap:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rule: "gap: {value}px;"
+        valuePattern: "gap-(\\d+)"
+      gap-x:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rule: "column-gap: {value}px;"
+        valuePattern: "gap-x-(\\d+)"
+      gap-y:
+        selector: ".$mediator .$prop, .$mediator.$prop"
+        rule: "row-gap: {value}px;"
+        valuePattern: "gap-y-(\\d+)"

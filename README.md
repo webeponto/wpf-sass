@@ -1,42 +1,75 @@
-# WPF 2.0
-## Desenvolvido por Web e Ponto
+# WPF 3.0 - The Intuitive CSS
+**Dynamic utility framework that understands context, not just classes**  
 
-**Framework CSS para desenvolvimento ágil**
+<!-- ```bash
+npm install wpf-engine
+``` -->
 
-## Table of Contents
+## Human-First CSS for Everyone
 
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [License](#license)
+WPF 3.0 reimagines CSS architecture by blending natural language patterns with dynamic generation. Unlike traditional frameworks:  
 
-## Introduction
+✅ **Intuitive syntax** - Classes that speak CSS fluently (`t-center` vs `text-align-center`)  
+✅ **Context-aware rules** - Properties adapt to companion classes  
+✅ **Learn-as-you-code** - Discover CSS through meaningful class names  
+✅ **Zero bloat** - Generates only what your project uses  
 
-WPF 2.0 é um framework CSS desenvolvido com a intenção de simplificar o processo de estilização de aplicações web. Inspirado no popular framework Tailwind e utilizando todo o poder do SASS, WPF 2.0 permite aos desenvolvedores de facilmente criar e aplicar estilos em suas aplicações utilizando uma sintaxe intuitiva e nomes de classes fáceis de entender.
+## Why Designers and Developers Align
 
-Com o WPF 2.0, você pode facilmente definir estilos que são amplamente únicos e flexíveis, enquanto ainda permanece fácil para manter e atualizar conforme seu projeto evoluí.
+WPF 3.0 bridges the gap between design and development by simplifying the styling process. It allows designers to express their intent without needing to understand complex CSS rules, while developers can focus on functionality rather than class names and their attributes. Inspired by the popular Tailwind framework, and using all the power of SASS and PostCSS, WPF 3.0 provides a flexible and intuitive way to create responsive, maintainable styles.
 
-## Installation
+## Key Features
 
-Para instalar o WPF 2.0, requisite permissão do administrador deste repositório e clone o projeto em seu computador. Arraste todo o conteúdo do diretório *src* para a sua pasta CSS padrão.
+While other frameworks force you to learn their language, WPF speaks *your* language:
 
-É necessário que você possua a versão do SASS/SCSS mais recente instalada e funcionando em seu computador. 
+- **PostCSS Power** - Modern features without setup  
+- **SCSS Control** - Logic and variables when needed  
+- **Tailwind Speed** - Rapid prototyping  
+- **Human Logic** - Rules that understand relationships  
 
-Caso não queira instalar os módulos originais do SASS/SCSS em seu computador, você pode utilizar o plugin *Live SASS Compiler*, disponível para download para os usuários do Visual Studio Code. Neste caso, basta colar todos os arquivos da pasta *src* dentro de uma pasta *sass*.
+It encapsulates complex CSS concepts into simple, human-readable classes, making it easy for anyone to create beautiful, responsive designs without deep CSS knowledge, and without making the end result too overwhelming or bloated.
 
-## Documentation
+### For CSS Learners & Experts
+```html
+<!-- Discover properties through classes -->
+<div class="
+  absolute		/* position: absolute */
+  top(50%)		/* top: 50% */
+  center(v)		/* transform: translate(50%, -50%) */
+  opacity-0.8	/* opacity: 0.8 */
+  rotate-15deg	/* transform: rotate(15deg) */
+">
+```
 
-Para uma documentação mais detalhada de como utilizar o WPF 2.0, incluindo a lista completa de classes e estilos disponíveis, cheque a nossa documentação oficial.
+## Contextual Intelligence Engine
 
-[Acesse a documentação oficial do WPF2](https://webeponto.notion.site/Documenta-o-87294a32368b42e2961ebd83eb2f7e23).
+WPF 3.0's engine understands the context of your classes, allowing you to write less and achieve more. It dynamically generates CSS based on the relationships between classes, so you can focus on design rather than syntax.
 
-## Contributing
+```html
+<!-- Automatically adapts to parent context -->
 
-O WPF 2.0 é um projeto pessoal de uso interno da empresa e não aceita atualmente contribuições de fora do time de desenvolvedores envolvidos na constante utilização da ferramenta.
+<!-- Horizontal layout -->
+<div class="dp-flex row v-center"></div> <!-- 'v-center' applies 'align-items:center;'> -->
 
-Se você trabalha com o WPF 2.0 e deseja enviar um feedback para incluir recursos ou corrigir bugs conhecidos no framework, sinta-se livre para documentar erros e problemas que devem ser corrigidos utilizando esse repositório.
+<!-- Vertical layout -->
+<div class="dp-flex col v-center"></div> <!-- 'v-center' applies 'justify-content:center;' -->
+```
 
-## License
+## Join and Help Us Change CSS Together!
 
-Como declarado anteriormente, o WPF 2.0 trata-se de uma iniciativa privada e sua licença não cobre usos para projetos realizados fora do ambiente de trabalho onde ele é desenvolvido.
+We're building WPF with:  
+🔧 **Core Team** - 3 CSS specialists
+🚀 **Monthly Updates** - Since v1.0
+
+**Contribution Opportunities:**  
+- Documentation localization  
+- Plugin development  
+- Framework integrations (React/Vue/Svelte)  
+- Performance optimization  
+- Educational content  
+
+<!-- [Contribute](https://img.shields.io/badge/PRs-Welcomed-brightgreen)
+[Discord](https://img.shields.io/discord/123456789?logo=discord) -->
+
+## License  
+MIT Licensed - Freedom for all implementations  
