@@ -124,25 +124,21 @@ patterns:
     cssTemplate: "{selector} { word-break: $1; }"
 
   #* Distanciamento de Linhas de Texto:
-  line-height-percent:
-    regex: '^lh-(\d{1,3})$'
-    cssTemplate: "{selector} { line-height: $1%; }"
-
-  line-height-em:
-    regex: '^lh-(\d*\.?\d+)em$'
-    cssTemplate: "{selector} { line-height: $1em; }"
+  # line-height-percent:
+  #   regex: '^lh-(\d{1,3})$'
+  #   cssTemplate: "{selector} { line-height: $1%; }"
 
   line-height-units:
     regex: '^lh-(\d*\.?\d+)(px|rem|em|%)$'
     cssTemplate: "{selector} { line-height: $1$2; }"
 
   #* Tamanho do Texto: [https://webeponto.notion.site/Tamanho-do-Texto-10a7879182e580f7a0e9c871925b3b61?pvs=74]
-  font-size-percent:
-    regex: '^fs-(\d{1,3})$'
-    cssTemplate: "{selector} { font-size: $1%; }"
+  # font-size-percent:
+  #   regex: '^fs-(\d{1,3})$'
+  #   cssTemplate: "{selector} { font-size: $1%; }"
 
   font-size-units:
-    regex: '^fs-(\d*\.?\d+)(px|em|rem)$'
+    regex: '^fs-(\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { font-size: $1$2; }"
 
   #* Decoração de Texto:
@@ -182,6 +178,41 @@ patterns:
   box-sizing:
     regex: "^(border|content)-box$"
     cssTemplate: "{selector} { box-sizing: $1-box; }"
+
+  #* Visibility Responsive (Mobile/Desktop): 
+  # Classes que controlam a visibilidade baseada em breakpoint de 1024px
+  mobile-visibility:
+    regex: "^mobile$"
+    cssTemplate: |
+      @media (min-width: 1024px) {
+        {selector} { display: none !important; }
+      }
+
+  desktop-visibility:
+    regex: "^desktop$"
+    cssTemplate: |
+      @media (max-width: 1023px) {
+        {selector} { display: none !important; }
+      }
+
+  #* Universal Hidden Class:
+  # Classe que esconde elementos independente de breakpoint - sempre com !important
+  hidden:
+    regex: "^hidden$"
+    cssTemplate: "{selector} { display: none !important; }"
+
+  #* Gap (Espaçamento em Flexbox/Grid): [https://webeponto.notion.site/Gap-flexbox-grid]
+  gap:
+    regex: '^gap-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { gap: $1$2; }"
+
+  gap-x:
+    regex: '^gap-x-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { column-gap: $1$2; }"
+
+  gap-y:
+    regex: '^gap-y-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { row-gap: $1$2; }"
 
   #* Padding: [https://webeponto.notion.site/Padding-2dea7be58df54fd38275309aaa177708]
   padding:
@@ -526,7 +557,7 @@ patterns:
   # Flex Container
   display-flex:
     regex: "^dp-flex$"
-    cssTemplate: "{selector} { display: flex; }"
+    cssTemplate: "{selector} { display: flex; box-sizing: border-box; }"
 
   # Flex Direction
   flex-row:
@@ -537,6 +568,21 @@ patterns:
     regex: "^col$"
     cssTemplate: "{selector} { flex-direction: column; }"
 
+  # Grid Container
+  display-grid:
+    regex: "^dp-grid$"
+    cssTemplate: "{selector} { display: grid; }"
+
+  # Grid Template Columns
+  grid-cols:
+    regex: '^col-(\d+)$'
+    cssTemplate: "{selector} { grid-template-columns: repeat($1, 1fr); }"
+
+  # Grid Column Span (padrão básico - também será usado contextualmente)
+  grid-span-col:
+    regex: '^span-col-(\d+)$'
+    cssTemplate: "{selector} { grid-column: span $1; }"
+
 contextPatterns:
   flex-context:
     requires: ["dp-flex"] # Apenas classe base
@@ -545,71 +591,71 @@ contextPatterns:
       col: "col" # Classe base do mediador
     properties:
       v-top:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "align-items: flex-start;"
           col: "justify-content: flex-start;"
       v-center:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "align-items: center;"
           col: "justify-content: center;"
       v-bottom:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "align-items: flex-end;"
           col: "justify-content: flex-end;"
       v-stretch:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "align-items: stretch;"
           col: "justify-content: stretch;"
 
       h-left:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "justify-content: flex-start;"
           col: "align-items: flex-start;"
       h-center:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "justify-content: center;"
           col: "align-items: center;"
       h-right:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "justify-content: flex-end;"
           col: "align-items: flex-end;"
       h-stretch:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "justify-content: stretch;"
           col: "align-items: stretch;"
       h-between:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "justify-content: space-between;"
-          col: "align-items: space-between;"
+          col: "justify-content: space-between;"
       h-around:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "justify-content: space-around;"
-          col: "align-items: space-around;"
+          col: "justify-content: space-around;"
       h-evenly:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rules:
           row: "justify-content: space-evenly;"
-          col: "align-items: space-evenly;"
+          col: "justify-content: space-evenly;"
 
       gap:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rule: "gap: {value}px;"
         valuePattern: "gap-(\\d+)"
       gap-x:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rule: "column-gap: {value}px;"
         valuePattern: "gap-x-(\\d+)"
       gap-y:
-        selector: ".$mediator .$prop, .$mediator.$prop"
+        selector: "&.$mediator.$prop"
         rule: "row-gap: {value}px;"
         valuePattern: "gap-y-(\\d+)"

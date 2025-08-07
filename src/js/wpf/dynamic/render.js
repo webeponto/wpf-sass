@@ -54,6 +54,26 @@ let isProcessing = false;
 let pendingUpdate = false;
 const cssCache = new Map();
 
+/** 
+	*#	Reset Configuration and Cache
+	*	Reinicia a leitura do arquivo YAML para renderizar as mudanças mais recentes.
+	*
+	* 	@returns {bool} - Uma resposta se a execução da tarefa foi ou não bem sucedida.
+*/
+function resetConfigAndCache() {
+	try {
+		cssCache.clear();
+		config = yaml.load(fs.readFileSync(configPath, "utf8"));
+		console.log("🔄 Config recarregada e cache limpo:",
+			Object.keys(config.patterns).length, "padrões,",
+			Object.keys(config.contextPatterns || {}).length, "contextos");
+		return true;
+	} catch (e) {
+		console.error("❌ Erro ao recarregar config:", e);
+		return false;
+	}
+}
+
 //* ====================== FUNÇÕES UTILITÁRIAS ====================== //
 
 /** 
@@ -235,10 +255,14 @@ function generateContextualCSS(group, classSet, processedRules) {
 					propVariations.forEach(propFull => {
 						const propInfo = extractBreakpoint(propFull);
 
+						// Criar seletor usando apenas classes obrigatórias (required classes)
+						const requiredClasses = context.requires || [];
+						const baseSelector = '.' + requiredClasses.map(escapeSelector).join('.');
+
 						let selector = context.properties[propBase].selector
 							.replace(/\$mediator/g, escapeSelector(mediatorFull))
 							.replace(/\$prop/g, escapeSelector(propFull))
-							.replace(/&/g, group.map(escapeSelector).join('.'));
+							.replace(/&/g, baseSelector);
 
 						let rule = context.properties[propBase].rules?.[mediatorBase] ||
 							context.properties[propBase].rules?.default ||
@@ -302,23 +326,17 @@ function generateCSS(allClassGroups) {
 	const processedRules = new Set();
 
 	console.log(`🔍 Iniciando geração de CSS para ${allClassGroups.length} grupos`);
-	console.log(`📊 Classes únicas detectadas: ${Array.from(allClasses).join(', ')}`);
 
 	// Processa os grupos de classes:
 	allClassGroups.forEach((group, index) => {
-		console.log(`\n--- Processando grupo ${index + 1}/${allClassGroups.length} ---`);
-		console.log(`   🧩 Classes: [${group.join(', ')}]`);
-
 		const classSet = new Set(group);
 		group.forEach(cls => allClasses.add(cls));
 
 		// CSS Contextual (com controle de duplicatas):
 		const contextualCSS = generateContextualCSS(group, classSet, processedRules);
 		if (contextualCSS) {
-			console.log(`   🎨 CSS Contextual gerado:\n${contextualCSS}`);
 			defaultRules += contextualCSS;
 		}
-		//// defaultRules += generateContextualCSS(group, classSet, processedRules);
 
 		// Processa as classes individualmente:
 		group.forEach(clsName => {
@@ -384,14 +402,18 @@ async function extractClassGroupsFromFile(filePath) {
 		const classGroups = [];
 
 		// Define um padrão de regex para encontrar classes em blocos HTML, Blade e JavaScript:
-		const classBlockPattern = /(?:class|className|data-class)=["'`{]([^"'`}]+)["'`}]/g;
+		const classBlockPattern = /(?:class|className|data-class|x-bind:class|:class|x-class)=["'`{]([^"'`}]+)["'`}]/g;
 
 		let match;
 		while ((match = classBlockPattern.exec(content)) !== null) {
 			let classString = match[1]
 				.replace(/\${[^}]*}/g, '')        // Remove expressões de JavaScript.
 				.replace(/\{\{[^}]+\}\}/g, '')    // Remove expressões do Blade.
-				.replace(/@[a-zA-Z0-9_]+/g, '');  // Remove directivas.
+				.replace(/@[a-zA-Z0-9_]+/g, '')   // Remove directivas.
+				.replace(/[{}]/g, ' ')            // Remove chaves de objetos Alpine.js
+				.replace(/['":]/g, ' ')           // Remove aspas e dois pontos
+				.replace(/\s*,\s*/g, ' ')         // Remove vírgulas
+				.replace(/\s+/g, ' ');            // Normaliza espaços
 
 			// Processa as classes e remove as duplicatas:
 			const classes = [...new Set(
@@ -616,6 +638,29 @@ watcher
 	.on('add', file => handleFileChange('add', file))
 	.on('change', file => handleFileChange('change', file))
 	.on('ready', () => console.log('👀 Observador ativo'));
+
+// Adiciona monitoramento específico para o arquivo de configuração
+const configWatcher = chokidar.watch(configPath, {
+	persistent: true,
+	ignoreInitial: true,
+	awaitWriteFinish: {
+		stabilityThreshold: 200,
+		pollInterval: 50
+	}
+});
+
+configWatcher.on('change', () => {
+	console.log('📝 Configuração YAML modificada - recarregando...');
+	if (resetConfigAndCache()) {
+		// Força regeneração completa removendo cache e arquivo de saída
+		const outputPath = path.join(outDir, 'wpf-dynamic.scss');
+		if (fs.existsSync(outputPath)) {
+			fs.unlinkSync(outputPath);
+			console.log('🗑️ Arquivo CSS removido para regeneração completa');
+		}
+		updateDynamicSCSS().catch(console.error);
+	}
+});
 
 let debounceTimer;
 
