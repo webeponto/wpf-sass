@@ -1,6 +1,6 @@
 /**
 	*# 	@property WPF3 - Framework CSS Dinâmico
-	* 	@version Versão: 3.0.0
+	* 	@version Versão: 3.0.2
 	* 	@authors Lyautey Maluf Neto, Matheus Patrignani Quaiat, David Henderson
 	* 	@copyright 2023
 	*
@@ -402,22 +402,28 @@ async function extractClassGroupsFromFile(filePath) {
 		const classGroups = [];
 
 		// Define um padrão de regex para encontrar classes em blocos HTML, Blade e JavaScript:
-		const classBlockPattern = /(?:class|className|data-class|x-bind:class|:class|x-class)=["'`{]([^"'`}]+)["'`}]/g;
+	const classBlockPattern = /(?:class|className|data-class|x-bind:class|:class|x-class)=["'`{]([^"'`}]+)["'`}]/g;
 
 		let match;
 		while ((match = classBlockPattern.exec(content)) !== null) {
 			let classString = match[1]
+				// Protege vírgulas dentro de parênteses (ex: rgba(255,255,255,0.5)) para não virarem separadores de classes
+				.replace(/\(([^)]*)\)/g, (_, inner) => `(${inner.replace(/,/g, '\u0007')})`)
 				.replace(/\${[^}]*}/g, '')        // Remove expressões de JavaScript.
 				.replace(/\{\{[^}]+\}\}/g, '')    // Remove expressões do Blade.
 				.replace(/@[a-zA-Z0-9_]+/g, '')   // Remove directivas.
 				.replace(/[{}]/g, ' ')            // Remove chaves de objetos Alpine.js
-				.replace(/['":]/g, ' ')           // Remove aspas e dois pontos
-				.replace(/\s*,\s*/g, ' ')         // Remove vírgulas
+				.replace(/["']/g, ' ')           // Remove apenas aspas simples e duplas (preserva :) 
+				.replace(/\s*,\s*/g, ' ')         // Remove vírgulas (fora dos parênteses, já protegidas)
+				.replace(/\u0007/g, ',')           // Restaura vírgulas protegidas
 				.replace(/\s+/g, ' ');            // Normaliza espaços
 
 			// Processa as classes e remove as duplicatas:
 			const classes = [...new Set(
-				classString.split(/\s+/)
+				classString
+					.split(/\s+/)
+					// Normaliza tokens vindos de objetos Alpine/Vue, removendo dois-pontos finais (separadores de chave:valor)
+					.map(tok => tok.replace(/:$/, ''))
 					.filter(cls => {
 						const trimmed = cls.trim();
 						return trimmed &&

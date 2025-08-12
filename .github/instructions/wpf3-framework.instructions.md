@@ -69,7 +69,39 @@ contextPatterns:
         selector: ".$mediator .$prop, .$mediator.$prop"
         rules:
           mediator1: "css-property: value;"
-```rating code, answering questions, or reviewing changes.
+```
+
+### 🚨 **CRITICAL: YAML Pattern Guidelines**
+
+**❌ NEVER use `#{if()}` conditionals for different CSS property names:**
+```yaml
+# WRONG - generates invalid CSS like .gap-c-10px { #{if(c=='r','row-gap','column-gap')}: 10px; }
+gap-consolidated:
+  regex: '^gap-([rc])-(\d+)(px)$'
+  cssTemplate: "{selector} { #{if($1=='r','row-gap','column-gap')}: $2$3; }"
+```
+
+**✅ ALWAYS use separate patterns for different properties:**
+```yaml
+# CORRECT - generates valid CSS
+gap-row-alias:
+  regex: '^gap-r-(-?\d*\.?\d+)(px|em|rem|%)$'
+  cssTemplate: "{selector} { row-gap: $1$2; }"
+
+gap-col-alias:
+  regex: '^gap-c-(-?\d*\.?\d+)(px|em|rem|%)$'
+  cssTemplate: "{selector} { column-gap: $1$2; }"
+```
+
+**✅ CAN use direct substitution when values match:**
+```yaml
+# CORRECT - $1 maps directly to CSS values
+direction:
+  regex: '^(ltr|rtl)$'
+  cssTemplate: "{selector} { direction: $1; }"
+```
+
+**Why**: render.js only does string replacement - it doesn't process SCSS conditionals. The output must be valid CSS that browsers can understand.rating code, answering questions, or reviewing changes.
 
 # WPF 3.0 Framework - AI Coding Guidelines
 
@@ -341,6 +373,40 @@ breakpoints:
 **🔹 TYPOGRAPHY:**
 - `fs-16px`, `t-center`, `lh-130%`
 - `tt-uppercase`, `t-nowrap`
+
+### Variable-based utilities (new)
+- Purpose: allow runtime-tunable utilities via CSS variables while keeping classic numeric/unit forms.
+- Syntax: use parentheses to provide a token that maps to a CSS variable name.
+- Examples:
+  - `fs-(title)` → `font-size: var(--title)`
+  - `lh-(body)` → `line-height: var(--body)`
+  - `gap-(space)` / `gap-x-(space)` / `gap-y-(space)` → `gap: var(--space)` / `column-gap: var(--space)` / `row-gap: var(--space)`
+  - `p-(pad)` / `px-(pad)` / `py-(pad)` / `pt-(pad)` / `pr-(pad)` / `pb-(pad)` / `pl-(pad)` → padding via `var(--pad)`
+  - `m-(m)` / `mx-(m)` / `my-(m)` / `mt-(m)` / `mr-(m)` / `mb-(m)` / `ml-(m)` → margin via `var(--m)`
+  - `w-(w)` / `w-(w)-min` / `w-(w)-max` and `h-(h)` / `h-(h)-min` / `h-(h)-max` → sizing via `var(--w)` / `var(--h)`
+- Notes:
+  - Tokens are `[a-z0-9-]` by default (expandable later).
+  - Works with breakpoints and `!` importance as usual.
+  - Selectors are auto-escaped: `.fs-(title)` becomes `.fs-\(title\)` in CSS.
+
+### Outline color utility: oc(valor)
+
+Add outline color using a single, unified API that accepts either literal colors or variable tokens:
+
+- Syntax: `oc(valor)`
+- Accepted literal forms (no spaces inside rgb/rgba):
+  - Hex: `oc(#fff)`, `oc(#ffffff)`, `oc(#ffffffff)`
+  - RGB: `oc(rgb(255,255,255))`
+  - RGBA: `oc(rgba(255,255,255,0.5))` (alpha supports integers or decimals)
+- Token form: `oc(token)` maps to `outline-color: var(--token)` where `token` matches `[a-z0-9-]+`.
+
+Examples:
+- Works: `oc(#1e90ff)`, `oc(rgb(34,34,34))`, `oc(rgba(0,0,0,0.08))`, `oc(primary-500)` → `outline-color: var(--primary-500)`
+- Not supported: `oc(rgba(255, 255, 255, 0.5))` (spaces are not allowed inside the class name)
+
+Notes:
+- This utility participates in responsive prefixes and `!` importance like other classes.
+- Special characters in selectors are auto-escaped by the engine.
 
 **🔹 RESPONSIVE & VISIBILITY:**
 - `mobile`, `desktop` (auto-hide based on 1024px breakpoint)

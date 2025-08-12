@@ -118,3 +118,64 @@ npm run dev
 ---
 
 **� Referência Rápida:** Este documento contém metodologias genéricas para resolução de problemas no WPF3. Para casos específicos, aplicar estas metodologias sistematicamente para identificar e corrigir issues.
+
+---
+
+## ♻️ Padrões de Refatoração e Consolidação (WPF3 YAML)
+
+Para manter `wpf.config.yaml` enxuto e fácil de editar, consolide padrões semelhantes APENAS quando não requerem propriedades CSS diferentes. **REGRA CRÍTICA**: render.js faz apenas substituição de strings simples - não processa condicionais SCSS como `#{if()}`.
+
+### 🚨 **REGRAS DE CONSOLIDAÇÃO:**
+
+**✅ PODE consolidar quando:**
+- Mesmo tipo de propriedade CSS (ex: `direction: ltr` vs `direction: rtl`)
+- Valores diretos capturados pelo regex (ex: `$1` já é o valor correto)
+- Exemplo: `^(ltr|rtl)$` → `direction: $1`
+
+**❌ NÃO consolidar quando:**
+- Propriedades CSS diferentes (ex: `row-gap` vs `column-gap`)
+- Valores precisam de transformação (ex: `col` → `column` no grid-auto-flow)
+- Estruturas condicionais complexas
+
+### 📝 **Abordagens Corretas:**
+
+**Simples (Valores Diretos):**
+```yaml
+direction:
+  regex: '^(ltr|rtl)$'
+  cssTemplate: "{selector} { direction: $1; }"
+```
+
+**Propriedades Diferentes (Manter Separado):**
+```yaml
+gap-row-alias:
+  regex: '^gap-r-(-?\d*\.?\d+)(px|em|rem|%)$'
+  cssTemplate: "{selector} { row-gap: $1$2; }"
+
+gap-col-alias:
+  regex: '^gap-c-(-?\d*\.?\d+)(px|em|rem|%)$'
+  cssTemplate: "{selector} { column-gap: $1$2; }"
+```
+
+**Valores com Transformação (Manter Separado):**
+```yaml
+grid-flow-col:
+  regex: '^flow-col$'
+  cssTemplate: "{selector} { grid-auto-flow: column; }"
+
+grid-flow-dense-row:
+  regex: '^flow-dense-row$'
+  cssTemplate: "{selector} { grid-auto-flow: row dense; }"
+```
+
+### 🔍 **Validação Pós-Refatoração:**
+1. **Engine carrega sem erros**: Contagem de padrões aumenta corretamente
+2. **CSS válido gerado**: Sem `#{if()}` no output final
+3. **Propriedades corretas**: `row-gap`, `column-gap`, etc. aparecem corretamente
+4. **Teste funcional**: Classes funcionam no navegador
+
+### 📊 **Métricas de Qualidade:**
+- **Antes da correção**: 119 padrões, CSS com `#{if(c=='r','row-gap','column-gap')}`
+- **Após correção**: 128 padrões, CSS limpo: `.gap-c-10px { column-gap: 10px; }`
+
+**Prioridade**: Funcionalidade > Consolidação. Melhor ter padrões separados funcionais que consolidados quebrados.

@@ -1,4 +1,4 @@
-<p align="center"><a href="https://webeponto.com.br" target="_blank"><img src="logo.png" width="400" alt="WPF3"/><a></p>
+<p align="center"><a - `github/instructions/wpf3-framework.instructions.md`: Documented the `oc(value)` utility with examples, accepted forms (hex, rgb, rgba, token), the "no spaces" rule in rgb/rgba and usage notes;ref="https://webeponto.com.br" target="_blank"><img src="logo.png" width="400" alt="WPF3"/><a></p>
 
 # WPF 3.0
 ## Developed by Lyautey M. Neto, Matheus Patrignani e David Henderson
@@ -6,6 +6,29 @@
 [See Change History](https://github.com/webeponto/wpf-sass/commits).
 
 **Changelog**
+
+## 3.0.2 - Alpha
+- `js/wpf/dynamic/wpf.config.yaml`: Added *Flex Wrap* utilities `wrap`, `nowrap`/`no-wrap` and `wrap-reverse`;
+- `js/wpf/dynamic/wpf.config.yaml`: Restored compatibility for numerous utility classes that were present in WPF2 but not in WPF3, such as aliases *gap-r* (row-gap) and *gap-c* (column-gap), *row-N* (grid-template-rows), *span-row-N* and auto-flows *flow-row|flow-col|flow-dense|flow-dense-row|flow-dense-col*, in addition to classes that dictate content reading direction, such as helpers *ltr* and *rtl*;
+- `js/wpf/dynamic/wpf.config.yaml`: Configured contextual rules for utility classes related to *.dp-grid* with alignments *v-top|v-center|v-bottom|v-stretch|v-baseline* and *h-left|h-center|h-right|h-between|h-stretch*;
+- `js/wpf/dynamic/render.js`: Token normalization in languages like *AlpineJS* and *Vue* to remove terminal `:` characters in braces and ensure class detection in these contexts;
+- `js/wpf/dynamic/wpf.config.yaml`: New CSS variable-based utilities (dynamic token conjugation in parentheses): `fs-(token)`, `lh-(token)`, `gap-(t)`, `gap-x-(t)`, `gap-y-(t)`, `p-(t)`, `px/py/pt/pr/pb/pl-(t)`, `m-(t)`, `mx/my/mt/mr/mb/ml-(t)`, `w-(t)`, `w-(t)-min/max`, `h-(t)`, `h-(t)-min/max` → mapped to `var(--token)`;
+- `views/wpf3-var-test.blade.php`: Monitored test file to validate generation of new variable classes (removable after validation);
+- `js/wpf/dynamic/render.js`: Fixed issue that removed `:` in class extraction, failing recognition of breakpoint variants;
+- `js/wpf/dynamic/wpf.config.yaml`: In *dp-grid* contexts, adjusted horizontal orientation mapping (`h`) to use `justify-content` (as in WPF2), avoiding inconsistencies in horizontal alignment in `dp-grid`;
+- `github/instructions/wpf3-framework.instructions.md`: Documented the new variable-based utilities mode, with `name-(token)` syntax mapping to `var(--token)` and practical examples (fs, lh, gap, padding/margin, width/height);
+- `github/instructions/wpf3-autofixer.instructions.md`: Documented new useful instructions for the library to understand when utility classes should be organized under the same configuration (when multiple values belong to the same group);
+- `js/wpf/dynamic/wpf.config.yaml`: Developed support for variables/tokens in numerous utility classes such as *offset*, *z-index*, alternative versions (aliases) of *gap-row* and *gap-col*, *border*, *rounded* and *outline*;
+- `github/instructions/wpf3-framework.instructions.md`: Documentado o utilitário `oc(valor)` com exemplos, formas aceitas (hex, rgb, rgba, token), a regra de “sem espaços” em rgb/rgba e observações de uso.
+- `js/wpf/dynamic/render.js`: Fixed class extraction to preserve commas inside parentheses, preventing truncation of tokens like `rgba(255,255,255,0.5)` during normalization;
+- `js/wpf/dynamic/wpf.config.yaml`: Reinforced RGB/RGBA rules to not accept spaces inside parentheses, ensuring consistent detection and generation;
+- `js/wpf/dynamic/wpf.config.yaml`: Unified outline border color utility via `oc(value)` with support for literal values and tokens: `oc(#hex)`, `oc(rgb(r,g,b))`, `oc(rgba(r,g,b,a))` (no spaces) and `oc(token)` → `outline-color: var(--token)`;
+- `js/wpf/dynamic/wpf.config.yaml`: Separate patterns for each literal form to ensure valid CSS: `outline-color-hex`, `outline-color-rgb`, `outline-color-rgba`, in addition to `outline-color-var`;
+- `github/prompts/wpf-convert.prompt.md`: Created a prompt to assist in converting classes from WPF2 to WPF3;
+- `js/wpf/dynamic/wpf.config.yaml`: Added 'auto' versions for sizes and spacing: `w-auto`, `h-auto`, `m-auto`, `mx-auto`, `my-auto`, `mt-auto`, `mr-auto`, `mb-auto`, `ml-auto`;
+- Introduced two new intelligent assistant commands exclusively designed to help users utilize GitHub Copilot (or any other intelligent AI Agent) for enhanced WPF3 development experience;
+	- **`/wpf3-find` Command**: AI command followed by a question, CSS attribute, or class name that provides detailed information about its concept and availability in the WPF3 infrastructure. Examples: `/wpf3-find border`, `/wpf3-find gap utilities`, `/wpf3-find flexbox alignment`;
+	- **`/wpf3-convert` Command**: AI command that studies class patterns from one or more attached pages/files, searching for legacy CSS styles and converting them to their respective WPF3-compatible variations. Automatically detects WPF1/WPF2 patterns and suggests modern WPF3 equivalents;
 
 ## 3.0.1 - Alpha
 - `.github/instructions/wpf3-framework.instructions.md`: Added a new file with instructions for the GitHub Copilot tool to help developers use WPF3 more effectively. The file includes tips on how to use the tool to generate code, understand WPF3's features, and improve productivity while working with the framework. It contains all the necessary information for the AI to assist and to know how to access and use every utility class, class function, mixin, and feature available in WPF3, immediately improving the developer's experience and productivity and responding to every question about the framework;

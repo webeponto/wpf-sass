@@ -1,13 +1,16 @@
-#?    FRAMEWORK SCSS WPF 3
+#? FRAMEWORK SCSS WPF 3
 #
-#* Autores: Lyautey M. N. / Matheus P. / David H.
-#* Versão v3.0.0 do Framework SCSS WPF
+#* Autores: Lyautey M. N. / Matheus P.
+#* Versão v3.0.2 do Framework SCSS WPF
 #
 #! Alterar o funcionamento do conjunto de regras do SCSS dinâmico pode causar problemas de renderização e funcionamento.
 #! Erros fatais no funcionamento da ferramenta podem acontecer em caso de alterações não planejadas.
 #
 #? DOCUMENTAÇÃO DO PROJETO: [https://webeponto.notion.site/WPF-bbc0a45af56640898b8de57ecaa81676]
-#
+
+#? Você também pode acessar a documentação do WPF3 diretamente através do seu agente de IA escrevendo 'wpf3-find' 
+#? seguido de um termo, atributo CSS ou dúvida. Garanta que o seu agente de IA tem acesso aos arquivos de instruções e
+#? prompts inclusos nesse repositório.
 
 #* Configuração da pasta base para monitoramento de arquivos:
 directoriesToWatch:
@@ -38,6 +41,10 @@ patterns:
     regex: '^(top|right|bottom|left)\((-?\d+)(%|px|dvh|dvw)?\)$'
     cssTemplate: "{selector} { $1: $2$3; }"
 
+  offset-var:
+    regex: '^(top|right|bottom|left)-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { $1: var(--$2); }"
+
   # Centralização
   center-h:
     regex: '^center\(h\)$'
@@ -55,6 +62,10 @@ patterns:
   z-index:
     regex: '^z-(-?\d+)$'
     cssTemplate: "{selector} { z-index: $1; }"
+
+  z-index-var:
+    regex: '^z-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { z-index: var(--$1); }"
 
   #* Transbordamento: [https://webeponto.notion.site/Transbordamento-de63bf79f9b74d69a60ad29e5c953c58]
   # Caso sem eixo e sem tipo: auto
@@ -132,6 +143,11 @@ patterns:
     regex: '^lh-(\d*\.?\d+)(px|rem|em|%)$'
     cssTemplate: "{selector} { line-height: $1$2; }"
 
+  # Dinâmico via variável CSS para line-height
+  line-height-var:
+    regex: '^lh-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { line-height: var(--$1); }"
+
   #* Tamanho do Texto: [https://webeponto.notion.site/Tamanho-do-Texto-10a7879182e580f7a0e9c871925b3b61?pvs=74]
   # font-size-percent:
   #   regex: '^fs-(\d{1,3})$'
@@ -140,6 +156,11 @@ patterns:
   font-size-units:
     regex: '^fs-(\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { font-size: $1$2; }"
+
+  # Dinâmico via variável CSS para font-size
+  font-size-var:
+    regex: '^fs-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { font-size: var(--$1); }"
 
   #* Decoração de Texto:
   text-decoration:
@@ -214,68 +235,190 @@ patterns:
     regex: '^gap-y-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { row-gap: $1$2; }"
 
+  # Versões dinâmicas via variável CSS para gap
+  gap-var:
+    regex: '^gap-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { gap: var(--$1); }"
+
+  gap-x-var:
+    regex: '^gap-x-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { column-gap: var(--$1); }"
+
+  gap-y-var:
+    regex: '^gap-y-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { row-gap: var(--$1); }"
+
+  # Aliases to support WPF2 grid gap naming (row/column)
+  gap-row-alias:
+    regex: '^gap-r-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { row-gap: $1$2; }"
+
+  gap-row-alias-var:
+    regex: '^gap-r-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { row-gap: var(--$1); }"
+
+  gap-col-alias:
+    regex: '^gap-c-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { column-gap: $1$2; }"
+
+  gap-col-alias-var:
+    regex: '^gap-c-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { column-gap: var(--$1); }"
+
   #* Padding: [https://webeponto.notion.site/Padding-2dea7be58df54fd38275309aaa177708]
   padding:
     regex: '^p-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { padding: $1$2; }"
 
+  # Versões dinâmicas via variável CSS para padding
+  padding-var:
+    regex: '^p-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { padding: var(--$1); }"
+
   padding-x:
     regex: '^px-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { padding-left: $1$2; padding-right: $1$2; }"
+
+  padding-x-var:
+    regex: '^px-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { padding-left: var(--$1); padding-right: var(--$1); }"
 
   padding-y:
     regex: '^py-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { padding-top: $1$2; padding-bottom: $1$2; }"
 
+  padding-y-var:
+    regex: '^py-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { padding-top: var(--$1); padding-bottom: var(--$1); }"
+
   padding-top:
     regex: '^pt-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { padding-top: $1$2; }"
+
+  padding-top-var:
+    regex: '^pt-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { padding-top: var(--$1); }"
 
   padding-right:
     regex: '^pr-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { padding-right: $1$2; }"
 
+  padding-right-var:
+    regex: '^pr-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { padding-right: var(--$1); }"
+
   padding-bottom:
     regex: '^pb-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { padding-bottom: $1$2; }"
 
+  padding-bottom-var:
+    regex: '^pb-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { padding-bottom: var(--$1); }"
+
   padding-left:
     regex: '^pl-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { padding-left: $1$2; }"
+
+  padding-left-var:
+    regex: '^pl-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { padding-left: var(--$1); }"
 
   #* Margem: [https://webeponto.notion.site/Margens-13b4ef3cd3f24722bef2898170ee2364]
   margin:
     regex: '^m-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { margin: $1$2; }"
 
+  # NEW: margin auto (global/axes/sides)
+  margin-auto:
+    regex: '^m-auto$'
+    cssTemplate: "{selector} { margin: auto; }"
+
+  margin-x-auto:
+    regex: '^mx-auto$'
+    cssTemplate: "{selector} { margin-left: auto; margin-right: auto; }"
+
+  margin-y-auto:
+    regex: '^my-auto$'
+    cssTemplate: "{selector} { margin-top: auto; margin-bottom: auto; }"
+
+  margin-top-auto:
+    regex: '^mt-auto$'
+    cssTemplate: "{selector} { margin-top: auto; }"
+
+  margin-right-auto:
+    regex: '^mr-auto$'
+    cssTemplate: "{selector} { margin-right: auto; }"
+
+  margin-bottom-auto:
+    regex: '^mb-auto$'
+    cssTemplate: "{selector} { margin-bottom: auto; }"
+
+  margin-left-auto:
+    regex: '^ml-auto$'
+    cssTemplate: "{selector} { margin-left: auto; }"
+
+  # Versões dinâmicas via variável CSS para margin
+  margin-var:
+    regex: '^m-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { margin: var(--$1); }"
+
   margin-x:
     regex: '^mx-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { margin-left: $1$2; margin-right: $1$2; }"
+
+  margin-x-var:
+    regex: '^mx-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { margin-left: var(--$1); margin-right: var(--$1); }"
 
   margin-y:
     regex: '^my-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { margin-top: $1$2; margin-bottom: $1$2; }"
 
+  margin-y-var:
+    regex: '^my-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { margin-top: var(--$1); margin-bottom: var(--$1); }"
+
   margin-top:
     regex: '^mt-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { margin-top: $1$2; }"
+
+  margin-top-var:
+    regex: '^mt-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { margin-top: var(--$1); }"
 
   margin-right:
     regex: '^mr-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { margin-right: $1$2; }"
 
+  margin-right-var:
+    regex: '^mr-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { margin-right: var(--$1); }"
+
   margin-bottom:
     regex: '^mb-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { margin-bottom: $1$2; }"
+
+  margin-bottom-var:
+    regex: '^mb-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { margin-bottom: var(--$1); }"
 
   margin-left:
     regex: '^ml-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { margin-left: $1$2; }"
 
+  margin-left-var:
+    regex: '^ml-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { margin-left: var(--$1); }"
+
   #* Tamanhos: [https://webeponto.notion.site/Definindo-Tamanhos-896fc9400ad34d73a8db6b1863740659]
   width:
     regex: '^w-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)$'
     cssTemplate: "{selector} { width: $1$2; }"
+
+  # NEW: largura auto
+  width-auto:
+    regex: '^w-auto$'
+    cssTemplate: "{selector} { width: auto; }"
 
   max-width:
     regex: '^w-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)-max$'
@@ -285,9 +428,27 @@ patterns:
     regex: '^w-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)-min$'
     cssTemplate: "{selector} { min-width: $1$2; }"
 
+  # Versões dinâmicas via variável CSS para largura
+  width-var:
+    regex: '^w-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { width: var(--$1); }"
+
+  max-width-var:
+    regex: '^w-\(([a-z0-9-]+)\)-max$'
+    cssTemplate: "{selector} { max-width: var(--$1); }"
+
+  min-width-var:
+    regex: '^w-\(([a-z0-9-]+)\)-min$'
+    cssTemplate: "{selector} { min-width: var(--$1); }"
+
   height:
     regex: '^h-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)$'
     cssTemplate: "{selector} { height: $1$2; }"
+
+  # NEW: altura auto
+  height-auto:
+    regex: '^h-auto$'
+    cssTemplate: "{selector} { height: auto; }"
 
   max-height:
     regex: '^h-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)-max$'
@@ -297,41 +458,82 @@ patterns:
     regex: '^h-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)-min$'
     cssTemplate: "{selector} { min-height: $1$2; }"
 
+  # Versões dinâmicas via variável CSS para altura
+  height-var:
+    regex: '^h-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { height: var(--$1); }"
+
+  max-height-var:
+    regex: '^h-\(([a-z0-9-]+)\)-max$'
+    cssTemplate: "{selector} { max-height: var(--$1); }"
+
+  min-height-var:
+    regex: '^h-\(([a-z0-9-]+)\)-min$'
+    cssTemplate: "{selector} { min-height: var(--$1); }"
+
   #* Bordas: [https://webeponto.notion.site/Bordas-a181d070d03245a3b511d34647301fb6]
   # CORRIGIDO: Regex simplificado e cssTemplate fixo
   border-all:
     regex: '^b-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
     cssTemplate: "{selector} { border: $1$2 $3; }"
 
+  border-all-var:
+    regex: '^b-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border: var(--$1); }"
+
   # Top e Bottom simultâneos
   border-y:
     regex: '^by-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
     cssTemplate: "{selector} { border-top: $1$2 $3; border-bottom: $1$2 $3; }"
+
+  border-y-var:
+    regex: '^by-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-top: var(--$1); border-bottom: var(--$1); }"
 
   # Left e Right simultâneos
   border-x:
     regex: '^bx-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
     cssTemplate: "{selector} { border-left: $1$2 $3; border-right: $1$2 $3; }"
 
+  border-x-var:
+    regex: '^bx-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-left: var(--$1); border-right: var(--$1); }"
+
   # Top only
   border-top:
     regex: '^bt-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
     cssTemplate: "{selector} { border-top: $1$2 $3; }"
+
+  border-top-var:
+    regex: '^bt-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-top: var(--$1); }"
 
   # Right only
   border-right:
     regex: '^br-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
     cssTemplate: "{selector} { border-right: $1$2 $3; }"
 
+  border-right-var:
+    regex: '^br-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-right: var(--$1); }"
+
   # Bottom only
   border-bottom:
     regex: '^bb-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
     cssTemplate: "{selector} { border-bottom: $1$2 $3; }"
 
+  border-bottom-var:
+    regex: '^bb-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-bottom: var(--$1); }"
+
   # Left only
   border-left:
     regex: '^bl-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
     cssTemplate: "{selector} { border-left: $1$2 $3; }"
+
+  border-left-var:
+    regex: '^bl-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-left: var(--$1); }"
 
   # Bordas apenas com largura (usa solid como padrão)
   border-width-all:
@@ -367,37 +569,73 @@ patterns:
     regex: '^rounded-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { border-radius: $1$2; }"
 
+  rounded-var:
+    regex: '^rounded-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-radius: var(--$1); }"
+
   rounded-t:
     regex: '^rounded-t-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { border-top-left-radius: $1$2; border-top-right-radius: $1$2; }"
+
+  rounded-t-var:
+    regex: '^rounded-t-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-top-left-radius: var(--$1); border-top-right-radius: var(--$1); }"
 
   rounded-b:
     regex: '^rounded-b-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { border-bottom-left-radius: $1$2; border-bottom-right-radius: $1$2; }"
 
+  rounded-b-var:
+    regex: '^rounded-b-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-bottom-left-radius: var(--$1); border-bottom-right-radius: var(--$1); }"
+
   rounded-l:
     regex: '^rounded-l-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { border-top-left-radius: $1$2; border-bottom-left-radius: $1$2; }"
+
+  rounded-l-var:
+    regex: '^rounded-l-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-top-left-radius: var(--$1); border-bottom-left-radius: var(--$1); }"
 
   rounded-r:
     regex: '^rounded-r-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { border-top-right-radius: $1$2; border-bottom-right-radius: $1$2; }"
 
+  rounded-r-var:
+    regex: '^rounded-r-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-top-right-radius: var(--$1); border-bottom-right-radius: var(--$1); }"
+
   rounded-tl:
     regex: '^rounded-tl-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { border-top-left-radius: $1$2; }"
+
+  rounded-tl-var:
+    regex: '^rounded-tl-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-top-left-radius: var(--$1); }"
 
   rounded-tr:
     regex: '^rounded-tr-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { border-top-right-radius: $1$2; }"
 
+  rounded-tr-var:
+    regex: '^rounded-tr-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-top-right-radius: var(--$1); }"
+
   rounded-bl:
     regex: '^rounded-bl-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { border-bottom-left-radius: $1$2; }"
 
+  rounded-bl-var:
+    regex: '^rounded-bl-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-bottom-left-radius: var(--$1); }"
+
   rounded-br:
     regex: '^rounded-br-(-?\d*\.?\d+)(px|em|rem|%)$'
     cssTemplate: "{selector} { border-bottom-right-radius: $1$2; }"
+
+  rounded-br-var:
+    regex: '^rounded-br-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-bottom-right-radius: var(--$1); }"
 
   #* Outlines:
   #? Outline Completo (width + style)
@@ -405,8 +643,26 @@ patterns:
     regex: '^o-(\d*\.?\d+)(px|em|rem)-(none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset)$'
     cssTemplate: "{selector} { outline: $1$2 $3; }"
 
+  outline-var:
+    regex: '^o-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { outline: var(--$1); }"
+
   #? Outline Color (se precisar de cor específica)
-  outline-color:
+  outline-color-hex:
+    regex: '^oc\((#(?:[a-fA-F0-9]{3,8}))\)$'
+    cssTemplate: "{selector} { outline-color: $1; }"
+
+  # RGB literal (no spaces, exactly 3 components)
+  outline-color-rgb:
+    regex: '^oc\((rgb\(\d{1,3},\d{1,3},\d{1,3}\))\)$'
+    cssTemplate: "{selector} { outline-color: $1; }"
+
+  # RGBA literal (no spaces, exactly 4th alpha component required)
+  outline-color-rgba:
+    regex: '^oc\((rgba\(\d{1,3},\d{1,3},\d{1,3},[-+]?\d*\.?\d+\))\)$'
+    cssTemplate: "{selector} { outline-color: $1; }"
+
+  outline-color-var:
     regex: '^oc\(([a-z0-9-]+)\)$'
     cssTemplate: "{selector} { outline-color: var(--$1); }"
 
@@ -568,6 +824,19 @@ patterns:
     regex: "^col$"
     cssTemplate: "{selector} { flex-direction: column; }"
 
+  # Flex Wrap
+  flex-wrap:
+    regex: "^wrap$"
+    cssTemplate: "{selector} { flex-wrap: wrap; }"
+
+  flex-nowrap:
+    regex: "^(no-wrap|nowrap)$"
+    cssTemplate: "{selector} { flex-wrap: nowrap; }"
+
+  flex-wrap-reverse:
+    regex: "^wrap-reverse$"
+    cssTemplate: "{selector} { flex-wrap: wrap-reverse; }"
+
   # Grid Container
   display-grid:
     regex: "^dp-grid$"
@@ -577,11 +846,57 @@ patterns:
   grid-cols:
     regex: '^col-(\d+)$'
     cssTemplate: "{selector} { grid-template-columns: repeat($1, 1fr); }"
+  
+  # Grid Template Columns (Variable Compatibility)
+  grid-cols-var:
+    regex: '^col-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { grid-template-columns: repeat(var(--$1), 1fr); }"
+
+  # Grid Rows count (WPF2 compatibility)
+  grid-rows:
+    regex: '^row-(\d+)$'
+    cssTemplate: "{selector} { grid-template-rows: repeat($1, minmax(0, 1fr)); }"
+
+  # Grid Template Rows (Variable Compatibility)
+  grid-rows-var:
+    regex: '^row-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { grid-template-rows: repeat(var(--$1), minmax(0, 1fr)); }"
 
   # Grid Column Span (padrão básico - também será usado contextualmente)
   grid-span-col:
     regex: '^span-col-(\d+)$'
     cssTemplate: "{selector} { grid-column: span $1; }"
+
+  # Grid Row Span (WPF2 compatibility)
+  grid-span-row:
+    regex: '^span-row-(\d+)$'
+    cssTemplate: "{selector} { grid-row: span $1; }"
+
+  # Grid Auto Flow variants (WPF2 compatibility)
+  grid-flow-row:
+    regex: '^flow-row$'
+    cssTemplate: "{selector} { grid-auto-flow: row; }"
+
+  grid-flow-col:
+    regex: '^flow-col$'
+    cssTemplate: "{selector} { grid-auto-flow: column; }"
+
+  grid-flow-dense:
+    regex: '^flow-dense$'
+    cssTemplate: "{selector} { grid-auto-flow: dense; }"
+
+  grid-flow-dense-row:
+    regex: '^flow-dense-row$'
+    cssTemplate: "{selector} { grid-auto-flow: row dense; }"
+
+  grid-flow-dense-col:
+    regex: '^flow-dense-col$'
+    cssTemplate: "{selector} { grid-auto-flow: column dense; }"
+
+  # Direction helpers (lightweight, used in WPF2 grid context) — consolidated
+  direction:
+    regex: '^(ltr|rtl)$'
+    cssTemplate: "{selector} { direction: $1; }"
 
 contextPatterns:
   flex-context:
@@ -610,6 +925,11 @@ contextPatterns:
         rules:
           row: "align-items: stretch;"
           col: "justify-content: stretch;"
+      v-between:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "align-items: space-between;"
+          col: "justify-content: space-between;"
 
       h-left:
         selector: "&.$mediator.$prop"
@@ -659,3 +979,55 @@ contextPatterns:
         selector: "&.$mediator.$prop"
         rule: "row-gap: {value}px;"
         valuePattern: "gap-y-(\\d+)"
+
+  grid-context:
+    requires: ["dp-grid"]
+    mediators:
+      # No grid, usamos o próprio container como mediador para habilitar combinações com propriedades v-*/h-*
+      dp-grid: "dp-grid"
+    properties:
+      # Alinhamento vertical dos itens (alinhamento por linha)
+      v-top:
+        selector: "&.$prop"
+        rules:
+          default: "align-items: start;"
+      v-center:
+        selector: "&.$prop"
+        rules:
+          default: "align-items: center;"
+      v-bottom:
+        selector: "&.$prop"
+        rules:
+          default: "align-items: end;"
+      v-stretch:
+        selector: "&.$prop"
+        rules:
+          default: "align-items: stretch;"
+      v-baseline:
+        selector: "&.$prop"
+        rules:
+          default: "align-items: baseline;"
+
+      # Alinhamento horizontal (distribuição das colunas)
+      h-left:
+        selector: "&.$prop"
+        rules:
+          default: "justify-content: start;"
+      h-center:
+        selector: "&.$prop"
+        rules:
+          default: "justify-content: center;"
+      h-right:
+        selector: "&.$prop"
+        rules:
+          default: "justify-content: end;"
+      
+      # Mantemos h-stretch como opcional (não existe no WPF2 grid), útil para casos específicos
+      h-stretch:
+        selector: "&.$prop"
+        rules:
+          default: "justify-items: stretch;"
+      h-between:
+        selector: "&.$prop"
+        rules:
+          default: "justify-content: space-between;"
