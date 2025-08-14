@@ -732,4 +732,130 @@ Train AI to recognize WPF 3.0 context with these patterns:
 - **Imports containing**: `"wpf"`, `@use "wpf"`, `@forward "wpf"`
 - **Comments starting with**: `WPF3_CONTEXT:`, `<!-- WPF3_FRAMEWORK`
 
+## 🎨 WPF3 Component Development Guidelines
+
+### Component vs Utility Class Strategy
+
+**🔧 Utility Classes (wpf.config.yaml)**
+- Use for CSS properties that map directly to single CSS declarations
+- Examples: `p-10px` → `padding: 10px`, `t-center` → `text-align: center`
+- Configuration through regex patterns and CSS templates
+- Suitable for atomic styling and responsive variants
+
+**🎭 Component Classes (SCSS Modules)**
+- Use for complex, multi-property styling patterns
+- Examples: Button systems, card layouts, navigation components  
+- Built with CSS custom properties for theming
+- Integration with WPF3 variable system for consistency
+
+### 🎯 WPF3 Variable Integration Rules
+
+**ALWAYS use WPF3 variables when building components:**
+
+**Color Variables** (from `_default.scss` & `_dark.scss`):
+```scss
+// 🎨 Theme Colors
+--c-t1-400: #5b9dcf;      // Primary theme color
+--c-t1-500: #3b84bc;      // Primary theme hover
+
+// 📝 Text Colors  
+--c-s-1: #FFFFFF;         // Primary text
+--c-s-5: #000000;         // Dark text
+
+// 🎯 Semantic Colors
+--c-success: #51bd5c;     // Success indicator
+--c-alert: #E0CB5C;       // Warning indicator  
+--c-error: #CF6679;       // Error indicator
+--c-notification: #E62E7B; // Notification indicator
+
+// 🏠 Background Colors
+--c-bg-1: #141616;        // Dark background
+--c-bg-3: #EDF2F7;        // Light background
+
+// 🔲 Border Colors
+--c-border-1: #F5F6F7;    // Light border
+--c-border-2: #EDEFF2;    // Medium border
+```
+
+**Typography & Effects** (from `_default.scss`):
+```scss
+// 🔤 Fonts
+--fnt-1: '"Roboto", sans-serif'; // Primary font family
+
+// ⏱️ Transitions
+--t-fast: 0.3s;           // Fast animations
+--t-normal: 0.5s;         // Normal animations
+--t-slow: 0.7s;           // Slow animations
+
+// 🎭 Effects
+--fx-shadow-1: 0px 2px 5px rgba(38, 51, 77, 0.03); // Standard shadow
+```
+
+### 📍 Variable Location Reference
+
+**Component developers MUST reference these files:**
+
+1. **Primary Variables**: `src/sass/vars/_default.scss`
+   - All project color palettes
+   - Typography settings
+   - Effect definitions
+   - Cursor customizations
+
+2. **Dark Theme**: `src/sass/vars/_dark.scss`  
+   - Dark mode color overrides
+   - Theme-specific adjustments
+
+3. **Framework Core**: `src/sass/wpf/vendor/_vars.scss`
+   - WPF3 internal variables
+   - System-level configurations
+
+**Integration Example:**
+```scss
+.my-component {
+    // ✅ CORRECT: Uses WPF3 variables
+    background: var(--c-t1-400, #5b9dcf);
+    color: var(--c-s-1, #FFFFFF);
+    font-family: var(--fnt-1);
+    transition: all var(--t-fast) ease-in-out;
+    
+    // ❌ WRONG: Hardcoded values
+    background: #3b82f6;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+```
+
+### 🏗️ Component Architecture Best Practices
+
+**CSS Custom Properties for Theming:**
+```scss
+.wpf3-component {
+    // Define component-specific variables that map to WPF3 system
+    --component-bg: var(--c-t1-400);
+    --component-text: var(--c-s-1);
+    --component-border: var(--c-border-1);
+    
+    // Use component variables in styles
+    background: var(--component-bg);
+    color: var(--component-text);
+    border: 1px solid var(--component-border);
+}
+```
+
+**Variant System Integration:**
+```scss
+// Semantic variants using WPF3 colors
+.wpf3-component.success {
+    --component-bg: var(--c-success);
+}
+
+.wpf3-component.warning {
+    --component-bg: var(--c-alert);
+}
+
+.wpf3-component.error {
+    --component-bg: var(--c-error);
+}
+```
+
 <!-- WPF3_FRAMEWORK_INSTRUCTIONS_END -->

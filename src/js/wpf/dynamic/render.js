@@ -1,6 +1,6 @@
 /**
 	*# 	@property WPF3 - Framework CSS Dinâmico
-	* 	@version Versão: 3.0.2
+	* 	@version Versão: 3.0.3
 	* 	@authors Lyautey Maluf Neto, Matheus Patrignani Quaiat, David Henderson
 	* 	@copyright 2023
 	*
@@ -401,42 +401,75 @@ async function extractClassGroupsFromFile(filePath) {
 		const content = await readFileAsync(filePath, 'utf-8');
 		const classGroups = [];
 
-		// Define um padrão de regex para encontrar classes em blocos HTML, Blade e JavaScript:
-	const classBlockPattern = /(?:class|className|data-class|x-bind:class|:class|x-class)=["'`{]([^"'`}]+)["'`}]/g;
+		// Padrões para encontrar classes em atributos com diferentes delimitadores (suporta aspas internas em objetos Alpine/Vue)
+		const classAttrPatterns = [
+			/(?:class|className|data-class|x-bind:class|:class|x-class)="([^"]+)"/g, // "..."
+			/(?:class|className|data-class|x-bind:class|:class|x-class)='([^']+)'/g,     // '...'
+			/(?:class|className|data-class|x-bind:class|:class|x-class)=`([^`]+)`/g,     // `...`
+			/(?:class|className|data-class|x-bind:class|:class|x-class)=\{([^}]*)\}/g   // { ... }
+		];
 
-		let match;
-		while ((match = classBlockPattern.exec(content)) !== null) {
-			let classString = match[1]
+		// Função utilitária para normalizar e splitar uma string de classes em um array único
+		const extractClassesFromString = (raw) => {
+			let extractedClasses = [];
+			
+			// PRIMEIRO: Extrair classes de dentro de expressões Blade condicionais antes de removê-las
+			// Ex: {{ !empty($ratio) ? 'ratio-(ratio)' : '' }} → captura 'ratio-(ratio)'
+			const bladeClassPattern = /\{\{[^}]*['"`]([^'"`\s]+)['"`][^}]*\}\}/g;
+			let bladeMatch;
+			while ((bladeMatch = bladeClassPattern.exec(raw)) !== null) {
+				const foundClasses = bladeMatch[1].split(/\s+/).filter(cls => cls.trim());
+				extractedClasses.push(...foundClasses);
+			}
+			
+			// SEGUNDO: Processar o resto da string normalmente
+			const classString = raw
 				// Protege vírgulas dentro de parênteses (ex: rgba(255,255,255,0.5)) para não virarem separadores de classes
 				.replace(/\(([^)]*)\)/g, (_, inner) => `(${inner.replace(/,/g, '\u0007')})`)
-				.replace(/\${[^}]*}/g, '')        // Remove expressões de JavaScript.
-				.replace(/\{\{[^}]+\}\}/g, '')    // Remove expressões do Blade.
-				.replace(/@[a-zA-Z0-9_]+/g, '')   // Remove directivas.
-				.replace(/[{}]/g, ' ')            // Remove chaves de objetos Alpine.js
-				.replace(/["']/g, ' ')           // Remove apenas aspas simples e duplas (preserva :) 
-				.replace(/\s*,\s*/g, ' ')         // Remove vírgulas (fora dos parênteses, já protegidas)
-				.replace(/\u0007/g, ',')           // Restaura vírgulas protegidas
-				.replace(/\s+/g, ' ');            // Normaliza espaços
+				.replace(/\${[^}]*}/g, '')        	// Remove expressões de JavaScript.
+				.replace(/\{\{[^}]+\}\}/g, '')    	// Remove expressões do Blade.
+				.replace(/@[a-zA-Z0-9_]+/g, '')   	// Remove directivas.
+				.replace(/[{}]/g, ' ')            	// Remove chaves de objetos Alpine.js
+				.replace(/["']/g, ' ')           	// Remove apenas aspas simples e duplas (preserva :) 
+				.replace(/\s*,\s*/g, ' ')         	// Remove vírgulas (fora dos parênteses, já protegidas)
+				.replace(/\u0007/g, ',')          	// Restaura vírgulas protegidas
+				.replace(/\s+/g, ' ');            	// Normaliza espaços
 
-			// Processa as classes e remove as duplicatas:
-			const classes = [...new Set(
-				classString
-					.split(/\s+/)
-					// Normaliza tokens vindos de objetos Alpine/Vue, removendo dois-pontos finais (separadores de chave:valor)
-					.map(tok => tok.replace(/:$/, ''))
-					.filter(cls => {
-						const trimmed = cls.trim();
-						return trimmed &&
-							!trimmed.startsWith('//') &&
-							!trimmed.startsWith('/*');
-					})
-			)];
+			const normalClasses = classString
+				.split(/\s+/)
+				// Normaliza tokens vindos de objetos Alpine/Vue, removendo dois-pontos finais (separadores de chave:valor)
+				.map(tok => tok.replace(/:$/, ''))
+				.filter(cls => {
+					const trimmed = cls.trim();
+					return trimmed && !trimmed.startsWith('//') && !trimmed.startsWith('/*');
+				});
 
-			// Se houve classes válidas identificadas pela triagem, insere-as junto com as classes encontradas em outros arquivos:
-			if (classes.length > 0) {
-				classGroups.push(classes);
+			// Combina classes extraídas de Blade + classes normais e remove duplicatas
+			return [...new Set([...extractedClasses, ...normalClasses])];
+		};
+
+		// 1) Atributos padrão (class, className, etc.) cobrindo todos os delimitadores
+		classAttrPatterns.forEach((pattern) => {
+			let match;
+			while ((match = pattern.exec(content)) !== null) {
+				const classes = extractClassesFromString(match[1]);
+				if (classes.length > 0) classGroups.push(classes);
 			}
-		}
+		});
+
+		// 2) Funções Blade conhecidas que recebem classes como segundo argumento (ex: @svg('name', 'classes ...'))
+		//    Suporta somente string simples como 2º parâmetro, sem espaços dentro das aspas.
+		const bladeFuncPatterns = [
+			/@svg\(\s*['"][^'"]+['"]\s*,\s*['"]([^'"]+)['"]\s*\)/g
+		];
+
+		bladeFuncPatterns.forEach((pattern) => {
+			let m;
+			while ((m = pattern.exec(content)) !== null) {
+				const classes = extractClassesFromString(m[1]);
+				if (classes.length > 0) classGroups.push(classes);
+			}
+		});
 
 		// Retorna o grupo de classes relacionados à esse arquivo:
 		return classGroups;

@@ -5,7 +5,7 @@
 //	  \__/\  /  |____|    \___  /   \_______ \
 //	       \/                 \/            \/
 
-//* FERRAMENTAS JavaScript / TypeScript do Framework WPF2.
+//* FERRAMENTAS JavaScript / TypeScript do Framework WPF3.
 //?	Comente as ferramentas que você não deseja incluir no seu projeto.
 //? Passe o cursor do mouse sobre o título do módulo para ver sua descrição.
 

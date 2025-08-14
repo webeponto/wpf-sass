@@ -1,7 +1,7 @@
-#? FRAMEWORK SCSS WPF 3
+#?    FRAMEWORK SCSS WPF 3
 #
 #* Autores: Lyautey M. N. / Matheus P.
-#* Versão v3.0.2 do Framework SCSS WPF
+#* Versão v3.0.3 do Framework SCSS WPF
 #
 #! Alterar o funcionamento do conjunto de regras do SCSS dinâmico pode causar problemas de renderização e funcionamento.
 #! Erros fatais no funcionamento da ferramenta podem acontecer em caso de alterações não planejadas.
@@ -677,6 +677,10 @@ patterns:
     regex: '^ratio-(\d+)/(\d+)$'
     cssTemplate: "{selector} { aspect-ratio: $1 / $2; }"
 
+  aspect-ratio-var:
+    regex: '^ratio-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { aspect-ratio: var(--$1); }"
+
   #? Aspect Ratio (Decimal)
   aspect-ratio-decimal:
     regex: '^ratio-(\d*\.?\d+)$'
@@ -701,6 +705,10 @@ patterns:
     regex: '^t-(\d+)(ms|s)$'
     cssTemplate: "{selector} { transition-duration: $1$2; }"
 
+  transition-duration-var:
+    regex: '^t-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transition-duration: var(--$1); }"
+
   #? TIMING FUNCTION (Leitura natural)
   transition-timing:
     regex: '^timing-(linear|ease|ease-in|ease-out|ease-in-out|step-start|step-end|cubic-bezier\(.+?\))$'
@@ -710,6 +718,10 @@ patterns:
   transition-delay:
     regex: '^delay-(\d+)(ms|s)$'
     cssTemplate: "{selector} { transition-delay: $1$2; }"
+
+  transition-delay-var:
+    regex: '^delay-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transition-delay: var(--$1); }"
 
   #? PROPRIEDADE (Autoexplicativo)
   transition-property:
@@ -721,53 +733,97 @@ patterns:
     regex: '^scale-(-?\d*\.?\d+)$'
     cssTemplate: "{selector} { transform: scale($1); }"
 
+  scale-var:
+    regex: '^scale-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: scale(var(--$1)); }"
+
   # Escala somente no eixo X
   scale-x:
     regex: '^scale-x-(-?\d*\.?\d+)$'
     cssTemplate: "{selector} { transform: scaleX($1); }"
+
+  scale-x-var:
+    regex: '^scale-x-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: scaleX(var(--$1)); }"
 
   # Escala somente no eixo Y
   scale-y:
     regex: '^scale-y-(-?\d*\.?\d+)$'
     cssTemplate: "{selector} { transform: scaleY($1); }"
 
+  scale-y-var:
+    regex: '^scale-y-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: scaleY(var(--$1)); }"
+
   # Escala somente no eixo Z
   scale-z:
     regex: '^scale-z-(\d*\.?\d+)$'
     cssTemplate: "{selector} { transform: scaleZ($1); }"
+
+  scale-z-var:
+    regex: '^scale-z-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: scaleZ(var(--$1)); }"
 
   #? Escala Combinada (X, Y e Z)
   scale-3d:
     regex: '^scale-(\d*\.?\d+)-(\d*\.?\d+)-(\d*\.?\d+)$'
     cssTemplate: "{selector} { transform: scale3d($1, $2, $3); }"
 
+  scale-3d-var:
+    regex: '^scale-3d-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: scale3d(var(--$1)); }"
+
   #* Opacidade:
   opacity:
     regex: '^opacity-(-?\d*\.?\d+)$'
     cssTemplate: "{selector} { opacity: $1; }"
+
+  opacity-var:
+    regex: '^opacity-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { opacity: var(--$1); }"
 
   #* Rotação:
   rotate:
     regex: '^rotate-(-?\d{1,3})deg$'
     cssTemplate: "{selector} { transform: rotate($1deg); }"
 
+  rotate-var:
+    regex: '^rotate-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: rotate(var(--$1)); }"
+
   #? Rotação 3D em Eixos Específicos
   rotate-x:
     regex: '^rotate-x-(-?\d{1,3})deg$'
     cssTemplate: "{selector} { transform: rotateX($1deg); }"
 
+  rotate-x-var:
+    regex: '^rotate-x-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: rotateX(var(--$1)); }"
+
   rotate-y:
     regex: '^rotate-y-(-?\d{1,3})deg$'
     cssTemplate: "{selector} { transform: rotateY($1deg); }"
+
+  rotate-y-var:
+    regex: '^rotate-y-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: rotateY(var(--$1)); }"
 
   rotate-z:
     regex: '^rotate-z-(-?\d{1,3})deg$'
     cssTemplate: "{selector} { transform: rotateZ($1deg); }"
 
+  rotate-z-var:
+    regex: '^rotate-z-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: rotateZ(var(--$1)); }"
+
   #? Rotação 3D Completa (Vetor + Ângulo)
   rotate-3d:
     regex: '^rotate3d-(-?\d*\.?\d+)-(-?\d*\.?\d+)-(-?\d*\.?\d+)-(-?\d{1,3})deg$'
     cssTemplate: "{selector} { transform: rotate3d($1, $2, $3, $4deg); }"
+
+  rotate-3d-var:
+    regex: '^rotate3d-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: rotate3d(var(--$1)); }"
 
   #? Rotações Direcionais (Atalhos Práticos)
   rotate-direction:
@@ -783,15 +839,27 @@ patterns:
     regex: '^translate-x-(-?\d*\.?\d+)(px|em|rem|%|vw|vh)$'
     cssTemplate: "{selector} { transform: translateX($1$2); }"
 
+  translate-x-var:
+    regex: '^translate-x-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: translateX(var(--$1)); }"
+
   #? Movimento Vertical (Eixo Y)
   translate-y:
     regex: '^translate-y-(-?\d*\.?\d+)(px|em|rem|%|vw|vh)$'
     cssTemplate: "{selector} { transform: translateY($1$2); }"
 
+  translate-y-var:
+    regex: '^translate-y-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: translateY(var(--$1)); }"
+
   #? Movimento 3D (Eixo Z - Profundidade)
   translate-z:
     regex: '^translate-z-(-?\d*\.?\d+)(px|em|rem)$'
     cssTemplate: "{selector} { transform: translateZ($1$2); }"
+
+  translate-z-var:
+    regex: '^translate-z-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { transform: translateZ(var(--$1)); }"
 
   #? Movimento Combinado (XY)
   translate-xy:
@@ -867,10 +935,18 @@ patterns:
     regex: '^span-col-(\d+)$'
     cssTemplate: "{selector} { grid-column: span $1; }"
 
+  grid-span-col-var:
+    regex: '^span-col-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { grid-column: span var(--$1); }"
+
   # Grid Row Span (WPF2 compatibility)
   grid-span-row:
     regex: '^span-row-(\d+)$'
     cssTemplate: "{selector} { grid-row: span $1; }"
+
+  grid-span-row-var:
+    regex: '^span-row-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { grid-row: span var(--$1); }"
 
   # Grid Auto Flow variants (WPF2 compatibility)
   grid-flow-row:

@@ -1,13 +1,481 @@
-//?	Animações (WPF2)
+//?	Animações (WPF3)
 //!	Animações globais para uso no seu projeto:
 
 //* Definindo o hash universal para as animações:
 $hash: 0;
 
-@function getHash()
-{
+@function getHash() {
 	$hash: $hash + 1;
 	@return $hash;
+}
+
+/**
+	*# Wiggle
+	* Pequenas rotações alternadas para chamar atenção.
+	*
+	* $angle     -> Amplitude do balanço (deg);
+	* $duration  -> Tempo da animação;
+	* $loop      -> Define se repete;
+*/
+@mixin wiggle(
+	$angle: 6deg, 
+	$duration: 0.6s, 
+	$loop: true
+) {
+	$localHash: getHash();
+
+	@if $loop {
+		animation: wiggle#{$localHash} $duration ease-in-out infinite;
+	} @else {
+		animation: wiggle#{$localHash} $duration ease-in-out;
+	}
+	@keyframes wiggle#{$localHash} {
+		0%,
+		100% {
+			transform: rotate(0);
+		}
+		25% {
+			transform: rotate($angle);
+		}
+		75% {
+			transform: rotate(-$angle);
+		}
+	}
+}
+
+/**
+	*# Shake X
+	* Tremor horizontal sutil.
+*/
+@mixin shake-x(
+	$distance: 6px, 
+	$duration: 0.5s, 
+	$loop: true
+) {
+	$localHash: getHash();
+
+	@if $loop {
+		animation: shakex#{$localHash} $duration ease-in-out infinite;
+	} @else {
+		animation: shakex#{$localHash} $duration ease-in-out;
+	}
+	@keyframes shakex#{$localHash} {
+		0%,
+		100% {
+			transform: translateX(0);
+		}
+		20% {
+			transform: translateX(-$distance);
+		}
+		40% {
+			transform: translateX($distance);
+		}
+		60% {
+			transform: translateX(-($distance / 2));
+		}
+		80% {
+			transform: translateX($distance / 2);
+		}
+	}
+}
+
+/**
+	*# Shake Y
+	* Tremor vertical sutil.
+*/
+@mixin shake-y(
+	$distance: 6px, 
+	$duration: 0.5s, 
+	$loop: true
+) {
+	$localHash: getHash();
+	
+	@if $loop {
+		animation: shakey#{$localHash} $duration ease-in-out infinite;
+	} @else {
+		animation: shakey#{$localHash} $duration ease-in-out;
+	}
+	@keyframes shakey#{$localHash} {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		20% {
+			transform: translateY(-$distance);
+		}
+		40% {
+			transform: translateY($distance);
+		}
+		60% {
+			transform: translateY(-($distance / 2));
+		}
+		80% {
+			transform: translateY($distance / 2);
+		}
+	}
+}
+
+/**
+	*# Float
+	* Flutuação suave para elementos em destaque.
+*/
+@mixin float(
+	$height: 10px, 
+	$duration: 3s, 
+	$loop: true
+) {
+	$localHash: getHash();
+
+	@if $loop {
+		animation: float#{$localHash} $duration ease-in-out infinite;
+	} @else {
+		animation: float#{$localHash} $duration ease-in-out;
+	}
+	@keyframes float#{$localHash} {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-$height);
+		}
+	}
+}
+
+/**
+	*# Tilt
+	* Inclinação leve alternada.
+*/
+@mixin tilt(
+	$deg: 8deg, 
+	$duration: 1.2s, 
+	$loop: true
+) {
+	$localHash: getHash();
+
+	transform-origin: 50% 0;
+	@if $loop {
+		animation: tilt#{$localHash} $duration ease-in-out infinite;
+	} @else {
+		animation: tilt#{$localHash} $duration ease-in-out;
+	}
+	@keyframes tilt#{$localHash} {
+		0%,
+		100% {
+			transform: rotate(0);
+		}
+		50% {
+			transform: rotate($deg);
+		}
+	}
+}
+
+/**
+	*# Jelly
+	* Efeito gelatina (escala não uniforme).
+*/
+@mixin jelly(
+	$duration: 0.8s, 
+	$loop: false
+) {
+	$localHash: getHash();
+
+	@if $loop {
+		animation: jelly#{$localHash} $duration ease-in-out infinite;
+	} @else {
+		animation: jelly#{$localHash} $duration ease-in-out;
+	}
+	@keyframes jelly#{$localHash} {
+		0% {
+			transform: scale3d(1, 1, 1);
+		}
+		25% {
+			transform: scale3d(1.25, 0.75, 1);
+		}
+		50% {
+			transform: scale3d(0.75, 1.25, 1);
+		}
+		75% {
+			transform: scale3d(1.15, 0.85, 1);
+		}
+		100% {
+			transform: scale3d(1, 1, 1);
+		}
+	}
+}
+
+/**
+	*# Heartbeat
+	* Pulso semelhante a batimento cardíaco.
+*/
+@mixin heartbeat(
+	$scale: 1.1, 
+	$duration: 1.3s, 
+	$loop: true
+) {
+	$localHash: getHash();
+
+	@if $loop {
+		animation: heartbeat#{$localHash} $duration ease-in-out infinite;
+	} @else {
+		animation: heartbeat#{$localHash} $duration ease-in-out;
+	}
+	@keyframes heartbeat#{$localHash} {
+		0%,
+		100% {
+			transform: scale(1);
+		}
+		25% {
+			transform: scale($scale);
+		}
+		40% {
+			transform: scale(1);
+		}
+		60% {
+			transform: scale($scale);
+		}
+	}
+}
+
+/**
+	*# Hover Glow (Interativo)
+	* Brilho pulsante ao interagir.
+*/
+@mixin hover-glow(
+	$color: rgba(30, 144, 255, 0.6), 
+	$spread: 12px, 
+	$duration: 1s, 
+	$loop: true, 
+	$trigger: ":hover"
+) {
+	$localHash: getHash();
+
+	position: relative;
+	&#{$trigger} {
+		@if $loop {
+			animation: glow#{$localHash} $duration ease-in-out infinite;
+		} @else {
+			animation: glow#{$localHash} $duration ease-in-out;
+		}
+	}
+	@keyframes glow#{$localHash} {
+		0%,
+		100% {
+			box-shadow: 0 0 0 0 $color;
+		}
+		50% {
+			box-shadow: 0 0 $spread ($spread * 0.2) $color;
+		}
+	}
+}
+
+/**
+	*# Underline Sweep (Interativo)
+	* Traço de sublinhado animado no hover.
+*/
+@mixin underline-sweep(
+	$color: currentColor, 
+	$height: 2px, 
+	$duration: 0.35s, 
+	$from: left, 
+	$trigger: ":hover"
+) {
+	$localHash: getHash();
+	background-image: linear-gradient($color, $color);
+	background-repeat: no-repeat;
+	background-position: 0 100%;
+	background-size: 0 $height;
+	transition: background-size $duration ease;
+	@if $from == right {
+		background-position: 100% 100%;
+	}
+	&#{$trigger} {
+		background-size: 100% $height;
+	}
+}
+
+/**
+	*# Shimmer
+	* Reflexo que percorre a superfície.
+*/
+@mixin shimmer(
+	$base: rgba(255, 255, 255, 0.06),
+	$shine: rgba(255, 255, 255, 0.35),
+	$angle: 45deg,
+	$duration: 1.2s,
+	$loop: true
+) {
+	$localHash: getHash();
+
+	background-image: linear-gradient($angle, transparent 0%, $base 40%, $shine 50%, $base 60%, transparent 100%);
+	background-size: 200% 100%;
+	@if $loop {
+		animation: shimmer#{$localHash} $duration linear infinite;
+	} @else {
+		animation: shimmer#{$localHash} $duration linear;
+	}
+	@keyframes shimmer#{$localHash} {
+		0% {
+			background-position: -200% 0;
+		}
+		100% {
+			background-position: 200% 0;
+		}
+	}
+}
+
+/**
+	*# Ripple (Interativo)
+	* Onda expansiva usando pseudo-elemento.
+*/
+@mixin ripple(
+	$color: currentColor, 
+	$size: 12px, 
+	$duration: 0.6s, 
+	$trigger: ":hover"
+) {
+	$localHash: getHash();
+
+	position: relative;
+	overflow: hidden;
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		margin: auto;
+		width: $size;
+		height: $size;
+		border-radius: 50%;
+		box-shadow: 0 0 0 0 $color;
+		opacity: 0;
+	}
+	&#{$trigger}::after {
+		animation: ripple#{$localHash} $duration ease-out;
+	}
+	@keyframes ripple#{$localHash} {
+		0% {
+			transform: scale(0);
+			opacity: 0.4;
+		}
+		80% {
+			transform: scale(6);
+			opacity: 0.15;
+		}
+		100% {
+			transform: scale(8);
+			opacity: 0;
+		}
+	}
+}
+
+/**
+	*# Flip
+	* Rotação 3D em X ou Y.
+*/
+@mixin flip(
+	$axis: y, 
+	$duration: 0.7s, 
+	$loop: false
+) {
+	$localHash: getHash();
+
+	$fn: if($axis == x, rotateX, rotateY);
+	@if $loop {
+		animation: flip#{$localHash} $duration ease-in-out infinite;
+	} @else {
+		animation: flip#{$localHash} $duration ease-in-out;
+	}
+	transform-style: preserve-3d;
+	@keyframes flip#{$localHash} {
+		0% {
+			transform: #{$fn }(0);
+		}
+		50% {
+			transform: #{$fn }(180deg);
+		}
+		100% {
+			transform: #{$fn }(360deg);
+		}
+	}
+}
+
+/**
+	*# Swing
+	* Movimento de pêndulo.
+*/
+@mixin swing(
+	$deg: 15deg, 
+	$duration: 1.2s, 
+	$loop: true
+) {
+	$localHash: getHash();
+
+	transform-origin: top center;
+	@if $loop {
+		animation: swing#{$localHash} $duration ease-in-out infinite;
+	} @else {
+		animation: swing#{$localHash} $duration ease-in-out;
+	}
+	@keyframes swing#{$localHash} {
+		0% {
+			transform: rotate($deg);
+		}
+		50% {
+			transform: rotate(-$deg);
+		}
+		100% {
+			transform: rotate($deg);
+		}
+	}
+}
+
+/**
+	*# Highlight Sweep (Interativo)
+	* Varredura de destaque atrás do texto.
+	*
+	* $color     -> Cor do destaque;
+	* $duration  -> Tempo da animação;
+	* $direction -> Direção da varredura (left, right);
+	* $trigger   -> Seletor que ativa a animação;
+*/
+@mixin highlight-sweep(
+	$color: rgba(255, 255, 0, 0.35), 
+	$duration: 0.7s, 
+	$direction: left, 
+	$trigger: ":hover"
+) {
+	$localHash: getHash();
+
+	background-image: linear-gradient(90deg, transparent 0%, $color 30%, $color 70%, transparent 100%);
+	background-repeat: no-repeat;
+	background-size: 200% 100%;
+	
+	@if $direction == right {
+		background-position: 200% 0;
+	} @else {
+		background-position: -200% 0;
+	}
+	
+	&#{$trigger} {
+		animation: hlsweep#{$localHash} $duration ease;
+	}
+	@keyframes hlsweep#{$localHash} {
+		@if $direction == right {
+			0% {
+				background-position: 200% 0;
+			}
+			100% {
+				background-position: -200% 0;
+			}
+		} @else {
+			0% {
+				background-position: -200% 0;
+			}
+			100% {
+				background-position: 200% 0;
+			}
+		}
+	}
 }
 
 /**
@@ -166,7 +634,7 @@ $hash: 0;
 		0%, 50% {
 			opacity: 1;
 		}
-	
+
 		50% {
 			opacity: $opacity;
 		}

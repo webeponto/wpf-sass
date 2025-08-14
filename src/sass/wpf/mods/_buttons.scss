@@ -1,4 +1,4 @@
-//?	Buttons (WPF2)
+//?	Buttons (WPF3)
 //!	Estruturação de botões e seus estilos em todo o site:
 
 //* Instâncias: extensões da folha de estilos:
@@ -7,198 +7,471 @@
 @use "sass:color" as color;
 @use "sass:math" as math;
 
-.wpf-icon {
-	color: var(--c-theme, white);
-	width: var(--size, wpf.toRem(50px));
-	height: var(--size, wpf.toRem(50px));
-	font-size: var(--size, wpf.toRem(50px));
+//* Created with modern CSS3 techniques, CSS variables, and advanced animations
+//* Features: Theme-aware, accessible, highly customizable, and performance-optimized
+//* Integrates seamlessly with WPF3 variable system (_default.scss & _dark.scss)
 
-	display: flex;
+//? ----------------------------------------------------------------
+//? 🎨 WPF3 Smart Button Foundation
+//? ----------------------------------------------------------------
+
+.wpf3-btn {
+	// 🔧 CSS Custom Properties for Dynamic Theming (WPF3 Integration)
+	--btn-bg: var(--c-t1-400, #5b9dcf);              // Uses WPF3 theme primary color
+	--btn-bg-hover: var(--c-t1-500, #3b84bc);        // Uses WPF3 theme darker variant
+	--btn-text: var(--c-s-1, #FFFFFF);               // Uses WPF3 primary text color
+	--btn-text-hover: var(--c-s-1, #FFFFFF);         // Consistent text color
+	--btn-border: var(--c-border-1, transparent);    // Uses WPF3 border color
+	--btn-shadow: var(--fx-shadow-1, rgba(38, 51, 77, 0.03)); // Uses WPF3 shadow effect
+	--btn-radius: 8px;                               // Standard radius
+	--btn-size: 1rem;                                // Standard font size
+	--btn-padding-x: 1.5em;                         // Horizontal padding
+	--btn-padding-y: 0.75em;                        // Vertical padding
+	--btn-transition: var(--t-fast, 0.3s) ease-in-out; // Uses WPF3 transition timing
+
+	// 🎯 Modern Button Foundation
+	position: relative;
+	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: 50%;
-	position: relative;
-	margin: 15px 30px;
-	text-align: center;
+	gap: 0.5em;
+	
+	padding: var(--btn-padding-y) var(--btn-padding-x);
+	font-size: var(--btn-size);
+	font-family: var(--fnt-1, '"Roboto", sans-serif'); // Uses WPF3 font
+	font-weight: 500;
+	line-height: 1.2;
+	text-decoration: none;
+	white-space: nowrap;
 	cursor: pointer;
-	z-index: 1;
+	user-select: none;
+	
+	background: var(--btn-bg);
+	color: var(--btn-text);
+	border: 1px solid var(--btn-border);
+	border-radius: var(--btn-radius);
+	box-shadow: 0 2px 4px var(--btn-shadow);
+	
+	transition: all var(--btn-transition);
+	transform: translateY(0);
+	
+	// 🌟 Enhanced Focus & Accessibility
+	&:focus-visible {
+		outline: 2px solid var(--btn-bg);
+		outline-offset: 2px;
+		box-shadow: 0 0 0 3px rgba(91, 157, 207, 0.1); // Based on WPF3 primary color
+	}
+	
+	// ✨ Hover State with Micro-Interactions
+	&:hover:not(:disabled) {
+		background: var(--btn-bg-hover);
+		color: var(--btn-text-hover);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	}
+	
+	// 🎭 Active State
+	&:active:not(:disabled) {
+		transform: translateY(0);
+		box-shadow: 0 1px 3px var(--btn-shadow);
+	}
+	
+	// 🚫 Disabled State
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+		transform: none !important;
+		color: var(--c-disabled, #999999); // Uses WPF3 disabled color
+	}
 
-	&::after{
+	// 🔤 Icon Support
+	.icon {
+		width: 1.2em;
+		height: 1.2em;
+		flex-shrink: 0;
+		
+		&:only-child {
+			margin: 0;
+		}
+	}
+}
+
+//? ----------------------------------------------------------------
+//? 🎨 WPF3 Button Variants System (Using WPF3 Color Palette)
+//? ----------------------------------------------------------------
+
+// 🔥 Primary Button (default - uses WPF3 theme colors)
+.wpf3-btn.primary {
+	--btn-bg: var(--c-t1-400, #5b9dcf);
+	--btn-bg-hover: var(--c-t1-500, #3b84bc);
+	--btn-text: var(--c-s-1, #FFFFFF);
+	--btn-text-hover: var(--c-s-1, #FFFFFF);
+}
+
+// 🌟 Secondary Button (uses WPF3 text colors)
+.wpf3-btn.secondary {
+	--btn-bg: var(--c-s-4, #525A6C);
+	--btn-bg-hover: var(--c-s-3, #6B7A99);
+	--btn-text: var(--c-s-1, #FFFFFF);
+	--btn-text-hover: var(--c-s-1, #FFFFFF);
+}
+
+// ✅ Success Button (uses WPF3 indicator colors)
+.wpf3-btn.success {
+	--btn-bg: var(--c-success, #51bd5c);
+	--btn-bg-hover: var(--c-success, #51bd5c);
+	--btn-text: var(--c-s-1, #FFFFFF);
+	--btn-text-hover: var(--c-s-1, #FFFFFF);
+	
+	&:hover:not(:disabled) {
+		filter: brightness(0.9); // Darken success color on hover
+	}
+}
+
+// ⚠️ Warning Button (uses WPF3 indicator colors)
+.wpf3-btn.warning {
+	--btn-bg: var(--c-alert, #E0CB5C);
+	--btn-bg-hover: var(--c-alert, #E0CB5C);
+	--btn-text: var(--c-s-5, #000000);
+	--btn-text-hover: var(--c-s-5, #000000);
+	
+	&:hover:not(:disabled) {
+		filter: brightness(0.9);
+	}
+}
+
+// 🚨 Danger Button (uses WPF3 indicator colors)
+.wpf3-btn.danger {
+	--btn-bg: var(--c-error, #CF6679);
+	--btn-bg-hover: var(--c-error, #CF6679);
+	--btn-text: var(--c-s-1, #FFFFFF);
+	--btn-text-hover: var(--c-s-1, #FFFFFF);
+	
+	&:hover:not(:disabled) {
+		filter: brightness(0.9);
+	}
+}
+
+// 🌑 Dark Button (uses WPF3 background colors)
+.wpf3-btn.dark {
+	--btn-bg: var(--c-bg-1, #141616);
+	--btn-bg-hover: var(--c-surf-1, #121212);
+	--btn-text: var(--c-s-1, #FFFFFF);
+	--btn-text-hover: var(--c-s-1, #FFFFFF);
+}
+
+// 💡 Light Button (uses WPF3 background colors)
+.wpf3-btn.light {
+	--btn-bg: var(--c-bg-3, #EDF2F7);
+	--btn-bg-hover: var(--c-bg-4, #F7F8FA);
+	--btn-text: var(--c-s-5, #000000);
+	--btn-text-hover: var(--c-s-5, #000000);
+	--btn-border: var(--c-border-2, #EDEFF2);
+}
+
+// 🎀 Notification Button (special WPF3 color)
+.wpf3-btn.notification {
+	--btn-bg: var(--c-notification, #E62E7B);
+	--btn-bg-hover: var(--c-notification, #E62E7B);
+	--btn-text: var(--c-s-1, #FFFFFF);
+	--btn-text-hover: var(--c-s-1, #FFFFFF);
+	
+	&:hover:not(:disabled) {
+		filter: brightness(0.9);
+	}
+}
+
+//? ----------------------------------------------------------------
+//? 🎭 WPF3 Button Style Variants
+//? ----------------------------------------------------------------
+
+// 🔳 Outline Style (using WPF3 colors)
+.wpf3-btn.outline {
+	--btn-bg: transparent;
+	--btn-text: var(--c-t1-400, #5b9dcf);           // WPF3 primary color for text
+	--btn-border: currentColor;
+	--btn-bg-hover: var(--c-t1-400, #5b9dcf);       // Fill with primary on hover
+	--btn-text-hover: var(--c-s-1, #FFFFFF);
+	
+	&.secondary {
+		--btn-text: var(--c-s-4, #525A6C);
+		--btn-bg-hover: var(--c-s-4, #525A6C);
+	}
+	
+	&.success {
+		--btn-text: var(--c-success, #51bd5c);
+		--btn-bg-hover: var(--c-success, #51bd5c);
+	}
+	
+	&.warning {
+		--btn-text: var(--c-alert, #E0CB5C);
+		--btn-bg-hover: var(--c-alert, #E0CB5C);
+		--btn-text-hover: var(--c-s-5, #000000);
+	}
+	
+	&.danger {
+		--btn-text: var(--c-error, #CF6679);
+		--btn-bg-hover: var(--c-error, #CF6679);
+	}
+	
+	&.notification {
+		--btn-text: var(--c-notification, #E62E7B);
+		--btn-bg-hover: var(--c-notification, #E62E7B);
+	}
+}
+
+// 👻 Ghost Style (subtle WPF3 integration)
+.wpf3-btn.ghost {
+	--btn-bg: transparent;
+	--btn-border: transparent;
+	--btn-text: var(--c-t1-400, #5b9dcf);
+	--btn-bg-hover: var(--c-bg-3, rgba(237, 242, 247, 0.3)); // Light WPF3 background
+	--btn-text-hover: var(--c-t1-500, #3b84bc);
+	box-shadow: none;
+	
+	&:hover:not(:disabled) {
+		box-shadow: none;
+		transform: none;
+	}
+}
+
+// 🌈 Gradient Style (WPF3 gradient integration)
+.wpf3-btn.gradient {
+	background: var(--c-grad-1, linear-gradient(to right, #121212 0%, #FFFFFF 100%));
+	--btn-bg-hover: var(--c-grad-2, linear-gradient(to right, #FFFFFF 0%, #121212 100%));
+	
+	&.primary {
+		background: linear-gradient(135deg, var(--c-t1-400, #5b9dcf), var(--c-t1-600, #2b699e));
+		--btn-bg-hover: linear-gradient(135deg, var(--c-t1-500, #3b84bc), var(--c-t1-700, #245580));
+	}
+	
+	&.success {
+		background: linear-gradient(135deg, var(--c-success, #51bd5c), var(--c-t1-400, #5b9dcf));
+		--btn-bg-hover: linear-gradient(135deg, var(--c-success, #51bd5c), var(--c-t1-500, #3b84bc));
+	}
+}
+
+//? ----------------------------------------------------------------
+//? 📏 WPF3 Button Size Variants
+//? ----------------------------------------------------------------
+
+.wpf3-btn.xs {
+	--btn-size: 0.75rem;
+	--btn-padding-x: 0.75em;
+	--btn-padding-y: 0.375em;
+}
+
+.wpf3-btn.sm {
+	--btn-size: 0.875rem;
+	--btn-padding-x: 1em;
+	--btn-padding-y: 0.5em;
+}
+
+.wpf3-btn.lg {
+	--btn-size: 1.125rem;
+	--btn-padding-x: 2em;
+	--btn-padding-y: 1em;
+}
+
+.wpf3-btn.xl {
+	--btn-size: 1.25rem;
+	--btn-padding-x: 2.5em;
+	--btn-padding-y: 1.25em;
+}
+
+//? ----------------------------------------------------------------
+//? 🎪 WPF3 Advanced Animation Effects (WPF3 Integration)
+//? ----------------------------------------------------------------
+
+// 🌊 Ripple Effect (using WPF3 transition timing)
+.wpf3-btn.ripple {
+	overflow: hidden;
+	
+	&::before {
 		content: '';
-		border-radius: 50%;
 		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.5);
+		transform: translate(-50%, -50%);
+		transition: width var(--t-fast, 0.3s), height var(--t-fast, 0.3s); // WPF3 timing
+	}
+	
+	&:active:not(:disabled)::before {
+		width: 300px;
+		height: 300px;
+	}
+}
+
+// ✨ Shimmer Effect (using WPF3 animation timing)
+.wpf3-btn.shimmer {
+	overflow: hidden;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
 		width: 100%;
 		height: 100%;
-		pointer-events: none;
-
-		@include wpf.addVendors(box-sizing, content-box);
+		background: linear-gradient(
+			90deg,
+			transparent,
+			rgba(255, 255, 255, 0.2),
+			transparent
+		);
+		transition: left var(--t-normal, 0.5s); // WPF3 timing
 	}
-
-	svg{
-		height: .6em;
-		width: auto;
-
-		*{
-			transition: stroke 0.2s, fill 0.2s;
-			-webkit-transition: stroke 0.2s, fill 0.2s;
-			-moz-transition: stroke 0.2s, fill 0.2s;
-		}
-
-		&:not(.stroke-type) * {
-			fill: var(--c-theme, white);
-		}
-
-		&:is(.stroke-type) * {
-			stroke: var(--c-theme, white);
-		}
-	}
-
-	//? [1] Efeito Border Highlight: 
-	//? ----------------------------------------------------------------
-
-	&.fx-border-highlight, 
-	&.fx-1{
-		background: rgba(255, 255, 255, 0.1);
-
-		transition: background 0.2s, color 0.2s;
-		-webkit-transition: background 0.2s, color 0.2s;
-		-moz-transition: background 0.2s, color 0.2s;
-
-		&:after{
-			box-shadow: 0 0 0 4px var(--c-theme, white);
-			top: -7px;
-			left: -7px;
-			padding: 7px;
-			opacity: 0;
-			
-			transition: transform 0.2s, opacity 0.2s;
-			-webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
-			-moz-transition: -moz-transform 0.2s, opacity 0.2s;
-
-			@include wpf.addVendors(transform, scale(.8));
-		}
-
-		&:hover{
-			svg{
-				&:not(.stroke-type) * {
-					fill: var(--c-content, black);
-				}
-
-				&:is(.stroke-type) * {
-					stroke: var(--c-content, black);
-				}
-			}
-		}
-
-		// Variação A:
-		&.type-a{
-			&:hover{
-				color: var(--c-content, black);
-
-				background: var(--c-theme, white);
-
-				&::after{
-					opacity: 1;
-
-					@include wpf.addVendors(transform, scale(1));
-				}
-			}
-		}
-		
-		// Variação B:
-		&.type-b{
-			&::after{
-				@include wpf.addVendors(transform, scale(1.2));
-			}
-
-			&:hover{
-				color: var(--c-content, black);
-
-				background: var(--c-theme, white);
-
-				&::after{
-					opacity: 1;
-
-					@include wpf.addVendors(transform, scale(1));
-				}
-			}
-		}
-	}
-
-	//? [2] Efeito Filled Collapse:
-	//? ----------------------------------------------------------------
-
-	&.fx-filled-collapse, 
-	&.fx-2{
-		box-shadow: 0 0 0 3px #fff;
-		
-		@include wpf.addVendors(transition, color 0.3s);
-
-		&::after{
-			background: var(--c-theme, white);
-
-			top: -2px;
-			left: -2px;
-			padding: 2px;
-			z-index: -1;
-
-			transition: transform 0.2s, opacity 0.2s;
-			-webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
-			-moz-transition: -moz-transform 0.2s, opacity 0.2s;
-		}
-
-		// Variação A:
-		&.type-a{
-			svg{
-				&:not(.stroke-type) * {
-					fill: var(--c-content, black);
-				}
-
-				&:is(.stroke-type) * {
-					stroke: var(--c-content, black);
-				}
-			}
-
-			&:hover{
-				&::after{
-					@include wpf.addVendors(transform, scale(0.85));
-				}
-			}
-		}
-
-		// Variação B:
-		&.type-b{
-			svg{
-				&:not(.stroke-type) * {
-					fill: var(--c-content, black);
-				}
-
-				&:is(.stroke-type) * {
-					stroke: var(--c-content, black);
-				}
-			}
-
-			&:hover{
-				svg{
-					&:not(.stroke-type) * {
-						fill: var(--c-theme, white);
-					}
-
-					&:is(.stroke-type) * {
-						stroke: var(--c-theme, white);
-					}
-				}
-
-				&::after{
-					opacity: 0;
 	
-					transition: transform 0.4s, opacity 0.2s;
-					-webkit-transition: -webkit-transform 0.4s, opacity 0.2s;
-					-moz-transition: -moz-transform 0.4s, opacity 0.2s;
-					
-					@include wpf.addVendors(transform, scale(0));
-				}
-			}
+	&:hover:not(:disabled)::before {
+		left: 100%;
+	}
+}
+
+// 🎯 Magnetic Effect (using WPF3 fast transition)
+.wpf3-btn.magnetic {
+	transition: all calc(var(--t-fast, 0.3s) / 3) ease-out; // Faster than normal WPF3 timing
+	
+	&:hover:not(:disabled) {
+		transform: translateY(-2px) scale(1.02);
+	}
+}
+
+// 🔄 Loading State (WPF3 styled)
+.wpf3-btn.loading {
+	pointer-events: none;
+	color: var(--c-disabled, #999999); // WPF3 disabled color
+	
+	&::after {
+		content: '';
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		border: 2px solid transparent;
+		border-top: 2px solid currentColor;
+		border-radius: 50%;
+		animation: wpf3-spin 1s linear infinite;
+	}
+	
+	.btn-text {
+		opacity: 0;
+	}
+}
+
+@keyframes wpf3-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// 🎨 WPF3 Special Effects
+.wpf3-btn.glow {
+	box-shadow: 0 0 10px var(--c-t1-400, #5b9dcf);
+	
+	&:hover:not(:disabled) {
+		box-shadow: 0 0 20px var(--c-t1-400, #5b9dcf);
+	}
+}
+
+.wpf3-btn.pulse {
+	animation: wpf3-pulse 2s infinite;
+}
+
+@keyframes wpf3-pulse {
+	0%, 100% {
+		box-shadow: 0 0 5px var(--c-t1-400, #5b9dcf);
+	}
+	50% {
+		box-shadow: 0 0 20px var(--c-t1-400, #5b9dcf), 0 0 30px var(--c-t1-400, #5b9dcf);
+	}
+}
+
+//? ----------------------------------------------------------------
+//? 🎨 WPF3 Button Groups & Compound Components
+//? ----------------------------------------------------------------
+
+.wpf3-btn-group {
+	display: inline-flex;
+	
+	.wpf3-btn {
+		margin: 0;
+		
+		&:not(:first-child) {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			border-left: none;
+		}
+		
+		&:not(:last-child) {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		
+		&:hover:not(:disabled) {
+			z-index: 1;
 		}
 	}
+}
+
+// 🎪 Split Button
+.wpf3-split-btn {
+	display: inline-flex;
+	
+	.wpf3-btn.main {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	
+	.wpf3-btn.dropdown {
+		--btn-padding-x: 0.75em;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		border-left: 1px solid rgba(255, 255, 255, 0.2);
+	}
+}
+
+//? ----------------------------------------------------------------
+//? 🌙 WPF3 Dark Mode Support (Using WPF3 Dark Variables)
+//? ----------------------------------------------------------------
+
+// Automatic dark mode integration with WPF3 dark theme
+@media (prefers-color-scheme: dark) {
+	.wpf3-btn:not([data-theme]) {
+		// Use WPF3 dark theme variables when available
+		--btn-shadow: var(--fx-shadow-1, rgba(0, 0, 0, 0.3));
+		
+		&.light {
+			--btn-bg: var(--c-bg-1, #141616);      // WPF3 dark background
+			--btn-bg-hover: var(--c-surf-1, #121212); // WPF3 dark surface
+			--btn-text: var(--c-s-1, #FFFFFF);     // WPF3 primary text
+			--btn-text-hover: var(--c-s-1, #FFFFFF);
+		}
+		
+		// Enhanced contrast for dark mode
+		&.primary {
+			--btn-bg: var(--c-t1-300, #97c1e2);    // Lighter theme color for dark mode
+			--btn-bg-hover: var(--c-t1-400, #5b9dcf);
+			--btn-text: var(--c-s-5, #000000);     // Dark text on light button
+			--btn-text-hover: var(--c-s-5, #000000);
+		}
+	}
+}
+
+// 🎨 WPF3 Theme Integration Class
+.wpf3-btn.wpf3-theme {
+	// Automatically uses all WPF3 color variables
+	--btn-bg: var(--c-t1-400);
+	--btn-bg-hover: var(--c-t1-500);
+	--btn-text: var(--c-s-1);
+	--btn-border: var(--c-border-1);
+	--btn-shadow: var(--fx-shadow-1);
+	
+	// Use WPF3 font family
+	font-family: var(--fnt-1);
+	
+	// Use WPF3 transitions
+	transition: all var(--t-fast) ease-in-out;
 }

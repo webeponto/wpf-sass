@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛠️ WPF3 Mixins & Functions - Showcase Demo</title>
+    <link rel="stylesheet" href="dist/css/main.css">
+    <style>
+        :root {
+            /* 🎨 WPF3 Variables */
+            --c-t1-400: #5b9dcf;
+            --c-t1-500: #3b84bc;
+            --c-s-1: #FFFFFF;
+            --c-s-5: #000000;
+            --c-success: #51bd5c;
+            --c-alert: #E0CB5C;
+            --c-error: #CF6679;
+            --c-bg-3: #EDF2F7;
+            --fnt-1: 'Roboto', sans-serif;
+            --t-fast: 0.3s;
+        }
+        
+        body {
+            font-family: var(--fnt-1);
+            background: linear-gradient(135deg, var(--c-t1-400) 0%, var(--c-t1-500) 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--c-bg-3);
+            border-radius: 12px;
+            border-left: 4px solid var(--c-t1-400);
+        }
+        
+        .demo-title {
+            color: var(--c-s-5);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .demo-description {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* 🎯 Demonstrações dos Mixins */
+        
+        /* generateGrid Example */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: stretch;
+        }
+        
+        .demo-grid-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .demo-grid-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* flexCenter Example */
+        .demo-flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            min-height: 120px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .demo-flex-item {
+            background: var(--c-t1-400);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        /* generateShadow Examples */
+        .demo-shadows {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .demo-shadow-item {
+            background: white;
+            padding: 2rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .shadow-soft {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+        
+        .shadow-medium {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .shadow-hard {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .shadow-glow {
+            box-shadow: 0 0 20px var(--c-t1-400), 0 0 40px rgba(91, 157, 207, 0.3);
+        }
+        
+        /* aspectRatio Example */
+        .demo-aspect {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .aspect-item {
+            background: linear-gradient(45deg, var(--c-t1-400), var(--c-t1-500));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .aspect-square { aspect-ratio: 1/1; }
+        .aspect-video { aspect-ratio: 16/9; }
+        .aspect-photo { aspect-ratio: 4/3; }
+        
+        /* gradientBackground Example */
+        .demo-gradients {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .gradient-item {
+            height: 100px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gradient-linear {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+        }
+        
+        .gradient-radial {
+            background: radial-gradient(circle at center, var(--c-success), var(--c-t1-400));
+        }
+        
+        .gradient-conic {
+            background: conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ef4444, #3b82f6);
+        }
+        
+        /* buttonStyle Example */
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .btn-demo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75em 1.5em;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            user-select: none;
+            font-weight: 500;
+        }
+        
+        .btn-primary {
+            background: var(--c-t1-400);
+            color: white;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: var(--c-t1-500);
+            transform: translateY(-1px);
+        }
+        
+        .btn-success {
+            background: var(--c-success);
+            color: white;
+        }
+        
+        .btn-success:hover:not(:disabled) {
+            background: #47a855;
+            transform: translateY(-1px);
+        }
+        
+        /* cardStyle Example */
+        .demo-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .card-demo {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+        
+        .card-demo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--c-s-5);
+        }
+        
+        .card-text {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        /* scrollbarStyle Example */
+        .demo-scroll {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            height: 150px;
+            overflow-y: auto;
+            margin: 1rem 0;
+        }
+        
+        .demo-scroll::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        .demo-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        
+        .demo-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+        
+        .demo-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        /* textGradient Example */
+        .text-gradient {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        /* Functions Examples */
+        .function-examples {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .function-item {
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: #f8fafc;
+            border-radius: 6px;
+            border-left: 3px solid var(--c-t1-400);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        /* Animation Examples */
+        .demo-animations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .anim-item {
+            background: var(--c-t1-400);
+            color: white;
+            padding: 2rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.6s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .fade-slide {
+            animation: fadeSlide 0.8s ease-out;
+        }
+        
+        @keyframes fadeSlide {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 5px var(--c-t1-400); }
+            50% { box-shadow: 0 0 20px var(--c-t1-400), 0 0 30px var(--c-t1-400); }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <header style="text-align: center; margin-bottom: 3rem;">
+            <h1 style="color: var(--c-s-5); font-size: 2.5rem; margin-bottom: 0.5rem;">
+                🛠️ WPF3 Mixins & Functions Showcase
+            </h1>
+            <p style="color: #64748b; font-size: 1.2rem;">
+                Demonstração das novas funcionalidades para desenvolvimento ágil
+            </p>
+        </header>
+
+        <!-- Grid System -->
+        <section class="demo-section">
+            <h2 class="demo-title">🏗️ Generate Grid Mixin</h2>
+            <p class="demo-description">
+                Cria sistemas de grid responsivos com colunas automáticas usando <code>@include generateGrid()</code>
+            </p>
+            <div class="demo-grid">
+                <div class="demo-grid-item">Grid Item 1</div>
+                <div class="demo-grid-item">Grid Item 2</div>
+                <div class="demo-grid-item">Grid Item 3</div>
+                <div class="demo-grid-item">Grid Item 4</div>
+            </div>
+        </section>
+
+        <!-- Flex Center -->
+        <section class="demo-section">
+            <h2 class="demo-title">🎯 Flex Center Mixin</h2>
+            <p class="demo-description">
+                Centraliza elementos usando flexbox com <code>@include flexCenter(row, center, center, 1rem)</code>
+            </p>
+            <div class="demo-flex">
+                <div class="demo-flex-item">Item 1</div>
+                <div class="demo-flex-item">Item 2</div>
+                <div class="demo-flex-item">Item 3</div>
+            </div>
+        </section>
+
+        <!-- Shadow System -->
+        <section class="demo-section">
+            <h2 class="demo-title">🌑 Generate Shadow Mixin</h2>
+            <p class="demo-description">
+                Cria sombras personalizadas com múltiplas camadas usando <code>@include generateShadow()</code>
+            </p>
+            <div class="demo-shadows">
+                <div class="demo-shadow-item shadow-soft">Soft Shadow</div>
+                <div class="demo-shadow-item shadow-medium">Medium Shadow</div>
+                <div class="demo-shadow-item shadow-hard">Hard Shadow</div>
+                <div class="demo-shadow-item shadow-glow">Glow Effect</div>
+            </div>
+        </section>
+
+        <!-- Aspect Ratio -->
+        <section class="demo-section">
+            <h2 class="demo-title">📐 Aspect Ratio Mixin</h2>
+            <p class="demo-description">
+                Define proporções de aspecto para elementos usando <code>@include aspectRatio()</code>
+            </p>
+            <div class="demo-aspect">
+                <div class="aspect-item aspect-square">Square 1:1</div>
+                <div class="aspect-item aspect-video">Video 16:9</div>
+                <div class="aspect-item aspect-photo">Photo 4:3</div>
+            </div>
+        </section>
+
+        <!-- Gradient Backgrounds -->
+        <section class="demo-section">
+            <h2 class="demo-title">🌈 Gradient Background Mixin</h2>
+            <p class="demo-description">
+                Cria backgrounds gradientes personalizados usando <code>@include gradientBackground()</code>
+            </p>
+            <div class="demo-gradients">
+                <div class="gradient-item gradient-linear">Linear</div>
+                <div class="gradient-item gradient-radial">Radial</div>
+                <div class="gradient-item gradient-conic">Conic</div>
+            </div>
+        </section>
+
+        <!-- Button Styles -->
+        <section class="demo-section">
+            <h2 class="demo-title">🔘 Button Style Mixin</h2>
+            <p class="demo-description">
+                Cria estilos de botão reutilizáveis com estados usando <code>@include buttonStyle()</code>
+            </p>
+            <div class="demo-buttons">
+                <button class="btn-demo btn-primary">Primary Button</button>
+                <button class="btn-demo btn-success">Success Button</button>
+                <button class="btn-demo btn-primary" disabled>Disabled Button</button>
+            </div>
+        </section>
+
+        <!-- Card Styles -->
+        <section class="demo-section">
+            <h2 class="demo-title">🎴 Card Style Mixin</h2>
+            <p class="demo-description">
+                Cria estilos de card com sombra e hover effects usando <code>@include cardStyle()</code>
+            </p>
+            <div class="demo-cards">
+                <div class="card-demo">
+                    <div class="card-title">Card com Hover</div>
+                    <div class="card-text">Este card tem efeito de elevação no hover e sombras suaves.</div>
+                </div>
+                <div class="card-demo">
+                    <div class="card-title">Outro Card</div>
+                    <div class="card-text">Todos os cards usam o mesmo mixin com configurações consistentes.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scrollbar Styles -->
+        <section class="demo-section">
+            <h2 class="demo-title">📜 Scrollbar Style Mixin</h2>
+            <p class="demo-description">
+                Personaliza scrollbars usando <code>@include scrollbarStyle()</code>
+            </p>
+            <div class="demo-scroll">
+                <p>Este container tem uma scrollbar personalizada.</p>
+                <p>Role para baixo para ver o efeito!</p>
+                <p>A scrollbar tem cores customizadas e efeito hover.</p>
+                <p>Linha 4</p>
+                <p>Linha 5</p>
+                <p>Linha 6</p>
+                <p>Linha 7</p>
+                <p>Linha 8</p>
+                <p>Linha 9</p>
+                <p>Linha 10</p>
+                <p>Role até aqui para testar!</p>
+            </div>
+        </section>
+
+        <!-- Text Gradient -->
+        <section class="demo-section">
+            <h2 class="demo-title">✨ Text Gradient Mixin</h2>
+            <p class="demo-description">
+                Aplica gradiente ao texto usando <code>@include textGradient()</code>
+            </p>
+            <div class="text-gradient">Texto com Gradiente!</div>
+        </section>
+
+        <!-- Functions Examples -->
+        <section class="demo-section">
+            <h2 class="demo-title">⚙️ New Functions</h2>
+            <p class="demo-description">
+                Exemplos das novas funções utilitárias do WPF3
+            </p>
+            <div class="function-examples">
+                <div class="function-item"><strong>stripUnit(16px)</strong> → 16</div>
+                <div class="function-item"><strong>toEm(24px, 16px)</strong> → 1.5em</div>
+                <div class="function-item"><strong>calculateContrast(#3b82f6)</strong> → white</div>
+                <div class="function-item"><strong>getZIndex(modal)</strong> → 400</div>
+                <div class="function-item"><strong>getBreakpoint(lg)</strong> → 992px</div>
+                <div class="function-item"><strong>fluidSize(16px, 24px)</strong> → clamp(16px, ...)</div>
+            </div>
+        </section>
+
+        <!-- Animation Examples -->
+        <section class="demo-section">
+            <h2 class="demo-title">🎪 Animation Mixin</h2>
+            <p class="demo-description">
+                Cria animações CSS facilmente usando <code>@include animateProperty()</code>
+            </p>
+            <div class="demo-animations">
+                <div class="anim-item bounce-in">Bounce In</div>
+                <div class="anim-item fade-slide">Fade Slide</div>
+                <div class="anim-item pulse-glow">Pulse Glow</div>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+            <p style="color: #64748b;">
+                🛠️ <strong>WPF3 Mixins & Functions</strong> - Ferramentas para desenvolvimento ágil<br>
+                Built with ❤️ for modern SCSS development
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // 🎭 Interactive Demo Features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers for animation examples
+            const animItems = document.querySelectorAll('.anim-item');
+            
+            animItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove animation class
+                    this.style.animation = 'none';
+                    
+                    // Force reflow
+                    this.offsetHeight;
+                    
+                    // Re-add animation class
+                    this.style.animation = '';
+                });
+            });
+            
+            // Function examples with real calculations
+            const functionExamples = document.querySelector('.function-examples');
+            if (functionExamples) {
+                console.log('🛠️ WPF3 Functions Demo:');
+                console.log('stripUnit(16px) =', 16);
+                console.log('toEm(24px, 16px) =', '1.5em');
+                console.log('calculateContrast(#3b82f6) =', 'white');
+                console.log('getZIndex(modal) =', 400);
+                console.log('getBreakpoint(lg) =', '992px');
+            }
+        });
+    </script>
+</body>
+</html>

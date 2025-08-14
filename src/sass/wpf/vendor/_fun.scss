@@ -1,4 +1,4 @@
-//?	Funções (WPF2)
+//?	Funções (WPF3)
 //!	Funções globais para uso no seu projeto:
 
 //* Instâncias: extensões da folha de estilos:
@@ -16,4 +16,246 @@
 {
 	$value: math.div($value, sys.$s-rem) * 1rem;
 	@return $value;
+}
+
+/**
+	*#	Strip Unit
+	*	Remove a unidade de um valor, retornando apenas o número.
+	*
+	*	$value 				-> O valor com unidade (ex: 16px, 2rem, 100%).
+*/
+@function stripUnit($value)
+{
+	@return math.div($value, $value * 0 + 1);
+}
+
+/**
+	*#	Px to Em
+	*	Converte pixels para EM baseado em um contexto.
+	*
+	*	$pixels 			-> O valor em pixels.
+	*	$context 			-> O contexto base (padrão 16px).
+*/
+@function toEm($pixels, $context: 16px)
+{
+	@return math.div(stripUnit($pixels), stripUnit($context)) * 1em;
+}
+
+/**
+	*#	Calculate Contrast
+	*	Calcula a cor de contraste ideal (preto ou branco) para uma cor de fundo.
+	*
+	*	$background 		-> A cor de fundo.
+	*	$light 				-> Cor clara a ser retornada (padrão: branco).
+	*	$dark 				-> Cor escura a ser retornada (padrão: preto).
+*/
+@function calculateContrast($background, $light: #ffffff, $dark: #000000)
+{
+	$luminance: color.lightness($background);
+	
+	@if($luminance > 50%)
+	{
+		@return $dark;
+	}
+	@else
+	{
+		@return $light;
+	}
+}
+
+/**
+	*#	Lighten Smart
+	*	Clareia uma cor de forma inteligente, evitando saturação excessiva.
+	*
+	*	$color 				-> A cor base.
+	*	$amount 			-> Quantidade para clarear (0-100%).
+	*	$method 			-> Método: 'lightness' ou 'mix'.
+*/
+@function lightenSmart($color, $amount: 10%, $method: lightness)
+{
+	@if($method == lightness)
+	{
+		@return color.adjust($color, $lightness: $amount);
+	}
+	@else if($method == mix)
+	{
+		@return color.mix(white, $color, $amount);
+	}
+	@else
+	{
+		@warn "Método inválido. Use 'lightness' ou 'mix'.";
+		@return $color;
+	}
+}
+
+/**
+	*#	Darken Smart
+	*	Escurece uma cor de forma inteligente, evitando saturação excessiva.
+	*
+	*	$color 				-> A cor base.
+	*	$amount 			-> Quantidade para escurecer (0-100%).
+	*	$method 			-> Método: 'lightness' ou 'mix'.
+*/
+@function darkenSmart($color, $amount: 10%, $method: lightness)
+{
+	@if($method == lightness)
+	{
+		@return color.adjust($color, $lightness: -$amount);
+	}
+	@else if($method == mix)
+	{
+		@return color.mix(black, $color, $amount);
+	}
+	@else
+	{
+		@warn "Método inválido. Use 'lightness' ou 'mix'.";
+		@return $color;
+	}
+}
+
+/**
+	*#	Get Z-Index
+	*	Retorna valores de z-index de uma escala predefinida.
+	*
+	*	$level 				-> Nível desejado: 'base', 'dropdown', 'sticky', 'fixed', 'modal', 'popover', 'tooltip', 'toast'.
+*/
+@function getZIndex($level)
+{
+	$z-indexes: (
+		base: 		1,
+		dropdown: 	100,
+		sticky: 	200,
+		fixed: 		300,
+		modal: 		400,
+		popover: 	500,
+		tooltip: 	600,
+		toast: 		700
+	);
+
+	@if map-has-key($z-indexes, $level)
+	{
+		@return map-get($z-indexes, $level);
+	}
+	@else
+	{
+		@warn "Nível de z-index inválido: #{$level}. Use: #{map-keys($z-indexes)}";
+		@return 1;
+	}
+}
+
+/**
+	*#	Fluid Size
+	*	Calcula um tamanho fluido entre dois breakpoints.
+	*
+	*	$min-size 			-> Tamanho mínimo.
+	*	$max-size 			-> Tamanho máximo.
+	*	$min-screen 		-> Tela mínima (padrão: 320px).
+	*	$max-screen 		-> Tela máxima (padrão: 1200px).
+*/
+@function fluidSize($min-size, $max-size, $min-screen: 320px, $max-screen: 1200px)
+{
+	$min-size: stripUnit($min-size);
+	$max-size: stripUnit($max-size);
+	$min-screen: stripUnit($min-screen);
+	$max-screen: stripUnit($max-screen);
+
+	$slope: math.div($max-size - $min-size, $max-screen - $min-screen);
+	$intersection: -$min-screen * $slope + $min-size;
+
+	@return clamp(#{$min-size}px, #{$intersection}px + #{$slope * 100}vw, #{$max-size}px);
+}
+
+/**
+	*#	Generate Steps
+	*	Gera uma lista de valores com passos uniformes.
+	*
+	*	$start 				-> Valor inicial.
+	*	$end 				-> Valor final.
+	*	$steps 				-> Número de passos.
+	*	$unit 				-> Unidade a ser aplicada.
+*/
+@function generateSteps($start, $end, $steps: 5, $unit: px)
+{
+	$result: ();
+	$step-size: math.div($end - $start, $steps - 1);
+
+	@for $i from 0 through $steps - 1
+	{
+		$value: $start + ($step-size * $i);
+		$result: append($result, $value + $unit);
+	}
+
+	@return $result;
+}
+
+/**
+	*#	Random Color
+	*	Gera uma cor aleatória baseada em parâmetros.
+	*
+	*	$hue 				-> Matiz base (0-360) ou 'random'.
+	*	$saturation 		-> Saturação (0-100%).
+	*	$lightness 			-> Claridade (0-100%).
+	*	$alpha 				-> Transparência (0-1).
+*/
+@function randomColor($hue: random, $saturation: 70%, $lightness: 50%, $alpha: 1)
+{
+	@if($hue == random)
+	{
+		$hue: random(360);
+	}
+
+	@return hsla($hue, $saturation, $lightness, $alpha);
+}
+
+/**
+	*#	Get Breakpoint
+	*	Retorna valores de breakpoint de uma escala predefinida.
+	*
+	*	$size 				-> Tamanho desejado: 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'.
+*/
+@function getBreakpoint($size)
+{
+	$breakpoints: (
+		xs: 	480px,
+		sm: 	576px,
+		md: 	768px,
+		lg: 	992px,
+		xl: 	1200px,
+		xxl: 	1400px
+	);
+
+	@if map-has-key($breakpoints, $size)
+	{
+		@return map-get($breakpoints, $size);
+	}
+	@else
+	{
+		@warn "Breakpoint inválido: #{$size}. Use: #{map-keys($breakpoints)}";
+		@return 768px;
+	}
+}
+
+/**
+	*#	Clamp Size
+	*	Gera um valor clamp responsivo.
+	*
+	*	$min 				-> Valor mínimo.
+	*	$preferred 			-> Valor preferido (fluido).
+	*	$max 				-> Valor máximo.
+*/
+@function clampSize($min, $preferred, $max)
+{
+	@return clamp(#{$min}, #{$preferred}, #{$max});
+}
+
+/**
+	*#	Color Alpha
+	*	Ajusta a transparência de uma cor mantendo outros valores.
+	*
+	*	$color 				-> A cor base.
+	*	$alpha 				-> Nova transparência (0-1).
+*/
+@function colorAlpha($color, $alpha)
+{
+	@return color.change($color, $alpha: $alpha);
 }

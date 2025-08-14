@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 WPF3 Dynamic Button System - Revolutionary Demo</title>
+    <link rel="stylesheet" href="dist/css/main.css">
+    <style>
+        :root {
+            /* 🎨 WPF3 Integration - Using Real WPF3 Variables */
+            --c-t1-400: #5b9dcf;       /* WPF3 Primary */
+            --c-t1-500: #3b84bc;       /* WPF3 Primary Hover */
+            --c-s-1: #FFFFFF;          /* WPF3 Primary Text */
+            --c-s-5: #000000;          /* WPF3 Dark Text */
+            --c-success: #51bd5c;      /* WPF3 Success */
+            --c-alert: #E0CB5C;        /* WPF3 Warning */
+            --c-error: #CF6679;        /* WPF3 Error */
+            --c-notification: #E62E7B; /* WPF3 Notification */
+            --c-bg-1: #141616;         /* WPF3 Dark Background */
+            --c-bg-3: #EDF2F7;         /* WPF3 Light Background */
+            --fnt-1: 'Roboto', sans-serif; /* WPF3 Font */
+            --t-fast: 0.3s;            /* WPF3 Fast Transition */
+            --fx-shadow-1: 0px 2px 5px rgba(38, 51, 77, 0.03); /* WPF3 Shadow */
+            
+            /* 🎭 Demo Custom Properties */
+            --demo-radius: 12px;
+            --demo-size: 1.1rem;
+            --demo-padding: 1.25em;
+        }
+        
+        body {
+            font-family: var(--fnt-1);
+            background: linear-gradient(135deg, var(--c-t1-400) 0%, var(--c-t1-500) 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--fx-shadow-1), 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--c-bg-3);
+            border-radius: 12px;
+            border-left: 4px solid var(--c-t1-400);
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .demo-title {
+            color: var(--c-bg-1);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .demo-description {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Custom demo effects using WPF3 colors */
+        .demo-glow-btn {
+            box-shadow: 0 0 10px var(--c-t1-400);
+            animation: demo-glow-pulse 2s infinite;
+        }
+        
+        @keyframes demo-glow-pulse {
+            0%, 100% { box-shadow: 0 0 5px var(--c-t1-400); }
+            50% { box-shadow: 0 0 20px var(--c-t1-400), 0 0 30px var(--c-t1-400); }
+        }
+        
+        .demo-glass-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--c-s-1);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <header style="text-align: center; margin-bottom: 3rem;">
+            <h1 style="color: #1e293b; font-size: 2.5rem; margin-bottom: 0.5rem;">
+                🚀 WPF3 Dynamic Button System
+            </h1>
+            <p style="color: #64748b; font-size: 1.2rem;">
+                Revolutionary CSS framework with theme-aware components and advanced animations
+            </p>
+        </header>
+
+        <!-- Basic Button Variants -->
+        <section class="demo-section">
+            <h2 class="demo-title">🎨 Basic Button Variants</h2>
+            <p class="demo-description">
+                Semantic color variants with consistent theming and accessibility features.
+            </p>
+            <div class="demo-grid">
+                <button class="wpf3-btn primary">Primary Button</button>
+                <button class="wpf3-btn secondary">Secondary Button</button>
+                <button class="wpf3-btn success">Success Button</button>
+                <button class="wpf3-btn warning">Warning Button</button>
+                <button class="wpf3-btn danger">Danger Button</button>
+                <button class="wpf3-btn notification">Notification Button</button>
+                <button class="wpf3-btn dark">Dark Button</button>
+                <button class="wpf3-btn light">Light Button</button>
+            </div>
+        </section>
+
+        <!-- Style Variants -->
+        <section class="demo-section">
+            <h2 class="demo-title">🎭 Style Variants</h2>
+            <p class="demo-description">
+                Outline, ghost, and gradient styles for different design needs.
+            </p>
+            <div class="demo-grid">
+                <button class="wpf3-btn primary outline">Primary Outline</button>
+                <button class="wpf3-btn success outline">Success Outline</button>
+                <button class="wpf3-btn notification outline">Notification Outline</button>
+                <button class="wpf3-btn primary ghost">Primary Ghost</button>
+                <button class="wpf3-btn secondary ghost">Secondary Ghost</button>
+                <button class="wpf3-btn primary gradient">Primary Gradient</button>
+                <button class="wpf3-btn success gradient">Success Gradient</button>
+            </div>
+        </section>
+
+        <!-- Size Variants -->
+        <section class="demo-section">
+            <h2 class="demo-title">📏 Size Variants</h2>
+            <p class="demo-description">
+                Flexible sizing system using CSS variables for consistent scaling.
+            </p>
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <button class="wpf3-btn primary xs">Extra Small</button>
+                <button class="wpf3-btn primary sm">Small</button>
+                <button class="wpf3-btn primary">Default</button>
+                <button class="wpf3-btn primary lg">Large</button>
+                <button class="wpf3-btn primary xl">Extra Large</button>
+            </div>
+        </section>
+
+        <!-- Advanced Animation Effects -->
+        <section class="demo-section">
+            <h2 class="demo-title">🎪 Advanced Animation Effects</h2>
+            <p class="demo-description">
+                Interactive micro-animations and visual feedback systems.
+            </p>
+            <div class="demo-grid">
+                <button class="wpf3-btn primary ripple">Ripple Effect</button>
+                <button class="wpf3-btn secondary shimmer">Shimmer Effect</button>
+                <button class="wpf3-btn success magnetic">Magnetic Effect</button>
+                <button class="wpf3-btn warning loading">Loading State</button>
+                <button class="wpf3-btn notification glow">WPF3 Glow</button>
+                <button class="wpf3-btn pulse primary">WPF3 Pulse</button>
+                <button class="wpf3-btn demo-glow-btn primary">Demo Glow</button>
+                <button class="wpf3-btn demo-glass-btn">Glass Effect</button>
+            </div>
+        </section>
+
+        <!-- Dynamic CSS Variables -->
+        <section class="demo-section">
+            <h2 class="demo-title">🌈 Dynamic CSS Variables</h2>
+            <p class="demo-description">
+                Runtime customization using CSS custom properties with WPF3 utility classes.
+            </p>
+            <div class="demo-grid">
+                <button class="wpf3-btn btn-radius-(custom-radius)">Custom Radius</button>
+                <button class="wpf3-btn btn-size-(custom-size)">Custom Size</button>
+                <button class="wpf3-btn btn-px-(custom-padding)">Custom Padding</button>
+                <button class="wpf3-btn btn-bg-(theme-primary) btn-text-(white)">Theme Variables</button>
+            </div>
+        </section>
+
+        <!-- Button Groups -->
+        <section class="demo-section">
+            <h2 class="demo-title">🔗 Button Groups & Compositions</h2>
+            <p class="demo-description">
+                Compound components for complex interface patterns.
+            </p>
+            
+            <div style="margin-bottom: 2rem;">
+                <h3 style="color: #374151; margin-bottom: 1rem;">Button Group</h3>
+                <div class="wpf3-btn-group">
+                    <button class="wpf3-btn primary">First</button>
+                    <button class="wpf3-btn primary">Second</button>
+                    <button class="wpf3-btn primary">Third</button>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="color: #374151; margin-bottom: 1rem;">Split Button</h3>
+                <div class="wpf3-split-btn">
+                    <button class="wpf3-btn success main">Save Document</button>
+                    <button class="wpf3-btn success dropdown">▼</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Responsive Features -->
+        <section class="demo-section">
+            <h2 class="demo-title">📱 Responsive Features</h2>
+            <p class="demo-description">
+                Mobile-first responsive utilities with smart breakpoints.
+            </p>
+            <div class="demo-grid">
+                <button class="wpf3-btn primary btn-full-mobile">Full Width on Mobile</button>
+                <button class="wpf3-btn secondary btn-compact-mobile">Compact on Mobile</button>
+            </div>
+        </section>
+
+        <!-- Icon Integration -->
+        <section class="demo-section">
+            <h2 class="demo-title">🎯 Icon Integration</h2>
+            <p class="demo-description">
+                Seamless icon support with proper spacing and alignment.
+            </p>
+            <div class="demo-grid">
+                <button class="wpf3-btn primary">
+                    <span class="icon">🚀</span>
+                    Launch App
+                </button>
+                <button class="wpf3-btn success">
+                    <span class="icon">✅</span>
+                    Confirm
+                </button>
+                <button class="wpf3-btn danger">
+                    <span class="icon">🗑️</span>
+                    Delete
+                </button>
+                <button class="wpf3-btn secondary">
+                    <span class="icon">⚙️</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Accessibility Features -->
+        <section class="demo-section">
+            <h2 class="demo-title">♿ Accessibility Features</h2>
+            <p class="demo-description">
+                Built-in accessibility with focus management and screen reader support.
+            </p>
+            <div class="demo-grid">
+                <button class="wpf3-btn primary" aria-label="Save document">
+                    <span class="icon">💾</span>
+                    Save
+                </button>
+                <button class="wpf3-btn secondary" disabled>
+                    Disabled Button
+                </button>
+                <button class="wpf3-btn success" tabindex="0">
+                    Focus Visible Test
+                </button>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+            <p style="color: #64748b;">
+                🔥 <strong>WPF3 Framework</strong> - Next-generation CSS utility framework<br>
+                Built with ❤️ for modern web development
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // 🎭 Interactive Demo Features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers for demonstration
+            const buttons = document.querySelectorAll('.wpf3-btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Prevent form submission for demo
+                    e.preventDefault();
+                    
+                    // Visual feedback
+                    const originalText = this.textContent;
+                    this.textContent = '✅ Clicked!';
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 1000);
+                });
+            });
+            
+            // Loading button demo
+            const loadingBtn = document.querySelector('.loading');
+            if (loadingBtn) {
+                setInterval(() => {
+                    loadingBtn.classList.toggle('loading');
+                }, 3000);
+            }
+        });
+
+        // 🌙 Dark mode toggle demo
+        function toggleDarkMode() {
+            document.body.style.filter = document.body.style.filter ? '' : 'invert(1) hue-rotate(180deg)';
+        }
+    </script>
+</body>
+</html>
