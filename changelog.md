@@ -8,27 +8,57 @@
 **Changelog**
 
 ## 3.0.3 - Alpha
-- `sass/wpf/mods/_buttons.scss`: **🚀 REVOLUTIONARY WPF3 DYNAMIC BUTTON SYSTEM** - Created a completely new, modern button component architecture that establishes WPF3 as a next-generation CSS framework. Introduced the `.wpf3-btn` foundation class featuring CSS custom properties for theme-aware dynamic styling, advanced accessibility with focus-visible support, and micro-interaction animations with hover/active state management;
-- `sass/wpf/mods/_buttons.scss`: **🎨 SEAMLESS WPF3 VARIABLE INTEGRATION** - Completely integrated button system with existing WPF3 variable architecture from `_default.scss` and `_dark.scss`. All button variants now use authentic WPF3 colors: primary theme (`--c-t1-400`, `--c-t1-500`), semantic indicators (`--c-success`, `--c-alert`, `--c-error`, `--c-notification`), text colors (`--c-s-1`, `--c-s-5`), backgrounds (`--c-bg-1`, `--c-bg-3`), borders (`--c-border-1`, `--c-border-2`), typography (`--fnt-1`), transitions (`--t-fast`, `--t-normal`), and effects (`--fx-shadow-1`);
-- `sass/wpf/mods/_buttons.scss`: **Advanced Component Variant System** - Developed 8 semantic color variants (primary, secondary, success, warning, danger, dark, light, notification) with automatic WPF3 theme integration, 3 style variants (outline, ghost, gradient) using WPF3 gradient variables, and 4 size variants (xs, sm, lg, xl) with scalable CSS custom properties;
-- `sass/wpf/mods/_buttons.scss`: **Professional Animation System with WPF3 Timing** - Implemented 6 advanced animation effects: ripple effect with WPF3 transition timing, shimmer effect using WPF3 animation duration, magnetic effect with WPF3 fast transitions, loading state with WPF3 disabled colors, glow effect using WPF3 primary colors, and pulse animation with WPF3 theme color integration;
-- `sass/wpf/mods/_buttons.scss`: **Intelligent Dark Mode Integration** - Built automatic dark mode support using `prefers-color-scheme` with WPF3 dark theme variables, enhanced contrast adjustments for accessibility, and special `.wpf3-theme` class for complete WPF3 variable integration including colors, typography, and timing;
-- `sass/wpf/mods/_buttons.scss`: **Component Architecture Excellence** - Created button group system (`.wpf3-btn-group`) with seamless border radius management, split button component (`.wpf3-split-btn`) for dropdown functionality, and intelligent icon integration with proper spacing and flex alignment for both text+icon and icon-only buttons;
-- `wpf3-buttons-demo.html`: **WPF3-Integrated Interactive Demonstration** - Updated comprehensive showcase page to use authentic WPF3 variables and colors, demonstrating real-world integration with WPF3 design system. Features live interactive effects using WPF3 color palette, responsive behavior testing, accessibility demonstrations, and authentic WPF3 theming examples;
-- `.github/instructions/wpf3-framework.instructions.md`: **Component Development Guidelines** - Added comprehensive section documenting the distinction between utility classes (wpf.config.yaml) vs component classes (SCSS modules), complete WPF3 variable integration rules with all color/typography/effect references, variable location guide pointing to `_default.scss` and `_dark.scss`, and component architecture best practices with CSS custom properties and variant systems;
-- `sass/wpf/vendor/_mix.scss`: **🛠️ MASSIVE MIXIN LIBRARY EXPANSION** - Added 12 powerful new mixins for rapid development: `generateGrid()` for responsive grid systems, `flexCenter()` for advanced flexbox layouts, `generateShadow()` with 4 shadow types (soft/medium/hard/glow), `aspectRatio()` with modern and legacy support, `gradientBackground()` for linear/radial/conic gradients, `animateProperty()` for CSS animations, `buttonStyle()` for consistent button creation, `cardStyle()` with hover effects, `scrollbarStyle()` for custom scrollbars, and `textGradient()` for gradient text effects;
-- `sass/wpf/vendor/_fun.scss`: **⚙️ COMPREHENSIVE FUNCTION LIBRARY** - Added 15 essential utility functions: `stripUnit()` for removing units, `toEm()` for px-to-em conversion, `calculateContrast()` for automatic color contrast, `lightenSmart()`/`darkenSmart()` for intelligent color manipulation, `getZIndex()` with predefined scale (base/dropdown/sticky/fixed/modal/popover/tooltip/toast), `fluidSize()` for responsive typography, `generateSteps()` for value sequences, `randomColor()` for dynamic colors, `getBreakpoint()` with standard sizes, `clampSize()` for responsive values, and `colorAlpha()` for transparency adjustments;
-- `wpf3-mixins-functions-demo.html`: **🎨 INTERACTIVE SHOWCASE DEMONSTRATION** - Created comprehensive demo page showcasing all new mixins and functions with live examples, interactive elements, and practical use cases. Features grid systems, flexbox layouts, shadow variations, aspect ratios, gradient backgrounds, button styles, card components, custom scrollbars, text gradients, and animated examples with click-to-restart functionality;
-- `js/wpf/dynamic/wpf.config.yaml`: Enhanced framework with comprehensive CSS variables support through token-based utilities, enabling dynamic styling controlled via JavaScript. Added variable versions for aspect ratio (`ratio-(token)`), transitions (`t-(token)`, `delay-(token)`), transforms including scale (`scale-(token)`, `scale-x-(token)`, `scale-y-(token)`, `scale-z-(token)`, `scale-3d-(token)`), opacity (`opacity-(token)`), rotation (`rotate-(token)`, `rotate-x-(token)`, `rotate-y-(token)`, `rotate-z-(token)`, `rotate-3d-(token)`), translation (`translate-x-(token)`, `translate-y-(token)`, `translate-z-(token)`), and grid utilities (`span-col-(token)`, `span-row-(token)`);
+- `sass/wpf/mods/_buttons.scss`: Created a completely new, modern button component architecture that establishes a new boundary for interactive design systems using WPF3. Through the *wpf3-btn* template classes, WPF3 delivers custom button styles that adapt to user preferences and system themes, ensuring a cohesive and engaging user experience, advanced accessibility with focus-visible support and micro-interaction animations with hover/active state management;
+- `sass/wpf/mods/_buttons.scss`: Completely integrated button system with existing WPF3 variable architecture from `_default.scss` and `_dark.scss`. All button variants now use authentic WPF3 variables and colors such as primary/secondary/tertiary themes, semantic indicators, text colors, backgrounds, borders, typography, transitions, and special effects;
+- `sass/wpf/mods/_buttons.scss`: Developed 8 semantic color variants *(primary, secondary, success, warning, danger, dark, light, notification)* with automatic WPF3 theme integration, 3 style variants *(outline, ghost, gradient)* using WPF3 gradient variables, and 4 size variants *(xs, sm, lg, xl)* with scalable CSS custom properties;
+- `sass/wpf/mods/_buttons.scss`: Testing 6 new advanced animation effects for template buttons - *ripple effect* with WPF3 transition timing, *shimmer effect* using WPF3 animation duration, *magnetic effect* with WPF3 fast transitions, *loading state* with WPF3 disabled colors, *glow effect* using WPF3 primary colors, and *pulse animation* with WPF3 theme color integration;
+- `sass/wpf/mods/_buttons.scss`: Intelligent Dark Mode Integration - Built automatic dark mode support using *prefers-color-scheme* with WPF3 dark theme variables, enhanced contrast adjustments for accessibility, and special *wpf3-theme* class for complete WPF3 variable integration including colors, typography, and timing;
+- `sass/wpf/mods/_buttons.scss`: Component Architecture Excellence - Created button group system (*.wpf3-btn-group*) with seamless border radius management, split button component (*.wpf3-split-btn*) for dropdown functionality, and intelligent icon integration with proper spacing and flex alignment for both text+icon and icon-only buttons;
+- `.github/instructions/wpf3-framework.instructions.md`: Component Development Guidelines - Added comprehensive section documenting the distinction between utility classes (`wpf.config.yaml`) vs component classes (SCSS modules), complete WPF3 variable integration rules with all color/typography/effect references, variable location guide pointing to `_default.scss` and `_dark.scss`, and component architecture best practices with CSS custom properties and variant systems;
+- `sass/wpf/vendor/_mix.scss`: Added 12 powerful new mixins for rapid development:
+	- *generateGrid()* for generating responsive grid systems,
+	- *flexCenter()* for a quick and organized flexbox layout,
+	- *generateShadow()* featuring 4 distinct shadow types (soft/medium/hard/glow),
+	- *aspectRatio()* with a modern and legacy method (for old CSS compatibility) support,
+	- *gradientBackground()* for linear/radial/conic gradients,
+	- *animateProperty()* for CSS animations,
+	- *buttonStyle()* for consistent button creation,
+	- *cardStyle()* with hover effects,
+	- *scrollbarStyle()* for custom scrollbars,
+	- *textGradient()* for gradient text effects;
+- `sass/wpf/vendor/_fun.scss`: Added 15 essential utility functions: 
+	- *stripUnit()* for removing units from a specified value,
+	- *toEm()* for px-to-em conversion,
+	- *calculateContrast()* to automatically calculate what is the best contrast color in a background,
+	- *lightenSmart()*/*darkenSmart()* for intelligent color manipulation,
+	- *getZIndex()* with predefined scale (base/dropdown/sticky/fixed/modal/popover/tooltip/toast),
+	- *fluidSize()* for responsive typography,
+	- *generateSteps()* for value sequences,
+	- *randomColor()* for dynamic colors,
+	- *getBreakpoint()* with standard sizes,
+	- *clampSize()* for responsive values,
+	- *colorAlpha()* for transparency adjustments;
+- `js/wpf/dynamic/wpf.config.yaml`: Enhanced framework with comprehensive CSS variables support through token-based utilities, enabling dynamic styling controlled via JavaScript. Added variable versions for *aspect ratio*, *transitions*, *transforms* including scale, *opacity*, *rotation*, *translation*, and *grid utilities*;
 - `js/wpf/dynamic/wpf.config.yaml`: All new variable-based utilities use the syntax `utility-(token)` mapping to `CSS-property: var(--token)`, allowing runtime customization of styling values through CSS custom properties without regenerating utility classes;
-- `js/wpf/dynamic/render.js`: **Major refactoring of class extraction system** - Completely redesigned `extractClassGroupsFromFile()` function to support multiple delimiters and complex framework syntaxes. Replaced single regex pattern with sophisticated multi-pattern detection supporting double quotes (`"..."`), single quotes (`'...'`), template literals (\`...\`), and Alpine.js/Vue objects (`{...}`);
+- `js/wpf/dynamic/render.js`: **Major refactoring of class extraction system** - Completely redesigned *extractClassGroupsFromFile()* function to support multiple delimiters and complex framework syntaxes. Replaced single regex pattern with sophisticated multi-pattern detection supporting double quotes (*"..."*), single quotes (*'...'*), template literals (*\`...\`*), and Alpine.js/Vue objects (*{...}*);
 - `js/wpf/dynamic/render.js`: Enhanced Blade framework support with specialized detection patterns for conditional expressions (`{{ condition ? 'class-name' : '' }}`) and Blade functions (`@svg('icon', 'class-list')`). Added intelligent class extraction that processes Blade syntax before standard normalization to prevent class loss in complex template structures;
 - `js/wpf/dynamic/render.js`: Improved CSS value protection during class extraction - Added safeguards for comma-separated values like `rgba(255,255,255,0.5)` by temporarily protecting parentheses content, preventing CSS color values from being incorrectly split as separate classes during normalization;
 - `js/wpf/dynamic/render.js`: Advanced Alpine.js and Vue.js compatibility with enhanced token normalization that removes trailing colons from object property separators while preserving breakpoint prefixes (`sm:`, `md:`, etc.), ensuring accurate class detection in reactive framework contexts;
-- `sass/wpf/vendor/_anim.scss`: **Massive animation system expansion** - Added 13 sophisticated animation mixins transforming the framework from basic 6-mixin setup to comprehensive 19-mixin animation library. Introduced movement animations (`wiggle`, `shake-x`, `shake-y`, `float`, `swing`), transformation effects (`tilt`, `jelly`, `flip`, `heartbeat`), interactive hover animations (`hover-glow`, `underline-sweep`, `ripple`, `highlight-sweep`), and visual effects (`shimmer`);
-- `sass/wpf/vendor/_anim.scss`: Advanced animation architecture with unique hash system - Each mixin generates collision-free keyframes using `getHash()` function, enabling multiple instances of the same animation type without conflicts. All animations feature comprehensive parameter customization including duration, loop control, scale factors, colors, directions, and trigger selectors;
-- `sass/wpf/vendor/_anim.scss`: Professional-grade interactive animations with CSS3 techniques - `hover-glow` creates pulsating box-shadow effects, `ripple` uses pseudo-elements for expanding wave animations, `underline-sweep` implements gradient-based text underlining, `highlight-sweep` provides background text highlighting with directional control, and `shimmer` delivers surface reflection effects using gradient animations;
-- `sass/wpf/vendor/_anim.scss`: 3D animation support with `flip` mixin offering X/Y axis rotation with `transform-style: preserve-3d`, `jelly` providing non-uniform scale3d transformations for organic movement effects, and `tilt` delivering perspective-aware rotation animations with customizable transform origins;
+- `sass/wpf/vendor/_anim.scss`: **Massive animation system expansion** - Added 13 sophisticated animation mixins transforming the framework from basic 6-mixin setup to comprehensive 19-mixin animation library. The new animation list includes:
+	- *wiggle* for subtle rotation movement effects,
+	- *shake-x* for horizontal shaking effects,
+	- *shake-y* for vertical shaking effects,
+	- *float* for gentle floating animations,
+	- *swing* for playful swinging motions,
+	- *tilt* for dynamic tilting effects,
+	- *jelly* for bouncy and squishy jelly-like movements,
+	- *flip* for 3D flipping animations,
+	- *heartbeat* for pulsating heartbeat effects,
+	- *hover-glow* for glowing effects on hover,
+	- *underline-sweep* for sweeping underline animations,
+	- *ripple* for ripple effects,
+	- *highlight-sweep* for sweeping highlight animations,
+	- *shimmer* for shimmering effects mimicking reflections;
 
 ## 3.0.2 - Alpha
 - `js/wpf/dynamic/wpf.config.yaml`: Added *Flex Wrap* utilities `wrap`, `nowrap`/`no-wrap` and `wrap-reverse`;
