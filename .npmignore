@@ -1,0 +1,24 @@
+# Development files
+src/
+tsconfig*.json
+.git/
+.github/
+node_modules/
+
+# Test and demo files
+wpf3-*-demo.html
+teste.php
+
+# Build artifacts
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Keep only distribution files
+!dist/

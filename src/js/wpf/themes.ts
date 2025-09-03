@@ -116,7 +116,7 @@ export class Themes {
                 console.log(`Theme ${themeName} active: applied ${classToApply}`);
 
                 // Força o Painter a processar essas novas classes
-                this.painter.applyPaints();
+                this.painter.applyPaints(document);
             } else {
                 // Remove a classe do tema
                 element.classList.remove(classToApply);
@@ -149,9 +149,9 @@ export class Themes {
 
     private debounce(func: (mutations: MutationRecord[]) => void, wait: number) {
         let timeout: ReturnType<typeof setTimeout>;
-        return (...args: any[]) => {
+        return (mutations: MutationRecord[]) => {
             clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), wait);
+            timeout = setTimeout(() => func.call(this, mutations), wait);
         };
     }
 }

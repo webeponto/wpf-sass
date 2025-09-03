@@ -9,9 +9,9 @@
 //?	Comente as ferramentas que você não deseja incluir no seu projeto.
 //? Passe o cursor do mouse sobre o título do módulo para ver sua descrição.
 
-import { LazyLoad } from "./lazyload.ts";
-import { Pseudos } from "./pseudos.ts";
-import { Painter } from "./painter.ts";
-import { Themes } from "./themes.ts";
+import { LazyLoad } from "./lazyload";
+import { Pseudos } from "./pseudos";
+import { Painter } from "./painter";
+import { Themes } from "./themes";
 
 export const wpf = { LazyLoad, Pseudos, Painter, Themes };

@@ -1,9 +1,9 @@
 # WPF 3.0 - The Intuitive CSS
 **Dynamic utility framework that understands context, not just classes**  
 
-<!-- ```bash
-npm install wpf-engine
-``` -->
+```bash
+npm install @webeponto/wpf3
+```
 
 ## Human-First CSS for Everyone
 
@@ -13,6 +13,37 @@ WPF 3.0 reimagines CSS architecture by blending natural language patterns with d
 ✅ **Context-aware rules** - Properties adapt to companion classes  
 ✅ **Learn-as-you-code** - Discover CSS through meaningful class names  
 ✅ **Zero bloat** - Generates only what your project uses  
+
+## Quick Start
+
+### Installation
+```bash
+# Install WPF3 framework
+npm install @webeponto/wpf3
+
+# Peer dependency for SCSS compilation
+npm install --save-dev sass
+```
+
+### Basic Setup
+```javascript
+// Import TypeScript modules
+import { wpf } from '@webeponto/wpf3';
+const { Themes, Painter, LazyLoad } = wpf;
+
+// Import SCSS (recommended)
+@use '@webeponto/wpf3/scss' as wpf;
+
+// Or use pre-compiled CSS
+import '@webeponto/wpf3/css';
+```
+
+### Dynamic CSS Generation
+```javascript
+// Copy dynamic engine to your project
+const render = require('@webeponto/wpf3/dynamic');
+// Configure wpf.config.yaml for your project structure
+```
 
 ## Why Designers and Developers Align
 
@@ -72,4 +103,18 @@ We're building WPF with:
 [Discord](https://img.shields.io/discord/123456789?logo=discord) -->
 
 ## License  
-MIT Licensed - Freedom for all implementations  
+
+WPF3 is licensed under a **Modified MIT License** that protects the framework's identity while remaining open source:
+
+✅ **FREE to use** in personal and commercial projects  
+✅ **FREE to include** as a dependency in larger applications  
+✅ **FREE to modify** for integration purposes  
+
+❌ **Cannot be sold** as a standalone product  
+❌ **Cannot be rebranded** or compete with WPF3  
+❌ **Cannot be monetized** as an isolated service  
+
+**Perfect for:** Websites, apps, SaaS products, client projects  
+**Not allowed:** Selling WPF3 itself, creating competing frameworks  
+
+See [LICENSE](LICENSE) for complete terms.

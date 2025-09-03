@@ -15,7 +15,7 @@
 - `sass/wpf/mods/_buttons.scss`: Intelligent Dark Mode Integration - Built automatic dark mode support using *prefers-color-scheme* with WPF3 dark theme variables, enhanced contrast adjustments for accessibility, and special *wpf3-theme* class for complete WPF3 variable integration including colors, typography, and timing;
 - `sass/wpf/mods/_buttons.scss`: Component Architecture Excellence - Created button group system (*.wpf3-btn-group*) with seamless border radius management, split button component (*.wpf3-split-btn*) for dropdown functionality, and intelligent icon integration with proper spacing and flex alignment for both text+icon and icon-only buttons;
 - `.github/instructions/wpf3-framework.instructions.md`: Component Development Guidelines - Added comprehensive section documenting the distinction between utility classes (`wpf.config.yaml`) vs component classes (SCSS modules), complete WPF3 variable integration rules with all color/typography/effect references, variable location guide pointing to `_default.scss` and `_dark.scss`, and component architecture best practices with CSS custom properties and variant systems;
-- `sass/wpf/vendor/_mix.scss`: Added 12 powerful new mixins for rapid development:
+- `sass/wpf/vendor/_mix.scss`: Added 10 powerful new mixins for rapid development:
 	- *generateGrid()* for generating responsive grid systems,
 	- *flexCenter()* for a quick and organized flexbox layout,
 	- *generateShadow()* featuring 4 distinct shadow types (soft/medium/hard/glow),
@@ -26,7 +26,7 @@
 	- *cardStyle()* with hover effects,
 	- *scrollbarStyle()* for custom scrollbars,
 	- *textGradient()* for gradient text effects;
-- `sass/wpf/vendor/_fun.scss`: Added 15 essential utility functions: 
+- `sass/wpf/vendor/_fun.scss`: Added 12 essential utility functions: 
 	- *stripUnit()* for removing units from a specified value,
 	- *toEm()* for px-to-em conversion,
 	- *calculateContrast()* to automatically calculate what is the best contrast color in a background,
@@ -44,7 +44,7 @@
 - `js/wpf/dynamic/render.js`: Enhanced Blade framework support with specialized detection patterns for conditional expressions (`{{ condition ? 'class-name' : '' }}`) and Blade functions (`@svg('icon', 'class-list')`). Added intelligent class extraction that processes Blade syntax before standard normalization to prevent class loss in complex template structures;
 - `js/wpf/dynamic/render.js`: Improved CSS value protection during class extraction - Added safeguards for comma-separated values like `rgba(255,255,255,0.5)` by temporarily protecting parentheses content, preventing CSS color values from being incorrectly split as separate classes during normalization;
 - `js/wpf/dynamic/render.js`: Advanced Alpine.js and Vue.js compatibility with enhanced token normalization that removes trailing colons from object property separators while preserving breakpoint prefixes (`sm:`, `md:`, etc.), ensuring accurate class detection in reactive framework contexts;
-- `sass/wpf/vendor/_anim.scss`: **Massive animation system expansion** - Added 13 sophisticated animation mixins transforming the framework from basic 6-mixin setup to comprehensive 19-mixin animation library. The new animation list includes:
+- `sass/wpf/vendor/_anim.scss`: **Massive animation system expansion** - Added 14 sophisticated animation mixins transforming the framework from basic 6-mixin setup to comprehensive 19-mixin animation library. The new animation list includes:
 	- *wiggle* for subtle rotation movement effects,
 	- *shake-x* for horizontal shaking effects,
 	- *shake-y* for vertical shaking effects,

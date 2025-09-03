@@ -1,18 +1,90 @@
 {
-  "name": "wpf",
-  "version": "1.0.0",
-  "description": "A simple, smart and easy-to-use CSS framework based on SASS and TypeScript",
-  "main": "src/js/wpf/index.ts",
+  "name": "@webeponto/wpf3",
+  "version": "3.0.0",
+  "description": "🎯 WPF 3.0 - Dynamic CSS utility framework with context-aware generation and human-readable syntax",
+  "main": "dist/js/index.js",
+  "types": "dist/js/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/js/index.js",
+      "types": "./dist/js/index.d.ts"
+    },
+    "./scss": "./dist/scss/index.scss",
+    "./css": "./dist/css/wpf3.css",
+    "./dynamic": "./dist/js/dynamic/render.js",
+    "./config": "./dist/dynamic/wpf.config.yaml"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE",
+    "changelog.md"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build:js && npm run build:scss && npm run build:css",
+    "build:js": "tsc --project tsconfig.build.json",
+    "build:scss": "npm run copy:scss",
+    "build:css": "sass src/sass/index.scss dist/css/wpf3.css --style compressed",
+    "copy:scss": "cpx \"src/sass/**/*\" \"dist/scss/\"",
+    "copy:dynamic": "cpx \"src/js/wpf/dynamic/**/*\" \"dist/dynamic/\"",
+    "dev": "npm run wpf:watch",
+    "wpf:watch": "node src/js/wpf/dynamic/render.js",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Tests coming soon...\" && exit 0",
+    "clean": "rimraf dist/"
   },
   "repository": {
     "type": "git",
-    "url": "wpf-sass"
+    "url": "https://github.com/webeponto/wpf-sass.git"
   },
   "keywords": [
-    "test"
+    "css",
+    "scss",
+    "sass",
+    "framework",
+    "utility-first",
+    "dynamic-css",
+    "context-aware",
+    "wpf3",
+    "responsive",
+    "typescript",
+    "postcss",
+    "tailwind-alternative",
+    "css-in-js",
+    "design-system",
+    "ui-framework"
   ],
-  "author": "Lyautey M. Neto",
-  "license": "ISC"
+  "author": {
+    "name": "Lyautey M. Neto",
+    "email": "dev@webeponto.com",
+    "url": "https://github.com/webeponto"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://github.com/webeponto/wpf-sass#readme",
+  "bugs": {
+    "url": "https://github.com/webeponto/wpf-sass/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "peerDependencies": {
+    "sass": "^1.60.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.12",
+    "cpx": "^1.5.0",
+    "rimraf": "^5.0.10",
+    "sass": "^1.92.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.0",
+    "glob": "^10.0.0",
+    "js-yaml": "^4.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }

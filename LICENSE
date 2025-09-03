@@ -1,0 +1,47 @@
+WPF3 Framework License (Modified MIT)
+
+Copyright (c) 2025 Lyautey M. Neto
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to use
+the Software subject to the following conditions and restrictions:
+
+PERMITTED USES:
+✅ Use the Software in personal and commercial projects
+✅ Include the Software as a dependency in larger projects
+✅ Modify the Software for integration purposes within your projects
+✅ Distribute the Software as part of larger applications or systems
+
+RESTRICTIONS:
+❌ You may NOT redistribute this Software as a standalone product
+❌ You may NOT create derivative works that compete with or replicate WPF3
+❌ You may NOT sell, rent, lease, or sublicense the Software as an isolated product
+❌ You may NOT remove or alter the "WPF" branding, naming, or attribution
+❌ You may NOT market derived versions using the WPF name or similar branding
+❌ You may NOT use this Software as the primary monetizable component of any service
+
+DERIVATIVE WORKS:
+Any modifications must maintain compatibility with the original WPF3 API and
+cannot be distributed as a competing CSS framework. Modifications should enhance
+or extend WPF3 functionality, not replace it.
+
+COMMERCIAL USE CLARIFICATION:
+✅ ALLOWED: Including WPF3 in commercial websites, applications, or products
+✅ ALLOWED: Offering development services that utilize WPF3
+❌ FORBIDDEN: Selling WPF3 itself as a product or service
+❌ FORBIDDEN: Creating paid themes/templates that primarily consist of WPF3 code
+❌ FORBIDDEN: Offering WPF3 as a standalone SaaS or subscription service
+
+The above copyright notice, this permission notice, and attribution requirement
+shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+For licensing inquiries or commercial partnerships, contact: dev@webeponto.com
