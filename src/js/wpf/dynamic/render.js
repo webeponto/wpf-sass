@@ -1,6 +1,6 @@
 /**
 	*# 	@property WPF3 - Framework CSS Dinâmico
-	* 	@version Versão: 3.0.3
+	* 	@version Versão: 3.0.0
 	* 	@authors Lyautey Maluf Neto, Matheus Patrignani Quaiat, David Henderson
 	* 	@copyright 2023
 	*
@@ -11,7 +11,7 @@
 const fs = require("fs");
 const path = require("path");
 const chokidar = require("chokidar");
-const { glob } = require("glob");
+const glob = require("glob");
 const yaml = require("js-yaml");
 const util = require("util");
 
@@ -20,7 +20,7 @@ const util = require("util");
 const readFileAsync = util.promisify(fs.readFile);
 
 // Limitar a frequência de atualizações para evitar sobrecarga:
-const THROTTLE_INTERVAL = 800;
+const THROTTLE_INTERVAL = 1000; // Aumentado para 1s
 let lastRun = 0;
 
 // Carregar e ler as configurações do YAML:
@@ -41,7 +41,7 @@ try {
 }
 
 // Garante que o diretório de saída exista:
-const outDir = path.join(process.cwd(), 'resources/scss/panel/wpf/vendor/dynamic');
+const outDir = path.join(process.cwd(), 'resources/scss/site/wpf/vendor/dynamic');
 fs.mkdirSync(outDir, { recursive: true });
 
 // Pastas que estão sendo monitoradas:
@@ -54,12 +54,7 @@ let isProcessing = false;
 let pendingUpdate = false;
 const cssCache = new Map();
 
-/** 
-	*#	Reset Configuration and Cache
-	*	Reinicia a leitura do arquivo YAML para renderizar as mudanças mais recentes.
-	*
-	* 	@returns {bool} - Uma resposta se a execução da tarefa foi ou não bem sucedida.
-*/
+// Função para recarregar configurações e limpar cache
 function resetConfigAndCache() {
 	try {
 		cssCache.clear();
@@ -76,7 +71,7 @@ function resetConfigAndCache() {
 
 //* ====================== FUNÇÕES UTILITÁRIAS ====================== //
 
-/** 
+/**
 	*#	Escape Selector
 	*	Escapa caracteres especiais em seletores CSS.
 	*
@@ -90,7 +85,7 @@ function escapeSelector(cls) {
 
 /**
 	*#	Extract Breakpoint
-	*	Recupera os padrões de definição (breakpoint ou importância) em uma classe CSS e compara com as configurações definidas disponíveis pelo arquivo de comparação YAML.
+	*	Recupera os padrões de definição (breakpoint, pseudo-classes ou importância) em uma classe CSS e compara com as configurações definidas disponíveis pelo arquivo de comparação YAML.
 	*
 	*	@param {string} className - A classe CSS a ser analisada.
 	*
@@ -100,6 +95,10 @@ function extractBreakpoint(className) {
 	let breakpoint = null;
 	let baseName = className;
 	let isImportant = false;
+	let cleanClassName = className; // Para o seletor CSS final
+
+	// Lista de pseudo-classes suportadas (baseado no pseudos.ts)
+	const supportedPseudos = ['hover:', 'active:', 'focus:', 'placeholder:', 'group-hover:', 'remote-hover:'];
 
 	// Primeiro verifica se tem importância (em qualquer posição):
 	if (baseName.includes('!')) {
@@ -112,15 +111,32 @@ function extractBreakpoint(className) {
 		if (baseName.startsWith(prefix)) {
 			breakpoint = bp;
 			baseName = baseName.slice(prefix.length);
+			cleanClassName = cleanClassName.replace(prefix, '');
 			break;
 		}
+	}
+
+	// Remove prefixos de pseudo-classes tanto da baseName quanto da cleanClassName:
+	for (const pseudo of supportedPseudos) {
+		if (baseName.startsWith(pseudo)) {
+			baseName = baseName.slice(pseudo.length);
+			cleanClassName = cleanClassName.replace(pseudo, '');
+			break;
+		}
+	}
+
+	// Reconstrói o nome da classe limpa com breakpoint (se existir)
+	if (breakpoint) {
+		cleanClassName = `${breakpoint}:${baseName}`;
+	} else {
+		cleanClassName = baseName;
 	}
 
 	// Retorna o objeto com as informações necessárias:
 	return {
 		breakpoint,
 		baseClass: baseName,
-		originalClass: className,
+		originalClass: cleanClassName, // Agora retorna a classe SEM pseudo prefixos
 		isImportant
 	};
 }
@@ -180,8 +196,8 @@ function generateCSSFromClass(originalClass, baseClass, patternConfig, patternNa
 			if (isImportant) rule = rule.replace(/;/g, ' !important;');
 
 			ruleContent = rule + '\n';
-		} 
-		
+		}
+
 		// Se um Template CSS não estiver disponível, procura por uma definição 'default' especificada no YAML:
 		//? (Este é um caso que na versão atual não é utilizado, mas pode ser útil em ocasiões futuras)
 		else {
@@ -200,8 +216,8 @@ function generateCSSFromClass(originalClass, baseClass, patternConfig, patternNa
 
 		processedRules.add(ruleSig);
 		return ruleContent;
-	} 
-	
+	}
+
 	// Se algo impedir esse procedimento, captura o erro, informa o usuário e retorna uma string vazia:
 	catch (error) {
 		console.error(`❌ Erro ao processar '${originalClass}' com '${patternName}':`, error);
@@ -374,8 +390,15 @@ function generateCSS(allClassGroups) {
 
 	// Define, no final do arquivo, as regras simples (não incluí as regras contextuais) que pertencem em grupos de breakpoints:
 	//? Por questão de otimização, as regras contextuais mais complexas não são separadas no final do arquivo como as simples. Elas podem ser muito extensas e diferentes, o que dificulta o processo de automatização da máquina.
-	for (const bp in bpRules) {
-		if (bpRules[bp].trim()) {
+
+	// 🔧 CORREÇÃO WPF3: Ordenar breakpoints do MAIOR para o MENOR para Desktop-First
+	// Isso garante que breakpoints menores sobreponham os maiores (especificidade CSS)
+	const sortedBreakpoints = Object.entries(config.breakpoints)
+		.sort(([, a], [, b]) => b - a) // Ordem decrescente: xl(1500) → mob(1024) → lg(830) → md(650) → sm(576)
+		.map(([bp]) => bp);
+
+	for (const bp of sortedBreakpoints) {
+		if (bpRules[bp] && bpRules[bp].trim()) {
 			out += `\n@media (max-width: ${config.breakpoints[bp]}px) {\n${bpRules[bp]}}\n`;
 		}
 	}
@@ -389,6 +412,12 @@ function generateCSS(allClassGroups) {
 /**
 	*# 	Extract Class Groups From File
 	*	Lê um arquivo com base no seu caminho de pastas e extraí todo o conteúdo que é possível graças à folha de estilos comparativa definida pelo YAML.
+	*	Suporta detecção de classes em:
+	*	- Atributos HTML/template: class="...", className="...", x-bind:class="..."
+	*	- 🆕 Expressões Blade: {{ $var ? 'class1' : 'class2' }}, class="base {{ $condition ? 'extra' : '' }}"
+	*	- Funções Blade: @svg('name', 'classes')
+	*	- JavaScript: element.className = 'classes', classList.add('classes'), setAttribute('class', 'classes')
+	*	- Template literals e strings JS que contenham padrões WPF3
 	* 	@async
 	*
 	* 	@param {string} filePath - O caminho do arquivo à ser processado.
@@ -409,19 +438,53 @@ async function extractClassGroupsFromFile(filePath) {
 			/(?:class|className|data-class|x-bind:class|:class|x-class)=\{([^}]*)\}/g   // { ... }
 		];
 
+		/**
+		 * 🆕 Padrões para atributos customizados em componentes Blade
+		 * Detecta classes WPF3 passadas como props: gap="gap-5px", padding="p-20px", etc.
+		 * Captura QUALQUER atributo que contenha valores que pareçam classes CSS válidas
+		 */
+		const customAttrPatterns = [
+			// Atributos com valores que parecem classes WPF3 (contém hífen seguido de número/unidade ou parênteses)
+			/\s([a-z][\w-]*)=["']([a-zA-Z][\w-]*(?:-[\w.]+)?(?:\([^)]*\))?)["']/g
+		];
+
+		/**
+		 * 🔄 REFATORADO: Padrões universais para expressões Blade
+		 * Em vez de listar manualmente cada padrão WPF3, capturamos TODAS as strings
+		 * dentro de expressões Blade. A validação acontece depois no generateCSSFromClass().
+		 */
+		const bladeExpressionPatterns = [
+			// Captura atributo class completo que contém expressões Blade
+			/class=["']([^"']*\{\{[^}]*\}\}[^"']*?)["']/g,
+			
+			// Captura TODAS as strings (simples, duplas ou template) dentro de {{ ... }}
+			// Isso inclui expressões ternárias, concatenações, etc.
+			/\{\{[^}]*?['"`]([^'"`]+?)['"`]/g,
+			
+			// Captura o segundo valor de expressões ternárias: {{ $var ? 'a' : 'b' }}
+			/\{\{[^}]*\?\s*['"`][^'"`]*['"`]\s*:\s*['"`]([^'"`]+?)['"`]/g
+		];
+
 		// Função utilitária para normalizar e splitar uma string de classes em um array único
 		const extractClassesFromString = (raw) => {
 			let extractedClasses = [];
-			
+
 			// PRIMEIRO: Extrair classes de dentro de expressões Blade condicionais antes de removê-las
-			// Ex: {{ !empty($ratio) ? 'ratio-(ratio)' : '' }} → captura 'ratio-(ratio)'
-			const bladeClassPattern = /\{\{[^}]*['"`]([^'"`\s]+)['"`][^}]*\}\}/g;
+			// Captura TODAS as strings dentro de {{ }}, não apenas padrões específicos
+			const bladeStringPattern = /\{\{[^}]*?['"`]([^'"`]+?)['"`]/g;
 			let bladeMatch;
-			while ((bladeMatch = bladeClassPattern.exec(raw)) !== null) {
+			while ((bladeMatch = bladeStringPattern.exec(raw)) !== null) {
 				const foundClasses = bladeMatch[1].split(/\s+/).filter(cls => cls.trim());
 				extractedClasses.push(...foundClasses);
 			}
 			
+			// Captura também o lado 'else' de ternários
+			const bladeTernaryElsePattern = /\{\{[^}]*\?\s*['"`][^'"`]*['"`]\s*:\s*['"`]([^'"`]+?)['"`]/g;
+			while ((bladeMatch = bladeTernaryElsePattern.exec(raw)) !== null) {
+				const foundClasses = bladeMatch[1].split(/\s+/).filter(cls => cls.trim());
+				extractedClasses.push(...foundClasses);
+			}
+
 			// SEGUNDO: Processar o resto da string normalmente
 			const classString = raw
 				// Protege vírgulas dentro de parênteses (ex: rgba(255,255,255,0.5)) para não virarem separadores de classes
@@ -430,7 +493,7 @@ async function extractClassGroupsFromFile(filePath) {
 				.replace(/\{\{[^}]+\}\}/g, '')    	// Remove expressões do Blade.
 				.replace(/@[a-zA-Z0-9_]+/g, '')   	// Remove directivas.
 				.replace(/[{}]/g, ' ')            	// Remove chaves de objetos Alpine.js
-				.replace(/["']/g, ' ')           	// Remove apenas aspas simples e duplas (preserva :) 
+				.replace(/["']/g, ' ')           	// Remove apenas aspas simples e duplas (preserva :)
 				.replace(/\s*,\s*/g, ' ')         	// Remove vírgulas (fora dos parênteses, já protegidas)
 				.replace(/\u0007/g, ',')          	// Restaura vírgulas protegidas
 				.replace(/\s+/g, ' ');            	// Normaliza espaços
@@ -457,10 +520,109 @@ async function extractClassGroupsFromFile(filePath) {
 			}
 		});
 
+		// 🆕 1.2) Atributos customizados em componentes Blade (ex: gap="gap-5px")
+		// Lista de atributos conhecidos que NÃO devem ser tratados como classes
+		const ignoredAttrs = new Set([
+			'id', 'name', 'type', 'value', 'href', 'src', 'alt', 'title', 'placeholder',
+			'action', 'method', 'target', 'rel', 'for', 'role', 'aria-label', 'aria-hidden',
+			'data-id', 'data-url', 'data-src', 'data-target', 'data-toggle', 'data-action',
+			'width', 'height', 'min', 'max', 'step', 'pattern', 'autocomplete', 'required',
+			'disabled', 'readonly', 'checked', 'selected', 'multiple', 'accept', 'enctype',
+			'lang', 'dir', 'tabindex', 'accesskey', 'contenteditable', 'draggable', 'spellcheck',
+			'style', 'slot', 'wire:model', 'wire:click', 'wire:submit', 'wire:loading',
+			'x-data', 'x-init', 'x-show', 'x-if', 'x-for', 'x-text', 'x-html', 'x-model',
+			'x-on:click', 'x-on:submit', 'x-on:change', 'x-on:input', 'x-on:keydown',
+			'x-on:mouseenter', 'x-on:mouseleave', 'x-transition', 'x-ref', 'x-effect',
+			'v-if', 'v-for', 'v-show', 'v-model', 'v-on', 'v-bind', '@click', '@submit',
+			'label', 'icon', 'dropdown', 'active', 'highlighted' // Props de componentes Blade
+		]);
+		
+		customAttrPatterns.forEach((pattern) => {
+			let match;
+			while ((match = pattern.exec(content)) !== null) {
+				const attrName = match[1].toLowerCase();
+				const attrValue = match[2];
+				
+				// Ignora atributos conhecidos que não são classes
+				if (ignoredAttrs.has(attrName)) continue;
+				
+				// Processa o valor como possíveis classes
+				const classes = extractClassesFromString(attrValue);
+				if (classes.length > 0) classGroups.push(classes);
+			}
+		});
+
+		// 🔄 1.5) Expressões Blade - captura universal de strings
+		bladeExpressionPatterns.forEach((pattern) => {
+			let match;
+			while ((match = pattern.exec(content)) !== null) {
+				const classes = extractClassesFromString(match[1]);
+				if (classes.length > 0) classGroups.push(classes);
+			}
+		});
+
+		// 🔄 4) Classes em comentários - padrão universal
+		// Captura qualquer conteúdo dentro de comentários que pareça classe CSS
+		const commentPatterns = [
+			// Comentários HTML: <!-- ... -->
+			/<!--([\s\S]*?)-->/g,
+			
+			// Comentários Blade: {{-- ... --}}
+			/\{\{--([\s\S]*?)--\}\}/g,
+			
+			// Comentários JS de linha: // ...
+			/\/\/([^\r\n]*)/g,
+			
+			// Comentários JS de bloco: /* ... */
+			/\/\*([\s\S]*?)\*\//g,
+			
+			// Comentários de shell/config: # ... (apenas em arquivos apropriados)
+			/^#([^\r\n]*)/gm
+		];
+
+		commentPatterns.forEach((pattern) => {
+			let match;
+			while ((match = pattern.exec(content)) !== null) {
+				// Para comentários que podem conter múltiplas classes, processa linha por linha
+				const commentContent = match[1] || match[0];
+				const classes = extractClassesFromString(commentContent);
+				if (classes.length > 0) classGroups.push(classes);
+			}
+		});
+
+		// 3) Padrões JavaScript para detecção de classes WPF3 em código JS
+		const jsClassPatterns = [
+			// element.className = 'classes'
+			/\.className\s*[=+]\s*['"]([^'"]+)['"]/gi,
+
+			// element.classList.add('classes') ou .remove() ou .toggle()
+			/\.classList\.(?:add|remove|toggle)\s*\(\s*['"]([^'"]+)['"]\s*\)/gi,
+
+			// element.setAttribute('class', 'classes')
+			/\.setAttribute\s*\(\s*['"]class['"]\s*,\s*['"]([^'"]+)['"]\s*\)/gi,
+
+			// Template literals com classes: `class="classes"`
+			/`[^`]*class(?:Name)?=["']([^"']+)["'][^`]*`/gi,
+
+			// Strings que parecem conter classes CSS (palavras separadas por espaço, sem caracteres especiais de código)
+			/['"]([a-zA-Z][\w-]*(?:\([^)]*\))?(?:\s+[a-zA-Z][\w-]*(?:\([^)]*\))?)+)['"](?!\s*[:\(])/gi
+		];
+
+		jsClassPatterns.forEach((pattern) => {
+			let match;
+			while ((match = pattern.exec(content)) !== null) {
+				const classes = extractClassesFromString(match[1]);
+				if (classes.length > 0) classGroups.push(classes);
+			}
+		});
+
 		// 2) Funções Blade conhecidas que recebem classes como segundo argumento (ex: @svg('name', 'classes ...'))
-		//    Suporta somente string simples como 2º parâmetro, sem espaços dentro das aspas.
+		//    Suporta strings simples e concatenação PHP no primeiro parâmetro
 		const bladeFuncPatterns = [
-			/@svg\(\s*['"][^'"]+['"]\s*,\s*['"]([^'"]+)['"]\s*\)/g
+			// Versão original para strings simples
+			/@svg\(\s*['"][^'"]+['"]\s*,\s*['"]([^'"]+)['"]\s*\)/g,
+			// Nova versão para concatenação PHP (aceita . e variáveis)
+			/@svg\(\s*['"][^'"]*['"]\s*\.\s*[^,]+\s*,\s*['"]([^'"]+)['"]\s*\)/g
 		];
 
 		bladeFuncPatterns.forEach((pattern) => {
@@ -473,8 +635,8 @@ async function extractClassGroupsFromFile(filePath) {
 
 		// Retorna o grupo de classes relacionados à esse arquivo:
 		return classGroups;
-	} 
-	
+	}
+
 	// Caso não seja possível realizar alguma etapa do processo de leitura e triagem...
 	catch (err) {
 		// ...Informa o usuário que um caminho de arquivo específico não pode ser lido e processado:
@@ -495,9 +657,9 @@ async function findAllFiles() {
 	const allowedExtensions = ['.html', '.php', '.js', '.jsx', '.tsx', '.vue', '.blade.php', '.svg'];
 	const allFiles = [];
 
-	// Busca arquivos válidos nos diretórios definidos pelo arquivo de configuração YAML: 
+	// Busca arquivos válidos nos diretórios definidos pelo arquivo de configuração YAML:
 	for (const dir of directoryPaths) {
-		const files = await glob(`${dir}/**/*.*`);
+		const files = glob.sync(`${dir}/**/*.*`);
 		const filteredFiles = files.filter(file =>
 			allowedExtensions.includes(path.extname(file).toLowerCase())
 		);
@@ -542,9 +704,9 @@ async function updateDynamicSCSS() {
 		// Aguarda o método de busca por arquivos compatíveis terminar seu processamento:
 		const allFiles = await findAllFiles();
 
-		// Aguarda o método de extração de classes terminar o seu processamento em um arquivo específico...: 
+		// Aguarda o método de extração de classes terminar o seu processamento em um arquivo específico...:
 		const classGroupsPerFile = await Promise.all(allFiles.map(extractClassGroupsFromFile));
-		
+
 		//...Então concatena ele em um grupo maior que aborda todos os conjuntos de classes de todos os arquivos:
 		const allClassGroups = classGroupsPerFile.flat();
 
@@ -556,7 +718,7 @@ async function updateDynamicSCSS() {
 
 		// Utiliza o caminho de saída especificado no arquivo de configuração do YAML para criar um arquivo único para receber os estilos convertidos:
 		const outPath = path.join(outDir, 'wpf-dynamic.scss');
-		
+
 		// Imprime nesse arquivo final de saída a data da última conversão de estilos e gera um cabeçalho com informações:
 		const timestamp = new Date().toLocaleString();
 		const header = `// Gerado em ${timestamp}\n// ${allClassGroups.length} grupos\n\n`;
@@ -571,14 +733,14 @@ async function updateDynamicSCSS() {
 		allClassGroups.forEach(group => group.forEach(cls => allClasses.add(cls)));
 		const debugPath = path.join(outDir, 'wpf-classes-debug.txt');
 		fs.writeFileSync(debugPath, `Classes detectadas:\n${Array.from(allClasses).sort().join('\n')}`, 'utf-8');
-	} 
-	
+	}
+
 	// Caso alguma das etapas não tenha sido concluída, o processo inteiro desmorona, portanto...
 	catch (error) {
 		//...Um erro crítico é informado ao usuário:
 		console.error("❌ Erro crítico:", error);
-	} 
-	
+	}
+
 	// Quando tudo está terminado...
 	finally {
 		// Informa este próprio método que ele está pronto para a próxima chamada:
@@ -661,13 +823,15 @@ const watcher = chokidar.watch(directoryPaths, {
 		'**/node_modules/**',
 		'**/vendor/**',
 		'**/*.(jpg|png|gif|pdf|zip)',
+		'**/.vscode/**',           // ✨ Ignora arquivos do VS Code
+		'**/.*',                   // ✨ Ignora arquivos ocultos/temporários
 		outDir	//? Entre eles, é importante que o arquivo de saída da nossa biblioteca esteja incluso.
 	],
 	persistent: true,
 	ignoreInitial: true,
 	awaitWriteFinish: {
-		stabilityThreshold: 500,
-		pollInterval: 100
+		stabilityThreshold: 1500,  // ✨ 1.5 segundos - aguarda o save completo
+		pollInterval: 500          // ✨ 500ms - verifica menos frequentemente
 	},
 	depth: 10
 });
@@ -683,8 +847,8 @@ const configWatcher = chokidar.watch(configPath, {
 	persistent: true,
 	ignoreInitial: true,
 	awaitWriteFinish: {
-		stabilityThreshold: 200,
-		pollInterval: 50
+		stabilityThreshold: 1000,  // ✨ 1 segundo para config
+		pollInterval: 200          // ✨ 200ms - menos agressivo
 	}
 });
 
@@ -719,12 +883,12 @@ function handleFileChange(event, file) {
 	if (!validExts.includes(ext)) return;
 
 	// Informa o usuário sobre qual arquivo foi observado um comportamento e qual foi o comportamento observado:
-	console.log(`🔄 ${event} em ${path.relative(process.cwd(), file)}`);
+	console.log(`🔄 ${event} em ${path.relative(process.cwd(), file)} - aguardando save...`);
 	clearTimeout(debounceTimer);
 	debounceTimer = setTimeout(updateDynamicSCSS, THROTTLE_INTERVAL);
 }
 
-// Para fins de depuração, no momento da inicialização, define no arquivo 'wpf-status.txt' o estado operacional atual da ferramenta: 
+// Para fins de depuração, no momento da inicialização, define no arquivo 'wpf-status.txt' o estado operacional atual da ferramenta:
 const statusPath = path.join(outDir, 'wpf-status.txt');
 fs.writeFileSync(
 	statusPath,

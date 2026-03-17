@@ -28,6 +28,8 @@
 - `js/wpf/dynamic/wpf.config.yaml`: Added support for *justify-self* and *align-self* properties in flex and grid contexts using the appropriate utility classes;
 - `js/wpf/dynamic/wpf.config.yaml`: Unlocked the possibility to set any type of *display* attribute using the default *.dp-(value)* utility class;
 - `js/wpf/painter.ts`: Added support for eight digit HEX color values for the *Painter* plugin, allowing transparency control over the colors being rendered in real time;
+- `js/wpf/render.js`: Improved the rendering methods for WPF3 and fixed a lot of bugs regarding class recognitions.
+- `sass/wpf/vendor/dynamic/index.scss`: Fix a bug where the end WPF3 file wouldn't automatically be rendered by the SASS compiler;
 
 
 ## 3.0.3 - Alpha
