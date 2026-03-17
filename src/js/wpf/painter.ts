@@ -59,7 +59,7 @@ export class Painter {
      */
     extractColor(className: string): string | null {
         // A regex procura padrões como (#123) ou (#112233)
-        const colorMatch = className.match(/\((#[0-9a-fA-F]{3,6})\)/);
+        const colorMatch = className.match(/\((#[0-9a-fA-F]{3,8})\)/);
         return colorMatch ? colorMatch[1] : null;
     }
 

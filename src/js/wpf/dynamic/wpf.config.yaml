@@ -1,16 +1,13 @@
 #?    FRAMEWORK SCSS WPF 3
 #
-#* Autores: Lyautey M. N. / Matheus P.
-#* Versão v3.0.3 do Framework SCSS WPF
+#* Autores: Lyautey M. N. / Matheus P. / David H.
+#* Versão v3.0.4 do Framework SCSS WPF
 #
 #! Alterar o funcionamento do conjunto de regras do SCSS dinâmico pode causar problemas de renderização e funcionamento.
 #! Erros fatais no funcionamento da ferramenta podem acontecer em caso de alterações não planejadas.
 #
 #? DOCUMENTAÇÃO DO PROJETO: [https://webeponto.notion.site/WPF-bbc0a45af56640898b8de57ecaa81676]
-
-#? Você também pode acessar a documentação do WPF3 diretamente através do seu agente de IA escrevendo 'wpf3-find' 
-#? seguido de um termo, atributo CSS ou dúvida. Garanta que o seu agente de IA tem acesso aos arquivos de instruções e
-#? prompts inclusos nesse repositório.
+#
 
 #* Configuração da pasta base para monitoramento de arquivos:
 directoriesToWatch:
@@ -19,18 +16,23 @@ directoriesToWatch:
   - "resources/views"
 
 #* Configuração do arquivo de saída do SCSS dinâmico:
-outputSCSS: "../../../../scss/panel/wpf/vendor/dynamic/wpf-dynamic.scss"
+outputSCSS: "../../../../scss/site/wpf/vendor/dynamic/wpf-dynamic.scss"
 
 #? Definição de breakpoints para escopos responsivos:
 breakpoints:
   sm: 576
-  md: 768
-  lg: 992
+  md: 650
+  lg: 830
   mob: 1024
-  xl: 1200
+  xl: 1500
 
 #? Estrutura de Regexes para geração de Classes Utilitárias Dinâmicas:
 patterns:
+  #* Displays Legados:
+  display:
+    regex: "^dp-(block|inline|inline-block|table|table-row|table-cell|none)$"
+    cssTemplate: "{selector} { display: $1; }"
+  
   #* Posicionamento: [https://webeponto.notion.site/Posicionamento-d96cf6193d484249979bd186b767b7c6]
   position:
     regex: "^(static|sticky|relative|absolute|fixed)$"
@@ -45,6 +47,10 @@ patterns:
     regex: '^(top|right|bottom|left)-\(([a-z0-9-]+)\)$'
     cssTemplate: "{selector} { $1: var(--$2); }"
 
+  offset-auto:
+    regex: '^(top|right|bottom|left)\(auto\)$'
+    cssTemplate: "{selector} { $1: auto; }"
+
   # Centralização
   center-h:
     regex: '^center\(h\)$'
@@ -57,6 +63,10 @@ patterns:
   center-c:
     regex: '^center\(c\)$'
     cssTemplate: "{selector} { left: 50%; top: 50%; transform: translate(-50%, -50%); }"
+
+  center-reset:
+    regex: '^center-reset$'
+    cssTemplate: "{selector} { left: auto; top: auto; transform: none; }"
 
   # Z-index
   z-index:
@@ -80,7 +90,7 @@ patterns:
 
   # Caso com eixo e tipo (hidden, scroll ou visible)
   overflow-axis-type:
-    regex: "^overflow-(x|y)-(hidden|scroll|visible)$"
+    regex: "^overflow-(x|y)-(hidden|scroll|visible|auto)$"
     cssTemplate: "{selector} { overflow-$1: $2; }"
 
   # Caso sem eixo e com tipo (hidden, scroll ou visible)
@@ -167,6 +177,11 @@ patterns:
     regex: "^t-(underline|dashed|double|line-through|overline|solid|wavy|none)$"
     cssTemplate: "{selector} { text-decoration: $1; }"
 
+  #* Estilo de Fonte:
+  font-style:
+    regex: "^fs-(italic|normal|oblique)$"
+    cssTemplate: "{selector} { font-style: $1; }"
+
   #* Transformação de Texto: [https://webeponto.notion.site/Transforma-o-de-Texto-b40e813e484b49b58d547c70df4c24d9]
   text-transform:
     regex: "^tt-(uppercase|lowercase|capitalize|none|math-auto)$"
@@ -200,7 +215,7 @@ patterns:
     regex: "^(border|content)-box$"
     cssTemplate: "{selector} { box-sizing: $1-box; }"
 
-  #* Visibility Responsive (Mobile/Desktop): 
+  #* Visibility Responsive (Mobile/Desktop):
   # Classes que controlam a visibilidade baseada em breakpoint de 1024px
   mobile-visibility:
     regex: "^mobile$"
@@ -276,7 +291,7 @@ patterns:
     cssTemplate: "{selector} { padding: var(--$1); }"
 
   padding-x:
-    regex: '^px-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^px-(-?\d*\.?\d+)(px|em|rem|%|dvw)$'
     cssTemplate: "{selector} { padding-left: $1$2; padding-right: $1$2; }"
 
   padding-x-var:
@@ -284,7 +299,7 @@ patterns:
     cssTemplate: "{selector} { padding-left: var(--$1); padding-right: var(--$1); }"
 
   padding-y:
-    regex: '^py-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^py-(-?\d*\.?\d+)(px|em|rem|%|dvh)$'
     cssTemplate: "{selector} { padding-top: $1$2; padding-bottom: $1$2; }"
 
   padding-y-var:
@@ -292,7 +307,7 @@ patterns:
     cssTemplate: "{selector} { padding-top: var(--$1); padding-bottom: var(--$1); }"
 
   padding-top:
-    regex: '^pt-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^pt-(-?\d*\.?\d+)(px|em|rem|%|dvh)$'
     cssTemplate: "{selector} { padding-top: $1$2; }"
 
   padding-top-var:
@@ -300,7 +315,7 @@ patterns:
     cssTemplate: "{selector} { padding-top: var(--$1); }"
 
   padding-right:
-    regex: '^pr-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^pr-(-?\d*\.?\d+)(px|em|rem|%|dvw)$'
     cssTemplate: "{selector} { padding-right: $1$2; }"
 
   padding-right-var:
@@ -308,7 +323,7 @@ patterns:
     cssTemplate: "{selector} { padding-right: var(--$1); }"
 
   padding-bottom:
-    regex: '^pb-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^pb-(-?\d*\.?\d+)(px|em|rem|%|dvh)$'
     cssTemplate: "{selector} { padding-bottom: $1$2; }"
 
   padding-bottom-var:
@@ -316,7 +331,7 @@ patterns:
     cssTemplate: "{selector} { padding-bottom: var(--$1); }"
 
   padding-left:
-    regex: '^pl-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^pl-(-?\d*\.?\d+)(px|em|rem|%|dvw)$'
     cssTemplate: "{selector} { padding-left: $1$2; }"
 
   padding-left-var:
@@ -363,7 +378,7 @@ patterns:
     cssTemplate: "{selector} { margin: var(--$1); }"
 
   margin-x:
-    regex: '^mx-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^mx-(-?\d*\.?\d+)(px|em|rem|%|dvw)$'
     cssTemplate: "{selector} { margin-left: $1$2; margin-right: $1$2; }"
 
   margin-x-var:
@@ -371,7 +386,7 @@ patterns:
     cssTemplate: "{selector} { margin-left: var(--$1); margin-right: var(--$1); }"
 
   margin-y:
-    regex: '^my-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^my-(-?\d*\.?\d+)(px|em|rem|%|dvh)$'
     cssTemplate: "{selector} { margin-top: $1$2; margin-bottom: $1$2; }"
 
   margin-y-var:
@@ -379,7 +394,7 @@ patterns:
     cssTemplate: "{selector} { margin-top: var(--$1); margin-bottom: var(--$1); }"
 
   margin-top:
-    regex: '^mt-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^mt-(-?\d*\.?\d+)(px|em|rem|%|dvh)$'
     cssTemplate: "{selector} { margin-top: $1$2; }"
 
   margin-top-var:
@@ -387,7 +402,7 @@ patterns:
     cssTemplate: "{selector} { margin-top: var(--$1); }"
 
   margin-right:
-    regex: '^mr-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^mr-(-?\d*\.?\d+)(px|em|rem|%|dvw)$'
     cssTemplate: "{selector} { margin-right: $1$2; }"
 
   margin-right-var:
@@ -395,7 +410,7 @@ patterns:
     cssTemplate: "{selector} { margin-right: var(--$1); }"
 
   margin-bottom:
-    regex: '^mb-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^mb-(-?\d*\.?\d+)(px|em|rem|%|dvh)$'
     cssTemplate: "{selector} { margin-bottom: $1$2; }"
 
   margin-bottom-var:
@@ -403,7 +418,7 @@ patterns:
     cssTemplate: "{selector} { margin-bottom: var(--$1); }"
 
   margin-left:
-    regex: '^ml-(-?\d*\.?\d+)(px|em|rem|%)$'
+    regex: '^ml-(-?\d*\.?\d+)(px|em|rem|%|dvw)$'
     cssTemplate: "{selector} { margin-left: $1$2; }"
 
   margin-left-var:
@@ -419,6 +434,14 @@ patterns:
   width-auto:
     regex: '^w-auto$'
     cssTemplate: "{selector} { width: auto; }"
+
+  width-none-max:
+    regex: '^w-none-max$'
+    cssTemplate: "{selector} { max-width: none; }"
+
+  width-none-min:
+    regex: '^w-none-min$'
+    cssTemplate: "{selector} { min-width: none; }"
 
   max-width:
     regex: '^w-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)-max$'
@@ -450,6 +473,14 @@ patterns:
     regex: '^h-auto$'
     cssTemplate: "{selector} { height: auto; }"
 
+  height-none-max:
+    regex: '^h-none-max$'
+    cssTemplate: "{selector} { max-height: none; }"
+
+  height-none-min:
+    regex: '^h-none-min$'
+    cssTemplate: "{selector} { min-height: none; }"
+
   max-height:
     regex: '^h-(-?\d*\.?\d+)(%|px|em|rem|dvw|dvh|vw|vh|ch|ex)-max$'
     cssTemplate: "{selector} { max-height: $1$2; }"
@@ -475,7 +506,7 @@ patterns:
   # CORRIGIDO: Regex simplificado e cssTemplate fixo
   border-all:
     regex: '^b-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
-    cssTemplate: "{selector} { border: $1$2 $3; }"
+    cssTemplate: "{selector} { border-width: $1$2; border-style: $3; }"
 
   border-all-var:
     regex: '^b-\(([a-z0-9-]+)\)$'
@@ -484,7 +515,7 @@ patterns:
   # Top e Bottom simultâneos
   border-y:
     regex: '^by-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
-    cssTemplate: "{selector} { border-top: $1$2 $3; border-bottom: $1$2 $3; }"
+    cssTemplate: "{selector} { border-top-width: $1$2; border-top-style: $3; border-bottom-width: $1$2; border-bottom-style: $3; }"
 
   border-y-var:
     regex: '^by-\(([a-z0-9-]+)\)$'
@@ -493,7 +524,7 @@ patterns:
   # Left e Right simultâneos
   border-x:
     regex: '^bx-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
-    cssTemplate: "{selector} { border-left: $1$2 $3; border-right: $1$2 $3; }"
+    cssTemplate: "{selector} { border-left-width: $1$2; border-left-style: $3; border-right-width: $1$2; border-right-style: $3; }"
 
   border-x-var:
     regex: '^bx-\(([a-z0-9-]+)\)$'
@@ -502,7 +533,7 @@ patterns:
   # Top only
   border-top:
     regex: '^bt-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
-    cssTemplate: "{selector} { border-top: $1$2 $3; }"
+    cssTemplate: "{selector} { border-top-width: $1$2; border-top-style: $3; }"
 
   border-top-var:
     regex: '^bt-\(([a-z0-9-]+)\)$'
@@ -511,7 +542,7 @@ patterns:
   # Right only
   border-right:
     regex: '^br-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
-    cssTemplate: "{selector} { border-right: $1$2 $3; }"
+    cssTemplate: "{selector} { border-right-width: $1$2; border-right-style: $3; }"
 
   border-right-var:
     regex: '^br-\(([a-z0-9-]+)\)$'
@@ -520,7 +551,7 @@ patterns:
   # Bottom only
   border-bottom:
     regex: '^bb-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
-    cssTemplate: "{selector} { border-bottom: $1$2 $3; }"
+    cssTemplate: "{selector} { border-bottom-width: $1$2; border-bottom-style: $3; }"
 
   border-bottom-var:
     regex: '^bb-\(([a-z0-9-]+)\)$'
@@ -529,7 +560,7 @@ patterns:
   # Left only
   border-left:
     regex: '^bl-(\d*\.?\d+)(px|em|rem|%)-((none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset))$'
-    cssTemplate: "{selector} { border-left: $1$2 $3; }"
+    cssTemplate: "{selector} { border-left-width: $1$2; border-left-style: $3; }"
 
   border-left-var:
     regex: '^bl-\(([a-z0-9-]+)\)$'
@@ -538,31 +569,58 @@ patterns:
   # Bordas apenas com largura (usa solid como padrão)
   border-width-all:
     regex: '^b-(\d*\.?\d+)(px|em|rem|%)$'
-    cssTemplate: "{selector} { border: $1$2 solid; }"
+    cssTemplate: "{selector} { border-width: $1$2; border-style: solid; }"
 
   border-width-y:
     regex: '^by-(\d*\.?\d+)(px|em|rem|%)$'
-    cssTemplate: "{selector} { border-top: $1$2 solid; border-bottom: $1$2 solid; }"
+    cssTemplate: "{selector} { border-top-width: $1$2; border-top-style: solid; border-bottom-width: $1$2; border-bottom-style: solid; }"
 
   border-width-x:
     regex: '^bx-(\d*\.?\d+)(px|em|rem|%)$'
-    cssTemplate: "{selector} { border-left: $1$2 solid; border-right: $1$2 solid; }"
+    cssTemplate: "{selector} { border-left-width: $1$2; border-left-style: solid; border-right-width: $1$2; border-right-style: solid; }"
 
   border-width-top:
     regex: '^bt-(\d*\.?\d+)(px|em|rem|%)$'
-    cssTemplate: "{selector} { border-top: $1$2 solid; }"
+    cssTemplate: "{selector} { border-top-width: $1$2; border-top-style: solid; }"
 
   border-width-right:
     regex: '^br-(\d*\.?\d+)(px|em|rem|%)$'
-    cssTemplate: "{selector} { border-right: $1$2 solid; }"
+    cssTemplate: "{selector} { border-right-width: $1$2; border-right-style: solid; }"
 
   border-width-bottom:
     regex: '^bb-(\d*\.?\d+)(px|em|rem|%)$'
-    cssTemplate: "{selector} { border-bottom: $1$2 solid; }"
+    cssTemplate: "{selector} { border-bottom-width: $1$2; border-bottom-style: solid; }"
 
   border-width-left:
     regex: '^bl-(\d*\.?\d+)(px|em|rem|%)$'
-    cssTemplate: "{selector} { border-left: $1$2 solid; }"
+    cssTemplate: "{selector} { border-left-width: $1$2; border-left-style: solid; }"
+
+  #? Border Image (suporte básico para width e outros modificadores):
+  # Border Image Width
+  border-image-width:
+    regex: '^biw-(\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-image-width: $1$2; }"
+
+  border-image-width-dual:
+    regex: '^biw-(-?\d*\.?\d+)(px|em|rem|%)-(-?\d*\.?\d+)(px|em|rem|%)$'
+    cssTemplate: "{selector} { border-image-width: $1$2 $3$4; }"
+  
+  border-image-width-var:
+    regex: '^biw-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-image-width: var(--$1); } }"
+  
+  # Border Image Slice 
+  border-image-slice:
+    regex: '^bis-([a-z0-9-]+)$'
+    cssTemplate: "{selector} { border-image-slice: $1; }"
+
+  border-image-slice-dual:
+    regex: '^bis-([a-z0-9-]+)\-([a-z0-9-]+)$'
+    cssTemplate: "{selector} { border-image-slice: $1 $2; }"
+
+  border-image-slice-var:
+    regex: '^bis-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { border-image-slice: var(--$1); }" 
 
   #* Raio de Borda: [https://webeponto.notion.site/Raio-de-Borda-bfd74a08896b46a0b34970e3427980da]
   rounded:
@@ -699,22 +757,39 @@ patterns:
     regex: "^ratio-video$"
     cssTemplate: "{selector} { aspect-ratio: 16 / 9; }"
 
+  #* Distorção e Reproporção de Imagens:
+  object-fit:
+    regex: "^fit-(fill|contain|cover|none|scale-down)$"
+    cssTemplate: "{selector} { object-fit: $1; }"
+
+  object-fit-cover-positions:
+    regex: "^fit-cover-(center|top|bottom|left|right|top-left|top-right|bottom-left|bottom-right)$"
+    cssTemplate: "{selector} { object-fit: cover; object-position: $1; }"
+
+  object-position:
+    regex: '^obj-pos\(([-+]?\d*\.?\d+)(px|em|rem|%|dvw|dvh|vw|vh|ch|ex),\s*([-+]?\d*\.?\d+)(px|em|rem|%|dvw|dvh|vw|vh|ch|ex)\)$'
+    cssTemplate: "{selector} { object-position: $1$2 $3$4; }"
+
+  object-position-hotkeys:
+    regex: '^obj-pos-(center|top|bottom|left|right|top-left|top-right|bottom-left|bottom-right)$'
+    cssTemplate: "{selector} { object-position: $1; }"
+
   #* Transições:
-  #? DURAÇÃO (Simples e direto)
+  #? DURAÇÃO
   transition-duration:
-    regex: '^t-(\d+)(ms|s)$'
+    regex: '^t-(\d*\.?\d+)(ms|s)$'
     cssTemplate: "{selector} { transition-duration: $1$2; }"
 
   transition-duration-var:
     regex: '^t-\(([a-z0-9-]+)\)$'
     cssTemplate: "{selector} { transition-duration: var(--$1); }"
 
-  #? TIMING FUNCTION (Leitura natural)
+  #? TIMING FUNCTION
   transition-timing:
     regex: '^timing-(linear|ease|ease-in|ease-out|ease-in-out|step-start|step-end|cubic-bezier\(.+?\))$'
     cssTemplate: "{selector} { transition-timing-function: $1; }"
 
-  #? DELAY (Prático e objetivo)
+  #? DELAY
   transition-delay:
     regex: '^delay-(\d+)(ms|s)$'
     cssTemplate: "{selector} { transition-delay: $1$2; }"
@@ -723,7 +798,7 @@ patterns:
     regex: '^delay-\(([a-z0-9-]+)\)$'
     cssTemplate: "{selector} { transition-delay: var(--$1); }"
 
-  #? PROPRIEDADE (Autoexplicativo)
+  #? PROPRIEDADE
   transition-property:
     regex: "^transition-(all|none|background|color|opacity|transform|box-shadow|filter)$"
     cssTemplate: "{selector} { transition-property: $1; }"
@@ -829,8 +904,8 @@ patterns:
   rotate-direction:
     regex: "^rotate-(left|right|inverted|upside)$"
     cssTemplate: |
-      {selector} { 
-        transform: rotate(#{if($1=='left','-90deg',$1=='right','90deg',$1=='inverted','180deg','0deg')}); 
+      {selector} {
+        transform: rotate(#{if($1=='left','-90deg',$1=='right','90deg',$1=='inverted','180deg','0deg')});
       }
 
   #* Translações:
@@ -876,21 +951,85 @@ patterns:
     regex: '^translate-self-(-?\d{1,3})%$'
     cssTemplate: "{selector} { transform: translate($1%, $1%); }"
 
-  #! ===== FEATURES EM TESTE: PARTES CONTEXTUAIS ===== #
+  #* Configurações Avançadas de Transformação:
+  #? Origem de Transformação:
+
+  transform-origin:
+    regex: '^origin-(center|top|bottom|left|right|top-left|top-right|bottom-left|bottom-right)$'
+    cssTemplate: "{selector} { transform-origin: $1; }"
+
+  #* Filtros:
+  #? Backdrop Filter:
+  backdrop-blur:
+    regex: '^bdfx-blur-(-?\d*\.?\d+)(px|em|rem)$'
+    cssTemplate: "{selector} { backdrop-filter: blur($1$2); }"
+
+  backdrop-blur-var:
+    regex: '^bdfx-blur-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { backdrop-filter: blur(var(--$1)); }"
+
+  backdrop-brightness:
+    regex: '^bdfx-brightness-(-?\d*\.?\d+)$'
+    cssTemplate: "{selector} { backdrop-filter: brightness($1); }"
+
+  backdrop-brightness-var:
+    regex: '^bdfx-brightness-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { backdrop-filter: brightness(var(--$1)); }"
+
+  backdrop-contrast:
+    regex: '^bdfx-contrast-(-?\d*\.?\d+)$'
+    cssTemplate: "{selector} { backdrop-filter: contrast($1); }"
+
+  backdrop-contrast-var:
+    regex: '^bdfx-contrast-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { backdrop-filter: contrast(var(--$1)); }"
+
+  backdrop-grayscale:
+    regex: '^bdfx-grayscale-(-?\d*\.?\d+)$'
+    cssTemplate: "{selector} { backdrop-filter: grayscale($1); }"
+
+  backdrop-grayscale-var:
+    regex: '^bdfx-grayscale-\(([a-z0-9-]+)\)$'
+    cssTemplate: "{selector} { backdrop-filter: grayscale(var(--$1)); }"
+
+  #? Mix Blend Mode:
+  mix-blend:
+    regex: '^blend-(normal|multiply|screen|overlay|darken|lighten|color-dodge|color-burn|hard-light|soft-light|difference|exclusion|hue|saturation|color|luminosity)$'
+    cssTemplate: "{selector} { mix-blend-mode: $1; }"
+  
+  #? ===== PARTES CONTEXTUAIS ===== #
+
+  # Flex/Grid Container
+  order:
+    regex: '^order-([1-9]\d*)$'
+    cssTemplate: "{selector} { order: $1; }"
 
   # Flex Container
   display-flex:
     regex: "^dp-flex$"
     cssTemplate: "{selector} { display: flex; box-sizing: border-box; }"
 
+  # Flex Inline Container
+  display-flex-inline:
+    regex: "^dp-flex-inline$"
+    cssTemplate: "{selector} { display: inline-flex; box-sizing: border-box; }"
+
   # Flex Direction
   flex-row:
     regex: "^row$"
     cssTemplate: "{selector} { flex-direction: row; }"
 
+  flex-row-reverse:
+    regex: "^(row-reverse|row-r)$"
+    cssTemplate: "{selector} { flex-direction: row-reverse; }"
+
   flex-col:
     regex: "^col$"
     cssTemplate: "{selector} { flex-direction: column; }"
+
+  flex-col-reverse:
+    regex: "^(col-reverse|col-r)$"
+    cssTemplate: "{selector} { flex-direction: column-reverse; }"
 
   # Flex Wrap
   flex-wrap:
@@ -914,7 +1053,7 @@ patterns:
   grid-cols:
     regex: '^col-(\d+)$'
     cssTemplate: "{selector} { grid-template-columns: repeat($1, 1fr); }"
-  
+
   # Grid Template Columns (Variable Compatibility)
   grid-cols-var:
     regex: '^col-\(([a-z0-9-]+)\)$'
@@ -977,6 +1116,127 @@ patterns:
 contextPatterns:
   flex-context:
     requires: ["dp-flex"] # Apenas classe base
+    mediators:
+      row: "row" # Classe base do mediador
+      col: "col" # Classe base do mediador
+    properties:
+      v-top:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "align-items: flex-start;"
+          col: "justify-content: flex-start;"
+      v-center:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "align-items: center;"
+          col: "justify-content: center;"
+      v-bottom:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "align-items: flex-end;"
+          col: "justify-content: flex-end;"
+      v-stretch:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "align-items: stretch;"
+          col: "justify-content: stretch;"
+      v-between:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "align-items: space-between;"
+          col: "justify-content: space-between;"
+      vs-top:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "align-self: flex-start;"
+          col: "justify-self: flex-start;"
+      vs-center:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "align-self: center;"
+          col: "justify-self: center;"
+      vs-bottom:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "align-self: flex-end;"
+          col: "justify-self: flex-end;"
+      vs-stretch:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "align-self: stretch;"
+          col: "justify-self: stretch;"
+
+      h-left:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-content: flex-start;"
+          col: "align-items: flex-start;"
+      h-center:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-content: center;"
+          col: "align-items: center;"
+      h-right:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-content: flex-end;"
+          col: "align-items: flex-end;"
+      h-stretch:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-content: stretch;"
+          col: "align-items: stretch;"
+      h-between:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-content: space-between;"
+          col: "justify-content: space-between;"
+      h-around:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-content: space-around;"
+          col: "justify-content: space-around;"
+      h-evenly:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-content: space-evenly;"
+          col: "justify-content: space-evenly;"
+      hs-left:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-self: flex-start;"
+          col: "align-self: flex-start;"
+      hs-center:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-self: center;"
+          col: "align-self: center;"
+      hs-right:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-self: flex-end;"
+          col: "align-self: flex-end;"
+      hs-stretch:
+        selector: "&.$mediator.$prop"
+        rules:
+          row: "justify-self: stretch;"
+          col: "align-self: stretch;"
+
+      gap:
+        selector: "&.$mediator.$prop"
+        rule: "gap: {value}px;"
+        valuePattern: "gap-(\\d+)"
+      gap-x:
+        selector: "&.$mediator.$prop"
+        rule: "column-gap: {value}px;"
+        valuePattern: "gap-x-(\\d+)"
+      gap-y:
+        selector: "&.$mediator.$prop"
+        rule: "row-gap: {value}px;"
+        valuePattern: "gap-y-(\\d+)"
+
+  inline-flex-context:
+    requires: ["dp-flex-inline"] # Apenas classe base
     mediators:
       row: "row" # Classe base do mediador
       col: "col" # Classe base do mediador
@@ -1097,7 +1357,7 @@ contextPatterns:
         selector: "&.$prop"
         rules:
           default: "justify-content: end;"
-      
+
       # Mantemos h-stretch como opcional (não existe no WPF2 grid), útil para casos específicos
       h-stretch:
         selector: "&.$prop"
